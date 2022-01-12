@@ -4,13 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myproject.second.main.service.MainService;
 import com.myproject.second.main.vo.MainVO;
-
-import lombok.Data;
 
 @RestController
 @RequestMapping(value="api/main/*")
@@ -34,4 +33,11 @@ public class MainController {
 //	public String ddd() {
 //		return "Dfdf";
 //	}
+	@GetMapping("/temp/{num}")
+	public MainVO notice(@PathVariable("num") int num) throws Exception {
+		List<MainVO> list = mainService.getMainList();
+		
+		return list.get(num-1);
+	}
+	
 }
