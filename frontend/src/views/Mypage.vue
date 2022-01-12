@@ -38,7 +38,10 @@
             </div>
         </div>
         <!--right-->
-        <router-view></router-view>
+        <div class="right">
+            <router-view></router-view>
+        </div>
+
     </div>
 </div>
 </template>
@@ -64,7 +67,7 @@ export default {
 </script>
 
 <style scoped>
-/* a {
+a {
     text-decoration: none;
     color: inherit;
     margin-left: 15px;
@@ -72,10 +75,6 @@ export default {
 
 hr {
     width: 200px;
-}
-
-tr {
-    border: inherit;
 }
 
 .top {
@@ -99,129 +98,6 @@ tr {
     font-size: 18px;
 }
 
-.right {
-    display: inline-block;
-    height: 1150px;
-    width: 85%;
-    border: 1px solid rgb(197, 195, 195);
-    margin-left: 50px;
-    background-color: #fafafa;
-    border-radius: 4px;
-}
-
-.pList1,
-.pList2,
-.pList3 {
-    text-align: center;
-    border-bottom: 1px solid rgb(197, 195, 195);
-
-}
-
-.date1,
-.date2 {
-
-    border-bottom: 1px solid rgb(197, 195, 195);
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.date1 {
-    display: flex;
-}
-
-.date2 {
-    height: 300px;
-    overflow-y: scroll;
-}
-
-.date3 {
-    margin-top: 20px;
-    padding-top: 15px;
-    height: 300px;
-    overflow-y: scroll;
-}
-
-.table1st {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-
-}
-
-.tables_header {
-    width: 140px;
-    height: 100px;
-    padding-top: 20px;
-    text-align: center;
-    line-height: 80px;
-    font-weight: bold;
-    border: 1px solid;
-    border-radius: 4px;
-    background-color: #00ba54;
-    color: white;
-    margin-right: 20px;
-}
-
-.searchBtn {
-    margin-left: 20px;
-}
-
-.row1,
-.row2 {
-    padding: 1px;
-    border-radius: 4px;
-}
-
-.row2 {
-    margin-left: 6px;
-}
-
-.row3 {
-    display: flex;
-    padding: 5px 0px;
-}
-
-.searchBar {
-    width: 400px;
-    margin-left: auto;
-    margin-right: 1px;
-    border-radius: 4px;
-    border: 1px solid;
-    padding: 20px;
-}
-
-.table2,
-.table3 {
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
-    text-align: center;
-    background-color: white;
-}
-
-.table2 td,
-.table3 td {
-    border-bottom: 2px solid rgb(184, 181, 181);
-    padding: 7px 4px;
-    font-size: 16px;
-}
-
-.List1 {
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 10px;
-    margin-right: 20px;
-    font-size: 22px;
-}
-
-.List2 {
-    text-align: center;
-    padding-top: 70px;
-    padding-bottom: 10px;
-    margin-right: 20px;
-    font-size: 22px
-}
-
 .Check {
     margin-left: 20px;
     color: rgb(129, 124, 124);
@@ -236,31 +112,20 @@ tr {
     margin: 10px 0px;
 }
 
-.dateBtn {
-    border-radius: 4px;
-    border: none;
-    color: white;
-    padding: 5px 10px;
+.List1,
+.List2 {
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 13px;
-    cursor: pointer;
-    margin: 0px 1px;
-    margin: 0px 5px;
-
+    padding-top: 15px;
+    padding-bottom: 10px;
+    margin-right: 20px;
+    font-size: 22px;
 }
 
-.tr1 {
-    background-color: rgb(0, 153, 255);
-    color: white;
+.List2 {
+    padding-top: 70px;
 }
 
-#edge1 {
-    border-top-left-radius: 8px;
+.right{
+    margin-left:50px;
 }
-
-#edge2 {
-    border-top-right-radius: 8px;
-} */
 </style>

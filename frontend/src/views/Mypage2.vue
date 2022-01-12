@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="container">
     <!--top-->
 
     <!--right-->
@@ -15,21 +15,20 @@
         <div class="tempDiv">
             <label class="labelClass" for="">비밀번호</label>
             <input v-model="signup.password" type="password" class="mdText" @keyup="passwordValid">
-            <div v-if="!passwordValidFlag" class="pwFlag"> 유효하지 않은 비밀번호 입니다. </div>
-            <br>
+            <!-- <div for="" style="display:inline-block; width:100px;"></div> -->
+            <div v-if="!passwordValidFlag" class="pwFlag hiddenArea wrongInput"> 유효하지 않은 비밀번호 입니다. </div>
         </div>
         <div class="tempDiv">
             <label class="labelClass" for="">비밀번호확인</label>
             <input v-model="passwordCheck" type="password" name="비밀번호 확인" class="mdText" @keyup="passwordCheckValid">
             <button class="classBtn" @click="pwMod"> 수정하기 </button>
-            <div v-if="!passwordCheckFlag" class="re_pwFlag"> 비밀번호가 동일하지 않습니다. </div>
-
+            <div v-if="!passwordCheckFlag" class="re_pwFlag hiddenArea  wrongInput"> 비밀번호가 동일하지 않습니다. </div>
         </div>
         <div class="tempDiv">
             <label class="labelClass" for="">전화번호</label>
             <input v-model="putNum" type="text" class="mdText" @keyup="numValid" placeholder="- 없이 숫자만" maxlength="11">
             <button class="classBtn" @click="numMod"> 수정하기 </button>
-            <div v-if="!numValidFlag" class="numFlag"> 유효하지 않은 전화번호 입니다. </div>
+            <div v-if="!numValidFlag" class="numFlag hiddenArea  wrongInput"> 유효하지 않은 전화번호 입니다. </div>
         </div>
         <div class="tempDiv">
             <label class="labelClass" for="">*우편번호</label>
@@ -206,6 +205,60 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    width: 1000px;
+}
+
+.right {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tempDiv {
+    padding-top: 30px;
+}
+
+.labelClass {
+    display: inline-block;
+    width: 100px;
+}
+
+.mdText {
+    width: 350px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid;
+    text-align: center;
+    font-size: 16px;
+}
+
+.content1 {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.hiddenArea {
+    margin-top: 10px;
+    margin-left: 100px;
+    display: block;
+}
+
+.currentInput {
+    color: green;
+}
+
+.wrongInput {
+    color: red;
+}
+
+.classBtn {
+    width: 100px;
+    height: 30px;
+    margin-left: 0px;
+    padding: 0;
+}
+
 /* a {
     text-decoration: none;
     color: inherit;
