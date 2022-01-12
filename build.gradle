@@ -21,10 +21,21 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// https://mvnrepository.com/artifact/org.projectlombok/lombok
+	// https://mvnrepository.com/artifact/org.projectlombok/lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	// https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6
+	implementation 'com.oracle.database.jdbc:ojdbc6:11.2.0.4'		
+
+	testImplementation("org.junit.vintage:junit-vintage-engine") {          
+		exclude group: "org.hamcrest", module: "hamcrest-core"
+	}
 }
 
 test {

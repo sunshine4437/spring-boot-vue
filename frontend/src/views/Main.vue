@@ -165,7 +165,7 @@ export default {
             'LogOut'
         ]),
         getData() {
-            axios.get("/api/main/data").then(res => this.msg = res.data)
+            axios.get("/api/main/test11").then(res => this.msg=res.data)
         }
     },
     mounted() {
