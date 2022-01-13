@@ -95,7 +95,7 @@
 <script>
 // @ is an alias to /src
 import "@/css/common.css"
-// import axios from 'axios'
+import axios from 'axios'
 // 새로고침과 페이지 이동시 로그인 상태 확인 및 유지 기능
 import {
     createNamespacedHelpers
