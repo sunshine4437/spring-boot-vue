@@ -73,6 +73,9 @@ const routes = [
         path: '/join2',
         component: () => import ('../views/Join.vue')
     }, {
+        path: '/productReg',
+        component: () => import ('../views/productReg.vue')
+    }, {
         path: '/temp/:id',
         component: () => import ('../views/temp.vue')
     }, {

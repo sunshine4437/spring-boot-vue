@@ -189,7 +189,7 @@ export default {
             delivery: 0,
             delivery_low: 50000,
             delivery_fee: 0,
-            msg:"",
+            msg: "",
         };
     },
     methods: {
@@ -262,7 +262,7 @@ export default {
         ...orderList.mapMutations(["addOrderList"]),
         ...orderList.mapMutations(["clearOrderList"]),
         ...basketList.mapMutations(["delList"]),
-          getTest(){
+        getTest() {
             const id = this.$route.params.id;
             axios.get(`/api/main/productDetail/${id}`).then(res => this.msg = res.data);
             // console.log(id)
@@ -280,7 +280,7 @@ export default {
             return tp;
         },
     },
-    mounted(){
+    mounted() {
         this.getTest();
     }
 };
