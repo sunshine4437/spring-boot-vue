@@ -75,6 +75,9 @@ const routes = [
     }, {
         path: '*',
         component: () => import ('../views/blank.vue')
+    },{
+        path: '/temp/:id',
+        component: () => import ('../views/temp.vue')
     }
 ]
 

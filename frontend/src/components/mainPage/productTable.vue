@@ -18,7 +18,7 @@
                     </div>
                     <div class="imageTitle">
                         <router-link v-bind:to="images[(j-1)+(n-1)*4].link">
-                            <temp class="temp"><label for="">{{images[(j-1)+(n-1)*4].name}}</label></temp>
+                            <div class="temp"><label for="">{{images[(j-1)+(n-1)*4].name}}</label></div>
                             <h3 for="">{{AddComma(images[(j-1)+(n-1)*4].price) }}원</h3>
                         </router-link>
                     </div>
@@ -33,14 +33,15 @@
 </template>
 
 <script>
-import imageJson from './image.json'
+import axios from 'axios'
+// import imageJson from './image.json'
 import bannerImage from '@/components/mainPage/mainPageBanner.vue'
 export default {
     data() {
         return {
             length: 3,
-            imageLength: imageJson.length / 4,
-            images: imageJson
+            imageLength: 0,
+            images: []
         }
     },
     components: {
@@ -61,7 +62,28 @@ export default {
             let regexp = /\B(?=(\d{3})+(?!\d))/g;
             return num.toString().replace(regexp, ",");
         },
+        async getImagesData() {
+            await axios.get("/api/main/test11").then(res => {
+                this.data = res.data;
+                this.data.forEach(element => {
+                    console.log(element.image);
+                    let temp = {
+                        image: element.image,
+                        name: element.name,
+                        link: element.link,
+                        price: element.price
+                    }
+                    this.images.push(temp);
+                });
+            })
+            this.imageLength = this.images.length / 4;
+            // alert(this.imageLength)
+        }
     },
+    mounted() {
+        this.getImagesData();
+
+    }
 
 }
 </script>

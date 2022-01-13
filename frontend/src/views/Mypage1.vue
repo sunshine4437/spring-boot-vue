@@ -59,63 +59,78 @@
             <h2>주문내역 조회</h2>
             <!--주문내역 조회 테이블-->
         </div>
-        <div class="date2">
-            <table class="table2" style="width:1000px">
-                <tr class="tr1" style="height:50px;">
-                    <td id="edge1" style="width:100px">주문일자</td>
-                    <td style="width:80px">이미지</td>
-                    <td style="width:80px">판매자명</td>
-                    <td style="width:370px">상품명</td>
-                    <td style="width:90px">옵션</td>
-                    <td style="width:100px">수량</td>
-                    <td style="width:100px">가격</td>
-                    <td id="edge2" style="width:80px">배송비</td>
-                </tr>
-                <!-- 날짜, 검색 정보를 비교하여 화면 목록에 표시 -->
-                <tr v-for="(item, idx) in users" :key="idx" v-show="compareDate(item) && compareInform(item) ">
-                    <td style="height:30px;">{{item.orderDate}}</td>
-                    <td style="height:30px;">
-                        <img :src="require(`@/assets/image/${item.img}`)" alt="banner" style="width:50px; height:50px;">
-                    </td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.product}}</td>
-                    <td>{{item.option}}</td>
-                    <td>{{item.amount}}</td>
-                    <td>{{AddComma(item.price)}}원</td>
-                    <td>{{item.charge}}</td>
-                </tr>
-            </table>
+        <div>
+            <div class="table1Header">
+                <table style="width:1000px">
+                    <tr style="height:50px;">
+                        <td class="td1">주문일자</td>
+                        <td class="td2">이미지</td>
+                        <td class="td3">판매자명</td>
+                        <td class="td4">상품명</td>
+                        <td class="td5">옵션</td>
+                        <td class="td6">수량</td>
+                        <td class="td7">가격</td>
+                        <td class="td8">배송비</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="table1Body">
+                <table style="width:1000px">
+                    <!-- 날짜, 검색 정보를 비교하여 화면 목록에 표시 -->
+                    <tr v-for="(item, idx) in users" :key="idx" v-show="compareDate(item) && compareInform(item) " style="height:50px;">
+                        <td class="td1">{{item.orderDate}}</td>
+                        <td class="td2">
+                            <img :src="require(`@/assets/image/${item.img}`)" alt="banner" style="width:50px; height:50px;">
+                        </td>
+                        <td class="td3">{{item.name}}</td>
+                        <td class="td4">{{item.product}}</td>
+                        <td class="td5">{{item.option}}</td>
+                        <td class="td6">{{item.amount}}</td>
+                        <td class="td7">{{AddComma(item.price)}}원</td>
+                        <td class="td8">{{item.charge}}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
-
         <div class="pList3">
             <h2>취소/환불 조회</h2>
             <!--취소/환불 내역 조회 테이블-->
         </div>
-        <div class="date3">
-            <table class="table3" style="width:1000px">
-                <tr class="tr1" style="height:50px;">
-                    <td id="edge1" style="width:100px">주문일자</td>
-                    <td style="width:80px">이미지</td>
-                    <td style="width:80px">판매자명</td>
-                    <td style="width:370px">상품명</td>
-                    <td style="width:90px">옵션</td>
-                    <td style="width:100px">가격</td>
-                    <td style="width:100px">처리상태</td>
-                    <td id="edge2" style="width:80px">결과</td>
-                </tr>
-                <tr v-for="(item, asd) in users2" :key="asd" v-show="compareDate(item) && compareInform(item) ">
-                    <td style="height:30px;">{{item.orderDate}}</td>
-                    <td style="height:30px;">
-                        <img :src="require(`@/assets/image/${item.img}`)" alt="banner" style="width:50px; height:50px;">
-                    </td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.product}}</td>
-                    <td>{{item.option}}</td>
-                    <td>{{AddComma(item.price)}}원</td>
-                    <td>{{item.process}}</td>
-                    <td>{{item.result}}</td>
-                </tr>
-            </table>
+        <div>
+            <div class="table2Header">
+                <table style="width:1000px">
+                    <thead>
+                        <tr class="tr1" style="height:50px;">
+                            <td class="td1">주문일자</td>
+                            <td class="td2">이미지</td>
+                            <td class="td3">판매자명</td>
+                            <td class="td4">상품명</td>
+                            <td class="td5">옵션</td>
+                            <td class="td6">가격</td>
+                            <td class="td7">처리상태</td>
+                            <td class="td8">결과</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="table2Body">
+                <table style="width:1000px">
+                    <tbody>
+                        <tr v-for="(item, asd) in users2" :key="asd" v-show="compareDate(item) && compareInform(item) " class="tr1" style="height:50px;">
+                            <td class="td1">{{item.orderDate}}</td>
+                            <td class="td2">
+                                <!-- <img :src="require(`@/assets/image/${item.img}`)" alt="banner" style="width:50px; height:50px;"> -->
+                            </td>
+                            <td class="td3">{{item.name}}</td>
+                            <td class="td4">{{item.product}}</td>
+                            <td class="td5">{{item.option}}</td>
+                            <td class="td6">{{AddComma(item.price)}}원</td>
+                            <td class="td7">{{item.process}}</td>
+                            <td class="td8">{{item.result}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -246,6 +261,66 @@ export default {
 </script>
 
 <style scoped>
+.table1Header,
+.table2Header {
+    background-color: rgb(0, 153, 255)
+}
+
+.table1Header tr,
+.table2Header tr {
+    color: white;
+}
+
+.table1Body {
+    height: 350px;
+    overflow-y: scroll;
+}
+
+.table2Body {
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.td1 {
+    width: 100px
+}
+
+.td2 {
+    width: 80px
+}
+
+.td3 {
+    width: 80px
+}
+
+.td4 {
+    width: 370px
+}
+
+.td5 {
+    width: 90px
+}
+
+.td6 {
+    width: 100px
+}
+
+.td7 {
+    width: 100px
+}
+
+.td8 {
+    width: 80px
+}
+
+.date1{
+    width:1000px;
+    display:flex;
+    text-align: center;
+    justify-items: center;
+}
+
+
 /* a {
     text-decoration: none;
     color: inherit;

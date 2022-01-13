@@ -161,7 +161,13 @@ export default {
         // 로그아웃 상태로 전환
         ...loginStore.mapMutations([
             'LogOut'
-        ])
+        ]),
+        getData() {
+            axios.get("/api/main/test11").then(res => this.msg=res.data)
+        }
+    },
+    mounted() {
+        this.getData();
     }
 }
 </script>
