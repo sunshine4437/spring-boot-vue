@@ -8,7 +8,24 @@
     <!-- 메인 화면에 이미지를 출력하는 기능 -->
     <div>
         <h1>추천상품</h1>
-        <div class="imageArea" v-for="n in length" v-bind:key="n">
+        <div class="imageArea">
+            <div class="card_image" v-for='(idx) in limitLength' :key="idx">
+                <!-- <p>{{images[idx-1].link}}</p> -->
+                <div class="imageDiv">
+                    <router-link v-bind:to="images[idx-1].link">
+                        <img :src="require(`@/components/mainPage/productTableImage/${images[idx-1].image}`)" alt="productImage">
+                    </router-link>
+                </div>
+                <div class="imageTitle">
+                    <router-link v-bind:to="images[idx-1].link">
+                        <div class="temp"><label for="">{{images[idx-1].name}}</label></div>
+                        <h3 for="">{{AddComma(images[idx-1].price) }}원</h3>
+                    </router-link>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="imageArea" v-for="n in length" v-bind:key="n">
             <ul>
                 <li class="card_image" v-for='j in 4' :key="j">
                     <div class="imageDiv">
@@ -24,7 +41,7 @@
                     </div>
                 </li>
             </ul>
-        </div>
+        </div> -->
         <div class="moreImageDiv">
             <button v-on:click="moreImage" class="moreImageBtn">더 보기</button>
         </div>
@@ -39,7 +56,7 @@ import bannerImage from '@/components/mainPage/mainPageBanner.vue'
 export default {
     data() {
         return {
-            length: 3,
+            limitLength: 0,
             imageLength: 0,
             images: []
         }
@@ -50,13 +67,15 @@ export default {
     methods: {
         // 화면에 보이는 이미지 출력 길이를 늘리는 기능
         moreImage() {
-            if (this.length < this.imageLength) {
-                if (this.imageLength - this.length == 1)
-                    return this.length++;
-                return this.length += 2;
-            } else
-                return this.length;
+            if (this.limitLength < this.imageLength) {
+                if (this.imageLength - this.limitLength < 4)
+                    this.limitLength = this.imageLength;
+                else
+                    this.limitLength += 4;
+            }
+            // else{
 
+            // }
         },
         AddComma(num) {
             let regexp = /\B(?=(\d{3})+(?!\d))/g;
@@ -68,15 +87,19 @@ export default {
                 this.data.forEach(element => {
                     console.log(element.image);
                     let temp = {
-                        image: element.image,
-                        name: element.name,
-                        link: element.link,
+                        image: element.imagename,
+                        name: element.productname,
+                        link: '/productDetail/'+element.productno,
                         price: element.price
                     }
                     this.images.push(temp);
                 });
+                this.imageLength = this.images.length;
+                if (this.imageLength > 12)
+                    this.limitLength = 12;
+                else
+                    this.limitLength = this.imageLength;
             })
-            this.imageLength = this.images.length / 4;
             // alert(this.imageLength)
         }
     },
@@ -108,11 +131,49 @@ ul {
     padding: 0;
 }
 
-.card_image {
-    margin-left: auto;
+.imageArea {
+    /* margin-left: auto;
     margin-right: auto;
+    width:1300px; */
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    /* padding-left :10px; */
+}
+
+.card_image {
+    margin-bottom: 10px;
     border: 1px solid rgb(197, 195, 195);
     border-radius: 4px;
+}
+
+.card_image:nth-child(4n-3) {
+    border: 1px solid black;
+    margin-left: 2px;
+    margin-right: 20px;
+}
+
+.card_image:nth-child(4n-2) {
+    border: 1px solid red;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.card_image:nth-child(4n-1) {
+    border: 1px solid blue;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.card_image:nth-child(4n) {
+    border: 1px solid green;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+.card_image:last-child {
+    margin-left: 20px;
+    margin-right: auto;
 }
 
 .card_image>.imageDiv {

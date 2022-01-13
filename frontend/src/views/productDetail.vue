@@ -5,7 +5,7 @@
     <div class="detailTop">
         <!-- 사진 -->
         <div class="leftBox scale-down" style="margin: auto; text-align: center">
-            <img style="width: 500px; height: 500px; border-radius: 10px" :src="require(`@/components/mainPage/productTableImage/${msg.image}`)" alt="productImage">
+            <img style="width: 500px; height: 500px; border-radius: 10px" :src="require(`@/components/mainPage/productTableImage/${prod.imagename}`)" alt="productImage">
             <!-- <img style="width: 500px; height: 500px; border-radius: 10px" src="@/components/productDetail/image/product01.jpg" /> -->
         </div>
         <!-- 사진의 오른쪽 부분 -->
@@ -14,12 +14,12 @@
             <!-- 상품명, 가격 -->
             <div class="rightTitle">
                 <h2 id="title">
-                    {{msg.name}}
+                    {{prod.productname}}
                     <!-- [뉴발란스] 남여공용 574/327/530 운동화 씨쏠트 문빔 -->
                 </h2>
                 <h1>
                     <!-- {{ AddComma(price) }}원 -->
-                    {{AddComma(msg.price)}}원
+                    {{AddComma(prod.price)}}원
                 </h1>
             </div>
             <!-- 상품명, 가격 -->
@@ -189,7 +189,7 @@ export default {
             delivery: 0,
             delivery_low: 50000,
             delivery_fee: 0,
-            msg: "",
+            prod: {},
         };
     },
     methods: {
@@ -262,10 +262,9 @@ export default {
         ...orderList.mapMutations(["addOrderList"]),
         ...orderList.mapMutations(["clearOrderList"]),
         ...basketList.mapMutations(["delList"]),
-        getTest() {
+        getProd() {
             const id = this.$route.params.id;
-            axios.get(`/api/main/productDetail/${id}`).then(res => this.msg = res.data);
-            // console.log(id)
+            axios.get(`/api/product/productDetail/${id}`).then(res => this.prod = res.data);
         }
     },
     computed: {
@@ -281,7 +280,7 @@ export default {
         },
     },
     mounted() {
-        this.getTest();
+        this.getProd();
     }
 };
 </script>
