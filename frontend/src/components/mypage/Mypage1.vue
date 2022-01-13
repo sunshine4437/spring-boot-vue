@@ -137,8 +137,8 @@
 </template>
 
 <script>
-import userList from "../assets/data/orderList.json"; // 주문내역 제이슨
-import userList2 from "../assets/data/refundList.json"; // 취소내역 제이슨
+import userList from "@/assets/data/orderList.json"; // 주문내역 제이슨
+import userList2 from "@/assets/data/refundList.json"; // 취소내역 제이슨
 export default {
     data() {
         return {

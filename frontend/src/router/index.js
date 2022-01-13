@@ -15,7 +15,7 @@ const routes = [
                 // name: 'Main',
                 component: () => import ('@/components/mainPage/productTable.vue')
             }, {
-                path: "/productDetail",
+                path: "/productDetail/:id",
                 // name: 'productDetail',
                 component: () => import ('@/views/productDetail.vue')
             }, {
@@ -45,11 +45,11 @@ const routes = [
                 component: () => import ('../views/Mypage.vue'),
                 children: [
                     {
-                        path: '',
-                        component: () => import ('../views/Mypage1.vue')
+                        path: '/Mypage',
+                        component: () => import ('@/components/mypage/Mypage1.vue')
                     }, {
                         path: '/Mypage2',
-                        component: () => import ('../views/Mypage2.vue')
+                        component: () => import ('@/components/mypage/Mypage2.vue')
                     }
                 ]
             }
@@ -73,11 +73,11 @@ const routes = [
         path: '/join2',
         component: () => import ('../views/Join.vue')
     }, {
-        path: '*',
-        component: () => import ('../views/blank.vue')
-    },{
         path: '/temp/:id',
         component: () => import ('../views/temp.vue')
+    }, {
+        path: '*',
+        component: () => import ('../views/blank.vue')
     }
 ]
 

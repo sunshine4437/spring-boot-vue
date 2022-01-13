@@ -1,6 +1,7 @@
 <template>
   <div>
       {{msg}}
+          <!-- <img :src="require(`@/components/mainPage/productTableImage/${msg.image}`)" alt="productImage"> -->
   </div>
 </template>
 
