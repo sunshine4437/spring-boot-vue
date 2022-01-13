@@ -12,6 +12,7 @@ import com.myproject.second.main.vo.MainVO;
 @Mapper
 public interface  MainMapper {
     @Select("SELECT * FROM mytable")
+//	@Select("select * from mytable order by dbms_random.value")
     List<MainVO> findAll();
     
     @Select("SELECT * FROM mytable where image = #{image}")

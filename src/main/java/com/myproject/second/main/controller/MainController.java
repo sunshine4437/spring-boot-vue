@@ -33,8 +33,14 @@ public class MainController {
 //	public String ddd() {
 //		return "Dfdf";
 //	}
-	@GetMapping("/temp/{num}")
+	@GetMapping("/productDetail/{num}")
 	public MainVO notice(@PathVariable("num") int num) throws Exception {
+		List<MainVO> list = mainService.getMainList();
+		
+		return list.get(num-1);
+	}
+	@GetMapping("/temp/{num}")
+	public MainVO nosstice(@PathVariable("num") int num) throws Exception {
 		List<MainVO> list = mainService.getMainList();
 		
 		return list.get(num-1);

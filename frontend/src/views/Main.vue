@@ -86,7 +86,7 @@
         </ul>
     </div>
     <hr class="lineNav">
-    {{msg}}
+    <!-- {{msg}} -->
     <!-- 메인 하위 컴포넌트 표시 구역 -->
     <router-view></router-view>
 </div>
