@@ -86,7 +86,6 @@
         </ul>
     </div>
     <hr class="lineNav">
-    {{msg}}
     <!-- 메인 하위 컴포넌트 표시 구역 -->
     <router-view></router-view>
 </div>
@@ -95,7 +94,7 @@
 <script>
 // @ is an alias to /src
 import "@/css/common.css"
-import axios from 'axios'
+// import axios from 'axios'
 // 새로고침과 페이지 이동시 로그인 상태 확인 및 유지 기능
 import {
     createNamespacedHelpers
@@ -107,7 +106,6 @@ export default {
     components: {},
     data() {
         return {
-            msg: "fff",
             memberMenu: [{
                     link: "/Mypage",
                     name: '마이페이지'
@@ -163,13 +161,7 @@ export default {
         // 로그아웃 상태로 전환
         ...loginStore.mapMutations([
             'LogOut'
-        ]),
-        getData() {
-            axios.get("/api/main/data").then(res => this.msg = res.data)
-        }
-    },
-    mounted() {
-        this.getData();
+        ])
     }
 }
 </script>

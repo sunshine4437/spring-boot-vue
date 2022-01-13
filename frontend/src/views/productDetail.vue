@@ -50,7 +50,6 @@
                         <option value="16.NB_ML574EVB"> 16.NB_ML574EVB </option>
                         <option value="17.NB_ML574EVG"> 17.NB_ML574EVG </option>
                         <option value="18.NB_ML574EVW"> 18.NB_ML574EVW </option>
-                        <option value="19.NB_ML574EVE"> 19.NB_ML574EVE </option>                        
                         <option value="19.NB_ML574EVE"> 19.NB_ML574EVE </option>
                     </select>
                 </div>
