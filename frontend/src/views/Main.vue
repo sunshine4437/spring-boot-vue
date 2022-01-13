@@ -107,7 +107,6 @@ export default {
     components: {},
     data() {
         return {
-            msg: "fff",
             memberMenu: [{
                     link: "/Mypage",
                     name: '마이페이지'
