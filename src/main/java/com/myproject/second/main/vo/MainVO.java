@@ -1,41 +1,34 @@
 package com.myproject.second.main.vo;
-
+//SELECT imagename, productname, productno, price FROM s_product;
 public class MainVO {
-	private String image;
-	private String name;
-	private String link;
+	private String imagename;
+	private String productname;
+	private int productno;
 	private int price;
-
-	public String getImage() {
-		return image;
+	public String getImagename() {
+		return imagename;
 	}
-
-	public void setImage(String image) {
-		this.image = image;
+	public void setImagename(String imagename) {
+		this.imagename = imagename;
 	}
-
-	public String getName() {
-		return name;
+	public String getProductname() {
+		return productname;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setProductname(String productname) {
+		this.productname = productname;
 	}
-
-	public String getLink() {
-		return link;
+	public int getProductno() {
+		return productno;
 	}
-
-	public void setLink(String link) {
-		this.link = link;
+	public void setProductno(int productno) {
+		this.productno = productno;
 	}
-
 	public int getPrice() {
 		return price;
 	}
-
 	public void setPrice(int price) {
 		this.price = price;
 	}
 
+	
 }

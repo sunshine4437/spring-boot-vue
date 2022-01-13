@@ -11,12 +11,12 @@ import com.myproject.second.main.vo.MainVO;
 
 @Mapper
 public interface  MainMapper {
-    @Select("SELECT * FROM mytable")
+    @Select("SELECT imagename, productname, productno, price FROM s_product")
 //	@Select("select * from mytable order by dbms_random.value")
     List<MainVO> findAll();
     
-    @Select("SELECT * FROM mytable where image = #{image}")
-    MainVO findByImage(String image);
+//    @Select("SELECT * FROM mytable where image = #{image}")
+//    MainVO findByImage(String image);
     
 //    @Insert("INSERT INTO mytable (name, age) values (#{name}, #{age})")
 //    void save(@Param("name") String name, @Param("age") int age);

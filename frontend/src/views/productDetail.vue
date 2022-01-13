@@ -5,7 +5,7 @@
     <div class="detailTop">
         <!-- 사진 -->
         <div class="leftBox scale-down" style="margin: auto; text-align: center">
-            <img style="width: 500px; height: 500px; border-radius: 10px" :src="require(`@/components/productDetail/image/${prod.imagename}`)" alt="productImage">
+            <img style="width: 500px; height: 500px; border-radius: 10px" :src="require(`@/components/mainPage/productTableImage/${prod.imagename}`)" alt="productImage">
             <!-- <img style="width: 500px; height: 500px; border-radius: 10px" src="@/components/productDetail/image/product01.jpg" /> -->
         </div>
         <!-- 사진의 오른쪽 부분 -->
@@ -189,7 +189,7 @@ export default {
             delivery: 0,
             delivery_low: 50000,
             delivery_fee: 0,
-            prod: "",
+            prod: {},
         };
     },
     methods: {
