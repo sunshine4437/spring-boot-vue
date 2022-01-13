@@ -22,5 +22,4 @@ public class ProdController {
 		List<ProdVO> list = prodService.getProductList();
 		return list.get(num - 1);
 	}
-
 }

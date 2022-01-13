@@ -14,9 +14,9 @@ public class ProdService {
 	public ProdService(ProdMapper prodMapper) {
 		this.prodMapper = prodMapper;
 	}
-	
-	public List<ProdVO> getProductList(){
+
+	public List<ProdVO> getProductList() {
 		return prodMapper.findAllProduct();
 	}
-}
 
+}
