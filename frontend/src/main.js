@@ -8,6 +8,7 @@ import "@/css/common.css";
 
 
 Vue.config.productionTip = false
+Vue.config.ignoredElements = ['item']
 
 new Vue({
     router,

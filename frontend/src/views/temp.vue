@@ -24,7 +24,7 @@ export default {
             let input = this.$refs.fileInput1.files[0];
 
             console.log(input)
-            this.formData.append('fileList', input, 'thumbnail.jpg')
+            this.formData.append('fileList', input)
 
         },
         pickFile2() {
@@ -38,7 +38,7 @@ export default {
             //     this.$emit('input', file[0])
             // }
             console.log(input)
-            this.formData.append('fileList', input, 'detail.jpg')
+            this.formData.append('fileList', input)
         },
         sendFile() {
             console.log(this.formData)

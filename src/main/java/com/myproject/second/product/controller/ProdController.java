@@ -22,4 +22,9 @@ public class ProdController {
 		List<ProdVO> list = prodService.getProductList();
 		return list.get(num - 1);
 	}
+	
+	@GetMapping("/productDetail/all")
+	public List<ProdVO> getAllProductList() throws Exception {
+		return prodService.getProductList();
+	}
 }
