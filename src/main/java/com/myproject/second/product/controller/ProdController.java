@@ -17,10 +17,9 @@ public class ProdController {
 	@Autowired
 	private ProdService prodService;
 
-	@GetMapping("/productDetail/{num}")
-	public ProdVO getProductList(@PathVariable("num") int num) throws Exception {
-		List<ProdVO> list = prodService.getProductList();
-		return list.get(num - 1);
+	@GetMapping("/productDetail/{productno}")
+	public ProdVO getProductList(@PathVariable("productno") int productno) throws Exception {
+		return prodService.getProductList(productno);
 	}
 	
 	@GetMapping("/productDetail/all")

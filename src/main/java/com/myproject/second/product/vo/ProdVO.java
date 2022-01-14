@@ -11,6 +11,20 @@ public class ProdVO {
 	private String id;
 	private String detailimagename;
 
+	public ProdVO(int productno, String productname, String imagename, int price, String option1, String option2,
+			String regdate, String id, String detailimagename) {
+		super();
+		this.productno = productno;
+		this.productname = productname;
+		this.imagename = imagename;
+		this.price = price;
+		this.option1 = option1;
+		this.option2 = option2;
+		this.regdate = regdate;
+		this.id = id;
+		this.detailimagename = detailimagename;
+	}
+
 	public int getProductno() {
 		return productno;
 	}

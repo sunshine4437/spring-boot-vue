@@ -14,7 +14,7 @@
             <div class="enter"></div>
             <!-- 상품명, 가격 -->
             <div class="rightTitle">
-                <h2 id="title">
+                <h2>
                     {{prod.productname}}
                     <!-- [뉴발란스] 남여공용 574/327/530 운동화 씨쏠트 문빔 -->
                 </h2>
@@ -37,45 +37,12 @@
                 <h3>옵션 선택</h3>
                 <div class="searchBar">
                     <select id="search1" name="searchSelect" class="searchSelectBox" @click="firstSelected($event)">
-                        <option value="0">상품 번호</option>
-                        <option value="01.NB_CM997HCA"> 01.NB_CM997HCA </option>
-                        <option value="02.NB_CM997HCC"> 02.NB_CM997HCC </option>
-                        <option value="03.NB_ML574RC2"> 03.NB_ML574RC2 </option>
-                        <option value="04.NB_MR530SG">04.NB_MR530SG</option>
-                        <option value="05.NB_MR530KA">05.NB_MR530KA</option>
-                        <option value="06.NB_MS327FE">06.NB_MS327FE</option>
-                        <option value="07.NB_MS327LAB"> 07.NB_MS327LAB </option>
-                        <option value="08.NB_MS327CPG"> 08.NB_MS327CPG </option>
-                        <option value="09.NB_MS327LH1"> 09.NB_MS327LH1 </option>
-                        <option value="10.NB_WS327KC">10.NB_WS327KC</option>
-                        <option value="11.NB_MS327WE">11.NB_MS327WE</option>
-                        <option value="12.NB_MS327BD">12.NB_MS327BD</option>
-                        <option value="13.NB_MR530SH">13.NB_MR530SH</option>
-                        <option value="14.NB_WS327LW">14.NB_WS327LW</option>
-                        <option value="15.NB_MS327CLA"> 15.NB_MS327CLA </option>
-                        <option value="16.NB_ML574EVB"> 16.NB_ML574EVB </option>
-                        <option value="17.NB_ML574EVG"> 17.NB_ML574EVG </option>
-                        <option value="18.NB_ML574EVW"> 18.NB_ML574EVW </option>
-                        <option value="19.NB_ML574EVE"> 19.NB_ML574EVE </option>
+                        <option :key="idx" :value="option" v-for="(option, idx) in option1">{{option}}</option>
                     </select>
                 </div>
                 <div class="searchBar">
                     <select name="searchSelect" class="searchSelectBox" v-show="isSelected" @click="secondSelected($event)">
-                        <option value="0">사이즈</option>
-                        <option value="225">225</option>
-                        <option value="230">230</option>
-                        <option value="235">235</option>
-                        <option value="240">240</option>
-                        <option value="245">245</option>
-                        <option value="250">250</option>
-                        <option value="255">255</option>
-                        <option value="260">260</option>
-                        <option value="265">265</option>
-                        <option value="270">270</option>
-                        <option value="275">275</option>
-                        <option value="280">280</option>
-                        <option value="285">285</option>
-                        <option value="290">290</option>
+                        <option :key="idx" :value="option" v-for="(option, idx) in option2">{{option}}</option>
                     </select>
                 </div>
             </div>
@@ -186,18 +153,16 @@ export default {
             firstOption: 0,
             secondOption: 0,
             items: [],
-            price: 73800,
-            delivery: 0,
-            delivery_low: 50000,
-            delivery_fee: 0,
             prod: {},
-            option1:[]
+            delivery_low: 50000,
+            option1: "",
+            option2: "",
         };
     },
     methods: {
         // 첫번째 옵션 선택 시 사용
         firstSelected(event) {
-            if (event.target.value != 0) {
+            if (event.target.value != this.option1[0]) {
                 this.isSelected = true;
                 this.firstOption = event.target.value;
             } else {
@@ -206,26 +171,25 @@ export default {
         },
         // 두번째 옵션 선택 시 사용
         secondSelected(event) {
-            if (event.target.value != 0) {
+            if (event.target.value != this.option2[0]) {
                 this.secondOption = event.target.value;
                 this.isSelected = false;
 
-                let title = document.getElementById("title").innerHTML;
                 let newItem = {
-                    img: "product01.jpg",
+                    img: this.prod.productname,
                     seller: "네파",
-                    title: title,
+                    title: this.prod.productname,
                     name: this.firstOption,
                     size: this.secondOption,
-                    price: this.price,
+                    price: this.prod.price,
                     amount: 1,
                     delivery_fee: this.delivery_fee,
                 };
                 this.items.push(newItem);
                 this.addList(newItem);
 
-                event.target.value = 0;
-                document.getElementById("search1").value = 0;
+                event.target.value = this.option2[0];
+                document.getElementById("search1").value = this.option1[0];
             }
         },
         insertOrderList() {
@@ -252,13 +216,13 @@ export default {
         amountDec(idx) {
             if (this.items[idx].amount > 1) {
                 this.items[idx].amount--;
-                this.items[idx].price = this.price * this.items[idx].amount;
+                this.items[idx].price = this.prod.price * this.items[idx].amount;
             }
         },
         // 숫자에 천자리마다 ,추가
         amountInc(idx) {
             this.items[idx].amount++;
-            this.items[idx].price = this.price * this.items[idx].amount;
+            this.items[idx].price = this.prod.price * this.items[idx].amount;
         },
         ...basketList.mapMutations(["addList"]),
         ...orderList.mapMutations(["addOrderList"]),
@@ -266,11 +230,13 @@ export default {
         ...basketList.mapMutations(["delList"]),
         getProd() {
             const id = this.$route.params.id;
-            axios.get(`/api/product/productDetail/${id}`).then(res => this.prod = res.data);
-            let temp = this.prod.option1.split(';')
-            for(let i in temp)
-            this.option1.push(i)
-        }
+            axios.get(`/api/product/productDetail/${id}`).then(res => {
+                this.prod = res.data;
+                this.option1 = this.prod.option1.split(";");
+                this.option2 = this.prod.option2.split(";");
+            })
+        },
+
     },
     computed: {
         ...basketList.mapGetters(["getBasketList"]),
@@ -283,10 +249,24 @@ export default {
             }
             return tp;
         },
+        delivery() {
+            if (this.prod.price >= 50000) {
+                return 0;
+            } else {
+                return 2500;
+            }
+        },
+        delivery_fee() {
+            if (this.totalPrice >= 50000) {
+                return 0;
+            } else {
+                return 2500;
+            }
+        }
     },
     mounted() {
         this.getProd();
-    }
+    },
 };
 </script>
 
