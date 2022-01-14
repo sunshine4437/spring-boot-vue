@@ -1,8 +1,8 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.2'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-	id 'war'
+   id 'org.springframework.boot' version '2.6.2'
+   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+   id 'java'
+   id 'war'
 }
 
 group = 'com.myproject'
@@ -10,34 +10,33 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+   compileOnly {
+      extendsFrom annotationProcessor
+   }
 }
 
 repositories {
-	mavenCentral()
+   mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	// https://mvnrepository.com/artifact/org.projectlombok/lombok
-	// https://mvnrepository.com/artifact/org.projectlombok/lombok
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	// https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6
-	implementation 'com.oracle.database.jdbc:ojdbc6:11.2.0.4'		
-
-	testImplementation("org.junit.vintage:junit-vintage-engine") {          
-		exclude group: "org.hamcrest", module: "hamcrest-core"
-	}
+   implementation 'org.springframework.boot:spring-boot-starter-web'
+   implementation 'org.springframework.boot:spring-boot-devtools:2.6.2'
+   implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+   compileOnly 'org.projectlombok:lombok'
+   annotationProcessor 'org.projectlombok:lombok'
+   providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+   testImplementation 'org.springframework.boot:spring-boot-starter-test'
+   implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+   implementation 'com.oracle.database.jdbc:ojdbc6:11.2.0.4'      
+   testImplementation("org.junit.vintage:junit-vintage-engine") {          
+      exclude group: "org.hamcrest", module: "hamcrest-core"
+   }
+   implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+      
+   
 }
 
 test {
-	useJUnitPlatform()
+   useJUnitPlatform()
 }

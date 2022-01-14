@@ -18,5 +18,13 @@ public class ProdService {
 	public List<ProdVO> getProductList() {
 		return prodMapper.findAllProduct();
 	}
+	
+	public ProdVO getProductList(int productno) {
+		return prodMapper.findProduct(productno);
+	}
+	
+	public String getOption1(int productno) {
+		return prodMapper.findOption1(productno);
+	}
 
 }
