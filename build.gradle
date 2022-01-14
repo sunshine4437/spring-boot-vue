@@ -20,6 +20,7 @@ repositories {
 }
 
 dependencies {
+<<<<<<< HEAD
    implementation 'org.springframework.boot:spring-boot-starter-web'
    implementation 'org.springframework.boot:spring-boot-devtools:2.6.2'
    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
@@ -35,6 +36,23 @@ dependencies {
    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
       
    
+=======
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-devtools:2.6.2'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+	implementation 'com.oracle.database.jdbc:ojdbc6:11.2.0.4'		
+	testImplementation("org.junit.vintage:junit-vintage-engine") {          
+		exclude group: "org.hamcrest", module: "hamcrest-core"
+	}
+	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+		
+	
+>>>>>>> 67f54777c70bdbda4125c0bc546ab86fab3925b5
 }
 
 test {

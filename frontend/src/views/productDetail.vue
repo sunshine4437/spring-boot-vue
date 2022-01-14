@@ -1,6 +1,7 @@
 <template>
 <!-- 상품 페이지 -->
 <div class="productDetail">
+    {{option1}}
     <!-- 상단부 : 사진, 설명 등 -->
     <div class="detailTop">
         <!-- 사진 -->

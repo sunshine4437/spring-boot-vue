@@ -21,10 +21,7 @@ public class SampleSpringBootTest {
 
     @Test
     public void hello() throws Exception {
-        mockMvc.perform(get("/test11"))
-        .andDo(print());
-        //화면에 결과를 출력
-               
+     
     }
 }
 

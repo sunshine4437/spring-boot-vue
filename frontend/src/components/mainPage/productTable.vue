@@ -178,7 +178,7 @@ ul {
 
 .card_image>.imageDiv {
     width: 300px;
-    height: 300px;
+    height: 200px;
     overflow: hidden;
     margin-top: 0px;
     margin-bottom: 0px;
