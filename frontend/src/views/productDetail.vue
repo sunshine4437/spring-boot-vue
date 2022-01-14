@@ -1,6 +1,7 @@
 <template>
 <!-- 상품 페이지 -->
 <div class="productDetail">
+    {{option1}}
     <!-- 상단부 : 사진, 설명 등 -->
     <div class="detailTop">
         <!-- 사진 -->
@@ -190,6 +191,7 @@ export default {
             delivery_low: 50000,
             delivery_fee: 0,
             prod: {},
+            option1:[]
         };
     },
     methods: {
@@ -265,6 +267,9 @@ export default {
         getProd() {
             const id = this.$route.params.id;
             axios.get(`/api/product/productDetail/${id}`).then(res => this.prod = res.data);
+            let temp = this.prod.option1.split(';')
+            for(let i in temp)
+            this.option1.push(i)
         }
     },
     computed: {

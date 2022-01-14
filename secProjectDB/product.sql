@@ -71,3 +71,4 @@ insert into s_product values(
 commit;
 
 select * from s_product;
+SELECT imagename, productname, productno, price FROM s_product;

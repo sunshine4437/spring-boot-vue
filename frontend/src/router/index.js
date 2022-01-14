@@ -76,8 +76,14 @@ const routes = [
         path: '/productReg',
         component: () => import ('../views/productReg.vue')
     }, {
-        path: '/temp/:id',
+        path: '/seller',
+        component: () => import ('../views/seller.vue')
+    }, {
+        path: '/temp',
         component: () => import ('../views/temp.vue')
+    }, {
+        path: '/temp1',
+        component: () => import ('../views/temp1.vue')
     }, {
         path: '*',
         component: () => import ('../views/blank.vue')
