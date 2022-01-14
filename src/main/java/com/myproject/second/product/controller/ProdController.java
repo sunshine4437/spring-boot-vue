@@ -21,4 +21,9 @@ public class ProdController {
 	public ProdVO getProductList(@PathVariable("productno") int productno) throws Exception {
 		return prodService.getProductList(productno);
 	}
+	
+	@GetMapping("/productDetail/all")
+	public List<ProdVO> getAllProductList() throws Exception {
+		return prodService.getProductList();
+	}
 }
