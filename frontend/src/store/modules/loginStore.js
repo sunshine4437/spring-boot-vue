@@ -6,37 +6,30 @@ Vue.use(Vuex);
 const loginStore = {
     namespaced: true,
     state: {
-        flag: false,
-        idx: -1,
-        userInfo: [{
-            username: "admin",
-            password: "admin"
-        },{
-            username: "user1",
-            password: "user1"
-        },]
-
+        username: '',
+        toPath:'sdsds'
     },
     mutations: {
         Login(state, payload) {
-            state.idx = payload;
+            state.username = payload;
         },
         LogOut(state) {
-            state.idx = -1;
+            state.username = '';
         },
-        addMember(state, item){
-            state.userInfo.push(item);
-        },
+        setPath(state, payload){
+            state.toPath = payload;
+        }
+    
     },
     actions: {
     },
     getters: {
-        getUserInfo: function (state) {
-            return state.userInfo;
-        },
         getLogin: function (state) {
-            return state.userInfo[state.idx];
+            return state.username;
         },
+        getPath(state){
+            return state.toPath;
+        }
     }
 }
 

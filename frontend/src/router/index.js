@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
-
+import store from '../store/index'
 Vue.use(VueRouter)
 
 const routes = [
@@ -56,7 +56,7 @@ const routes = [
         ]
     }, {
         path: '/Login',
-        // name: 'Login',
+        name: 'Login',
         component: () => import ('../views/Login.vue')
     }, {
         path: '/blank',
@@ -80,7 +80,18 @@ const routes = [
         component: () => import ('../views/seller.vue')
     }, {
         path: '/temp',
-        component: () => import ('../views/temp.vue')
+        component: () => import ('../views/temp.vue'),
+        beforeEnter: (to, from, next) => {
+            console.log(`${from.path} ---> ${to.path}`)
+            const isLogin = store.getters['loginStore/getLogin']
+            console.log(isLogin)
+            if(isLogin){
+                next();
+            }
+            else{
+                next({name:'Login', params:{nextPage: to.fullPath}})
+            }
+        },
     }, {
         path: '/temp1',
         component: () => import ('../views/temp1.vue')
