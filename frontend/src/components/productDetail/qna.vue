@@ -84,17 +84,16 @@ export default {
         addQuestion() {
             let que = document.getElementById('questionInput').value;
             const id = this.$route.params.id;
-            console.log(que);
-            console.log(id);
-            axios.post(`/api/product/qnaadd/${id}`, {
-                title: que,
-                nickname: "asdfasdf"
-            }).then(res => {
-                console.log(res);
-            }).catch(error => {
-                console.log(error);
-            });
+            axios({
+                method: 'post',
+                url: `/api/product/qna/${id}`,
+                params: {
+                    title: que,
+                    nickname: "nickname"
+                }
+            })
             this.question = false;
+            this.$router.go();
         }
     },
     mounted() {
