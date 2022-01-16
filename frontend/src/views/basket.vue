@@ -21,14 +21,14 @@
                     </li>
                     <li class="list2">
                         <div class="listImage">
-                            <img class="productImage" :src="require(`@/components/productDetail/image/${item.img}`)" alt="">
+                            <img class="productImage" :src="require(`../../../src/main/resources/images/product/${item.productno}/product/${item.img}`)" alt="">
                         </div>
                     </li>
                     <li class="list3">
                         <div>
-                            <p>{{item.title}}</p>
-                            <p>옵션1 : {{item.name}}</p>
-                            <p>옵션2 : {{item.size}}</p>
+                            <!-- <p>{{item.title}}</p> -->
+                            <p>옵션1 : {{item.option1}}</p>
+                            <p>옵션2 : {{item.option2}}</p>
                             <p>수량 : {{item.amount}}</p>
                         </div>
                     </li>
@@ -40,7 +40,7 @@
                     </li>
                     <li class="list5">
                         <div>
-                            <p>{{AddComma(item.delivery_fee)}}원</p>
+                            <p>{{AddComma(delivery_fee)}}원</p>
                         </div>
                     </li>
                 </ul>
@@ -107,10 +107,14 @@ export default {
             for (let i = 0; i < checkedList.length; i++) {
                 if (checkedList[i].checked == true) {
                     this.product += Number(this.getBasketList[i].price);
-                    this.delivery += Number(this.getBasketList[i].delivery_fee);
                     this.sale += this.getBasketList[i].price * 0.1;
                     this.sum += Number(this.getBasketList[i].price);
                 }
+            }
+            if (this.sum - this.sale >= 50000) {
+                this.delivery = 0;
+            } else {
+                this.delivery = 2500;
             }
             totalPro.textContent = this.AddComma(this.product) + "원";
             totalDel.textContent = this.AddComma(this.delivery) + "원";
@@ -165,12 +169,19 @@ export default {
                     this.addOrderList(this.getBasketList[i])
                 }
             }
-        },
+        },        
         ...basketList.mapMutations(["delList"]),
         ...orderList.mapMutations(["addOrderList"]),
         ...orderList.mapMutations(["clearOrderList"]),
     },
     computed: {
+        delivery_fee() {
+            if (this.sum + this.delivery - this.sale >= 50000) {
+                return 0;
+            } else {
+                return 2500;
+            }
+        },
         ...basketList.mapGetters(["getBasketList"]),
     },
 }

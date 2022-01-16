@@ -11,7 +11,7 @@
             <section class="item" :key="currentId">
                 <!-- 상품 상세 정보 -->
                 <div v-if="currentId === 1">
-                    <img :src="require(`@/components/productDetail/image/${prod.detailimagename}`)" style="margin: 0 auto" />
+                    <img :src="require(`../../../../src/main/resources/images/product/${prod.productno}/detail/${prod.detailimagename}`)" style="margin: 0 auto" />
                 </div>
                 <!-- 리뷰 -->
                 <div v-else-if="currentId === 2">

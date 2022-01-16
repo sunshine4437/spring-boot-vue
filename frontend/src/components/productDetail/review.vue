@@ -8,7 +8,7 @@
             <tr v-for="(review, idx) in reviews" :key="idx">
                 <td style="width: 10%">
                     <img :src="
-                                require(`@/components/productDetail/image/${review.image}`)
+                                require(`../../../../src/main/resources/images/product/${review.productno}/review/${idx+1}/${review.image}`)
                             " style="width:100px; height: 100px" />
                 </td>
                 <td style="text-align: left">

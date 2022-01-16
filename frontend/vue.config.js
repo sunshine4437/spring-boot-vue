@@ -1,7 +1,5 @@
 module.exports = {
-
   outputDir: '../src/main/resources/static',
-
   devServer: {
       port: 9000,
       proxy: {
@@ -9,6 +7,7 @@ module.exports = {
               target: "http://localhost:8085",
               changeOrigin: true,
               logLevel: "debug",
+              secure : false
               // pathRewrite: {
               //     "^/api": ""
               // }

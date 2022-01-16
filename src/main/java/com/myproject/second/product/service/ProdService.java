@@ -27,4 +27,9 @@ public class ProdService {
 		return prodMapper.findOption1(productno);
 	}
 
+	public List<ProdVO> getProductImageList(int productno) {
+		List<ProdVO> list = prodMapper.findAllProductImage(productno).subList(0, 6);
+		return list;
+	}
+
 }

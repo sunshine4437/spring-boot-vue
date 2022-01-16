@@ -16,7 +16,12 @@ public class QnaService {
 	}
 
 	public List<QnaVO> getQnaList(int num) {
+		List<QnaVO> list = qnaMapper.findAllQna(num).subList(0, 10);
+		return list;
+	}
+
+	public void addQna(int productno, String title, String nickname) {
 		// TODO Auto-generated method stub
-		return qnaMapper.findAllQna(num);
+		qnaMapper.addQna(productno, title, nickname);
 	}
 }
