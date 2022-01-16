@@ -1,12 +1,11 @@
 <template>
 <!-- 상품 페이지 -->
 <div class="productDetail">
-    {{option1}}
     <!-- 상단부 : 사진, 설명 등 -->
     <div class="detailTop">
         <!-- 사진 -->
         <div class="leftBox scale-down" style="margin: auto; text-align: center">
-            <img style="width: 500px; height: 500px; border-radius: 10px" :src="require(`@/components/mainPage/productTableImage/${prod.imagename}`)" alt="productImage">
+            <img style="width: 500px; height: 500px; border-radius: 10px" :src="require(`../../../src/main/resources/images/product/${prod.productno}/product/${prod.imagename}`)" alt="productImage">
             <!-- <img style="width: 500px; height: 500px; border-radius: 10px" src="@/components/productDetail/image/product01.jpg" /> -->
         </div>
         <!-- 사진의 오른쪽 부분 -->
@@ -174,16 +173,17 @@ export default {
             if (event.target.value != this.option2[0]) {
                 this.secondOption = event.target.value;
                 this.isSelected = false;
+                const id = this.$route.params.id;
 
                 let newItem = {
-                    img: this.prod.productname,
+                    img: this.prod.imagename,
                     seller: "네파",
                     title: this.prod.productname,
-                    name: this.firstOption,
-                    size: this.secondOption,
+                    option1: this.firstOption,
+                    option2: this.secondOption,
                     price: this.prod.price,
                     amount: 1,
-                    delivery_fee: this.delivery_fee,
+                    productno: id,
                 };
                 this.items.push(newItem);
                 this.addList(newItem);
@@ -256,13 +256,6 @@ export default {
                 return 2500;
             }
         },
-        delivery_fee() {
-            if (this.totalPrice >= 50000) {
-                return 0;
-            } else {
-                return 2500;
-            }
-        }
     },
     mounted() {
         this.getProd();

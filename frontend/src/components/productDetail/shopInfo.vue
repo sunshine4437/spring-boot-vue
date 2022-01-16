@@ -13,7 +13,7 @@
         <div class="bestPicDiv">
             <div class="bestPic" v-for="(best, idx) in bests" :key="idx">
                 <img :src="
-                            require(`@/components/productDetail/image/${best.image}`)
+                            require(`../../../../src/main/resources/images/product/${best.productno}/product/${best.imagename}`)
                         " style="width: 140px; height: 140px" />
             </div>
         </div>
@@ -22,29 +22,23 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
-            bests: [{
-                    image: "best01.jpg",
-                },
-                {
-                    image: "best02.jpg",
-                },
-                {
-                    image: "best03.jpg",
-                },
-                {
-                    image: "best04.jpg",
-                },
-                {
-                    image: "best05.jpg",
-                },
-                {
-                    image: "best06.jpg",
-                },
-            ],
+            bests: "",
         };
+    },
+    methods: {
+        getProd() {
+            const id = this.$route.params.id;
+            axios.get(`/api/product/productDetail/bestImage/${id}`).then(res => {
+                this.bests = res.data;
+            })
+        },
+    },
+    mounted() {
+        this.getProd();
     },
 };
 </script>
