@@ -26,7 +26,7 @@ public class QnaController {
 		return list;
 	}
 	
-	@PostMapping("/qnaadd/{productno}")
+	@PostMapping("/qna/{productno}")
 	public void getQn1aList(@PathVariable("productno") int productno, @RequestParam String title, @RequestParam String nickname) throws Exception {
 		qnaService.addQna(productno, title, nickname);
 	}

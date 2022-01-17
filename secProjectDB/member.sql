@@ -206,7 +206,8 @@ INSERT INTO s_member (
     zipcode,
     address,
     detailaddr,
-    seller
+    seller,
+    companyNO
 ) VALUES (
     'seller0001',
     'seller0001',
@@ -216,7 +217,8 @@ INSERT INTO s_member (
     '06220',
     '서울 강남구 테헤란로 212',
     '1층 1호',
-    1
+    1,
+    '111-1111-1111-111'
 );
 
 INSERT INTO s_member (
@@ -228,7 +230,8 @@ INSERT INTO s_member (
     zipcode,
     address,
     detailaddr,
-    seller
+    seller,
+    companyNO
 ) VALUES (
     'seller0002',
     'seller0002',
@@ -238,7 +241,8 @@ INSERT INTO s_member (
     '06220',
     '서울 강남구 테헤란로 212',
     '1층 2호',
-    1
+    1,
+    '222-2222-2222-222'
 );
 
 COMMIT;
