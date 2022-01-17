@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myproject.second.qna.service.QnaService;
 import com.myproject.second.qna.vo.QnaVO;
 
+
 @RestController
 @RequestMapping(value = "api/qna/*")
 public class QnaController {

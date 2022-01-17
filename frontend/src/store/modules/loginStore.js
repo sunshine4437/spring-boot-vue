@@ -13,7 +13,7 @@ const loginStore = {
         Login(state, payload) {
             state.username = payload;
         },
-        LogOut(state) {
+        Logout(state) {
             state.username = '';
         },
         setPath(state, payload){

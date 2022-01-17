@@ -81,7 +81,7 @@ export default {
         addOpen() {
             this.question = true;
         },
-        addQuestion() {
+       addQuestion() {
             let que = document.getElementById('questionInput').value;
             const id = this.$route.params.id;
             axios({

@@ -10,7 +10,7 @@
                         ···
                     </button>
                     <div class="dropDownMenuContent">
-                        <router-link class="contentLink" v-for="(link, index) in leftMenuName" :key="index" v-bind:to="link.link">
+                        <router-link class="pageLink" v-for="(link, index) in leftMenuName" :key="index" v-bind:to="link.link">
                             {{link.name}}
                         </router-link>
                     </div>
@@ -18,7 +18,7 @@
             </li>
             <!-- 로고 -->
             <li>
-                <router-link class="logoLink" v-bind:to="'/'">
+                <router-link class="pageLink" v-bind:to="'/'">
                     <div class="logo">
                         <router-link v-bind:to="'/'"> <img src="@/assets/logo.jpg" alt="logo" style="width:65px; height:65px; "></router-link>
                     </div>
@@ -42,17 +42,8 @@
             로그인을 했을 경우 1번 로그인을 안했을 경우 2번 로그인이 필요없는 경우 3번이 실행-->
         <ul class="member">
             <li v-for="(link, i) in memberMenu" :key="i">
-                <!-- 1번 -->
-                <router-link v-if="getLogin && i < 2" v-bind:to="link.link">
-                    <button>{{link.name}}</button>
-                </router-link>
-                <!-- 2번 -->
-                <router-link v-else-if="!getLogin && i < 2" v-bind:to="'/Login'">
-                    <button>{{link.name}}</button>
-                </router-link>
-                <!-- 3번 -->
-                <router-link v-else v-bind:to="link.link">
-                    <button>{{link.name}}</button>
+                <router-link v-bind:to="link.link" class="pageLink">
+                    <item>{{link.name}}</item>
                 </router-link>
             </li>
         </ul>
@@ -60,8 +51,8 @@
     <div class="menu">
         <ul class="leftMenu">
             <li v-for="(link, i) in leftMenuName" :key="i">
-                <router-link v-bind:to="link.link">
-                    <button>{{link.name}}</button>
+                <router-link v-bind:to="link.link" class="pageLink">
+                    <item>{{link.name}}</item>
                 </router-link>
             </li>
         </ul>
@@ -69,18 +60,18 @@
         <ul class="rightMenu">
             <li v-for="(link, i) in rightMenuName" :key="i">
                 <!-- 미로그인 상태에서의 로그인 버튼과 회원가입 버튼 -->
-                <router-link v-if="i==0 && !getLogin" v-bind:to="link.link">
-                    <button>로그인</button>
+                <router-link v-if="i==0 && !getLogin" v-bind:to="link.link" class="pageLink">
+                    <item>로그인</item>
                 </router-link>
-                <router-link v-else-if="i==1 && !getLogin" v-bind:to="link.link">
-                    <button>회원가입</button>
+                <router-link v-else-if="i==1 && !getLogin" v-bind:to="link.link" class="pageLink">
+                    <item>회원가입</item>
                 </router-link>
                 <!-- 로그인상태에서의 접속자의 아이디 표시와 누르면 마이페이지 이동 기능과 로그아웃 버튼 -->
-                <router-link v-else-if="i==2 && getLogin" v-bind:to="link.link">
-                    <button>{{getLogin.username}}님</button>
+                <router-link v-else-if="i==2 && getLogin" v-bind:to="link.link" class="pageLink">
+                    <item>{{getLogin}}님</item>
                 </router-link>
-                <router-link v-else-if="i==3 && getLogin" v-bind:to="link.link">
-                    <button @click="LogOut">로그아웃</button>
+                <router-link v-else-if="i==3 && getLogin" v-bind:to="link.link" class="pageLink">
+                    <item @click="Logout">로그아웃</item>
                 </router-link>
             </li>
         </ul>
@@ -161,10 +152,10 @@ export default {
         },
         // 로그아웃 상태로 전환
         ...loginStore.mapMutations([
-            'LogOut'
+            'Logout'
         ]),
         getData() {
-            axios.get("/api/main/test11").then(res => this.msg=res.data)
+            axios.get("/api/main/test11").then(res => this.msg = res.data)
         }
     },
     mounted() {
@@ -272,7 +263,17 @@ export default {
     align-items: center;
 }
 
-.member button {
+item {
+    display: inline-block;
+    text-align: center;
+}
+
+item:hover {
+    border-bottom: 2px solid rgb(0, 153, 255);
+    margin-bottom: -2px;
+}
+
+.member item {
     width: 115px;
 }
 
@@ -333,7 +334,7 @@ export default {
     padding: 0;
 }
 
-.leftMenu button {
+.leftMenu item {
     width: 90px;
 }
 
@@ -343,8 +344,13 @@ export default {
     padding: 0;
 }
 
-.rightMenu button {
+.rightMenu item {
     width: 100px;
+}
+
+.rightMenu item:first-child {
+    width: auto;
+    margin-right: 10px;
 }
 
 .lineNav {
@@ -353,8 +359,13 @@ export default {
     margin-top: 20px;
 }
 
-.logoLink {
+.pageLink,
+.pageLink:hover,
+.pageLink:visited,
+.pageLink:active {
     text-decoration: none;
+    font-size: 20px;
+    color: rgb(0, 153, 255);
 }
 
 .logo {

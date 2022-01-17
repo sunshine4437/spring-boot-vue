@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myproject.second.main.service.MainService;
 import com.myproject.second.main.vo.MainVO;
+import com.myproject.second.product.vo.ProdVO;
 
 @RestController
 @RequestMapping(value="api/main/*")
@@ -34,11 +35,12 @@ public class MainController {
 //		return "Dfdf";
 //	}
 	@GetMapping("/productDetail/{num}")
-	public MainVO notice(@PathVariable("num") int num) throws Exception {
+	public MainVO getMainList(@PathVariable("num") int num) throws Exception {
 		List<MainVO> list = mainService.getMainList();
 		
 		return list.get(num-1);
 	}
+	
 	@GetMapping("/temp/{num}")
 	public MainVO nosstice(@PathVariable("num") int num) throws Exception {
 		List<MainVO> list = mainService.getMainList();
