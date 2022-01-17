@@ -97,24 +97,18 @@
                 <h3 style="text-align: right; margin: 20px 35px 30px 0">
                     총 상품금액 : {{ AddComma(totalPrice) }}원
                 </h3>
-                <router-link v-if="getLogin" v-bind:to="'/basket'">
+                <router-link v-bind:to="'/basket'">
                     <button class="myCartBtn" style="margin-right: 20px">
                         장바구니
                     </button>
                 </router-link>
-                <router-link v-else v-bind:to="'/Login'">
-                    <button class="myCartBtn" style="margin-right: 20px">
-                        장바구니
-                    </button>
-                </router-link>
-                <router-link v-if="getLogin" v-bind:to="'/payment'">
+
+                <router-link v-bind:to="'/payment'">
                     <button class="buyBtn" @click="insertOrderList">
                         구매하기
                     </button>
                 </router-link>
-                <router-link v-else v-bind:to="'/login'">
-                    <button class="buyBtn">구매하기</button>
-                </router-link>
+ 
             </div>
         </div>
     </div>

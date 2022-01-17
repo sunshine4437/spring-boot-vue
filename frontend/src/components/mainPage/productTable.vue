@@ -82,10 +82,10 @@ export default {
             return num.toString().replace(regexp, ",");
         },
         async getImagesData() {
-            await axios.get("/api/main/test11").then(res => {
+            await axios.get("/api/product/productDetail/all").then(res => {
                 this.data = res.data;
                 this.data.forEach(element => {
-                    console.log(element.image);
+                    
                     let temp = {
                         image: element.imagename,
                         name: element.productname,

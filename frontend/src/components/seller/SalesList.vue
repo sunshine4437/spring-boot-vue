@@ -26,8 +26,8 @@
                 <tr v-for="( product,idx) in products" :key="idx">
                     <td class="td1">{{product.productno}}</td>
                     <td class="td2">
-                        <!-- {{product.imagename}} -->
-                        <img :src="require(`@/components/mainPage/productTableImage/${product.imagename}`)" alt="productImage" style="width:100%">
+                        <!-- {{setImage(product)}} -->
+                        <img :src="setImage(product)" alt="productImage" style="width:100%">
                     </td>
                     <td class="td3">{{product.productname}}</td>
                     <td class="td4">{{product.price}}</td>
@@ -36,7 +36,8 @@
             </tbody>
         </table>
     </div>
-    <div></div>
+    <div>
+    </div>
     <div></div>
 
 </div>
@@ -44,6 +45,11 @@
 
 <script>
 import axios from 'axios'
+import {
+    createNamespacedHelpers
+} from 'vuex';
+// 로그인 상태 관련 모듈
+const loginStore = createNamespacedHelpers('loginStore');
 export default {
     data: function () {
         return {
@@ -55,13 +61,23 @@ export default {
     },
     methods: {
         async getData() {
-            await axios.get("/api/product/productDetail/all").then(res => {
+            await axios.get("/api/product/productDetail/saleslist/" + this.getLogin).then(res => {
                 this.data = res.data;
                 this.data.forEach(element => {
                     this.products.push(element);
                 });
             });
+        },
+        setImage(product) {
+            try {
+                return require(`@/components/mainPage/productTableImage/${product.imagename}`)
+            } catch {
+                return require(`@/components/mainPage/productTableImage/error.png`)
+            }
         }
+    },
+    computed: {
+        ...loginStore.mapGetters(['getLogin'])
     },
     mounted() {
         this.getData();

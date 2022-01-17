@@ -19,6 +19,10 @@ public class ProdService {
 		return prodMapper.findAllProduct();
 	}
 	
+	public List<ProdVO> getSalseList(String sellerid) {
+		return prodMapper.findSalseList(sellerid);
+	}
+	
 	public ProdVO getProductList(int productno) {
 		return prodMapper.findProduct(productno);
 	}
@@ -31,5 +35,9 @@ public class ProdService {
 		List<ProdVO> list = prodMapper.findAllProductImage(productno).subList(0, 6);
 		return list;
 	}
-
+	
+	public void insertProdcut(String id,String productname, int price, String option1, String option2, String imagename, String detailimagename) {
+		System.out.println(productname);
+		prodMapper.insertProduct(id, productname, price, option1, option2, imagename, detailimagename);
+	}
 }

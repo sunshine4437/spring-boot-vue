@@ -25,7 +25,18 @@ const routes = [
             }, {
                 path: '/basket',
                 // name: 'basket',
-                component: () => import ('../views/basket.vue')
+                component: () => import ('../views/basket.vue'),
+                beforeEnter: (to, from, next) => {
+                    console.log(`${from.path} ---> ${to.path}`)
+                    const isLogin = store.getters['loginStore/getLogin']
+                    console.log(isLogin)
+                    if(isLogin){
+                        next();
+                    }
+                    else{
+                        next({name:'Login', params:{nextPage: to.fullPath}})
+                    }
+                },
             }, {
                 path: '/customerService',
                 // name: 'customerService',
@@ -33,7 +44,18 @@ const routes = [
             }, {
                 path: '/payment',
                 // name: 'payment',
-                component: () => import ('../views/payment.vue')
+                component: () => import ('../views/payment.vue'),
+                beforeEnter: (to, from, next) => {
+                    console.log(`${from.path} ---> ${to.path}`)
+                    const isLogin = store.getters['loginStore/getLogin']
+                    console.log(isLogin)
+                    if(isLogin){
+                        next();
+                    }
+                    else{
+                        next({name:'Login', params:{nextPage: to.fullPath}})
+                    }
+                },
             }, {
                 path: '/otoQ',
                 component: () => import ('../views/otoQ.vue')
@@ -51,7 +73,18 @@ const routes = [
                         path: '/Mypage2',
                         component: () => import ('@/components/mypage/Mypage2.vue')
                     }
-                ]
+                ],
+                beforeEnter: (to, from, next) => {
+                    console.log(`${from.path} ---> ${to.path}`)
+                    const isLogin = store.getters['loginStore/getLogin']
+                    console.log(isLogin)
+                    if(isLogin){
+                        next();
+                    }
+                    else{
+                        next({name:'Login', params:{nextPage: to.fullPath}})
+                    }
+                },
             }
         ]
     }, {
@@ -77,7 +110,18 @@ const routes = [
         component: () => import ('../views/productReg.vue')
     }, {
         path: '/seller',
-        component: () => import ('../views/seller.vue')
+        component: () => import ('../views/seller.vue'),
+        beforeEnter: (to, from, next) => {
+            console.log(`${from.path} ---> ${to.path}`)
+            const isLogin = store.getters['loginStore/getLogin']
+            console.log(isLogin)
+            if(isLogin){
+                next();
+            }
+            else{
+                next({name:'Login', params:{nextPage: to.fullPath}})
+            }
+        },
     }, {
         path: '/temp',
         component: () => import ('../views/temp.vue'),

@@ -67,7 +67,6 @@ export default {
                     if (res.data.id == this.username) {
                         console.log(res.data.id)
                         this.Login(res.data.id);
-
                         this.$router.push(toPath)
                     } else {
                         alert("error")
@@ -87,13 +86,14 @@ export default {
         ])
     },
     computed: {
-        ...loginStore.mapGetters(['getUserInfo']),
         ...loginStore.mapGetters(['getLogin']),
         ...loginStore.mapGetters(['getPath']),
     },
     mounted() {
         if (this.$route.params.nextPage != null)
             this.setPath(`${this.$route.params.nextPage}`)
+        else
+            this.setPath('/')
     }
 }
 </script>

@@ -10,7 +10,6 @@ public class RoutesController implements ErrorController {
 
     @RequestMapping(value = PATH)
     public String error() {
-    	System.out.println(11);
         return "forward:/";
     }
 
