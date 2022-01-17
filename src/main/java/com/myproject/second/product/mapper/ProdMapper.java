@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 
 import com.myproject.second.product.vo.ProdVO;
 
@@ -31,11 +31,10 @@ public interface ProdMapper {
 	@Select("select * from s_product left join s_seller on (s_seller.productno = s_product.productno) where s_product.id = (select id from s_seller where productno = #{productno}) and s_product.productno != #{productno} order by s_seller.totalsell desc")
 	List<ProdVO> findAllProductImage(int productno);
 
-	@Insert("insert into s_product(productno, productname, imagename, price, option1, option2, regdate, id, detailimagename) "
-			+ "values (prod_seq.NEXTVAL, #{productname}, #{imagename}, #{price}, #{option1}, #{option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{id},#{detailimagename})")
-//	@Options(useGeneratedKeys = true, keyProperty = "productno", keyColumn = "productno")
-//	@Result( = "productno")
-//	useGeneratedKeys = false, 
+	@Select("select prod_seq.currval from dual")
+	int getProductNo();
+
+	@Insert("insert into s_product(productno, productname, imagename, price, option1, option2, regdate, id, detailimagename) values (prod_seq.nextval, #{productname}, #{imagename}, #{price}, #{option1}, #{option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{id},#{detailimagename})")
 	int insertProduct(@Param("id") String id, @Param("productname") String productname, @Param("price") int price,
 			@Param("option1") String option1, @Param("option2") String option2, @Param("imagename") String imagename,
 			@Param("detailimagename") String detailimagename);

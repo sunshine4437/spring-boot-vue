@@ -17,7 +17,7 @@ CREATE TABLE s_product (
             ON DELETE CASCADE
 );
 
-CREATE SEQUENCE prod_seq START WITH 1 INCREMENT BY 1 MAXVALUE 9999999999 NOCYCLE NOCACHE;
+CREATE SEQUENCE prod_seq START WITH 1 INCREMENT BY 1 MAXVALUE 9999999999 NOCYCLE noCACHE;
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
@@ -369,3 +369,5 @@ SELECT
     price
 FROM
     s_product;
+    
+select * from user_sequences where sequence_name = 'prod_seq';

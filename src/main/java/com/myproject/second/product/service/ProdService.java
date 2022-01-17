@@ -38,8 +38,9 @@ public class ProdService {
 
 	public int insertProduct(String id, String productname, int price, String option1, String option2,
 			String imagename, String detailimagename) {
-		System.out.println(productname);
-		return prodMapper.insertProduct(id, productname, price, option1, option2, imagename, detailimagename);
+		prodMapper.insertProduct(id, productname, price, option1, option2, imagename, detailimagename);
+
+		return prodMapper.getProductNo();
 	}
 
 
