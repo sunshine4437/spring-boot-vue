@@ -11,7 +11,7 @@
             <section class="item" :key="currentId">
                 <!-- 상품 상세 정보 -->
                 <div v-if="currentId === 1">
-                    <img :src="require(`../../../../src/main/resources/images/product/${prod.productno}/detail/${prod.detailimagename}`)" style="margin: 0 auto" />
+                    <img :src="setImage()" style="margin: 0 auto" />
                 </div>
                 <!-- 리뷰 -->
                 <div v-else-if="currentId === 2">
@@ -65,6 +65,13 @@ export default {
         getProd() {
             const id = this.$route.params.id;
             axios.get(`/api/product/productDetail/${id}`).then(res => this.prod = res.data);
+        },
+        setImage() {
+            try {
+                return require(`../../../../src/main/resources/images/product/${this.prod.productno}/detail/${this.prod.detailimagename}`)
+            } catch {
+                return require(`@/components/mainPage/productTableImage/error.png`)
+            }
         }
     },
     computed: {
