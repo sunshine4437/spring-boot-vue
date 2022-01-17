@@ -12,9 +12,7 @@
         </div>
         <div class="bestPicDiv">
             <div class="bestPic" v-for="(best, idx) in bests" :key="idx">
-                <img :src="
-                            require(`../../../../src/main/resources/images/product/${best.productno}/product/${best.imagename}`)
-                        " style="width: 140px; height: 140px" />
+                <img :src="setImage(best)" style="width: 140px; height: 140px" />
             </div>
         </div>
     </div>
@@ -36,6 +34,13 @@ export default {
                 this.bests = res.data;
             })
         },
+        setImage(best) {
+            try {
+                return require(`../../../../src/main/resources/images/product/${best.productno}/product/${best.imagename}`)
+            } catch {
+                return require(`@/components/mainPage/productTableImage/error.png`)
+            }
+        }
     },
     mounted() {
         // this.getProd();

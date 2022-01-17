@@ -13,7 +13,7 @@
                 <!-- <p>{{images[idx-1].link}}</p> -->
                 <div class="imageDiv">
                     <router-link v-bind:to="images[idx-1].link">
-                        <img :src="require(`@/components/mainPage/productTableImage/${images[idx-1].image}`)" alt="productImage">
+                        <img :src="setImage(idx)" alt="productImage">
                     </router-link>
                 </div>
                 <div class="imageTitle">
@@ -65,6 +65,13 @@ export default {
         bannerImage
     },
     methods: {
+        setImage(idx) {
+            try {
+                return require(`@/components/mainPage/productTableImage/${this.images[idx-1].image}`)
+            } catch {
+                return require(`@/components/mainPage/productTableImage/error.png`)
+            }
+        },
         // 화면에 보이는 이미지 출력 길이를 늘리는 기능
         moreImage() {
             if (this.limitLength < this.imageLength) {
