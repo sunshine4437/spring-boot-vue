@@ -2,9 +2,9 @@ DROP TABLE s_member CASCADE CONSTRAINTS;
 
 CREATE TABLE s_member (
     id         VARCHAR2(20) PRIMARY KEY,
-    nickname   VARCHAR2(20) NOT NULL,
+    nickname   VARCHAR2(50) NOT NULL,
     password   VARCHAR2(30) NOT NULL,
-    name       VARCHAR2(10) NOT NULL,
+    name       VARCHAR2(50) NOT NULL,
     tel        VARCHAR2(11) NOT NULL,
     zipcode    VARCHAR2(5) NOT NULL,
     address    VARCHAR2(80) NOT NULL,
@@ -210,9 +210,9 @@ INSERT INTO s_member (
     companyNO
 ) VALUES (
     'seller0001',
-    'seller0001',
+    '신세계몰',
     'Asdqwe123',
-    '셀러1',
+    '신세계몰',
     '01000000000',
     '06220',
     '서울 강남구 테헤란로 212',

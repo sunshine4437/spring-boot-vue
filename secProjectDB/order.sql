@@ -1,12 +1,12 @@
 DROP TABLE s_order CASCADE CONSTRAINTS;
 
 CREATE TABLE s_order (
-    id         VARCHAR2(20) NOT NULL,
-    productno  NUMBER(10) NOT NULL,
-    option     VARCHAR2(100) NOT NULL,
-    delivery   NUMBER(5) NOT NULL,
-    totalprice NUMBER(10) NOT NULL,
-    orderdate  DATE DEFAULT sysdate,
+    id             VARCHAR2(20) NOT NULL,
+    productno      NUMBER(9) NOT NULL,
+    selectedoption VARCHAR2(100) NOT NULL,
+    delivery       NUMBER(5) NOT NULL,
+    totalprice     NUMBER(10) NOT NULL,
+    orderdate      DATE DEFAULT sysdate,
     CONSTRAINT fk_ordmem FOREIGN KEY ( id )
         REFERENCES s_member ( id )
             ON DELETE CASCADE,

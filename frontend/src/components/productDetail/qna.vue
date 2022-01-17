@@ -74,7 +74,7 @@ export default {
     methods: {
         getQna() {
             const id = this.$route.params.id;
-            axios.get(`/api/product/qna/${id}`).then(res => {
+            axios.get(`/api/qna/qna/${id}`).then(res => {
                 this.qnas = res.data;
             })
         },
@@ -86,7 +86,7 @@ export default {
             const id = this.$route.params.id;
             axios({
                 method: 'post',
-                url: `/api/product/qna/${id}`,
+                url: `/api/qna/qna/${id}`,
                 params: {
                     title: que,
                     nickname: "nickname"

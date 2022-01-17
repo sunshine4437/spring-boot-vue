@@ -53,7 +53,6 @@ public class ProdController {
 	@PostMapping("/upload/img/{productno}")
 	public void productImageUpload(@PathVariable("productno") int productno, @RequestParam("fileList") List<MultipartFile> fileList) {
 		File file = new File("./src/main/resources/images/product/"+productno+"/");
-		// 디렉토리 생성
 		boolean directoryCreated = file.mkdir();
 		System.out.println(productno);
 		try {

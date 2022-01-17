@@ -54,10 +54,10 @@
                     <div class="rightSelectedTable">
                         <tr v-for="(item, index) in items" :key="index">
                             <td style="width: 200px">
-                                <span>옵션1 : </span><span v-html="item.name"></span>
+                                <span>옵션1 : </span><span v-html="item.option1"></span>
                             </td>
                             <td style="width: 100px">
-                                <span>옵션2 : </span><span v-html="item.size"></span>
+                                <span>옵션2 : </span><span v-html="item.option2"></span>
                             </td>
                             <td style="width: 10px; padding: 0 0 0 20px">
                                 <button style="
@@ -150,6 +150,7 @@ export default {
             delivery_low: 50000,
             option1: "",
             option2: "",
+            shop: "",
         };
     },
     methods: {
@@ -171,7 +172,7 @@ export default {
 
                 let newItem = {
                     img: this.prod.imagename,
-                    seller: "네파",
+                    seller: this.shop,
                     title: this.prod.productname,
                     option1: this.firstOption,
                     option2: this.secondOption,
@@ -230,6 +231,12 @@ export default {
                 this.option2 = this.prod.option2.split(";");
             })
         },
+        getNick() {
+            const id = this.$route.params.id;
+            axios.get(`/api/member/productDetail/${id}`).then(res => {
+                this.shop = res.data;
+            })
+        },
         setImage1(){
             try{
                 return require(`../../../src/main/resources/images/product/${this.prod.productno}/product/${this.prod.imagename}`)
@@ -261,6 +268,7 @@ export default {
     },
     mounted() {
         this.getProd();
+        this.getNick();
     },
 };
 </script>

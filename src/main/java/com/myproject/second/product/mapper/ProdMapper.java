@@ -38,4 +38,8 @@ public interface ProdMapper {
 	int insertProduct(@Param("id") String id, @Param("productname") String productname, @Param("price") int price,
 			@Param("option1") String option1, @Param("option2") String option2, @Param("imagename") String imagename,
 			@Param("detailimagename") String detailimagename);
+	
+//	@Options(useGeneratedKeys = true, keyProperty = "s_product.param1", keyColumn = "productno")
+//	@Result( = "productno")
+//	useGeneratedKeys = false,
 }

@@ -6,7 +6,6 @@ CREATE TABLE s_basket (
     option1   VARCHAR2(100) NOT NULL,
     option2   VARCHAR2(100),
     amount    NUMBER(3) NOT NULL,
-    delivery  NUMBER(5),
     CONSTRAINT fk_basmem FOREIGN KEY ( id )
         REFERENCES s_member ( id )
             ON DELETE CASCADE,
@@ -20,8 +19,7 @@ INSERT INTO s_basket VALUES (
     1,
     '08.NB_MS327CPG',
     '230',
-    1,
-    0
+    1
 );
 
 COMMIT;
