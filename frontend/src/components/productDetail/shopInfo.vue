@@ -2,7 +2,7 @@
 <div class="shop-info">
     <div class="shop-infoBox">
         <div class="shop-title">
-            <h2>신세계몰</h2>
+            <h2>{{shop}}</h2>
         </div>
     </div>
     <div class="shop-bestItem">
@@ -25,6 +25,7 @@ export default {
     data() {
         return {
             bests: "",
+            shop: "",
         };
     },
     methods: {
@@ -32,6 +33,12 @@ export default {
             const id = this.$route.params.id;
             axios.get(`/api/product/productDetail/bestImage/${id}`).then(res => {
                 this.bests = res.data;
+            })
+        },
+        getNick() {
+            const id = this.$route.params.id;
+            axios.get(`/api/member/productDetail/${id}`).then(res => {
+                this.shop = res.data;
             })
         },
         setImage(best) {
@@ -43,7 +50,8 @@ export default {
         }
     },
     mounted() {
-        // this.getProd();
+        this.getProd();
+        this.getNick();
     },
 };
 </script>

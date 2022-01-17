@@ -1,6 +1,8 @@
 package com.myproject.second.product.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -36,10 +38,9 @@ public class ProdService {
 		return list;
 	}
 
-	public int insertProduct(String id, String productname, int price, String option1, String option2,
+	public void insertProduct(String id, String productname, int price, String option1, String option2,
 			String imagename, String detailimagename) {
-		return prodMapper.insertProduct(id, productname, price, option1, option2, imagename, detailimagename);
+		prodMapper.insertProduct(id, productname, price, option1, option2, imagename, detailimagename);
 	}
-
 
 }

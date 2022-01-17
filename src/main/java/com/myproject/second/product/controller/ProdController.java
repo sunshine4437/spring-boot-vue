@@ -44,18 +44,14 @@ public class ProdController {
 
 	@PostMapping("/insertProduct/{id}")
 	public void insertProduct(@PathVariable("id") String id, @RequestParam String productname, @RequestParam int price, @RequestParam String option1, @RequestParam String option2, @RequestParam String imagename, @RequestParam String detailimagename) {
-//	public void insertProdcut(@PathVariable("id") String id, @RequestParam String productname,@RequestParam int price) {
-		System.out.println(id);
-		System.out.println(productname);
-		System.out.println(price);
-		System.out.println(prodService.insertProduct(id ,productname, price, option1, option2, imagename, detailimagename));
+		prodService.insertProduct(id ,productname, price, option1, option2, imagename, detailimagename);
 	}
 	
 //	@PostMapping("/upload/img")
 //	public void productImageUpload(@RequestParam("fileList") List<MultipartFile> fileList) {
 //		int productno = prodService.getCount()+1;
 //		File file = new File("./src/main/resources/images/product/"+productno);
-//		// µð·ºÅä¸® »ý¼º
+//		// ï¿½ï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½
 //		boolean directoryCreated = file.mkdir();
 //
 //		try {

@@ -369,3 +369,5 @@ SELECT
     price
 FROM
     s_product;
+    
+--    select prod_seq.nextval FROM dual;

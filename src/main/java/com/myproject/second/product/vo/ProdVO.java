@@ -13,7 +13,6 @@ public class ProdVO {
 
 	public ProdVO(int productno, String productname, String imagename, int price, String option1, String option2,
 			String regdate, String id, String detailimagename) {
-		super();
 		this.productno = productno;
 		this.productname = productname;
 		this.imagename = imagename;

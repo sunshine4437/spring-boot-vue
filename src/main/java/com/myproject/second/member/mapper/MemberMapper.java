@@ -15,4 +15,7 @@ public interface MemberMapper {
 
 	@Select("SELECT * from s_member where id = #{id}")
 	MemberVO findMember(@Param("id") String id);
+
+	@Select("SELECT nickname from s_member where id = (SELECT id from s_seller where productno = #{productno})")
+	String getNickname(int productno);
 }
