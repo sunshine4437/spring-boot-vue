@@ -86,11 +86,11 @@ export default {
             this.image2 = input[0].name
             this.formData.append('fileList', input[0])
         },
-        sendFile() {
+        async sendFile() {
             // console.log(this.formData)
             // axios.post("/api/file/upload/img", this.formData)
             console.log(`${this.getLogin}`)
-            axios({
+            await axios({
                 method: 'post',
                 url: `/api/product/insertProduct/${this.getLogin}`,
                 params: {
@@ -99,9 +99,13 @@ export default {
                     option1: this.option1,
                     option2: this.option2,
                     imagename: this.image1,
-                    detailimagename: this.image2
+                    detailimagename: this.image2,
+                    // fileList: this.formData
                 }
-            }).then(res => console.log(res)).catch(err => console.log(err))
+            }).then(res => axios.post(`/api/product/upload/img/${res.data}`, this.formData))
+
+            //
+
         }
     },
     computed: {

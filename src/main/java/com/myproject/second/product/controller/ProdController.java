@@ -26,43 +26,46 @@ public class ProdController {
 	public ProdVO getProductList(@PathVariable("productno") int productno) throws Exception {
 		return prodService.getProductList(productno);
 	}
-	
+
 	@GetMapping("/productDetail/all")
 	public List<ProdVO> getAllProductList() throws Exception {
 		return prodService.getProductList();
 	}
-	
+
 	@GetMapping("/productDetail/saleslist/{sellerid}")
-	public List<ProdVO> getSalseList(@PathVariable("sellerid") String sellerid) throws Exception{
+	public List<ProdVO> getSalseList(@PathVariable("sellerid") String sellerid) throws Exception {
 		return prodService.getSalseList(sellerid);
 	}
-	
+
 	@GetMapping("/productDetail/bestImage/{productno}")
 	public List<ProdVO> getAllProductImageList(@PathVariable("productno") int productno) throws Exception {
 		return prodService.getProductImageList(productno);
 	}
 
 	@PostMapping("/insertProduct/{id}")
-	public void insertProduct(@PathVariable("id") String id, @RequestParam String productname, @RequestParam int price, @RequestParam String option1, @RequestParam String option2, @RequestParam String imagename, @RequestParam String detailimagename) {
-		prodService.insertProduct(id ,productname, price, option1, option2, imagename, detailimagename);
+	public int insertProduct(@PathVariable("id") String id, @RequestParam String productname, @RequestParam int price,
+			@RequestParam String option1, @RequestParam String option2, @RequestParam String imagename,
+			@RequestParam String detailimagename) {
+
+		return prodService.insertProduct(id, productname, price, option1, option2, imagename, detailimagename);
 	}
-	
-//	@PostMapping("/upload/img")
-//	public void productImageUpload(@RequestParam("fileList") List<MultipartFile> fileList) {
-//		int productno = prodService.getCount()+1;
-//		File file = new File("./src/main/resources/images/product/"+productno);
-//		// ���丮 ����
-//		boolean directoryCreated = file.mkdir();
-//
-//		try {
-//			for (MultipartFile multipartFile : fileList) {
-//				FileOutputStream writer = new FileOutputStream("./src/main/resources/images/product/" + multipartFile.getOriginalFilename());
-//				System.out.println(multipartFile.getOriginalFilename());
-//				writer.write(multipartFile.getBytes());
-//				writer.close();
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+
+	@PostMapping("/upload/img/{productno}")
+	public void productImageUpload(@PathVariable("productno") int productno, @RequestParam("fileList") List<MultipartFile> fileList) {
+		File file = new File("./src/main/resources/images/product/"+productno+"/");
+		// ���丮 ����
+		boolean directoryCreated = file.mkdir();
+		System.out.println(productno);
+		try {
+			for (MultipartFile multipartFile : fileList) {
+				FileOutputStream writer = new FileOutputStream(
+						"./src/main/resources/images/product/" + productno + "/" + multipartFile.getOriginalFilename());
+				System.out.println(multipartFile.getOriginalFilename());
+				writer.write(multipartFile.getBytes());
+				writer.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

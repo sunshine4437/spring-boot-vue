@@ -3,6 +3,7 @@ package com.myproject.second.file.controller;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,4 +28,6 @@ public class FileController {
 			e.printStackTrace();
 		}
 	}
+	
+
 }
