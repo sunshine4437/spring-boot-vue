@@ -12,7 +12,6 @@ CREATE TABLE s_product (
     regdate         VARCHAR2(30),
     id              VARCHAR2(20) NOT NULL,
     detailimagename VARCHAR2(50),
-    stock           NUMBER(10) NOT NULL,
     CONSTRAINT fk_prodmem FOREIGN KEY ( id )
         REFERENCES s_member ( id )
             ON DELETE CASCADE
@@ -31,8 +30,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -46,8 +44,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -61,8 +58,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -76,8 +72,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -91,8 +86,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -106,8 +100,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -121,8 +114,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -136,8 +128,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -151,8 +142,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -166,8 +156,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -181,8 +170,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -196,8 +184,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -211,8 +198,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -226,8 +212,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -241,8 +226,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -256,8 +240,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -271,8 +254,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -286,8 +268,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -301,8 +282,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -316,8 +296,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -331,8 +310,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -346,8 +324,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -361,8 +338,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 INSERT INTO s_product VALUES (
@@ -376,8 +352,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
-    100
+    'productDetail01.jpg'
 );
 
 COMMIT;

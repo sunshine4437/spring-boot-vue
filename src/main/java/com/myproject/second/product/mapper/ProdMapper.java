@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Select;
 
 import com.myproject.second.product.vo.ProdVO;
@@ -33,7 +32,7 @@ public interface ProdMapper {
 
 	@Insert("insert into s_product(productno, productname, imagename, price, option1, option2, regdate, id, detailimagename) "
 			+ "values (prod_seq.NEXTVAL, #{productname}, #{imagename}, #{price}, #{option1}, #{option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{id},#{detailimagename})")
-//	@Options(useGeneratedKeys = true, keyProperty = "productno", keyColumn = "productno")
+	@Options(useGeneratedKeys = true, keyProperty = "s_product.param1", keyColumn = "productno")
 //	@Result( = "productno")
 //	useGeneratedKeys = false, 
 	int insertProduct(@Param("id") String id, @Param("productname") String productname, @Param("price") int price,
