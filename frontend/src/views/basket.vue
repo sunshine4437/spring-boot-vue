@@ -9,7 +9,7 @@
             <div class="allSelectDiv">
                 <button class="selectBtn" @click="allCheck">전체선택</button>
                 <button class="selectBtn" @click="allDisCheck">전체해제</button>
-                <button class="selectBtn" @click="removeList">선택삭제</button>
+                <button class="selectBtn" @click="deleteBasket">선택삭제</button>
             </div>
         </div>
         <div>
@@ -104,12 +104,14 @@ export default {
             this.sum = 0;
             for (let i = 0; i < checkedList.length; i++) {
                 if (checkedList[i].checked == true) {
-                    this.product += Number(this.getBasketList[i].price);
-                    this.sale += this.getBasketList[i].price * 0.1;
-                    this.sum += Number(this.getBasketList[i].price);
+                    this.product += Number(this.basket[i].price);
+                    this.sale += this.basket[i].price * 0.1;
+                    this.sum += Number(this.basket[i].price);
                 }
             }
             if (this.sum - this.sale >= 50000) {
+                this.delivery = 0;
+            } else if (this.sum == 0) {
                 this.delivery = 0;
             } else {
                 this.delivery = 2500;
@@ -140,11 +142,21 @@ export default {
             return num.toString().replace(regexp, ',');
         },
         // 장바구니 목록 삭제
-        removeList() {
+        deleteBasket() {
             let checkedList = document.getElementsByClassName("checkedList");
             for (let i = checkedList.length - 1; i >= 0; i--) {
                 if (checkedList[i].checked == true) {
-                    this.delList(i);
+                    axios({
+                        method: 'delete',
+                        url: `/api/basket/delete`,
+                        params: {
+                            basketidx: this.basket[i].basketidx
+                        }
+                    }).then(res => {
+                        if (res.status == 200) {
+                            this.basket.splice(i, 1);
+                        }
+                    })
                     checkedList[i].checked = false;
                 }
             }
@@ -160,39 +172,24 @@ export default {
         },
         // 주문 버튼을 누를 때 구매 목록에 장바구니 목록 넣기
         selectList() {
-            let checkedList = document.getElementsByClassName("checkedList");
             this.clearOrderList();
+            let checkedList = document.getElementsByClassName("checkedList");
             for (let i = 0; i < checkedList.length; i++) {
                 if (checkedList[i].checked == true) {
-                    this.addOrderList(this.getBasketList[i])
+                    this.addOrderList(this.basket[i])
                 }
             }
         },
         getBasket() {
             axios({
                 method: 'get',
-                url: `/api/basket/basket`,
+                url: `/api/basket/read`,
                 params: {
                     id: "tester0001"
                 }
             }).then(res => {
                 this.basket = res.data;
             })
-        },
-        deleteBasket() {
-            for (let i = 0; i < this.checkedBasket.length; i++) {
-                axios({
-                    method: 'delete',
-                    url: `/api/basket/basket`,
-                    params: {
-                        id: this.checkedBasket[i].id,
-                        productno: this.checkedBasket[i].productno,
-                        option1: this.checkedBasket[i].option1,
-                        option2: this.checkedBasket[i].option2,
-                        amount: this.checkedBasket[i].amount
-                    }
-                })
-            }
         },
         ...basketList.mapMutations(["delList"]),
         ...orderList.mapMutations(["addOrderList"]),
