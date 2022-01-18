@@ -92,7 +92,6 @@ export default {
             await axios.get("/api/product/productDetail/all").then(res => {
                 this.data = res.data;
                 this.data.forEach(element => {
-                    
                     let temp = {
                         image: element.imagename,
                         name: element.productname,

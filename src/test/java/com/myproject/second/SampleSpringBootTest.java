@@ -1,8 +1,5 @@
 package com.myproject.second;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +18,7 @@ public class SampleSpringBootTest {
 
     @Test
     public void hello() throws Exception {
-     
+    
     }
 }
 

@@ -4,10 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
 
 import com.myproject.second.product.vo.ProdVO;
 
@@ -38,8 +37,11 @@ public interface ProdMapper {
 	int insertProduct(@Param("id") String id, @Param("productname") String productname, @Param("price") int price,
 			@Param("option1") String option1, @Param("option2") String option2, @Param("imagename") String imagename,
 			@Param("detailimagename") String detailimagename);
-	
-//	@Options(useGeneratedKeys = true, keyProperty = "s_product.param1", keyColumn = "productno")
-//	@Result( = "productno")
-//	useGeneratedKeys = false,
+
+	@Insert("insert into s_product(productno, productname, imagename, price, option1, option2, regdate, id, detailimagename) values (prod_seq.nextval, #{productname}, #{imagename}, #{price}, #{option1}, #{option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{id},#{detailimagename})")
+	@Options(useGeneratedKeys = true, keyProperty = "out.productno", keyColumn = "productno")
+	int test11(@Param("id") String id, @Param("productname") String productname, @Param("price") int price,
+			@Param("option1") String option1, @Param("option2") String option2, @Param("imagename") String imagename,
+			@Param("detailimagename") String detailimagename,@Param("out") ProdVO out);
+
 }

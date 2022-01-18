@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,8 +52,10 @@ public class ProdController {
 	}
 
 	@PostMapping("/upload/img/{productno}")
-	public void productImageUpload(@PathVariable("productno") int productno, @RequestParam("fileList") List<MultipartFile> fileList) {
-		File file = new File("./src/main/resources/images/product/"+productno+"/");
+	public void productImageUpload(@PathVariable("productno") int productno,
+			@RequestParam("fileList") List<MultipartFile> fileList) {
+		File file = new File("./src/main/resources/images/product/" + productno + "/");
+
 		boolean directoryCreated = file.mkdir();
 		System.out.println(productno);
 		try {
@@ -62,6 +65,19 @@ public class ProdController {
 				System.out.println(multipartFile.getOriginalFilename());
 				writer.write(multipartFile.getBytes());
 				writer.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@PostMapping("/addProduct")
+	public void test(@RequestPart(value = "data") ProdVO requestDto,
+			@RequestParam("fileList") List<MultipartFile> fileList) {
+		System.out.println(requestDto.getId());
+		try {
+			for (MultipartFile multipartFile : fileList) {
+				System.out.println(multipartFile.getOriginalFilename());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
