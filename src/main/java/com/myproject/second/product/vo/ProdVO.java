@@ -11,6 +11,7 @@ public class ProdVO {
 	private String id;
 	private String detailimagename;
 
+	public ProdVO() {}
 	public ProdVO(int productno, String productname, String imagename, int price, String option1, String option2,
 			String regdate, String id, String detailimagename) {
 		super();

@@ -43,5 +43,13 @@ public class ProdService {
 		return prodMapper.getProductNo();
 	}
 
-
+	public int test112() {
+		System.out.println("service before mapper");
+//		return prodMapper.test11("1", "1", 10, "1", "1", "1", "1");
+		ProdVO temp = new ProdVO();
+		prodMapper.test11("tester0001", "11", 11, "11", "11", "11", "11", temp);
+		return temp.getProductno();
+		
+	}
+		
 }

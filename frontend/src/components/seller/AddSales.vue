@@ -18,15 +18,15 @@
     </div>
     <div>
         <label for="" class="inputLabel">상품 이미지</label>
-        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${imagename})` }" @click="selectImage">
+        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image1})` }" @click="selectImage">
         </div>
-        <input ref="fileInput1" type="file" @change="pickFile1">
+        <input ref="fileInput1" type="file" @change="pickFile1" accept="image/png, image/gif, image/jpeg">
     </div>
     <div>
         <label for="" class="inputLabel">상품 상세 이미지</label>
-        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${detailimagename})` }" @click="selectImage">
+        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image2})` }" @click="selectImage">
         </div>
-        <input ref="fileInput2" type="file" @change="pickFile2">
+        <input ref="fileInput2" type="file" @change="pickFile2" accept="image/png, image/gif, image/jpeg">
     </div>
 
     <button @click="sendFile">send</button>
@@ -47,8 +47,8 @@ export default {
             price: 0,
             option1: '',
             option2: '',
-            image1: '',
-            image2: '',
+            image1: null,
+            image2: null,
             imagename: null,
             detailimagename: null
         };
@@ -58,61 +58,60 @@ export default {
             this.$refs.fileInput.click()
         },
         pickFile1() {
-            let input = this.$refs.fileInput1.files;
-            if (input && input[0]) {
+            let input = this.$refs.fileInput1.files[0];
+            if (input) {
                 let reader = new FileReader
                 reader.onload = e => {
-                    this.imagename = e.target.result
+                    this.image1 = e.target.result
                 }
-                reader.readAsDataURL(input[0])
-                this.$emit('input', input[0])
+                reader.readAsDataURL(input)
+                this.$emit('input', input)
             }
-            console.log(input)
-            this.image1 = input[0].name
-            this.formData.append('fileList', input[0])
+            this.image1 = input.name
+            this.imageFile1 = input;
+            // this.formData.append('fileList', input[0])
 
         },
         pickFile2() {
-            let input = this.$refs.fileInput2.files;
-            if (input && input[0]) {
+            let input = this.$refs.fileInput2.files[0];
+            if (input) {
                 let reader = new FileReader
                 reader.onload = e => {
-                    this.detailimagename = e.target.result
+                    this.image2 = e.target.result
                 }
-                reader.readAsDataURL(input[0])
-                this.$emit('input', input[0])
+                reader.readAsDataURL(input)
+                this.$emit('input', input)
             }
-            console.log(input[0].name)
-            this.image2 = input[0].name
-            this.formData.append('fileList', input[0])
+            this.image2 = input.name
+            this.imageFile2 = input;
+            // this.formData.append('fileList', input[0])
         },
         async sendFile() {
-            // console.log(this.formData)
-            // axios.post("/api/file/upload/img", this.formData)
             console.log(`${this.getLogin}`)
-            await axios({
-                method: 'post',
-                url: `/api/product/insertProduct/${this.getLogin}`,
-                params: {
-                    productname: this.productname,
-                    price: this.price,
-                    option1: this.option1,
-                    option2: this.option2,
-                    imagename: this.image1,
-                    detailimagename: this.image2,
-                    // fileList: this.formData
-                }
-            }).then(res => axios.post(`/api/product/upload/img/${res.data}`, this.formData))
-
-            //
-
+            // let id = this.getLogin
+            let data = {
+                id: this.getLogin,
+                productname: this.productname,
+                price: this.price,
+                option1: this.option1,
+                option2: this.option2,
+                imagename: this.imagename,
+                detailimagename: this.detailimagename,
+            }
+            this.formData = new FormData();
+            this.formData.append('data', new Blob([JSON.stringify(data)], {
+                type: "application/json"
+            }))
+            this.formData.append('fileList', this.imageFile1)
+            this.formData.append('fileList', this.imageFile2)
+            axios.post('/api/product/addProduct', this.formData)
         }
     },
     computed: {
         ...loginStore.mapGetters(['getLogin'])
     },
     mounted() {
-        this.formData = new FormData();
+
     }
 }
 </script>

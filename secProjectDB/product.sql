@@ -370,4 +370,5 @@ SELECT
 FROM
     s_product;
     
-select * from user_sequences where sequence_name = 'prod_seq';
+--select prod_seq.nextval from dual;
+
