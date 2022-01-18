@@ -14,19 +14,19 @@
         </div>
         <div>
             <!-- 장바구니 목록 표시 -->
-            <div class="listDiv" v-for="(item, idx) in getBasketList" :key="idx">
+            <div class="listDiv" v-for="(item, idx) in basket" :key="idx">
                 <ul class="list">
                     <li class="list1">
                         <div><input class="checkedList" type="checkbox" @click="calcPrice"></div>
                     </li>
                     <li class="list2">
                         <div class="listImage">
-                            <img class="productImage" :src="require(`../../../src/main/resources/images/product/${item.productno}/product/${item.img}`)" alt="">
+                            <img class="productImage" :src="require(`../../../src/main/resources/images/product/${item.productno}/product/${item.imagename}`)" alt="">
                         </div>
                     </li>
                     <li class="list3">
                         <div>
-                            <!-- <p>{{item.title}}</p> -->
+                            <p>{{item.productname}}</p>
                             <p>옵션1 : {{item.option1}}</p>
                             <p>옵션2 : {{item.option2}}</p>
                             <p>수량 : {{item.amount}}</p>
@@ -36,11 +36,6 @@
                         <div>
                             <p class="price">{{AddComma(item.price)}}원</p>
                             <p class="rate">{{AddComma(item.price*0.9)}}원</p>
-                        </div>
-                    </li>
-                    <li class="list5">
-                        <div>
-                            <p>{{AddComma(delivery_fee)}}원</p>
                         </div>
                     </li>
                 </ul>
@@ -78,6 +73,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import {
     createNamespacedHelpers
 } from "vuex";
@@ -90,6 +86,8 @@ export default {
             delivery: 0,
             product: 0,
             sale: 0,
+            basket: "",
+            checkedBasket: "",
         }
     },
     methods: {
@@ -169,7 +167,33 @@ export default {
                     this.addOrderList(this.getBasketList[i])
                 }
             }
-        },        
+        },
+        getBasket() {
+            axios({
+                method: 'get',
+                url: `/api/basket/basket`,
+                params: {
+                    id: "tester0001"
+                }
+            }).then(res => {
+                this.basket = res.data;
+            })
+        },
+        deleteBasket() {
+            for (let i = 0; i < this.checkedBasket.length; i++) {
+                axios({
+                    method: 'delete',
+                    url: `/api/basket/basket`,
+                    params: {
+                        id: this.checkedBasket[i].id,
+                        productno: this.checkedBasket[i].productno,
+                        option1: this.checkedBasket[i].option1,
+                        option2: this.checkedBasket[i].option2,
+                        amount: this.checkedBasket[i].amount
+                    }
+                })
+            }
+        },
         ...basketList.mapMutations(["delList"]),
         ...orderList.mapMutations(["addOrderList"]),
         ...orderList.mapMutations(["clearOrderList"]),
@@ -183,6 +207,9 @@ export default {
             }
         },
         ...basketList.mapGetters(["getBasketList"]),
+    },
+    mounted() {
+        this.getBasket();
     },
 }
 </script>
@@ -249,16 +276,12 @@ export default {
 }
 
 .list :nth-child(3) {
-    width: 50%;
+    width: 70%;
 }
 
 .list :nth-child(4) {
     width: 20%;
 
-}
-
-.list :nth-child(5) {
-    width: 20%;
 }
 
 .list li {
