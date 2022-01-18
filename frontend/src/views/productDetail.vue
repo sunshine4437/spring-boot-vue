@@ -98,7 +98,7 @@
                     총 상품금액 : {{ AddComma(totalPrice) }}원
                 </h3>
                 <router-link v-bind:to="'/basket'">
-                    <button class="myCartBtn" style="margin-right: 20px">
+                    <button class="myCartBtn" style="margin-right: 20px" @click="addBasket">
                         장바구니
                     </button>
                 </router-link>
@@ -108,7 +108,7 @@
                         구매하기
                     </button>
                 </router-link>
- 
+
             </div>
         </div>
     </div>
@@ -237,13 +237,28 @@ export default {
                 this.shop = res.data;
             })
         },
-        setImage1(){
-            try{
+        setImage1() {
+            try {
                 return require(`../../../src/main/resources/images/product/${this.prod.productno}/product/${this.prod.imagename}`)
-            }
-            catch{
+            } catch {
                 return require(`@/components/mainPage/productTableImage/error.png`)
             }
+        },
+        addBasket() {
+            const productno = this.$route.params.id;
+            for (let i = 0; i < this.items.length; i++) {
+                axios({
+                    method: 'post',
+                    url: `/api/basket/productDetail/${productno}`,
+                    params: {
+                        id: 'tester0001',
+                        option1: this.items[i].option1,
+                        option2: this.items[i].option2,
+                        amount: this.items[i].amount
+                    }
+                })
+            }
+
         }
 
     },
@@ -269,6 +284,7 @@ export default {
     mounted() {
         this.getProd();
         this.getNick();
+        this.formData = new FormData();
     },
 };
 </script>
