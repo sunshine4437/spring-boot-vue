@@ -234,7 +234,7 @@ INSERT INTO s_member (
     companyNO
 ) VALUES (
     'seller0002',
-    'seller0002',
+    '∑‘µ•æ∆¿Ã∏Ù',
     'Asdqwe123',
     'ºø∑Ø2',
     '01000000000',

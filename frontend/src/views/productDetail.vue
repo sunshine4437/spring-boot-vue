@@ -171,9 +171,9 @@ export default {
                 const id = this.$route.params.id;
 
                 let newItem = {
-                    img: this.prod.imagename,
+                    imagename: this.prod.imagename,
                     seller: this.shop,
-                    title: this.prod.productname,
+                    productname: this.prod.productname,
                     option1: this.firstOption,
                     option2: this.secondOption,
                     price: this.prod.price,
@@ -245,13 +245,14 @@ export default {
             }
         },
         addBasket() {
-            const productno = this.$route.params.id;
+            const pNo = this.$route.params.id;
             for (let i = 0; i < this.items.length; i++) {
                 axios({
                     method: 'post',
-                    url: `/api/basket/productDetail/${productno}`,
+                    url: `/api/basket/create`,
                     params: {
                         id: 'tester0001',
+                        productno : pNo,
                         option1: this.items[i].option1,
                         option2: this.items[i].option2,
                         amount: this.items[i].amount

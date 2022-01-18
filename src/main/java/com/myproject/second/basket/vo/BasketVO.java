@@ -1,6 +1,7 @@
 package com.myproject.second.basket.vo;
 
 public class BasketVO {
+	private long basketidx;
 	private String id;
 	private int productno;
 	private String option1;
@@ -9,10 +10,15 @@ public class BasketVO {
 	private String productname;
 	private String imagename;
 	private int price;
+	private String seller;
 
-	public BasketVO(String id, int productno, String option1, String option2, int amount, String productname,
-			String imagename, int price) {
+	public BasketVO() {
+	}
+
+	public BasketVO(long basketidx, String id, int productno, String option1, String option2, int amount,
+			String productname, String imagename, int price, String seller) {
 		super();
+		this.basketidx = basketidx;
 		this.id = id;
 		this.productno = productno;
 		this.option1 = option1;
@@ -21,6 +27,15 @@ public class BasketVO {
 		this.productname = productname;
 		this.imagename = imagename;
 		this.price = price;
+		this.seller = seller;
+	}
+
+	public long getBasketidx() {
+		return basketidx;
+	}
+
+	public void setBasketidx(long basketidx) {
+		this.basketidx = basketidx;
 	}
 
 	public String getId() {
@@ -85,6 +100,14 @@ public class BasketVO {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public String getSeller() {
+		return seller;
+	}
+
+	public void setSeller(String seller) {
+		this.seller = seller;
 	}
 
 }

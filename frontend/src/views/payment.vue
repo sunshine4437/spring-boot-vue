@@ -10,11 +10,11 @@
                 </td>
                 <td class="orderProductTd" style="width: 10%">
                     <img class="orderProductImg" :src="
-                                require(`../../../src/main/resources/images/product/${op.productno}/product/${op.img}`)
+                                require(`../../../src/main/resources/images/product/${op.productno}/product/${op.imagename}`)
                             " alt="productImage" />
                 </td>
                 <td class="orderProductTd" style="width: 50%; text-align: left">
-                    <p v-html="op.title"></p>
+                    <p v-html="op.productname"></p>
                     <p v-html="op.option1"></p>
                     <p>
                         <span>옵션 : </span><span v-html="op.option2"></span>
