@@ -54,7 +54,6 @@ SELECT
     *
 FROM
     s_order;
-    select productno from s_product where id = 'seller0001';
-    select * from s_order where productno in (select productno from s_product where id = 'seller0001');
-    select * from s_order o right join s_member m on m.id = o.id where productno in (select productno from s_product where id = 'seller0001');
+    
+    select * from s_order o right outer join s_member m on m.id = o.id left outer join s_product p on p.productno = o.productno where p.id = 'seller0001';
     select * from s_member, s_order, s_product where s_member.id = s_order.id and s_order.productno = s_product.productno and s_product.id = 'seller0001';
