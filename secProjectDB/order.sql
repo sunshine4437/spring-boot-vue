@@ -21,15 +21,6 @@ CREATE TABLE s_order (
 CREATE SEQUENCE order_seq START WITH 1 INCREMENT BY 1 MAXVALUE 9999999999 NOCYCLE NOCACHE;
 
 INSERT INTO s_order VALUES (
-<<<<<<< HEAD
-    order_seq.NEXTVAL,
-    'tester0006',
-    1,
-    '05.NB_MR530KA',
-    0,
-    73800,
-    sysdate
-=======
     order_seq.NEXTVAL,'tester0006',1,'05.NB_MR530KA',0,73800,sysdate
 );
 INSERT INTO s_order VALUES (
@@ -55,7 +46,6 @@ INSERT INTO s_order VALUES (
 );
 INSERT INTO s_order VALUES (
     order_seq.NEXTVAL,'tester0001',14,'a',0,73800,sysdate
->>>>>>> 766402f597870d09c46b341454f99d8f07a03617
 );
 
 INSERT INTO s_order VALUES (

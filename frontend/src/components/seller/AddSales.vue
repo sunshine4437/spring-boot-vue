@@ -49,8 +49,6 @@ export default {
             option2: '',
             image1: null,
             image2: null,
-            imagename: null,
-            detailimagename: null
         };
     },
     methods: {
@@ -67,7 +65,7 @@ export default {
                 reader.readAsDataURL(input)
                 this.$emit('input', input)
             }
-            this.image1 = input.name
+            this.imagename = input.name
             this.imageFile1 = input;
             // this.formData.append('fileList', input[0])
 
@@ -82,7 +80,7 @@ export default {
                 reader.readAsDataURL(input)
                 this.$emit('input', input)
             }
-            this.image2 = input.name
+            this.detailimagename = input.name
             this.imageFile2 = input;
             // this.formData.append('fileList', input[0])
         },
@@ -104,7 +102,13 @@ export default {
             }))
             this.formData.append('fileList', this.imageFile1)
             this.formData.append('fileList', this.imageFile2)
-            axios.post('/api/product/addProduct', this.formData)
+            axios.post('/api/product/insertProduct', this.formData).then(res => {
+                console.log(res.status);
+                alert("입력 성공");
+            }).catch(err => {
+                if (err.response.status === 404)
+                    alert("error")
+            })
         }
     },
     computed: {
