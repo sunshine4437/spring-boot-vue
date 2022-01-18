@@ -144,22 +144,29 @@ export default {
         // 장바구니 목록 삭제
         deleteBasket() {
             let checkedList = document.getElementsByClassName("checkedList");
+            console.log(1);
+            let basketidx = [];
             for (let i = checkedList.length - 1; i >= 0; i--) {
                 if (checkedList[i].checked == true) {
-                    axios({
-                        method: 'delete',
-                        url: `/api/basket/delete`,
-                        params: {
-                            basketidx: this.basket[i].basketidx
-                        }
-                    }).then(res => {
-                        if (res.status == 200) {
-                            this.basket.splice(i, 1);
-                        }
-                    })
-                    checkedList[i].checked = false;
+                    basketidx.push(this.basket[i].basketidx);
                 }
             }
+            console.log(2);
+            console.log(basketidx);
+            axios.delete(`/api/basket/delete`, { data: basketidx })
+                .then(res => {
+                    if (res.status == 200) {
+                        for (let i = checkedList.length - 1; i >= 0; i--) {
+                            if (checkedList[i].checked == true) {
+                                checkedList[i].checked = false;
+                            }
+                        }
+                        this.getBasket();
+                    }
+                }).catch(err => {
+                    console.log(err.response)
+                })
+
             let totalPro = document.getElementById("totalPro");
             let totalDel = document.getElementById("totalDel")
             let totalSale = document.getElementById("totalSale");

@@ -10,7 +10,7 @@ import com.myproject.second.basket.vo.BasketVO;
 @Service
 public class BasketService {
 	private BasketMapper basketMapper;
-
+	
 	public BasketService(BasketMapper basketMapper) {
 		this.basketMapper = basketMapper;
 	}
@@ -23,7 +23,9 @@ public class BasketService {
 		return basketMapper.findAllBasket(id);
 	}
 
-	public void deleteBasket(long basketidx) {
-		basketMapper.deleteBasket(basketidx);
+	public void deleteBasket(List<Long> basketidx) {
+		for (long l : basketidx) {
+			basketMapper.deleteBasket(l);
+		}
 	}
 }
