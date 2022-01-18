@@ -24,5 +24,11 @@ public class MemberService {
 
 	public MemberVO getMember(@Param("id") String id) {
 		return memberMapper.findMember(id);
+	}
+
+
+	public String getNickname(int productno) {
+		// TODO Auto-generated method stub
+		return memberMapper.getNickname(productno);
 	}	
 }

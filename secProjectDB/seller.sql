@@ -12,30 +12,149 @@ CREATE TABLE s_seller (
             ON DELETE CASCADE
 );
 
-INSERT INTO s_seller VALUES (    'seller0001',    1,    10000000);
-INSERT INTO s_seller VALUES (    'seller0001',    2,    1000000);
-INSERT INTO s_seller VALUES (    'seller0001',    3,    4000000);
-INSERT INTO s_seller VALUES (    'seller0001',    4,    1200000);
-INSERT INTO s_seller VALUES (    'seller0001',    5,    1500000);
-INSERT INTO s_seller VALUES (    'seller0001',    6,    1050000);
-INSERT INTO s_seller VALUES (    'seller0001',    7,    500000);
-INSERT INTO s_seller VALUES (    'seller0001',    8,    3000000);
-INSERT INTO s_seller VALUES (    'seller0001',    9,    1000000);
-INSERT INTO s_seller VALUES (    'seller0001',    10,    2000000);
-INSERT INTO s_seller VALUES (    'seller0002',    11,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    12,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    13,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    14,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    15,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    16,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    17,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    18,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    19,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    20,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    21,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    22,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    23,    1000000);
-INSERT INTO s_seller VALUES (    'seller0002',    24,    1000000);
+INSERT INTO s_seller VALUES (
+    'seller0001',
+    1,
+    10000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0001',
+    2,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0001',
+    3,
+    4000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0001',
+    4,
+    1200000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0001',
+    5,
+    1500000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0001',
+    6,
+    1050000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0001',
+    7,
+    500000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0001',
+    8,
+    3000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0001',
+    9,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0001',
+    10,
+    2000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    11,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    12,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    13,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    14,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    15,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    16,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    17,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    18,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    19,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    20,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    21,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    22,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    23,
+    1000000
+);
+
+INSERT INTO s_seller VALUES (
+    'seller0002',
+    24,
+    1000000
+);
 
 COMMIT;
 

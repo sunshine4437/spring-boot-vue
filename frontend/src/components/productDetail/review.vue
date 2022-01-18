@@ -32,7 +32,7 @@ export default {
     methods: {
         getReview() {
             const id = this.$route.params.id;
-            axios.get(`/api/product/review/${id}`).then(res => this.reviews = res.data);
+            axios.get(`/api/review/review/${id}`).then(res => this.reviews = res.data);
         }
     },
     mounted() {

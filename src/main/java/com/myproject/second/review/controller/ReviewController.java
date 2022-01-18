@@ -12,7 +12,7 @@ import com.myproject.second.review.service.ReviewService;
 import com.myproject.second.review.vo.ReviewVO;
 
 @RestController
-@RequestMapping(value = "api/product/*")
+@RequestMapping(value = "api/review/*")
 public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;

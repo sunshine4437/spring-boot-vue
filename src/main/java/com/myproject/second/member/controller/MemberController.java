@@ -16,14 +16,21 @@ import com.myproject.second.member.vo.MemberVO;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
-	
+
 	@GetMapping("/all")
-	public List<MemberVO> getAllMembers(){
+	public List<MemberVO> getAllMembers() {
 		return memberService.getAllMembers();
 	}
-	
+
 	@GetMapping("/{id}")
 	public MemberVO getMember(@PathVariable("id") String id) throws Exception {
 		return memberService.getMember(id);
+	}
+
+	@GetMapping("/productDetail/{productno}")
+	public String getMember(@PathVariable("productno") int productno) throws Exception {
+		String temp = memberService.getNickname(productno);
+		System.out.println(temp);
+		return temp;
 	}
 }

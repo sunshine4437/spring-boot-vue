@@ -15,7 +15,7 @@ import com.myproject.second.qna.vo.QnaVO;
 
 
 @RestController
-@RequestMapping(value = "api/product/*")
+@RequestMapping(value = "api/qna/*")
 public class QnaController {
 	@Autowired
 	private QnaService qnaService;
