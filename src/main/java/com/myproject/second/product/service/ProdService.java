@@ -38,20 +38,11 @@ public class ProdService {
 		return list;
 	}
 
-	public int insertProduct(String id, String productname, int price, String option1, String option2,
-			String imagename, String detailimagename) {
-		prodMapper.insertProduct(id, productname, price, option1, option2, imagename, detailimagename);
-
-		return prodMapper.getProductNo();
+	public int insertProduct(ProdVO target) {
+		ProdVO result = new ProdVO();
+		prodMapper.insertProduct(target, result);
+		return result.getProductno();
 	}
 
-	public int test112() {
-		System.out.println("service before mapper");
-//		return prodMapper.test11("1", "1", 10, "1", "1", "1", "1");
-		ProdVO temp = new ProdVO();
-		prodMapper.test11("tester0001", "11", 11, "11", "11", "11", "11", temp);
-		return temp.getProductno();
-		
-	}
 		
 }

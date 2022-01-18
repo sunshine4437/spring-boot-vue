@@ -33,15 +33,8 @@ public interface ProdMapper {
 	@Select("select prod_seq.currval from dual")
 	int getProductNo();
 
-	@Insert("insert into s_product(productno, productname, imagename, price, option1, option2, regdate, id, detailimagename) values (prod_seq.nextval, #{productname}, #{imagename}, #{price}, #{option1}, #{option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{id},#{detailimagename})")
-	int insertProduct(@Param("id") String id, @Param("productname") String productname, @Param("price") int price,
-			@Param("option1") String option1, @Param("option2") String option2, @Param("imagename") String imagename,
-			@Param("detailimagename") String detailimagename);
-
-	@Insert("insert into s_product(productno, productname, imagename, price, option1, option2, regdate, id, detailimagename) values (prod_seq.nextval, #{productname}, #{imagename}, #{price}, #{option1}, #{option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{id},#{detailimagename})")
-	@Options(useGeneratedKeys = true, keyProperty = "out.productno", keyColumn = "productno")
-	int test11(@Param("id") String id, @Param("productname") String productname, @Param("price") int price,
-			@Param("option1") String option1, @Param("option2") String option2, @Param("imagename") String imagename,
-			@Param("detailimagename") String detailimagename,@Param("out") ProdVO out);
+	@Insert("insert into s_product(productno, productname, imagename, price, option1, option2, regdate, id, detailimagename) values (prod_seq.nextval, #{in.productname}, #{in.imagename}, #{in.price}, #{in.option1}, #{in.option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{in.id}, #{in.detailimagename})")
+	@Options(useGeneratedKeys = true, keyProperty = "result.productno", keyColumn = "productno")
+	int insertProduct(@Param("in") ProdVO in,@Param("result") ProdVO result);
 
 }

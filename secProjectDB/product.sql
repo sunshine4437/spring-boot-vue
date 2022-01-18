@@ -371,4 +371,3 @@ FROM
     s_product;
     
 --select prod_seq.nextval from dual;
-
