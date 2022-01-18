@@ -51,10 +51,7 @@ export default {
     },
     mounted() {
         this.getProd();
-<<<<<<< HEAD
-=======
         this.getNick();
->>>>>>> 39fcc229a4ac66e2fff63cd817b2f60df170fbe7
     },
 };
 </script>
