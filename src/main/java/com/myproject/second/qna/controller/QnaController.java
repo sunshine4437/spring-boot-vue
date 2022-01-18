@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myproject.second.qna.service.QnaService;
 import com.myproject.second.qna.vo.QnaVO;
 
-
 @RestController
 @RequestMapping(value = "api/qna/*")
 public class QnaController {
@@ -27,7 +26,7 @@ public class QnaController {
 	}
 	
 	@PostMapping("/qna/{productno}")
-	public void getQn1aList(@PathVariable("productno") int productno, @RequestParam String title, @RequestParam String nickname) throws Exception {
+	public void inserQna(@PathVariable("productno") int productno, @RequestParam String title, @RequestParam String nickname) throws Exception {
 		qnaService.addQna(productno, title, nickname);
 	}
 }

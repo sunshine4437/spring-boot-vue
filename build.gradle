@@ -30,7 +30,7 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
 	//implementation 'com.oracle.database.jdbc:ojdbc6:11.2.0.4'
 	// https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8
-implementation 'com.oracle.database.jdbc:ojdbc8:21.4.0.0.1'
+implementation 'com.oracle.database.jdbc:ojdbc6'
 			
 	testImplementation("org.junit.vintage:junit-vintage-engine") {          
 		exclude group: "org.hamcrest", module: "hamcrest-core"
