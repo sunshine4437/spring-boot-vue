@@ -21,11 +21,11 @@ CREATE SEQUENCE prod_seq START WITH 1 INCREMENT BY 1 MAXVALUE 9999999999 NOCYCLE
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ë‰´ë°œëž€ìŠ¤] ë‚¨ì—¬ê³µìš© 574/327/530 ìš´ë™í™” ì”¨ì íŠ¸ ë¬¸ë¹”',
+    '[´º¹ß¶õ½º] ³²¿©°ø¿ë 574/327/530 ¿îµ¿È­ ¾¾½òÆ® ¹®ºö',
     '1.jpg',
     23800,
-    'ìƒí’ˆ ë²ˆí˜¸;01.NB_CM997HCA;02.NB_CM997HCC;03.NB_ML574RC2;04.NB_MR530SG;05.NB_MR530KA;06.NB_MS327FE;07.NB_MS327LAB;08.NB_MS327CPG;09.NB_MS327LH1;10.NB_WS327KC;11.NB_MS327WE;12.NB_MS327BD;13.NB_MR530SH;14.NB_WS327LW;15.NB_MS327CLA;16.NB_ML574EVB;17.NB_ML574EVG;18.NB_ML574EVW;19.NB_ML574EVE',
-    'ì‚¬ì´ì¦ˆ;225;230;235;240;245;250;255;260;265;270;275;280;285;290',
+    '»óÇ° ¹øÈ£;01.NB_CM997HCA;02.NB_CM997HCC;03.NB_ML574RC2;04.NB_MR530SG;05.NB_MR530KA;06.NB_MS327FE;07.NB_MS327LAB;08.NB_MS327CPG;09.NB_MS327LH1;10.NB_WS327KC;11.NB_MS327WE;12.NB_MS327BD;13.NB_MR530SH;14.NB_WS327LW;15.NB_MS327CLA;16.NB_ML574EVB;17.NB_ML574EVG;18.NB_ML574EVW;19.NB_ML574EVE',
+    '»çÀÌÁî;225;230;235;240;245;250;255;260;265;270;275;280;285;290',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -35,11 +35,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ë‹‰ìŠ¤/ì¹´ì´ì•„í¬ë§Œì™¸]ì¼€ì´ë¸Œëžœì¦ˆ ì‹œì¦Œì˜¤í”„ ~87%+25%ì¿ í°! ê²¨ìš¸ë‹¤ìš´/ê¸°ëª¨í‹°/í”Œë¦¬ìŠ¤ì™¸',
+    '[´Ð½º/Ä«ÀÌ¾ÆÅ©¸¸¿Ü]ÄÉÀÌºê·£Áî ½ÃÁð¿ÀÇÁ ~87%+25%ÄíÆù! °Ü¿ï´Ù¿î/±â¸ðÆ¼/ÇÃ¸®½º¿Ü',
     '2.jpg',
     10500,
-    'ì˜µì…˜1;1;2;3;4',
-    'ì˜µì…˜2;a;s;d;f',
+    '¿É¼Ç1;1;2;3;4',
+    '¿É¼Ç2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -49,11 +49,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ë§ˆì¸ë“œë¸Œë¦¿ì§€]ë³¸ì‚¬ ë‹¨ë…ì—°ë§ì„¸ì¼! ì •í•´ì¸ ì‹ ìƒ/ì´ì›” ê²¨ìš¸ì¸ê¸°í…œ',
+    '[¸¶ÀÎµåºê¸´Áö]º»»ç ´Üµ¶¿¬¸»¼¼ÀÏ! Á¤ÇØÀÎ ½Å»ó/ÀÌ¿ù °Ü¿ïÀÎ±âÅÛ',
     '3.jpg',
     13000,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -63,11 +63,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    'ì»¬ëŸ¼ë¹„ì•„ ìœ ë‹ˆë²„ì‹œí‹° ì‹ ë…„ë§žì´ ê²¨ìš¸ ì‹œì¦Œ ì˜¤í”„ SALE',
+    'ÄÃ·³ºñ¾Æ À¯´Ï¹ö½ÃÆ¼ ½Å³â¸ÂÀÌ °Ü¿ï ½ÃÁð ¿ÀÇÁ SALE',
     '4.jpg',
     16900,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -77,11 +77,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ì–´ìŠ¤ì•¤ëŽ€/ìœ ì§€ì•„ì´ì§€/ì¼€ì´ìŠ¤ìœ„ìŠ¤]ë‚¨ë…€ê³µìš©/íŒ¨ë”©/ë§¨íˆ¬ë§¨',
+    '[¾î½º¾Øµ©/À¯Áö¾ÆÀÌÁö/ÄÉÀÌ½ºÀ§½º]³²³à°ø¿ë/ÆÐµù/¸ÇÅõ¸Ç',
     '5.jpg',
     11000,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -91,11 +91,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    'ë¹„íŠ¸ë¡œ ì—„ìŠ¤í†¤(í™”ì´íŠ¸/ë¸”ëž™) ë°œ ë³¼ ë„“ì€ í…Œë‹ˆìŠ¤í™”',
+    'ºñÆ®·Î ¾ö½ºÅæ(È­ÀÌÆ®/ºí·¢) ¹ß º¼ ³ÐÀº Å×´Ï½ºÈ­',
     '6.jpg',
     155000,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -105,11 +105,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ìŠˆë§] ë‚¨ë…€ê³µìš© ì‹ ë°œ ìŠ¤ë‹ˆì»¤ì¦ˆ ìŠ¬ë¦½ì˜¨ ë‹¨í™” ìš´ë™í™” ëŸ¬ë‹í™” ìŠ¬ë¦¬í¼ ëª¨ìŒì „!',
+    '[½´¸Á] ³²³à°ø¿ë ½Å¹ß ½º´ÏÄ¿Áî ½½¸³¿Â ´ÜÈ­ ¿îµ¿È­ ·¯´×È­ ½½¸®ÆÛ ¸ðÀ½Àü!',
     '7.jpg',
     9900,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -119,11 +119,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    'SOVO ê²¨ìš¸Best ì—¬ì„±ë¶€ì¸  ì•µí´ ë¡± ë¯¸ë“¤ ì‚­ìŠ¤ êµ¬ë‘ ì›Œì»¤ ë¡œí¼ ìŠ¬ë¦¬í¼ ìŠ¤ë‹ˆì»¤ì¦ˆ ì •ìž¥ ìºì¥¬ì–¼',
+    'SOVO °Ü¿ïBest ¿©¼ººÎÃ÷ ¾ÞÅ¬ ·Õ ¹Ìµé »è½º ±¸µÎ ¿öÄ¿ ·ÎÆÛ ½½¸®ÆÛ ½º´ÏÄ¿Áî Á¤Àå Ä³Áê¾ó',
     '8.jpg',
     19900,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -133,11 +133,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    'TOMS ë‚¨ì„±ìš© Carlo ë¯¸ë“œ í„°ë ˆì¸ ìŠ¤ë‹ˆì»¤ì¦ˆ, ë°©ìˆ˜ í† íŒŒì¦ˆ ë¸Œë¼ìš´',
+    'TOMS ³²¼º¿ë Carlo ¹Ìµå ÅÍ·¹ÀÎ ½º´ÏÄ¿Áî, ¹æ¼ö ÅäÆÄÁî ºê¶ó¿î',
     '9.jpg',
     73960,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -147,11 +147,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ì†”ë¡œì´ìŠ¤íŠ¸] SACKDH06',
+    '[¼Ö·ÎÀÌ½ºÆ®] SACKDH06',
     '10.jpg',
     72040,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -161,11 +161,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[25%ì¿ í°][ì§€ì˜¤ì†¡ì§€ì˜¤ å¤–] í™ˆì‡¼í•‘ BEST 100/ê²¨ìš¸ í´ë¦¬ì–´ëŸ°ìŠ¤ ì—­ëŒ€ê¸‰ ë“í…œì°¬ìŠ¤!',
+    '[25%ÄíÆù][Áö¿À¼ÛÁö¿À èâ] È¨¼îÇÎ BEST 100/°Ü¿ï Å¬¸®¾î·±½º ¿ª´ë±Þ µæÅÛÂù½º!',
     '11.jpg',
     59000,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -175,11 +175,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    'ë¡œë ˆì•ŒíŒŒë¦¬ í•œì†Œí¬ í—¤ì–´íŒ©/ì˜¤ì¼/ìƒ´í‘¸/ì»¨ë””ì…”ë„ˆ/ì—¼ìƒ‰ì•½',
+    '·Î·¹¾ËÆÄ¸® ÇÑ¼ÒÈñ Çì¾îÆÑ/¿ÀÀÏ/¼¤Çª/ÄÁµð¼Å³Ê/¿°»ö¾à',
     '12.jpg',
     19900,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -189,11 +189,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    'Razer Xbox ì‹œë¦¬ì¦ˆ X|Sìš© ë²”ìš© ê³ ì† ì¶©ì „ ìŠ¤íƒ ë“œ ë§ˆê·¸ë„¤í‹± ì•ˆì „ ì¶©ì „',
+    'Razer Xbox ½Ã¸®Áî X|S¿ë ¹ü¿ë °í¼Ó ÃæÀü ½ºÅÄµå ¸¶±×³×Æ½ ¾ÈÀü ÃæÀü',
     '13.jpg',
     63170,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -203,11 +203,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ì½”ì½”ë¸”ëž‘]ì˜ˆë»ì§€ëŠ”ì½”ë””/ê¸°ëª¨/ë°ì¼ë¦¬ë£©/ë°ì´íŠ¸ë£©/íŒ¨ë”©/íŒ¬ì¸ /ë§¨íˆ¬ë§¨/ì›í”¼ìŠ¤',
+    '[ÄÚÄÚºí¶û]¿¹»µÁö´ÂÄÚµð/±â¸ð/µ¥ÀÏ¸®·è/µ¥ÀÌÆ®·è/ÆÐµù/ÆÒÃ÷/¸ÇÅõ¸Ç/¿øÇÇ½º',
     '14.jpg',
     7900,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -217,11 +217,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ì œì´ì—˜í”„]ê²¨ìš¸ì¸ê¸°/ì‹œì¦Œì˜¤í”„ ë°ì¼ë¦¬ë£©/íŒ¬ì¸ /ë‹ˆíŠ¸/ì›í”¼ìŠ¤/ìš¸ìžì¼“/íŒ¨ë”©/ì–´ë‚˜ë”ë¦¬ì¦ˆ/ì²­ìˆœ',
+    '[Á¦ÀÌ¿¤ÇÁ]°Ü¿ïÀÎ±â/½ÃÁð¿ÀÇÁ µ¥ÀÏ¸®·è/ÆÒÃ÷/´ÏÆ®/¿øÇÇ½º/¿ïÀÚÄÏ/ÆÐµù/¾î³ª´õ¸®Áî/Ã»¼ø',
     '15.jpg',
     16900,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -231,11 +231,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ê¸°í”„í‹°ë°•ìŠ¤]ì½”ë””ë§›ì§‘/ê¸°ëª¨/í´ë¼/ë§¨íˆ¬ë§¨/íŒ¨ë”©/ë‹ˆíŠ¸/ì›í”¼ìŠ¤/íŒ¬ì¸ /íŒŒìžë§ˆ',
+    '[±âÇÁÆ¼¹Ú½º]ÄÚµð¸ÀÁý/±â¸ð/Æú¶ó/¸ÇÅõ¸Ç/ÆÐµù/´ÏÆ®/¿øÇÇ½º/ÆÒÃ÷/ÆÄÀÚ¸¶',
     '16.jpg',
     10000,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -245,11 +245,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ì—…íƒ€ìš´í™€ë¦­]ì¸ê¸°í…œ99ì¢…!ë§¨íˆ¬ë§¨/ìŠ¬ëž™ìŠ¤/ë‹ˆíŠ¸/ê°€ë””ê±´/íŠ¸ë ˆì´ë‹ ì™¸',
+    '[¾÷Å¸¿îÈ¦¸¯]ÀÎ±âÅÛ99Á¾!¸ÇÅõ¸Ç/½½·¢½º/´ÏÆ®/°¡µð°Ç/Æ®·¹ÀÌ´× ¿Ü',
     '17.jpg',
     18000,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -259,11 +259,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ë¦¬ì–¼ì½”ì½”]ëŒ€í‘œë°ì¼ë¦¬ë£©/ë°ì´íŠ¸ë£©/ê¸°ëª¨/ì›í”¼ìŠ¤/íŒ¨ë”©/ë‹ˆíŠ¸/ë§¨íˆ¬ë§¨/ë°ë‹˜',
+    '[¸®¾óÄÚÄÚ]´ëÇ¥µ¥ÀÏ¸®·è/µ¥ÀÌÆ®·è/±â¸ð/¿øÇÇ½º/ÆÐµù/´ÏÆ®/¸ÇÅõ¸Ç/µ¥´Ô',
     '18.jpg',
     14900,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -273,11 +273,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ë‚˜í¬21] ì‚¬ëž‘ìŠ¤ëŸ¬ìš´ ë°ì´íŠ¸ë£©/í•˜ê°ë£©/ë‹ˆíŠ¸/ë¸”ë¼ìš°ìŠ¤/íŒ¬ì¸ /ì›í”¼ìŠ¤~',
+    '[³ªÅ©21] »ç¶û½º·¯¿î µ¥ÀÌÆ®·è/ÇÏ°´·è/´ÏÆ®/ºí¶ó¿ì½º/ÆÒÃ÷/¿øÇÇ½º~',
     '19.jpg',
     12900,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -287,11 +287,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    'ê°¤ëŸ­ì‹œ GALAX ì§€í¬ìŠ¤ RTX 3080 SG D6X 10GB',
+    '°¶·°½Ã GALAX ÁöÆ÷½º RTX 3080 SG D6X 10GB',
     '20.jpg',
     5000000,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -301,11 +301,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    'íŠ¸ë Œë””ìŠ¤íƒ€ì¼ ë‚¨ì„±,ê³µìš© ì–‘í„¸,íŒ¨ë”©ì í¼,íŒ¨ë”©ì¡°ë¼,ì²­ìžì¼“ ëª¨ìŒ',
+    'Æ®·»µð½ºÅ¸ÀÏ ³²¼º,°ø¿ë ¾çÅÐ,ÆÐµùÁ¡ÆÛ,ÆÐµùÁ¶³¢,Ã»ÀÚÄÏ ¸ðÀ½',
     '21.jpg',
     36900,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -315,11 +315,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    'ì•„ì´ë¦¬ë²„ BS-BT101 ë¬´ì„ ë¸”ë£¨íˆ¬ìŠ¤í—¤ë“œí° 5.0 ë…¸ì´ì¦ˆìº”ìŠ¬ë§ ì ‘ì´ì‹ ìŠ¤ë§ˆíŠ¸í° í—¤ë“œì…‹',
+    '¾ÆÀÌ¸®¹ö BS-BT101 ¹«¼±ºí·çÅõ½ºÇìµåÆù 5.0 ³ëÀÌÁîÄµ½½¸µ Á¢ÀÌ½Ä ½º¸¶Æ®Æù Çìµå¼Â',
     '22.jpg',
     49000,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -329,11 +329,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[20ë§¤+6]ê¹€íƒœí¬ ë§ˆìŠ¤í¬ ì•„ì´ë°”ë‚˜ë¦¬ KF-AD ìƒˆë¶€ë¦¬í˜• ëŒ€í˜• ì¤‘í˜• 6ê°€ì§€ ìƒ‰ìƒ',
+    '[20¸Å+6]±èÅÂÈñ ¸¶½ºÅ© ¾ÆÀÌ¹Ù³ª¸® KF-AD »õºÎ¸®Çü ´ëÇü ÁßÇü 6°¡Áö »ö»ó',
     '23.jpg',
     16980,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -343,11 +343,11 @@ INSERT INTO s_product VALUES (
 
 INSERT INTO s_product VALUES (
     prod_seq.NEXTVAL,
-    '[ì‹œí¬ë£¨ì¦ˆ]50+30% ë”°ëœ»í•œ ê¸°ëª¨ì›í”¼ìŠ¤/ë£¨ì¦ˆí• ì›í”¼ìŠ¤/ìƒí•˜ì„¸íŠ¸/íŠ¸ë ˆì´ë‹/ë¡±í‹°ì…”ì¸ /ë‹ˆíŠ¸/ì¡°ê±°íŒ¬ì¸ ',
+    '[½ÃÅ©·çÁî]50+30% µû¶æÇÑ ±â¸ð¿øÇÇ½º/·çÁîÇÍ ¿øÇÇ½º/»óÇÏ¼¼Æ®/Æ®·¹ÀÌ´×/·ÕÆ¼¼ÅÃ÷/´ÏÆ®/Á¶°ÅÆÒÃ÷',
     '24.jpg',
     9700,
-    'ì˜µì…˜1',
-    'ì˜µì…˜2',
+    '¿É¼Ç1',
+    '¿É¼Ç2',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),

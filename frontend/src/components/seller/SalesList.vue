@@ -11,11 +11,11 @@
         <table>
             <thead>
                 <tr>
-                    <td class="td1">상품번호</td>
-                    <td class="td2">사진</td>
-                    <td class="td3">상품명</td>
-                    <td class="td4">가격</td>
-                    <td class="td5">등록일</td>
+                    <td class="td1 header">상품번호</td>
+                    <td class="td2 header">사진</td>
+                    <td class="td3 header">상품명</td>
+                    <td class="td4 header">가격</td>
+                    <td class="td5 header">등록일</td>
                 </tr>
             </thead>
         </table>
@@ -27,10 +27,10 @@
                     <td class="td1">{{product.productno}}</td>
                     <td class="td2">
                         <!-- {{setImage(product)}} -->
-                        <img :src="setImage(product)" alt="productImage" style="width:100%">
+                        <img :src="setImage(product)" alt="productImage">
                     </td>
                     <td class="td3">{{product.productname}}</td>
-                    <td class="td4">{{product.price}}</td>
+                    <td class="td4">{{AddComma(product.price)}}원</td>
                     <td class="td5">{{product.regdate}}</td>
                 </tr>
             </tbody>
@@ -74,7 +74,11 @@ export default {
             } catch {
                 return require(`@/components/mainPage/productTableImage/error.png`)
             }
-        }
+        },
+        AddComma(num) {
+            let regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ",");
+        },
     },
     computed: {
         ...loginStore.mapGetters(['getLogin'])
@@ -106,10 +110,18 @@ td {
 
 .td1 {
     width: 79px;
+    text-align: center;
 }
 
 .td2 {
-    width: 113px;
+    width: 110px;
+    height: 60px;
+    object-fit: none;
+}
+
+.td2 img {
+    width: 100%;
+    height: 100%;
 }
 
 .td3 {
@@ -118,9 +130,15 @@ td {
 
 .td4 {
     width: 80px;
+    text-align: right;
 }
 
 .td5 {
     width: 90px;
+}
+
+.header {
+    height: 60px;
+    text-align: center;
 }
 </style>
