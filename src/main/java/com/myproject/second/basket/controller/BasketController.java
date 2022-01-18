@@ -8,10 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 import com.myproject.second.basket.service.BasketService;
 import com.myproject.second.basket.vo.BasketVO;
@@ -34,7 +34,7 @@ public class BasketController {
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<?> deleteBasket(@RequestParam long basketidx) {
+	public ResponseEntity<?> deleteBasket(@RequestBody List<Long> basketidx) {
 		try {
 			basketService.deleteBasket(basketidx);
 			return new ResponseEntity<>(HttpStatus.OK);
