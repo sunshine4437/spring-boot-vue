@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myproject.second.member.service.MemberService;
@@ -32,5 +34,10 @@ public class MemberController {
 		String temp = memberService.getNickname(productno);
 		System.out.println(temp);
 		return temp;
+	}
+	
+	@PutMapping("/point")
+	public void updatePoint(@RequestParam("id") String id, @RequestParam("point") int point) throws Exception{
+		memberService.updatePoint(id, point);
 	}
 }

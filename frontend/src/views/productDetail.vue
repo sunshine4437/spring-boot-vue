@@ -98,13 +98,13 @@
                     총 상품금액 : {{ AddComma(totalPrice) }}원
                 </h3>
                 <router-link v-bind:to="'/basket'">
-                    <button class="myCartBtn" style="margin-right: 20px" @click="addBasket">
+                    <button class="myCartBtn" style="margin-right: 20px" @click="addBasket" :disabled="this.prod.onsale == 0">
                         장바구니
                     </button>
                 </router-link>
 
                 <router-link v-bind:to="'/payment'">
-                    <button class="buyBtn" @click="insertOrderList">
+                    <button class="buyBtn" @click="insertOrderList"  :disabled="this.prod.onsale == 0">
                         구매하기
                     </button>
                 </router-link>
