@@ -24,8 +24,13 @@
     </div>
     <div>
         <label for="" class="inputLabel">상품 상세 이미지</label>
-        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image2})` }" @click="selectImage">
-        </div>
+        <!-- <div v-for="(image,idx) in image2" :key="idx"> -->
+            <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image2})` }" @click="selectImage">
+               <!-- <button>select</button> -->
+            </div>
+            
+        <!-- </div> -->
+
         <input ref="fileInput2" type="file" @change="pickFile2" accept="image/png, image/gif, image/jpeg">
     </div>
 
@@ -53,7 +58,7 @@ export default {
     },
     methods: {
         selectImage() {
-            this.$refs.fileInput.click()
+            this.$refs.fileInput2.click()
         },
         pickFile1() {
             let input = this.$refs.fileInput1.files[0];
@@ -75,7 +80,8 @@ export default {
             if (input) {
                 let reader = new FileReader
                 reader.onload = e => {
-                    this.image2 = e.target.result
+                    // this.image2.push(e.target.result)
+                    this.image2 = e.target.result;
                 }
                 reader.readAsDataURL(input)
                 this.$emit('input', input)

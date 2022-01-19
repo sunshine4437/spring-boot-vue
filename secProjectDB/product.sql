@@ -110,9 +110,10 @@ INSERT INTO s_product VALUES (
     9900,
     '可记1',
     '可记2',
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+--    to_char(
+--        sysdate, 'yyyy.mm.dd hh24:mi'
+--    ),
+    '2022.01.01 00:01',
     'seller0001',
     'productDetail01.jpg'
 );
