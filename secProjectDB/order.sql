@@ -10,7 +10,12 @@ CREATE TABLE s_order (
     delivery       NUMBER(5) NOT NULL,
     totalprice     NUMBER(10) NOT NULL,
     orderdate      DATE DEFAULT sysdate,
-    state     VARCHAR2(20) DEFAULT '결제완료',
+    state          VARCHAR2(20) DEFAULT '결제완료',
+    name           VARCHAR2(50) NOT NULL,
+    tel            VARCHAR2(11) NOT NULL,
+    zipcode        VARCHAR2(5) NOT NULL,
+    address        VARCHAR2(80) NOT NULL,
+    detailaddr     VARCHAR2(50) NOT NULL,
     CONSTRAINT fk_ordmem FOREIGN KEY ( id )
         REFERENCES s_member ( id )
             ON DELETE CASCADE,
@@ -22,109 +27,165 @@ CREATE TABLE s_order (
 CREATE SEQUENCE order_seq START WITH 1 INCREMENT BY 1 MAXVALUE 9999999999 NOCYCLE NOCACHE;
 
 INSERT INTO s_order VALUES (
-    order_seq.NEXTVAL,'tester0006',1,'05.NB_MR530KA',0,73800,sysdate,'배송 완료'
+    order_seq.NEXTVAL,
+    'tester0006',
+    1,
+    '05.NB_MR530KA',
+    0,
+    73800,
+    sysdate,
+    '배송 완료',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
 );
+
 INSERT INTO s_order VALUES (
-    order_seq.NEXTVAL,'tester0001',1,'a',0,73800,sysdate,'배송 완료'
+    order_seq.NEXTVAL,
+    'tester0001',
+    1,
+    'a',
+    0,
+    73800,
+    sysdate,
+    '배송 완료',
+    '테스터1',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '1층 1호'
 );
+
 INSERT INTO s_order VALUES (
-    order_seq.NEXTVAL,'tester0001',1,'b',0,73800,sysdate,'취소 요청'
+    order_seq.NEXTVAL,
+    'tester0001',
+    1,
+    'b',
+    0,
+    73800,
+    sysdate,
+    '취소 요청',
+    '테스터1',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '1층 1호'
 );
+
 INSERT INTO s_order VALUES (
-    order_seq.NEXTVAL,'tester0001',2,'a',0,73800,sysdate,'배송 완료'
+    order_seq.NEXTVAL,
+    'tester0001',
+    2,
+    'a',
+    0,
+    73800,
+    sysdate,
+    '배송 완료',
+    '테스터1',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '1층 1호'
 );
+
 INSERT INTO s_order VALUES (
-    order_seq.NEXTVAL,'tester0001',2,'b',0,73800,sysdate,'배송 완료'
+    order_seq.NEXTVAL,
+    'tester0001',
+    2,
+    'b',
+    0,
+    73800,
+    sysdate,
+    '배송 완료',
+    '테스터1',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '1층 1호'
 );
+
 INSERT INTO s_order VALUES (
-    order_seq.NEXTVAL,'tester0001',3,'a',0,73800,sysdate,'배송중'
+    order_seq.NEXTVAL,
+    'tester0001',
+    3,
+    'a',
+    0,
+    73800,
+    sysdate,
+    '배송중',
+    '테스터1',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '1층 1호'
 );
+
 INSERT INTO s_order VALUES (
-    order_seq.NEXTVAL,'tester0001',3,'b',0,73800,sysdate,'취소 완료'
+    order_seq.NEXTVAL,
+    'tester0001',
+    3,
+    'b',
+    0,
+    73800,
+    sysdate,
+    '취소 완료',
+    '테스터1',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '1층 1호'
 );
+
 INSERT INTO s_order VALUES (
-    order_seq.NEXTVAL,'tester0001',1,'a',0,73800,sysdate,'배송중'
+    order_seq.NEXTVAL,
+    'tester0001',
+    1,
+    'a',
+    0,
+    73800,
+    sysdate,
+    '배송중',
+    '테스터1',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '1층 1호'
 );
+
 INSERT INTO s_order VALUES (
-    order_seq.NEXTVAL,'tester0001',14,'a',0,73800,sysdate,'결제 완료'
+    order_seq.NEXTVAL,
+    'tester0001',
+    14,
+    'a',
+    0,
+    73800,
+    sysdate,
+    '결제 완료',
+    '테스터1',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '1층 1호'
 );
 
 COMMIT;
 
 SELECT
-    productno
+    *
 FROM
-    s_product
-WHERE
-    id = 'seller0001';
-
-SELECT
-    id
-FROM
-    s_order
-WHERE
-    productno IN (
-        SELECT
-            productno
-        FROM
-            s_product
-        WHERE
-            id = 'seller0001'
-    );
-
-SELECT
-    m.id,
-    m.address,
-    m.detailaddr,
-    m.tel,
-    o.productno,
-    o.selectedoption,
-    o.orderdate,
-    p.productname
-FROM
-    s_member  m,
-    s_order   o,
-    s_product p
-WHERE
-    m.id IN (
-        SELECT
-            id
-        FROM
-            s_order
-        WHERE
-            productno IN (
-                SELECT
-                    productno
-                FROM
-                    s_product
-                WHERE
-                    id = 'seller0001'
-            )
-    )
-    AND m.id = o.id
-    AND o.productno = p.productno
-ORDER BY
-    o.productno;
-
+    s_order;
+    
+--  s_order, s_product, s_member에서 정보 가져오기  
 SELECT
     *
 FROM
-    s_member right
-    JOIN s_order ON s_member.id = s_order.id;
-
-SELECT
-    id
-FROM
     s_order
+    RIGHT OUTER JOIN s_member ON s_member.id = s_order.id
+    LEFT OUTER JOIN s_product ON s_product.productno = s_order.productno
 WHERE
-    productno IN (
-        SELECT
-            productno
-        FROM
-            s_product
-        WHERE
-            id = 'seller0002'
-    );
+    s_product.id = 'seller0001';
 
 SELECT
     *
@@ -136,9 +197,3 @@ WHERE
     s_member.id = s_order.id
     AND s_order.productno = s_product.productno
     AND s_product.id = 'seller0001';
-    s_order;
-    
-    select * from s_order;
-    
-    select * from s_order o right outer join s_member m on m.id = o.id left outer join s_product p on p.productno = o.productno where p.id = 'seller0001';
-    select * from s_member, s_order, s_product where s_member.id = s_order.id and s_order.productno = s_product.productno and s_product.id = 'seller0001';

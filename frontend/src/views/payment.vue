@@ -177,7 +177,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 import {
     createNamespacedHelpers
 } from "vuex";
@@ -193,11 +193,12 @@ export default {
             radioPay: "",
             delivery: 0,
             phoneValidate: true,
-            usable: 3548,
+            usable: 0,
             open: false,
             postcode: "",
             address: "",
             extraAddress: "",
+            member: "",
         };
     },
     methods: {
@@ -312,18 +313,36 @@ export default {
                 alert("전화번호를 확인하세요");
                 return;
             } else {
+                this.usePoint();
                 alert("결제를 완료했습니다");
             }
         },
+        getMem() {
+            const id = 'tester0001';
+            axios.get(`/api/member/${id}`).then(res => {
+                this.member = res.data;
+                this.usable = this.member.point;
+            })
+        },
+        usePoint() {
+            axios({
+                method: 'put',
+                url: '/api/member/point',
+                params: {
+                    id: 'tester0001',
+                    point: this.point,
+                }
+            })
+        }
     },
     computed: {
         ...orderList.mapGetters(["getOrderList"]),
     },
     mounted() {
-        {
+        this.getMem(); {
             for (let i = 0; i < this.getOrderList.length; i++) {
                 this.totalPrice += this.getOrderList[i].price;
-                this.sale += this.getOrderList[i].price * 0.1;              
+                this.sale += this.getOrderList[i].price * 0.1;
             }
             if (this.totalPrice - this.sale >= 50000) {
                 this.delivery = 0;

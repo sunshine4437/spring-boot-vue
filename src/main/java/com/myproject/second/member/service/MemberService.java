@@ -30,5 +30,9 @@ public class MemberService {
 	public String getNickname(int productno) {
 		// TODO Auto-generated method stub
 		return memberMapper.getNickname(productno);
-	}	
+	}
+	
+	public void updatePoint(String id, int point) {
+		memberMapper.updatePoint(id, point);
+	}
 }
