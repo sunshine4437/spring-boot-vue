@@ -1,0 +1,10 @@
+show autocommit;
+@"C:\study\springboot_Vue\second\secProjectDB\member.sql";
+@"C:\study\springboot_Vue\second\secProjectDB\product.sql";
+@"C:\study\springboot_Vue\second\secProjectDB\seller.sql";
+@"C:\study\springboot_Vue\second\secProjectDB\order.sql";
+@"C:\study\springboot_Vue\second\secProjectDB\basket.sql";
+@"C:\study\springboot_Vue\second\secProjectDB\qna.sql";
+@"C:\study\springboot_Vue\second\secProjectDB\review.sql";
+@"C:\study\springboot_Vue\second\secProjectDB\seller.sql";
+commit;
