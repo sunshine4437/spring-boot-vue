@@ -115,8 +115,8 @@ INSERT INTO s_product VALUES (
     '[슈망] 남녀공용 신발 스니커즈 슬립온 단화 운동화 러닝화 슬리퍼 모음전!',
     '7.jpg',
     9900,
-    '옵션1',
-    '옵션2',
+    '옵션1;1;2;3;4',
+    '옵션2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),

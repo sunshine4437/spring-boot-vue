@@ -10,10 +10,14 @@ public class ProdVO {
 	private String regdate;
 	private String id;
 	private String detailimagename;
+	private String onsale;
 
-	public ProdVO() {}
+	public ProdVO() {
+	}
+
 	public ProdVO(int productno, String productname, String imagename, int price, String option1, String option2,
-			String regdate, String id, String detailimagename) {
+			String regdate, String id, String detailimagename, String onsale) {
+		super();
 		this.productno = productno;
 		this.productname = productname;
 		this.imagename = imagename;
@@ -23,6 +27,7 @@ public class ProdVO {
 		this.regdate = regdate;
 		this.id = id;
 		this.detailimagename = detailimagename;
+		this.onsale = onsale;
 	}
 
 	public int getProductno() {
@@ -95,6 +100,14 @@ public class ProdVO {
 
 	public void setDetailimagename(String detailimagename) {
 		this.detailimagename = detailimagename;
+	}
+
+	public String getOnsale() {
+		return onsale;
+	}
+
+	public void setOnsale(String onsale) {
+		this.onsale = onsale;
 	}
 
 }
