@@ -10,7 +10,10 @@ baket : 장바구니 (상세 페이지에서 장바구니 버튼을 누르면 cr
 order : 주문정보 (결제하면 create, 마이 페이지에서 read)
 
 1. 실행 순서
-member -> product -> seller -> 그 외 순으로 실행
+member -> product -> seller -> 그 외 순으로 실행 하셔도 되고
+run.sql만 실행하셔도 됨
+밑의 예시처럼 경로에 secProejctDB까지의 경로를 폴더에서 복사해서 붙이기만 하면 됩니다
+(ctrl+f -> 경로 -> 맨 오른쪽 바꾸기 버튼 -> 밑에 본인 경로 붙이기 -> 모두 바꾸기 해도 됩니다)
 
 2. 구조
 member는 id가 pk

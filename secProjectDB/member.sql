@@ -25,7 +25,8 @@ INSERT INTO s_member (
     tel,
     zipcode,
     address,
-    detailaddr
+    detailaddr,
+    point
 ) VALUES (
     'tester0001',
     'tester0001',
@@ -34,7 +35,8 @@ INSERT INTO s_member (
     '01000000000',
     '06220',
     '서울 강남구 테헤란로 212',
-    '1층 1호'
+    '1층 1호',
+    3548
 );
 
 INSERT INTO s_member (
@@ -251,3 +253,5 @@ SELECT
     *
 FROM
     s_member;
+    
+    update s_member set point = point - 20 where id = 'tester0001';
