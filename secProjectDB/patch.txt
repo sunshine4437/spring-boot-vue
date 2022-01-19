@@ -1,5 +1,9 @@
 패치 노트
 
+date : 2022-01-19 16:28
+product에 판매 여부(onsale) 추가
+order에 상태(state) 추가 / 결제 완료(default / 아예 입력 안할 시 작동), 배송 중, 배송 완료, 취소 요청, 취소 완료
+
 date : 2022-01-18 20:46
 order, basket, seller에 구분을 위한 idx 추가됨
 
