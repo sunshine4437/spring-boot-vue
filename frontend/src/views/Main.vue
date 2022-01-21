@@ -147,7 +147,6 @@ export default {
         search() {
             const targetId = document.getElementById("search").value;
             this.$router.push(`/shopping/${targetId}`);
-            this.$router.go();
         },
         // 로그아웃 상태로 전환
         ...loginStore.mapMutations([
@@ -155,6 +154,13 @@ export default {
         ]),
         getData() {
             axios.get("/api/main/test11").then(res => this.msg = res.data)
+        }
+    },
+    watch: {
+        $route(from){
+            if(from.path.indexOf('/shopping') != -1){
+                this.$router.go();
+            }
         }
     },
     mounted() {

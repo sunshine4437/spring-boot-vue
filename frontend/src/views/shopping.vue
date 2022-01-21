@@ -80,7 +80,7 @@
             <div class="container">
                 <div class="products_fa">
                     <h2 class='span1'> 인기상품</h2>
-                    <div class="products" v-for="(prd, idx) in prod.slice(0,4)" :key="idx" >
+                    <div class="products" v-for="(prd, idx) in prod.slice(0,4)" :key="idx">
                         <router-link v-bind:to="`/productDetail/${prd.productno}`" v-if="prd.price > min && prd.price < max">
                             <img :src="setImage(idx)" alt="productImage">
                             <p style="height:70px">{{prd.productname}}</p>
@@ -91,13 +91,11 @@
 
                 <h2 class="span1"> 관련상품</h2>
                 <div class="products1">
-                    <ul v-for="(prd, idx) in prod" :key="idx">
+                    <ul v-for="(prd, idx) in prod.slice((page-1)*content, page*content)" :key="idx">
                         <li class="item" v-if="prd.price > min && prd.price < max">
-                            <a href="#">
-                                <router-link v-bind:to="`/productDetail/${prd.productno}`">
-                                    <img :src="setImage(idx)" alt="productImage">
-                                </router-link>
-                            </a>
+                            <router-link v-bind:to="`/productDetail/${prd.productno}`">
+                                <img :src="setImage(idx+(page-1)*content)" alt="productImage">
+                            </router-link>
                             <div class="desc">
                                 <router-link v-bind:to="`/productDetail/${prd.productno}`">
                                     <p class="name">{{prd.productname}}</p>
@@ -112,6 +110,14 @@
                             </div>
                         </li>
                     </ul>
+                </div>
+                <div style="text-align: center">
+                    <button @click="pageMinus" class="pageBtn">이전 페이지</button>
+                    <span v-for="idx in Math.ceil(prod.length / content)" :key="idx">
+                        <span v-if="idx != page" class="pageOther" @click="page = idx">{{idx}}</span>
+                        <span v-if="idx == page" class="pageNow">{{idx}}</span>
+                    </span>
+                    <button @click="pagePlus" class="pageBtn">다음 페이지</button>
                 </div>
             </div>
         </div>
@@ -129,6 +135,8 @@ export default {
             test: "",
             min: 0,
             max: 99999999,
+            page: 1,
+            content: 5,
         }
     },
     methods: {
@@ -151,18 +159,6 @@ export default {
             } else {
                 this.max = max;
             }
-            // const id = this.$route.params.id;
-            // axios({
-            //     method: 'get',
-            //     url : `/api/product/priceSearch`,
-            //     data : {
-            //         productname : id,
-            //         min : min,
-            //         max : max,
-            //     }
-            // }).then(res => {
-            //     this.prod = res.data;
-            // });
         },
         setImage(idx) {
             try {
@@ -174,6 +170,16 @@ export default {
         AddComma(num) {
             let regexp = /\B(?=(\d{3})+(?!\d))/g;
             return num.toString().replace(regexp, ",");
+        },
+        pageMinus() {
+            if (this.page > 1) {
+                this.page--;
+            }
+        },
+        pagePlus() {
+            if (this.prod.length / this.content > this.page) {
+                this.page++;
+            }
         },
     },
     mounted() {
@@ -395,5 +401,19 @@ a:any-link {
 :any-link {
     text-decoration: none;
     color: black;
+}
+
+.pageBtn {
+    padding: 5px 10px;
+    margin: 0 10px
+}
+
+.pageNow {
+    font-size: 22px;
+    margin: 0 5px;
+}
+
+.pageOther {
+    margin: 0 5px;
 }
 </style>
