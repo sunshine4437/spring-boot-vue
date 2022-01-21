@@ -8,12 +8,12 @@
 --@"°æ·Î\seller.sql";
 --commit;
 
---@"D:\project\second\secProjectDB\member.sql";
---@"D:\project\second\secProjectDB\product.sql";
---@"D:\project\second\secProjectDB\seller.sql";
---@"D:\project\second\secProjectDB\order.sql";
---@"D:\project\second\secProjectDB\basket.sql";
---@"D:\project\second\secProjectDB\qna.sql";
---@"D:\project\second\secProjectDB\reveiw.sql";
---@"D:\project\second\secProjectDB\seller.sql";
---commit;
+@"D:\project\second\secProjectDB\member.sql";
+@"D:\project\second\secProjectDB\product.sql";
+@"D:\project\second\secProjectDB\seller.sql";
+@"D:\project\second\secProjectDB\order.sql";
+@"D:\project\second\secProjectDB\basket.sql";
+@"D:\project\second\secProjectDB\qna.sql";
+@"D:\project\second\secProjectDB\reveiw.sql";
+@"D:\project\second\secProjectDB\seller.sql";
+commit;

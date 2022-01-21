@@ -3,6 +3,13 @@
     <div class="all">
         <div class="container2">
             <div class="aside_info">
+                <h2>가격대</h2>
+                <ul>
+                    <li>
+                        <input type="text" id="min" class="priceSearch" placeholder="최소금액">~<input type="text" id="max" class="priceSearch" placeholder="최대금액">
+                        <button class="priceSearchBtn" @click="searchProd">검색</button>
+                    </li>
+                </ul>
                 <h2>가격비교</h2>
                 <ul class="buy">
                     <li><input type="checkbox" class="blank"><a href="" class="blank">숙박대전</a></li>
@@ -73,115 +80,35 @@
             <div class="container">
                 <div class="products_fa">
                     <h2 class='span1'> 인기상품</h2>
-                    <div class="products">
-                        <router-link v-bind:to="'/productDetail'">
-                            <img src="@/assets/listImage/f1.jpg">
-                            <p>[뉴발란스] 남여공용 574/327/530 운동화 씨쏠트 문빔</p>
-                            <p class="price">73,800원</p>
+                    <div class="products" v-for="(prd, idx) in prod.slice(0,4)" :key="idx" >
+                        <router-link v-bind:to="`/productDetail/${prd.productno}`" v-if="prd.price > min && prd.price < max">
+                            <img :src="setImage(idx)" alt="productImage">
+                            <p style="height:70px">{{prd.productname}}</p>
+                            <p class="price">{{AddComma(prd.price)}}원</p>
                         </router-link>
-                        <a href="#">
-                            <img src="@/assets/listImage/f2.jpg">
-                            <p>[뉴발란스] 327 스니커즈 MS327FE</p>
-                            <p class="price">150,900원</p>
-                        </a>
-                        <a href="#">
-                            <img src="@/assets/listImage/f3.jpg">
-                            <p>아디다스 울트라부스트 21_FY0379</p>
-                            <p class="price">114,500원</p>
-                        </a>
-                        <a href="#">
-                            <img src="@/assets/listImage/f4.jpg">
-                            <p>나이키 남성 에어맥스 90 EOI DA5562-001</p>
-                            <p class="price">129,000원</p>
-                        </a>
                     </div>
                 </div>
 
                 <h2 class="span1"> 관련상품</h2>
                 <div class="products1">
-                    <ul>
-                        <li class="item">
+                    <ul v-for="(prd, idx) in prod" :key="idx">
+                        <li class="item" v-if="prd.price > min && prd.price < max">
                             <a href="#">
-                                <img src="@/assets/listImage/s1.jpg">
+                                <router-link v-bind:to="`/productDetail/${prd.productno}`">
+                                    <img :src="setImage(idx)" alt="productImage">
+                                </router-link>
                             </a>
                             <div class="desc">
-                                <p class="name">나이키 에어맥스97 트리플블랙</p>
-                                <p class="price"> 가격: 173,000원</p>
-                                <p class="rate"> 10%할인: 163,000원</p>
-                                <p class="delivery"> 무료배송</p>
+                                <router-link v-bind:to="`/productDetail/${prd.productno}`">
+                                    <p class="name">{{prd.productname}}</p>
+                                </router-link>
+                                <p class="price"> 가격: {{AddComma(prd.price)}}원</p>
+                                <p class="rate"> 10%할인: {{AddComma(prd.price*0.9)}}원</p>
+                                <p class="delivery" v-if="prd.price >= 50000"> 무료배송</p>
+                                <p class="delivery" v-if="prd.price < 50000"> {{AddComma(2500)}}원</p>
                             </div>
                             <div class="desc">
-                                <span class="vendor"> 판매처: two_step</span>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <a href="#">
-                                <img src="@/assets/listImage/s2.jpg">
-                            </a>
-                            <div class="desc">
-                                <p class="name">아키클래식 어반트래터 트래캥슈즈</p>
-                                <p class="price"> 가격: 54,900원</p>
-                                <p class="rate"> 9%할인: 45,959원</p>
-                                <p class="delivery"> 배송비: 2,500원</p>
-                            </div>
-                            <div class="desc">
-                                <span class="vendor"> 판매처: 월터스</span>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <a href="#">
-                                <img src="@/assets/listImage/s3.jpg">
-                            </a>
-                            <div class="desc">
-                                <p class="name">뉴발란스 327 운동화 MS327FE</p>
-                                <p class="price"> 가격: 110,00원</p>
-                                <p class="rate"> 15%할인: 93,500원</p>
-                                <p class="delivery"> 무료배송</p>
-                            </div>
-                            <div class="desc">
-                                <span class="vendor"> 판매처: 신세계몰</span>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <a href="#">
-                                <img src="@/assets/listImage/s4.jpg">
-                            </a>
-                            <div class="desc">
-                                <p class="name">아디다스 갤럭시 5 FY6718</p>
-                                <p class="price"> 가격: 35,000원</p>
-                                <p class="rate"> 할인: 35,000원</p>
-                                <p class="delivery"> 배송비: 3,000원</p>
-                            </div>
-                            <div class="desc">
-                                <span class="vendor"> 판매처: CJONSTYLE</span>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <a href="#">
-                                <img src="@/assets/listImage/s5.jpg">
-                            </a>
-                            <div class="desc">
-                                <p class="name">리복클래식 레더 레거시 GZ0741</p>
-                                <p class="price"> 가격: 77,000원</p>
-                                <p class="rate"> 5%할인: 73,150원</p>
-                                <p class="delivery"> 무료배송</p>
-                            </div>
-                            <div class="desc">
-                                <span class="vendor"> 판매처: 롯데백화점</span>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <a href="#">
-                                <img src="@/assets/listImage/s6.jpg">
-                            </a>
-                            <div class="desc">
-                                <p class="name">휠라 공용 레인져 1RM01141-100</p>
-                                <p class="price"> 가격: 40,200원</p>
-                                <p class="rate"> 할인: 40,200원</p>
-                                <p class="delivery"> 배송비: 2,500원</p>
-                            </div>
-                            <div class="desc">
-                                <span class="vendor"> 판매처: 홈앤쇼핑몰</span>
+                                <span class="vendor"> 판매처: {{prd.nickname}}</span>
                             </div>
                         </li>
                     </ul>
@@ -194,8 +121,64 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-
+    data() {
+        return {
+            prod: "",
+            test: "",
+            min: 0,
+            max: 99999999,
+        }
+    },
+    methods: {
+        getProd() {
+            const id = this.$route.params.id;
+            axios.get(`/api/product/${id}`).then(res => {
+                this.prod = res.data;
+            })
+        },
+        searchProd() {
+            let min = document.getElementById('min').value;
+            let max = document.getElementById('max').value;
+            if (min.length == 0) {
+                this.min = 0;
+            } else {
+                this.min = min;
+            }
+            if (max.length == 0) {
+                this.max = 99999999;
+            } else {
+                this.max = max;
+            }
+            // const id = this.$route.params.id;
+            // axios({
+            //     method: 'get',
+            //     url : `/api/product/priceSearch`,
+            //     data : {
+            //         productname : id,
+            //         min : min,
+            //         max : max,
+            //     }
+            // }).then(res => {
+            //     this.prod = res.data;
+            // });
+        },
+        setImage(idx) {
+            try {
+                return require(`../../../src/main/resources/images/product/${this.prod[idx].productno}/product/${this.prod[idx].imagename}`)
+            } catch {
+                return require(`@/components/mainPage/productTableImage/error.png`)
+            }
+        },
+        AddComma(num) {
+            let regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ",");
+        },
+    },
+    mounted() {
+        this.getProd();
+    }
 }
 </script>
 
@@ -221,6 +204,19 @@ export default {
     border-radius: 4px;
 }
 
+.priceSearch {
+    width: 60px;
+    border: 1px solid black;
+    border-radius: 4px;
+    outline: none;
+}
+
+.priceSearchBtn {
+    padding: 0 5px;
+    margin: 0 0 0 10px;
+    width: 50px;
+}
+
 .products_fa {
     display: inline;
 }
@@ -233,16 +229,12 @@ export default {
     background-color: #fafafa;
     border-radius: 4px;
     border: 1px solid rgb(197, 195, 195);
-    padding-left:5px;
+    padding-left: 5px;
 }
 
 .products {
     display: inline-flex;
     justify-content: center;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-
 }
 
 .products router-link {
@@ -252,7 +244,7 @@ export default {
 
 .products a {
     display: inline;
-    width: 200px;
+    width: 203px;
     margin: 0 10px;
     background-color: #fafafa;
     border-radius: 4px;
@@ -302,6 +294,7 @@ export default {
 
 .products1 .item a>img {
     width: 200px;
+    height: 200px;
     margin-top: 8px;
     border-radius: 4px;
 }
@@ -396,6 +389,11 @@ a:any-link {
 }
 
 .products p {
-    padding-left:5px;
+    padding-left: 5px;
+}
+
+:any-link {
+    text-decoration: none;
+    color: black;
 }
 </style>

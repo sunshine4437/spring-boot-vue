@@ -18,6 +18,9 @@ public interface ProdMapper {
 	@Select("select * from s_product where productno = #{productno}")
 	ProdVO findProduct(int productno);
 
+	@Select("select s_product.productno, s_product.productname, s_product.ptype, s_product.imagename, s_product.price, s_product.id, s_member.nickname from s_product left join s_member on s_product.id = s_member.id where UPPER(productname) like UPPER(#{productname}) or UPPER(ptype) like UPPER(#{productname}) order by s_product.productno")
+	List<ProdVO> searchProduct(@Param("productname") String productname);
+	
 	@Select("select * from s_product where id = #{sellerid} order by regdate")
 	List<ProdVO> findSalseList(String sellerid);
 
@@ -33,8 +36,8 @@ public interface ProdMapper {
 	@Select("select prod_seq.currval from dual")
 	int getProductNo();
 
-	@Insert("insert into s_product(productno, productname, imagename, price, option1, option2, regdate, id, detailimagename) values (prod_seq.nextval, #{in.productname}, #{in.imagename}, #{in.price}, #{in.option1}, #{in.option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{in.id}, #{in.detailimagename})")
+	@Insert("insert into s_product(productno, productname, ptype, imagename, price, option1, option2, regdate, id, detailimagename) values (prod_seq.nextval, #{in.productname}, '신발', #{in.imagename}, #{in.price}, #{in.option1}, #{in.option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{in.id}, #{in.detailimagename})")
 	@Options(useGeneratedKeys = true, keyProperty = "result.productno", keyColumn = "productno")
-	int insertProduct(@Param("in") ProdVO in,@Param("result") ProdVO result);
+	int insertProduct(@Param("in") ProdVO in, @Param("result") ProdVO result);
 
 }

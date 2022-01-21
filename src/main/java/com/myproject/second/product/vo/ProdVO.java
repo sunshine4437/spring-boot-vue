@@ -3,6 +3,7 @@ package com.myproject.second.product.vo;
 public class ProdVO {
 	private int productno;
 	private String productname;
+	private String ptype;
 	private String imagename;
 	private int price;
 	private String option1;
@@ -11,15 +12,17 @@ public class ProdVO {
 	private String id;
 	private String detailimagename;
 	private String onsale;
+	private String nickname;
 
 	public ProdVO() {
 	}
 
-	public ProdVO(int productno, String productname, String imagename, int price, String option1, String option2,
-			String regdate, String id, String detailimagename, String onsale) {
+	public ProdVO(int productno, String productname, String ptype, String imagename, int price, String option1,
+			String option2, String regdate, String id, String detailimagename, String onsale, String nickname) {
 		super();
 		this.productno = productno;
 		this.productname = productname;
+		this.ptype = ptype;
 		this.imagename = imagename;
 		this.price = price;
 		this.option1 = option1;
@@ -28,6 +31,7 @@ public class ProdVO {
 		this.id = id;
 		this.detailimagename = detailimagename;
 		this.onsale = onsale;
+		this.nickname = nickname;
 	}
 
 	public int getProductno() {
@@ -44,6 +48,14 @@ public class ProdVO {
 
 	public void setProductname(String productname) {
 		this.productname = productname;
+	}
+
+	public String getPtype() {
+		return ptype;
+	}
+
+	public void setPtype(String ptype) {
+		this.ptype = ptype;
 	}
 
 	public String getImagename() {
@@ -108,6 +120,14 @@ public class ProdVO {
 
 	public void setOnsale(String onsale) {
 		this.onsale = onsale;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 }

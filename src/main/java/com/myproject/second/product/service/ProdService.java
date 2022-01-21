@@ -29,6 +29,11 @@ public class ProdService {
 		return prodMapper.findProduct(productno);
 	}
 
+	public List<ProdVO> searchProduct(String productname) {
+		String temp = "%" + productname + "%";
+		return prodMapper.searchProduct(temp);
+	}
+
 	public String getOption1(int productno) {
 		return prodMapper.findOption1(productno);
 	}
@@ -44,5 +49,4 @@ public class ProdService {
 		return result.getProductno();
 	}
 
-		
 }

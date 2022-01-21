@@ -5,8 +5,7 @@
     <div class="detailTop">
         <!-- 사진 -->
         <div class="leftBox scale-down" style="margin: auto; text-align: center">
-            <img style="width: 500px; height: 500px; border-radius: 10px" :src="setImage1()" alt="productImage">
-            <!-- <img style="width: 500px; height: 500px; border-radius: 10px" src="@/components/productDetail/image/product01.jpg" /> -->
+            <img style="width: 500px; height: 500px; border-radius: 10px" :src="setImage()" alt="productImage">
         </div>
         <!-- 사진의 오른쪽 부분 -->
         <div class="rightBox">
@@ -15,10 +14,8 @@
             <div class="rightTitle">
                 <h2>
                     {{prod.productname}}
-                    <!-- [뉴발란스] 남여공용 574/327/530 운동화 씨쏠트 문빔 -->
                 </h2>
                 <h1>
-                    <!-- {{ AddComma(price) }}원 -->
                     {{AddComma(prod.price)}}원
                 </h1>
             </div>
@@ -237,7 +234,7 @@ export default {
                 this.shop = res.data;
             })
         },
-        setImage1() {
+        setImage() {
             try {
                 return require(`../../../src/main/resources/images/product/${this.prod.productno}/product/${this.prod.imagename}`)
             } catch {

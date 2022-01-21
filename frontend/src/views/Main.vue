@@ -145,10 +145,9 @@ export default {
     methods: {
         // 검색 기능 신발만 가능
         search() {
-            const targetId = document.getElementById("search");
-            if (targetId.value === '신발') {
-                this.$router.push(`/shopping`);
-            }
+            const targetId = document.getElementById("search").value;
+            this.$router.push(`/shopping/${targetId}`);
+            this.$router.go();
         },
         // 로그아웃 상태로 전환
         ...loginStore.mapMutations([
