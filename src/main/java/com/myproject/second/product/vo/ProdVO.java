@@ -9,7 +9,7 @@ public class ProdVO {
 	private String option1;
 	private String option2;
 	private String regdate;
-	private String id;
+	private String sellerid;
 	private String detailimagename;
 	private String onsale;
 	private String nickname;
@@ -18,7 +18,7 @@ public class ProdVO {
 	}
 
 	public ProdVO(int productno, String productname, String ptype, String imagename, int price, String option1,
-			String option2, String regdate, String id, String detailimagename, String onsale, String nickname) {
+			String option2, String regdate, String sellerid, String detailimagename, String onsale, String nickname) {
 		super();
 		this.productno = productno;
 		this.productname = productname;
@@ -28,7 +28,7 @@ public class ProdVO {
 		this.option1 = option1;
 		this.option2 = option2;
 		this.regdate = regdate;
-		this.id = id;
+		this.sellerid = sellerid;
 		this.detailimagename = detailimagename;
 		this.onsale = onsale;
 		this.nickname = nickname;
@@ -98,12 +98,12 @@ public class ProdVO {
 		this.regdate = regdate;
 	}
 
-	public String getId() {
-		return id;
+	public String getSellerid() {
+		return sellerid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setSellerid(String sellerid) {
+		this.sellerid = sellerid;
 	}
 
 	public String getDetailimagename() {

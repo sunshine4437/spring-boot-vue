@@ -19,12 +19,18 @@ public class OrderService {
 		return orderMapper.getAllOrderList(id);
 	}
 
-	public void insertOrder(String id, int productno, String selectedoption, int totalprice, String ordermethod,
-			String danme, String dtel, String dzipcode, String daddress, String ddetailaddr) {
-		orderMapper.insertOrder(id, productno, selectedoption, totalprice, ordermethod, danme, dtel, dzipcode, daddress,
-				ddetailaddr);
+	public List<OrderVO> getOrderList(String id) {
+		return orderMapper.getOrderList(id);
 	}
-	
+
+	public List<OrderVO> getCancelList(String id) {
+		return orderMapper.getCancelList(id);
+	}
+
+	public void insertOrder(OrderVO orderVO) {
+		orderMapper.insertOrder(orderVO);
+	}
+
 	public void updateOrder(long orderidx, String state) {
 		orderMapper.updateOrder(orderidx, state);
 	}

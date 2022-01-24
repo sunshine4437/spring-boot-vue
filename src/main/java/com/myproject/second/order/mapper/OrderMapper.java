@@ -15,12 +15,14 @@ public interface OrderMapper {
 	@Select("Select * from s_order where id = #{id}")
 	List<OrderVO> getAllOrderList(@Param("id") String id);
 
-	@Insert("insert into s_order values (order_seq.NEXTVAL, #{id}, #{productno}, #{selectedoption}, #{totalprice}, sysdate, '결제 완료', #{ordermethod}, #{dname}, #{dtel}, #{dzipcode}, #{daddress}, #{ddetailaddr})")
-	void insertOrder(@Param("id") String id, @Param("productno") int productno,
-			@Param("selectedoption") String selectedoption, @Param("totalprice") int totalprice,
-			@Param("ordermethod") String ordermethod, @Param("danme") String danme, @Param("dtel") String dtel,
-			@Param("dzipcode") String dzipcode, @Param("daddress") String daddress,
-			@Param("ddetailaddr") String ddetailaddr);
+	@Select("Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_product.productname, s_product.sellerid, s_product.imagename from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = #{id} and s_order.state in ('결제 완료', '배송중', '배송 완료')")
+	List<OrderVO> getOrderList(@Param("id") String id);
+
+	@Select("Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_product.productname, s_product.sellerid, s_product.imagename from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = #{id} and s_order.state in ('취소 완료', '취소 요청', '환불 완료', '환불 요청')")
+	List<OrderVO> getCancelList(@Param("id") String id);
+
+	@Insert("insert into s_order values (order_seq.NEXTVAL, #{order.id}, #{order.productno}, #{order.selectedoption}, #{order.totalprice}, sysdate, '결제 완료', #{order.ordermethod}, #{order.dname}, #{order.dtel}, #{order.dzipcode}, #{order.daddress}, #{order.ddetailaddr})")
+	void insertOrder(@Param("order") OrderVO orderVO);
 
 	@Update("update s_order set state = #{state} where orderidx = #{orderidx}")
 	void updateOrder(@Param("orderidx") long orderidx, @Param("state") String state);

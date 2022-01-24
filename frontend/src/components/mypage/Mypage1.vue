@@ -68,26 +68,24 @@
                         <td class="td3">판매자명</td>
                         <td class="td4">상품명</td>
                         <td class="td5">옵션</td>
-                        <td class="td6">수량</td>
-                        <td class="td7">가격</td>
-                        <td class="td8">배송비</td>
+                        <td class="td6">가격</td>
+                        <td class="td7">상태</td>
                     </tr>
                 </table>
             </div>
             <div class="table1Body">
                 <table style="width:1000px">
                     <!-- 날짜, 검색 정보를 비교하여 화면 목록에 표시 -->
-                    <tr v-for="(item, idx) in users" :key="idx" v-show="compareDate(item) && compareInform(item) " style="height:50px;">
-                        <td class="td1">{{item.orderDate}}</td>
+                    <tr v-for="(order, idx) in orders" :key="idx" v-show="compareDate(order) && compareInform(order) " style="height:50px;">
+                        <td class="td1">{{order.orderdate}}</td>
                         <td class="td2">
-                            <img :src="require(`@/assets/image/${item.img}`)" alt="banner" style="width:50px; height:50px;">
+                            <img :src="require(`../../../../src/main/resources/images/product/${order.productno}/product/${order.imagename}`)" alt="banner" style="width:50px; height:50px;">
                         </td>
-                        <td class="td3">{{item.name}}</td>
-                        <td class="td4">{{item.product}}</td>
-                        <td class="td5">{{item.option}}</td>
-                        <td class="td6">{{item.amount}}</td>
-                        <td class="td7">{{AddComma(item.price)}}원</td>
-                        <td class="td8">{{item.charge}}</td>
+                        <td class="td3">{{order.sellerid}}</td>
+                        <td class="td4">{{order.productname}}</td>
+                        <td class="td5">{{order.selectedoption}}</td>
+                        <td class="td6">{{AddComma(order.totalprice)}}원</td>
+                        <td class="td7">{{order.state}}</td>
                     </tr>
                 </table>
             </div>
@@ -100,15 +98,14 @@
             <div class="table2Header">
                 <table style="width:1000px">
                     <thead>
-                        <tr class="tr1" style="height:50px;">
+                        <tr style="height:50px;">
                             <td class="td1">주문일자</td>
                             <td class="td2">이미지</td>
                             <td class="td3">판매자명</td>
                             <td class="td4">상품명</td>
                             <td class="td5">옵션</td>
                             <td class="td6">가격</td>
-                            <td class="td7">처리상태</td>
-                            <td class="td8">결과</td>
+                            <td class="td7">상태</td>
                         </tr>
                     </thead>
                 </table>
@@ -116,17 +113,16 @@
             <div class="table2Body">
                 <table style="width:1000px">
                     <tbody>
-                        <tr v-for="(item, asd) in users2" :key="asd" v-show="compareDate(item) && compareInform(item) " class="tr1" style="height:50px;">
-                            <td class="td1">{{item.orderDate}}</td>
+                        <tr v-for="(cancel, idx) in cancels" :key="idx" v-show="compareDate(cancel) && compareInform(cancel) " class="tr1" style="height:50px;">
+                            <td class="td1">{{cancel.orderdate}}</td>
                             <td class="td2">
-                                <!-- <img :src="require(`@/assets/image/${item.img}`)" alt="banner" style="width:50px; height:50px;"> -->
+                                <img :src="require(`../../../../src/main/resources/images/product/${cancel.productno}/product/${cancel.imagename}`)" alt="banner" style="width:50px; height:50px;">
                             </td>
-                            <td class="td3">{{item.name}}</td>
-                            <td class="td4">{{item.product}}</td>
-                            <td class="td5">{{item.option}}</td>
-                            <td class="td6">{{AddComma(item.price)}}원</td>
-                            <td class="td7">{{item.process}}</td>
-                            <td class="td8">{{item.result}}</td>
+                            <td class="td3">{{cancel.sellerid}}</td>
+                            <td class="td4">{{cancel.productname}}</td>
+                            <td class="td5">{{cancel.selectedoption}}</td>
+                            <td class="td6">{{AddComma(cancel.totalprice)}}원</td>
+                            <td class="td7">{{cancel.state}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -137,8 +133,11 @@
 </template>
 
 <script>
-import userList from "@/assets/data/orderList.json"; // 주문내역 제이슨
-import userList2 from "@/assets/data/refundList.json"; // 취소내역 제이슨
+import axios from 'axios'
+import {
+    createNamespacedHelpers
+} from "vuex";
+const loginStore = createNamespacedHelpers("loginStore");
 export default {
     data() {
         return {
@@ -156,22 +155,8 @@ export default {
             months: [],
             dates: [],
             target: "",
-
-        }
-    },
-    // 주문/취소 내역 제이슨
-    name: "userList",
-    name2: "userList2",
-    computed: {
-        users() {
-            return userList.users.map((items) => {
-                return items;
-            })
-        },
-        users2() {
-            return userList2.users2.map((items) => {
-                return items;
-            })
+            orders: "",
+            cancels: "",
         }
     },
     methods: {
@@ -223,8 +208,8 @@ export default {
         },
         //시작날짜와 끝날짜 기간사이 상품을 조회하기 위한 함수
         compareDate(target) {
-            if (`${this.startPoint.year}-${this.startPoint.month}-${this.startPoint.orderDate}` <= target.orderDate)
-                if (target.orderDate <= `${this.endPoint.year}-${this.endPoint.month}-${this.endPoint.date}`)
+            if (`${this.startPoint.year}-${this.startPoint.month}-${this.startPoint.orderDate}` <= target.orderdate)
+                if (target.orderdate <= `${this.endPoint.year}-${this.endPoint.month}-${this.endPoint.date}`)
                     return true;
         },
         search() {
@@ -246,9 +231,29 @@ export default {
             var regexp = /\B(?=(\d{3})+(?!\d))/g;
             return num.toString().replace(regexp, ",");
         },
+        getOrder() {
+            const id = this.getLogin;
+            axios.get(`/api/order/order/${id}`).then(res => {
+                this.orders = res.data;
+            })
+        },
+        getCancel() {
+            const id = this.getLogin;
+            axios.get(`/api/order/cancel/${id}`).then(res => {
+                this.cancels = res.data;
+            })
+        },
+        // 로그아웃 상태로 전환
+        ...loginStore.mapMutations([
+            'Logout'
+        ]),
+    },
+    computed: {
+        ...loginStore.mapGetters(["getLogin"]),
     },
     mounted() {
-        {
+        this.getOrder();
+        this.getCancel(); {
             for (let i = this.getYear() - 10; i <= this.getYear(); i++) {
                 this.years.push(i);
             }
@@ -313,15 +318,14 @@ export default {
     width: 80px
 }
 
-.date1{
-    width:1000px;
-    display:flex;
+.date1 {
+    width: 1000px;
+    display: flex;
     text-align: center;
     justify-items: center;
 }
 
-
-/* a {
+a {
     text-decoration: none;
     color: inherit;
     margin-left: 15px;
@@ -359,9 +363,9 @@ tr {
 .right {
     display: inline-block;
     height: 1150px;
-    width: 85%;
+    /* width: 85%; */
     border: 1px solid rgb(197, 195, 195);
-    margin-left: 50px;
+    /* margin-left: 50px; */
     background-color: #fafafa;
     border-radius: 4px;
 }
@@ -508,16 +512,11 @@ tr {
 
 }
 
-.tr1 {
-    background-color: rgb(0, 153, 255);
-    color: white;
-}
-
 #edge1 {
     border-top-left-radius: 8px;
 }
 
 #edge2 {
     border-top-right-radius: 8px;
-} */
+}
 </style>

@@ -27,25 +27,25 @@ INSERT INTO s_basket VALUES (
     '230',
     1
 );
-insert into s_basket values (basket_seq.NEXTVAL,'tester0001',2,'08.NB_MS327CPG','230',2);
-insert into s_basket values (basket_seq.NEXTVAL,'tester0001',3,'08.NB_MS327CPG','230',3);
-insert into s_basket values (basket_seq.NEXTVAL,'tester0001',4,'08.NB_MS327CPG','230',4);
-insert into s_basket values (basket_seq.NEXTVAL,'tester0001',5,'08.NB_MS327CPG','230',5);
-insert into s_basket values (basket_seq.NEXTVAL,'btester0002',6,'08.NB_MS327CPG','230',6);
-insert into s_basket values (basket_seq.NEXTVAL,'btester0002',7,'08.NB_MS327CPG','230',7);
-insert into s_basket values (basket_seq.NEXTVAL,'btester0002',8,'08.NB_MS327CPG','230',8);
-insert into s_basket values (basket_seq.NEXTVAL,'btester0002',9,'08.NB_MS327CPG','230',9);
-insert into s_basket values (basket_seq.NEXTVAL,'btester0002',10,'08.NB_MS327CPG','230',10);
-insert into s_basket values (basket_seq.NEXTVAL,'btester0002',11,'08.NB_MS327CPG','230',11);
-insert into s_basket values (basket_seq.NEXTVAL,'ctester0003',12,'08.NB_MS327CPG','230',12);
-insert into s_basket values (basket_seq.NEXTVAL,'ctester0003',13,'08.NB_MS327CPG','230',13);
-insert into s_basket values (basket_seq.NEXTVAL,'tester0004',14,'08.NB_MS327CPG','230',14);
-insert into s_basket values (basket_seq.NEXTVAL,'tester0004',15,'08.NB_MS327CPG','230',15);
-insert into s_basket values (basket_seq.NEXTVAL,'tester0005',16,'08.NB_MS327CPG','230',16);
-insert into s_basket values (basket_seq.NEXTVAL,'tester0005',17,'08.NB_MS327CPG','230',17);
-insert into s_basket values (basket_seq.NEXTVAL,'tester0006',18,'08.NB_MS327CPG','230',18);
-insert into s_basket values (basket_seq.NEXTVAL,'tester0001',19,'08.NB_MS327CPG','230',19);
-insert into s_basket values (basket_seq.NEXTVAL,'tester0001',20,'08.NB_MS327CPG','230',20);
+insert into s_basket values (basket_seq.NEXTVAL,'tester0001',2,'option2','230',2);
+insert into s_basket values (basket_seq.NEXTVAL,'tester0001',3,'option3','230',3);
+insert into s_basket values (basket_seq.NEXTVAL,'tester0001',4,'option4','230',4);
+insert into s_basket values (basket_seq.NEXTVAL,'tester0001',5,'option5','230',5);
+insert into s_basket values (basket_seq.NEXTVAL,'btester0002',6,'option6','230',6);
+insert into s_basket values (basket_seq.NEXTVAL,'btester0002',7,'option7','230',7);
+insert into s_basket values (basket_seq.NEXTVAL,'btester0002',8,'option8','230',8);
+insert into s_basket values (basket_seq.NEXTVAL,'btester0002',9,'option9','230',9);
+insert into s_basket values (basket_seq.NEXTVAL,'btester0002',10,'option10','230',10);
+insert into s_basket values (basket_seq.NEXTVAL,'btester0002',11,'option11','230',11);
+insert into s_basket values (basket_seq.NEXTVAL,'ctester0003',12,'option12','230',12);
+insert into s_basket values (basket_seq.NEXTVAL,'ctester0003',13,'option13','230',13);
+insert into s_basket values (basket_seq.NEXTVAL,'tester0004',14,'option14','230',14);
+insert into s_basket values (basket_seq.NEXTVAL,'tester0004',15,'option15','230',15);
+insert into s_basket values (basket_seq.NEXTVAL,'tester0005',16,'option16','230',16);
+insert into s_basket values (basket_seq.NEXTVAL,'tester0005',17,'option17','230',17);
+insert into s_basket values (basket_seq.NEXTVAL,'tester0006',18,'option18','230',18);
+insert into s_basket values (basket_seq.NEXTVAL,'tester0001',19,'option19','230',19);
+insert into s_basket values (basket_seq.NEXTVAL,'tester0001',20,'option20','230',20);
 COMMIT;
 
 SELECT

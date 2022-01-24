@@ -16,13 +16,16 @@ public class OrderVO {
 	private String dzipcode;
 	private String daddress;
 	private String ddetailaddr;
+	private String sellerid;
+	private String productname;
+	private String imagename;
 
 	public OrderVO() {
 	}
 
 	public OrderVO(long orderidx, String id, int productno, String selectedoption, int totalprice, Date orderdate,
 			String state, String ordermethod, String dname, String dtel, String dzipcode, String daddress,
-			String ddetailaddr) {
+			String ddetailaddr, String sellerid, String productname, String imagename) {
 		super();
 		this.orderidx = orderidx;
 		this.id = id;
@@ -37,6 +40,9 @@ public class OrderVO {
 		this.dzipcode = dzipcode;
 		this.daddress = daddress;
 		this.ddetailaddr = ddetailaddr;
+		this.sellerid = sellerid;
+		this.productname = productname;
+		this.imagename = imagename;
 	}
 
 	public long getOrderidx() {
@@ -141,6 +147,30 @@ public class OrderVO {
 
 	public void setDdetailaddr(String ddetailaddr) {
 		this.ddetailaddr = ddetailaddr;
+	}
+
+	public String getSellerid() {
+		return sellerid;
+	}
+
+	public void setSellerid(String sellerid) {
+		this.sellerid = sellerid;
+	}
+
+	public String getProductname() {
+		return productname;
+	}
+
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
+
+	public String getImagename() {
+		return imagename;
+	}
+
+	public void setImagename(String imagename) {
+		this.imagename = imagename;
 	}
 
 }

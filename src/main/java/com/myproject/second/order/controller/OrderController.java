@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,20 +25,23 @@ public class OrderController {
 	public List<OrderVO> getAllOrderList(@PathVariable("id") String id) throws Exception {
 		return orderService.getAllOrderList(id);
 	}
+	@GetMapping("/order/{id}")
+	public List<OrderVO> getOrderList(@PathVariable("id") String id) throws Exception {
+		return orderService.getOrderList(id);
+	}
+	@GetMapping("/cancel/{id}")
+	public List<OrderVO> getCancelList(@PathVariable("id") String id) throws Exception {
+		return orderService.getCancelList(id);
+	}
 
 	@PostMapping("/create")
-	public void insertOrder(@RequestParam("id") String id, @RequestParam("productno") int productno,
-			@RequestParam("selectedoption") String selectedoption, @RequestParam("totalprice") int totalprice,
-			@RequestParam("ordermethod") String ordermethod, @RequestParam("danme") String danme,
-			@RequestParam("dtel") String dtel, @RequestParam("dzipcode") String dzipcode,
-			@RequestParam("daddress") String daddress, @RequestParam("ddetailaddr") String ddetailaddr)
-			throws Exception {
-		orderService.insertOrder(id, productno, selectedoption, totalprice, ordermethod, danme, dtel, dzipcode,
-				daddress, ddetailaddr);
+	public void insertOrder(@RequestBody OrderVO orderVO) throws Exception {
+		orderService.insertOrder(orderVO);
 	}
 
 	@PutMapping("/update")
-	public void updateOrder(@RequestParam("orderidx") long orderidx, @RequestParam("state") String state) throws Exception {
+	public void updateOrder(@RequestParam("orderidx") long orderidx, @RequestParam("state") String state)
+			throws Exception {
 		orderService.updateOrder(orderidx, state);
 	}
 }

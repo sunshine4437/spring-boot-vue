@@ -14,7 +14,7 @@ CREATE TABLE s_order (
     dname          VARCHAR2(50) NOT NULL,
     dtel           VARCHAR2(11) NOT NULL,
     dzipcode       VARCHAR2(5) NOT NULL,
-    daddress       VARCHAR2(80) NOT NULL,
+    daddress       VARCHAR2(200) NOT NULL,
     ddetailaddr    VARCHAR2(50) NOT NULL,
     CONSTRAINT fk_ordmem FOREIGN KEY ( id )
         REFERENCES s_member ( id )
@@ -177,6 +177,9 @@ SELECT
 FROM
     s_order;
     
+--    Select * from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = 'tester0001' and s_order.state in ('결제 완료', '배송중', '배송 완료');
+--    Select * from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = 'tester0001' and s_order.state in ('취소 완료', '취소 요청', '환불 완료', '환불 요청');
+--    insert into s_order values (order_seq.NEXTVAL, 'tester0001', 2, 'top1', 19000, sysdate, '결제 완료', '카드 결제', '테스터', '01012345678', '15616', '경기 안산시 단원구 첨단로 7', '미아파트 2020');
 --  s_order, s_product, s_member에서 정보 가져오기  
 --SELECT * FROM s_order RIGHT OUTER JOIN s_member ON s_member.id = s_order.id LEFT OUTER JOIN s_product ON s_product.productno = s_order.productno WHERE s_product.id = 'seller0001';
 --SELECT * FROM s_member, s_order, s_product WHERE s_member.id = s_order.id AND s_order.productno = s_product.productno AND s_product.id = 'seller0001';

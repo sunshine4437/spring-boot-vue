@@ -110,11 +110,11 @@
         <h2 style="margin: 20px 0 0 -10px">결제수단 선택</h2>
         <p>
             <!-- 선택 필수 -->
-            <input type="radio" value="카드 결제" v-model="radioPay" name="payMethodRadio" id="payMethodRadio" style="width: auto" />카드 결제
+            <input type="radio" value="카드" v-model="radioPay" name="payMethodRadio" id="payMethodRadio" style="width: auto" />카드 결제
             <input type="radio" value="무통장입금" v-model="radioPay" name="payMethodRadio" id="payMethodRadio" style="width: auto; margin-left: 30px" />무통장 입금
             <input type="radio" value="휴대폰 결제" v-model="radioPay" name="payMethodRadio" id="payMethodRadio" style="width: auto; margin-left: 30px" />휴대폰 결제
         </p>
-        <div v-if="radioPay === '카드 결제'">
+        <div v-if="radioPay === '카드'">
             <select class="creditPay">
                 <option value="선택">선택</option>
                 <option value="">신한카드</option>
@@ -318,31 +318,29 @@ export default {
                 alert("결제를 완료했습니다");
 
                 let sale = 0.9;
-                if(this.coupon != 0){
+                if (this.coupon != 0) {
                     sale = 0.8;
                 }
                 for (let i = 0; i < this.getOrderList.length; i++) {
-                    axios({
-                        method: 'post',
-                        url: `/api/order/create`,
-                        params: {
-                            id : this.getLogin,
-                            productno : this.getOrderList[i].productno,
-                            selectedoption : this.getOrderList[i].option1,
-                            totalprice : this.getOrderList[i].price*sale,
-                            ordermethod : this.radioPay,
-                            dname : document.getElementById("username").value,
-                            dtel : document.getElementById("mobile").value,
-                            dzipcode : document.getElementById("zipcode").value,
-                            daddress : document.getElementById("address").value,
-                            ddetailaddr : document.getElementById("detailAddress").value,
-                        }
-                    })
+                    let data = {
+                        id: this.getLogin,
+                        productno: this.getOrderList[i].productno,
+                        selectedoption: this.getOrderList[i].option1,
+                        totalprice: this.getOrderList[i].price * sale,
+                        ordermethod: this.radioPay,
+                        dname: document.getElementById("username").value,
+                        dtel: document.getElementById("mobile").value,
+                        dzipcode: document.getElementById("zipcode").value,
+                        daddress: document.getElementById("address").value,
+                        ddetailaddr: document.getElementById("detailAddress").value,
+                    }
+                    axios.post('/api/order/create', data);
                 }
+                this.$router.push("/");
             }
         },
         getMem() {
-            const id = 'tester0001';
+            const id = this.getLogin;
             axios.get(`/api/member/${id}`).then(res => {
                 this.member = res.data;
                 this.usable = this.member.point;
@@ -353,7 +351,7 @@ export default {
                 method: 'put',
                 url: '/api/member/point',
                 params: {
-                    id: 'tester0001',
+                    id: this.getLogin,
                     point: this.point,
                 }
             })
