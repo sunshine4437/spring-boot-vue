@@ -84,7 +84,7 @@
         <p>
             <span>우편번호</span>
             <span>
-                <input class="shortInput inputValues" type="text" v-model="postcode" placeholder="우편번호" name="우편번호" />
+                <input class="shortInput inputValues" type="text" v-model="postcode" placeholder="우편번호" name="우편번호" id="zipcode" />
                 <span>
                     <button class="addrBtn" @click="execDaumPostcode()">
                         검색
@@ -110,11 +110,11 @@
         <h2 style="margin: 20px 0 0 -10px">결제수단 선택</h2>
         <p>
             <!-- 선택 필수 -->
-            <input type="radio" value="credit" v-model="radioPay" name="payMethodRadio" id="payMethodRadio" style="width: auto" />신용카드
-            <input type="radio" value="cash" v-model="radioPay" name="payMethodRadio" id="payMethodRadio" style="width: auto; margin-left: 30px" />무통장 입금
-            <input type="radio" value="phone" v-model="radioPay" name="payMethodRadio" id="payMethodRadio" style="width: auto; margin-left: 30px" />휴대폰 결제
+            <input type="radio" value="카드 결제" v-model="radioPay" name="payMethodRadio" id="payMethodRadio" style="width: auto" />카드 결제
+            <input type="radio" value="무통장입금" v-model="radioPay" name="payMethodRadio" id="payMethodRadio" style="width: auto; margin-left: 30px" />무통장 입금
+            <input type="radio" value="휴대폰 결제" v-model="radioPay" name="payMethodRadio" id="payMethodRadio" style="width: auto; margin-left: 30px" />휴대폰 결제
         </p>
-        <div v-if="radioPay === 'credit'">
+        <div v-if="radioPay === '카드 결제'">
             <select class="creditPay">
                 <option value="선택">선택</option>
                 <option value="">신한카드</option>
@@ -127,7 +127,7 @@
                 <option value="">하나카드</option>
             </select>
         </div>
-        <div v-if="radioPay === 'cash'">
+        <div v-if="radioPay === '무통장입금'">
             <select class="cashPay">
                 <option value="선택">선택</option>
                 <option value="">신한은행</option>
@@ -136,7 +136,7 @@
                 <option value="">카카오뱅크</option>
             </select>
         </div>
-        <div v-if="radioPay === 'phone'"></div>
+        <div v-if="radioPay === '휴대폰 결제'"></div>
     </div>
     <!-- 최종 결제 정보 -->
     <div class="payInfo">
@@ -181,6 +181,7 @@ import axios from 'axios'
 import {
     createNamespacedHelpers
 } from "vuex";
+const loginStore = createNamespacedHelpers('loginStore');
 const orderList = createNamespacedHelpers("orderList");
 export default {
     data() {
@@ -315,6 +316,29 @@ export default {
             } else {
                 this.usePoint();
                 alert("결제를 완료했습니다");
+
+                let sale = 0.9;
+                if(this.coupon != 0){
+                    sale = 0.8;
+                }
+                for (let i = 0; i < this.getOrderList.length; i++) {
+                    axios({
+                        method: 'post',
+                        url: `/api/order/create`,
+                        params: {
+                            id : this.getLogin,
+                            productno : this.getOrderList[i].productno,
+                            selectedoption : this.getOrderList[i].option1,
+                            totalprice : this.getOrderList[i].price*sale,
+                            ordermethod : this.radioPay,
+                            dname : document.getElementById("username").value,
+                            dtel : document.getElementById("mobile").value,
+                            dzipcode : document.getElementById("zipcode").value,
+                            daddress : document.getElementById("address").value,
+                            ddetailaddr : document.getElementById("detailAddress").value,
+                        }
+                    })
+                }
             }
         },
         getMem() {
@@ -333,10 +357,16 @@ export default {
                     point: this.point,
                 }
             })
-        }
+        },
+        // 로그아웃 상태로 전환
+        ...loginStore.mapMutations([
+            'Logout'
+        ]),
     },
     computed: {
         ...orderList.mapGetters(["getOrderList"]),
+        // 로그인한 유저정보를 반환
+        ...loginStore.mapGetters(['getLogin']),
     },
     mounted() {
         this.getMem(); {

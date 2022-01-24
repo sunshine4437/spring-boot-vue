@@ -20,8 +20,8 @@ public class QnaService {
 		return list;
 	}
 
-	public void addQna(int productno, String title, String nickname) {
+	public void addQna(int productno, String title, String id) {
 		// TODO Auto-generated method stub
-		qnaMapper.addQna(productno, title, nickname);
+		qnaMapper.addQna(productno, title, id);
 	}
 }

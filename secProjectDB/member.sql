@@ -49,8 +49,8 @@ INSERT INTO s_member (
     address,
     detailaddr
 ) VALUES (
-    'tester0002',
-    'tester0002',
+    'btester0002',
+    'btester0002',
     'Asdqwe123',
     '테스터1',
     '01000000000',
@@ -69,8 +69,8 @@ INSERT INTO s_member (
     address,
     detailaddr
 ) VALUES (
-    'tester0003',
-    'tester0003',
+    'ctester0003',
+    'ctester0003',
     'Asdqwe123',
     '테스터1',
     '01000000000',
@@ -254,4 +254,4 @@ SELECT
 FROM
     s_member;
     
-    update s_member set point = point - 20 where id = 'tester0001';
+--    update s_member set point = point - 20 where id = 'tester0001';

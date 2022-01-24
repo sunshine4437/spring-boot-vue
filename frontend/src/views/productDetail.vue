@@ -248,7 +248,7 @@ export default {
                     method: 'post',
                     url: `/api/basket/create`,
                     params: {
-                        id: 'tester0001',
+                        id: this.getLogin,
                         productno : pNo,
                         option1: this.items[i].option1,
                         option2: this.items[i].option2,
@@ -256,8 +256,11 @@ export default {
                     }
                 })
             }
-
-        }
+        },
+        // 로그아웃 상태로 전환
+        ...loginStore.mapMutations([
+            'Logout'
+        ]),
 
     },
     computed: {
