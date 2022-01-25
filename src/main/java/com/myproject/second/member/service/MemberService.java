@@ -16,23 +16,40 @@ public class MemberService {
 		this.memberMapper = memberMapper;
 	}
 
-
-	public List<MemberVO> getAllMembers(){
+	public List<MemberVO> getAllMembers() {
 		return memberMapper.findAll();
 	}
-		
 
 	public MemberVO getMember(@Param("id") String id) {
 		return memberMapper.findMember(id);
 	}
 
-
 	public String getNickname(int productno) {
 		// TODO Auto-generated method stub
 		return memberMapper.getNickname(productno);
 	}
-	
+
 	public void updatePoint(String id, int point) {
 		memberMapper.updatePoint(id, point);
+	}
+
+	public void updateNickname(String id, String nickname) {
+		memberMapper.updateNickname(id, nickname);
+	}
+
+	public void updatePassword(String id, String password) {
+		memberMapper.updatePassword(id, password);
+	}
+
+	public void updateTel(String id, String tel) {
+		memberMapper.updateTel(id, tel);
+	}
+
+	public void updateAddress(String id, String zipcode, String address, String detailaddr) {
+		memberMapper.updateAddress(id, zipcode, address, detailaddr);
+	}
+	
+	public void deleteMember(String id) {
+		memberMapper.deleteMember(id);
 	}
 }

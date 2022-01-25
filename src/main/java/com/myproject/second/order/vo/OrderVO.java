@@ -11,12 +11,12 @@ public class OrderVO {
 	private Date orderdate;
 	private String state;
 	private String ordermethod;
+	private String seller;
 	private String dname;
 	private String dtel;
 	private String dzipcode;
 	private String daddress;
 	private String ddetailaddr;
-	private String sellerid;
 	private String productname;
 	private String imagename;
 
@@ -24,8 +24,8 @@ public class OrderVO {
 	}
 
 	public OrderVO(long orderidx, String id, int productno, String selectedoption, int totalprice, Date orderdate,
-			String state, String ordermethod, String dname, String dtel, String dzipcode, String daddress,
-			String ddetailaddr, String sellerid, String productname, String imagename) {
+			String state, String ordermethod, String seller, String dname, String dtel, String dzipcode,
+			String daddress, String ddetailaddr, String productname, String imagename) {
 		super();
 		this.orderidx = orderidx;
 		this.id = id;
@@ -35,12 +35,12 @@ public class OrderVO {
 		this.orderdate = orderdate;
 		this.state = state;
 		this.ordermethod = ordermethod;
+		this.seller = seller;
 		this.dname = dname;
 		this.dtel = dtel;
 		this.dzipcode = dzipcode;
 		this.daddress = daddress;
 		this.ddetailaddr = ddetailaddr;
-		this.sellerid = sellerid;
 		this.productname = productname;
 		this.imagename = imagename;
 	}
@@ -109,6 +109,14 @@ public class OrderVO {
 		this.ordermethod = ordermethod;
 	}
 
+	public String getSeller() {
+		return seller;
+	}
+
+	public void setSeller(String seller) {
+		this.seller = seller;
+	}
+
 	public String getDname() {
 		return dname;
 	}
@@ -147,14 +155,6 @@ public class OrderVO {
 
 	public void setDdetailaddr(String ddetailaddr) {
 		this.ddetailaddr = ddetailaddr;
-	}
-
-	public String getSellerid() {
-		return sellerid;
-	}
-
-	public void setSellerid(String sellerid) {
-		this.sellerid = sellerid;
 	}
 
 	public String getProductname() {

@@ -28,7 +28,8 @@ public class OrderService {
 	}
 
 	public void insertOrder(OrderVO orderVO) {
-		orderMapper.insertOrder(orderVO);
+		String seller = orderMapper.getSeller(orderVO.getProductno());
+		orderMapper.insertOrder(orderVO, seller);
 	}
 
 	public void updateOrder(long orderidx, String state) {

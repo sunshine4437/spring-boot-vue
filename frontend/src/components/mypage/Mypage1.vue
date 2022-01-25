@@ -81,7 +81,7 @@
                         <td class="td2">
                             <img :src="require(`../../../../src/main/resources/images/product/${order.productno}/product/${order.imagename}`)" alt="banner" style="width:50px; height:50px;">
                         </td>
-                        <td class="td3">{{order.sellerid}}</td>
+                        <td class="td3">{{order.seller}}</td>
                         <td class="td4">{{order.productname}}</td>
                         <td class="td5">{{order.selectedoption}}</td>
                         <td class="td6">{{AddComma(order.totalprice)}}원</td>
@@ -118,7 +118,7 @@
                             <td class="td2">
                                 <img :src="require(`../../../../src/main/resources/images/product/${cancel.productno}/product/${cancel.imagename}`)" alt="banner" style="width:50px; height:50px;">
                             </td>
-                            <td class="td3">{{cancel.sellerid}}</td>
+                            <td class="td3">{{cancel.seller}}</td>
                             <td class="td4">{{cancel.productname}}</td>
                             <td class="td5">{{cancel.selectedoption}}</td>
                             <td class="td6">{{AddComma(cancel.totalprice)}}원</td>
