@@ -1,5 +1,9 @@
 패치 노트
 
+date : 2022-01-25 17:25
+order에 seller(닉네임) 추가
+product에 id를 sellerid로 이름 변경
+
 date : 2022-01-21 23:07
 product에 상품 종류(ptype) 추가
 
