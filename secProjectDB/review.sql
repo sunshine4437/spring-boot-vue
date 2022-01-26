@@ -10,6 +10,7 @@ CREATE TABLE s_review (
     id        VARCHAR(50),
     CONSTRAINT fk_qnareview FOREIGN KEY ( productno )
         REFERENCES s_product ( productno )
+            ON DELETE CASCADE
 );
 
 CREATE SEQUENCE review_seq START WITH 1 INCREMENT BY 1 MAXVALUE 9999999999 NOCYCLE NOCACHE;

@@ -30,4 +30,6 @@ public interface OrderMapper {
 	@Update("update s_order set state = #{state} where orderidx = #{orderidx}")
 	void updateOrder(@Param("orderidx") long orderidx, @Param("state") String state);
 
+	@Select("select count(orderidx) from s_order where id = #{id} and state in ('결제완료', '배송중', '취소 요청')")
+	int haveOrder(@Param("id") String id);
 }

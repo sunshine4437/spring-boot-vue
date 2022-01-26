@@ -42,13 +42,18 @@ public class ProdController {
 	}
 
 	@GetMapping("/productDetail/saleslist/{sellerid}")
-	public List<ProdVO> getSalseList(@PathVariable("sellerid") String sellerid) throws Exception {
-		return prodService.getSalseList(sellerid);
+	public List<ProdVO> getSalesList(@PathVariable("sellerid") String sellerid) throws Exception {
+		return prodService.getSalesList(sellerid);
 	}
 
 	@GetMapping("/productDetail/bestImage/{productno}")
 	public List<ProdVO> getAllProductImageList(@PathVariable("productno") int productno) throws Exception {
 		return prodService.getProductImageList(productno);
+	}
+
+	@GetMapping("/canquit/{id}")
+	public int haveProduct(@PathVariable("id") String sellerid) throws Exception {
+		return prodService.haveProduct(sellerid);
 	}
 
 	@PostMapping("/upload/img/{productno}")

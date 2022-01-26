@@ -22,7 +22,7 @@ public interface ProdMapper {
 	List<ProdVO> searchProduct(@Param("productname") String productname);
 	
 	@Select("select * from s_product where sellerid = #{sellerid} order by regdate")
-	List<ProdVO> findSalseList(String sellerid);
+	List<ProdVO> findSalesList(String sellerid);
 
 	@Select("select option1 from s_product where productno = #{productno}")
 	String findOption1(int productno);
@@ -30,7 +30,7 @@ public interface ProdMapper {
 	@Select("select option2 from s_product where productno = #{productno}")
 	String findOption2(int productno);
 
-	@Select("select * from s_product left join s_seller on (s_seller.productno = s_product.productno) where s_product.sellerid = (select id from s_seller where productno = #{productno}) and s_product.productno != #{productno} order by s_seller.totalsell desc")
+	@Select("select s_product.productno, s_product.imagename, sum(s_order.totalprice) tot from s_product left join s_order on s_product.productno = s_order.productno where sellerid = (select sellerid from s_product where productno = #{productno}) and s_product.productno != #{productno} group by s_product.productno,s_product.imagename order by tot desc")
 	List<ProdVO> findAllProductImage(int productno);
 
 	@Select("select prod_seq.currval from dual")
@@ -40,4 +40,6 @@ public interface ProdMapper {
 	@Options(useGeneratedKeys = true, keyProperty = "result.productno", keyColumn = "productno")
 	int insertProduct(@Param("in") ProdVO in, @Param("result") ProdVO result);
 
+	@Select("select count(productno) from s_product where sellerid = #{sellerid}")
+	int haveProduct(@Param("sellerid") String sellerid);
 }

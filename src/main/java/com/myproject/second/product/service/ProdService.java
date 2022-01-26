@@ -21,8 +21,8 @@ public class ProdService {
 		return prodMapper.findAllProduct();
 	}
 
-	public List<ProdVO> getSalseList(String sellerid) {
-		return prodMapper.findSalseList(sellerid);
+	public List<ProdVO> getSalesList(String sellerid) {
+		return prodMapper.findSalesList(sellerid);
 	}
 
 	public ProdVO getProductList(int productno) {
@@ -47,6 +47,10 @@ public class ProdService {
 		ProdVO result = new ProdVO();
 		prodMapper.insertProduct(target, result);
 		return result.getProductno();
+	}
+	
+	public int haveProduct(String sellerid) {
+		return prodMapper.haveProduct(sellerid);
 	}
 
 }

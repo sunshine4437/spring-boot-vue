@@ -29,27 +29,10 @@ CREATE SEQUENCE order_seq START WITH 1 INCREMENT BY 1 MAXVALUE 9999999999 NOCYCL
 
 INSERT INTO s_order VALUES (
     order_seq.NEXTVAL,
-    'tester0006',
-    1,
-    '05.NB_MR530KA',
-    73800,
-    sysdate,
-    '배송 완료',
-    '카드',
-    '신세계몰',
-    '테스터6',
-    '01000000000',
-    '06220',
-    '서울 강남구 테헤란로 212',
-    '6층 1호'
-);
-
-INSERT INTO s_order VALUES (
-    order_seq.NEXTVAL,
     'tester0001',
     1,
     'a',
-    73800,
+    3373800,
     sysdate,
     '배송 완료',
     '무통장 입금',
@@ -180,6 +163,363 @@ INSERT INTO s_order VALUES (
     '1층 1호'
 );
 
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0004',
+    4,
+    '2',
+    1200000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0005',
+    5,
+    '2',
+    1500000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0006',
+    6,
+    '2',
+    1050000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0007',
+    7,
+    '2',
+    500000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0008',
+    8,
+    '2',
+    3000000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0009',
+    9,
+    '2',
+    1000000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0004',
+    10,
+    '2',
+    2000000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0005',
+    11,
+    '2',
+    100000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0006',
+    12,
+    '2',
+    200000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0007',
+    13,
+    '2',
+    300000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0008',
+    14,
+    '2',
+    250000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0009',
+    15,
+    '2',
+    430000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0004',
+    16,
+    '2',
+    1231500,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0005',
+    17,
+    '2',
+    7500600,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0006',
+    18,
+    '2',
+    3743400,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0007',
+    19,
+    '2',
+    12300,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0008',
+    20,
+    '2',
+    243400,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'tester0009',
+    21,
+    '2',
+    123500,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'btester0002',
+    22,
+    '2',
+    85000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'ctester0003',
+    23,
+    '2',
+    353000,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
+INSERT INTO s_order VALUES (
+    order_seq.NEXTVAL,
+    'ctester0003',
+    24,
+    '2',
+    45600,
+    sysdate,
+    '배송 완료',
+    '카드',
+    '신세계몰',
+    '테스터6',
+    '01000000000',
+    '06220',
+    '서울 강남구 테헤란로 212',
+    '6층 1호'
+);
+
 COMMIT;
 
 SELECT
@@ -187,7 +527,8 @@ SELECT
 FROM
     s_order;
     
-
+--select count(orderidx) from s_order where id = 'tester0001' and state in ('결제완료', '배송중', '취소 요청');
+--select s_product.productno, s_product.imagename, sum(s_order.totalprice) tot from s_product left join s_order on s_product.productno = s_order.productno where sellerid = (select sellerid from s_product where productno = 1) and s_product.productno != 1 group by s_product.productno,s_product.imagename order by tot desc;
 --SELECT * FROM s_order RIGHT OUTER JOIN s_member ON s_member.id = s_order.id LEFT OUTER JOIN s_product ON s_product.productno = s_order.productno WHERE s_product.id = 'seller0001';
 --SELECT * FROM s_member, s_order, s_product WHERE s_member.id = s_order.id AND s_order.productno = s_product.productno AND s_product.sellerid = 'seller0001';
 --Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_product.productname, s_product.sellerid, s_product.imagename from s_order, s_product, s_member where s_order.id = 'tester0001' and s_order.state in ('결제 완료', '배송중', '배송 완료')

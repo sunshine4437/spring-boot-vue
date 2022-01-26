@@ -20,22 +20,23 @@ public interface MemberMapper {
 
 	@Select("SELECT nickname from s_member where id = (SELECT id from s_seller where productno = #{productno})")
 	String getNickname(int productno);
-	
+
 	@Update("update s_member set point = point - #{point} where id = #{id}")
 	void updatePoint(@Param("id") String id, @Param("point") int point);
-	
+
 	@Update("update s_member set nickname = #{nickname} where id = #{id}")
 	void updateNickname(@Param("id") String id, @Param("nickname") String nickname);
-	
+
 	@Update("update s_member set password = #{password} where id = #{id}")
 	void updatePassword(@Param("id") String id, @Param("password") String password);
-	
+
 	@Update("update s_member set tel = #{tel} where id = #{id}")
 	void updateTel(@Param("id") String id, @Param("tel") String tel);
-	
+
 	@Update("update s_member set zipcode = #{zipcode}, address = #{address}, detailaddr = #{detailaddr} where id = #{id}")
-	void updateAddress(@Param("id") String id, @Param("zipcode") String zipcode, @Param("address") String address, @Param("detailaddr") String detailaddr);
-	
+	void updateAddress(@Param("id") String id, @Param("zipcode") String zipcode, @Param("address") String address,
+			@Param("detailaddr") String detailaddr);
+
 	@Delete("delete from s_member where id = #{id}")
 	void deleteMember(@Param("id") String id);
 }

@@ -16,7 +16,6 @@ CREATE TABLE s_product (
     onsale          CHAR(1) DEFAULT 0,
     CONSTRAINT fk_prodmem FOREIGN KEY ( sellerid )
         REFERENCES s_member ( id )
-            ON DELETE CASCADE
 );
 
 CREATE SEQUENCE prod_seq START WITH 1 INCREMENT BY 1 MAXVALUE 9999999999 NOCYCLE NOCACHE;
@@ -59,8 +58,8 @@ INSERT INTO s_product VALUES (
     '酒快磐/咯己狼幅/巢己狼幅',
     '3.jpg',
     13000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -75,8 +74,8 @@ INSERT INTO s_product VALUES (
     '惑狼/巢己狼幅',
     '4.jpg',
     16900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -91,8 +90,8 @@ INSERT INTO s_product VALUES (
     '惑狼/酒快磐/咯己狼幅/巢己狼幅',
     '5.jpg',
     11000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -107,8 +106,8 @@ INSERT INTO s_product VALUES (
     '脚惯',
     '6.jpg',
     155000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -139,8 +138,8 @@ INSERT INTO s_product VALUES (
     '脚惯',
     '8.jpg',
     19900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -155,8 +154,8 @@ INSERT INTO s_product VALUES (
     '脚惯',
     '9.jpg',
     73960,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -171,8 +170,8 @@ INSERT INTO s_product VALUES (
     '酒快磐/咯己狼幅',
     '10.jpg',
     72040,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -187,8 +186,8 @@ INSERT INTO s_product VALUES (
     '惑狼/酒快磐/咯己狼幅',
     '11.jpg',
     59000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -203,8 +202,8 @@ INSERT INTO s_product VALUES (
     '庆绢',
     '12.jpg',
     19900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -219,8 +218,8 @@ INSERT INTO s_product VALUES (
     '傈磊 力前',
     '13.jpg',
     63170,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -235,8 +234,8 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '14.jpg',
     7900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -251,8 +250,8 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '15.jpg',
     16900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -267,8 +266,8 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '16.jpg',
     10000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -283,8 +282,8 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '17.jpg',
     18000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -299,8 +298,8 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '18.jpg',
     14900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -315,8 +314,8 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '19.jpg',
     12900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -331,8 +330,8 @@ INSERT INTO s_product VALUES (
     '傈磊 力前',
     '20.jpg',
     5000000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -347,8 +346,8 @@ INSERT INTO s_product VALUES (
     '巢己狼幅/惑狼/酒快磐',
     '21.jpg',
     36900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -363,8 +362,8 @@ INSERT INTO s_product VALUES (
     '傈磊 力前',
     '22.jpg',
     49000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -379,8 +378,8 @@ INSERT INTO s_product VALUES (
     '棱拳',
     '23.jpg',
     16980,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -395,8 +394,8 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '24.jpg',
     9700,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),

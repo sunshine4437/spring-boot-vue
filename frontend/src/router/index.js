@@ -72,6 +72,9 @@ const routes = [
                     }, {
                         path: '/Mypage2',
                         component: () => import ('@/components/mypage/Mypage2.vue')
+                    }, {
+                        path: '/Mypage3',
+                        component: () => import ('@/components/mypage/Mypage3.vue')
                     }
                 ],
                 beforeEnter: (to, from, next) => {

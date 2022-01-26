@@ -34,7 +34,10 @@
                 <a href="">주소 수정</a><br>
                 <a href="">회원정보 변경/ 탈퇴</a><br>
                 <a href="">로그인 관리</a><br>
-                <a href="">개인정보 이용내역</a>
+                <a href="">개인정보 이용내역</a><br>
+                <router-link v-bind:to="'/Mypage3'">
+                    회원탈퇴
+                </router-link>
             </div>
         </div>
         <!--right-->
@@ -47,12 +50,7 @@
 </template>
 
 <script>
-// import mypage1 from "@/views/Mypage1.vue"
-
 export default {
-    components: {
-        // mypage1
-    },
     data() {
         return {}
     },
@@ -125,7 +123,7 @@ hr {
     padding-top: 70px;
 }
 
-.right{
-    margin-left:50px;
+.right {
+    margin-left: 50px;
 }
 </style>

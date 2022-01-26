@@ -13,14 +13,14 @@ public class MemberVO {
 	private String birth;
 	private String genger;
 	private int point;
-	private String seller;
+	private String authority;
 	private String companyno;
 
 	public MemberVO() {
 	}
 
 	public MemberVO(String id, String nickname, String password, String name, String tel, String zipcode,
-			String address, String detailaddr, String email, String birth, String genger, int point, String seller,
+			String address, String detailaddr, String email, String birth, String genger, int point, String authority,
 			String companyno) {
 		super();
 		this.id = id;
@@ -35,7 +35,7 @@ public class MemberVO {
 		this.birth = birth;
 		this.genger = genger;
 		this.point = point;
-		this.seller = seller;
+		this.authority = authority;
 		this.companyno = companyno;
 	}
 
@@ -135,12 +135,12 @@ public class MemberVO {
 		this.point = point;
 	}
 
-	public String getSeller() {
-		return seller;
+	public String getAuthority() {
+		return authority;
 	}
 
-	public void setSeller(String seller) {
-		this.seller = seller;
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
 
 	public String getCompanyno() {
@@ -152,18 +152,3 @@ public class MemberVO {
 	}
 
 }
-//
-//id         VARCHAR2(20) PRIMARY KEY,
-//nickname   VARCHAR2(20) NOT NULL,
-//password   VARCHAR2(30) NOT NULL,
-//name       VARCHAR2(10) NOT NULL,
-//tel        VARCHAR2(11) NOT NULL,
-//zipcode    VARCHAR2(5) NOT NULL,
-//address    VARCHAR2(80) NOT NULL,
-//detailaddr VARCHAR2(50) NOT NULL,
-//email      VARCHAR2(30),
-//birth      VARCHAR2(10),
-//gender     CHAR(1),
-//point      NUMBER(10) DEFAULT 0,
-//seller     CHAR(1) DEFAULT 0,    
-//companyNO varchar2(20)

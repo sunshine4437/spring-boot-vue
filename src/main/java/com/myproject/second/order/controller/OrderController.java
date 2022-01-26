@@ -25,13 +25,20 @@ public class OrderController {
 	public List<OrderVO> getAllOrderList(@PathVariable("id") String id) throws Exception {
 		return orderService.getAllOrderList(id);
 	}
+
 	@GetMapping("/order/{id}")
 	public List<OrderVO> getOrderList(@PathVariable("id") String id) throws Exception {
 		return orderService.getOrderList(id);
 	}
+
 	@GetMapping("/cancel/{id}")
 	public List<OrderVO> getCancelList(@PathVariable("id") String id) throws Exception {
 		return orderService.getCancelList(id);
+	}
+
+	@GetMapping("/canquit/{id}")
+	public int haveOrder(@PathVariable("id") String id) throws Exception {
+		return orderService.haveOrder(id);
 	}
 
 	@PostMapping("/create")

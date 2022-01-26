@@ -35,4 +35,8 @@ public class OrderService {
 	public void updateOrder(long orderidx, String state) {
 		orderMapper.updateOrder(orderidx, state);
 	}
+
+	public int haveOrder(String id) {
+		return orderMapper.haveOrder(id);
+	}
 }
