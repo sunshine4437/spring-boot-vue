@@ -1,4 +1,8 @@
 패치 노트
+date : 2022-01-26 23:44
+member에 seller를 authority로 바꿔서 admin, seller, user로 나누었음 (spring security 사용하기 위해)
+review에 누락됐던 on delete cascade 추가(fk의 원본이 삭제되면 같이 삭제되는 용도)
+자잘한 데이터 추가
 
 date : 2022-01-25 17:25
 order에 seller(닉네임) 추가
