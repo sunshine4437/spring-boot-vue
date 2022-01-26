@@ -4,6 +4,7 @@
 
     <!--right-->
     <div class="right">
+        {{deleteCount}}
         <div class="pList1">
             <h2>회원 정보 열람</h2>
         </div>
@@ -49,13 +50,18 @@
             <button class="classBtn" @click="addMod"> 수정하기 </button>
         </div>
         <div class="content1">
-            <router-link v-bind:to="'/'"> <button class="quit" @click="quitBtn">회원탈퇴</button></router-link>
+            <button class="quit" @click="quitBtn">회원탈퇴</button>
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import axios from 'axios'
+import {
+    createNamespacedHelpers
+} from "vuex";
+const loginStore = createNamespacedHelpers("loginStore");
 export default {
     data() {
         return {
@@ -76,6 +82,7 @@ export default {
             putnick: '',
             putadd: '',
             msg: '',
+            deleteCount: 0,
         }
     },
     methods: {
@@ -86,7 +93,16 @@ export default {
                 } else if ("asd" === this.putnick) {
                     alert("이미 가입된 닉네임 입니다.");
                 } else {
+                    axios({
+                        method: 'put',
+                        url: '/api/member/nickname',
+                        params: {
+                            id: this.getLogin,
+                            nickname: this.putnick,
+                        }
+                    })
                     alert("수정 되었습니다.");
+                    this.$router.go();
                 }
             } catch (err) {
                 this.msg = "error";
@@ -115,8 +131,18 @@ export default {
                     alert("공백 입니다.");
                 } else if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,16}$/.test(this.signup.password)) {
                     if (this.passwordValidFlag == true)
-                        if (this.signup.password === this.passwordCheck)
-                            alert("수정되었습니다.");
+                        if (this.signup.password === this.passwordCheck) {
+                            axios({
+                                method: 'put',
+                                url: '/api/member/password',
+                                params: {
+                                    id: this.getLogin,
+                                    password: this.signup.password,
+                                }
+                            })
+                            alert("수정 되었습니다.");
+                            this.$router.go();
+                        }
                 } else {
                     if (!this.passwordValidFlag == true)
                         alert("비밀번호 형식은 대문자,소문자,숫자 포함 8~16글자 입니다.");
@@ -138,7 +164,16 @@ export default {
                 if ("" === this.putNum) {
                     alert("공백 입니다.");
                 } else if (/^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/.test(this.putNum)) {
+                    axios({
+                        method: 'put',
+                        url: '/api/member/tel',
+                        params: {
+                            id: this.getLogin,
+                            tel: this.putNum,
+                        }
+                    })
                     alert("수정 되었습니다.");
+                    this.$router.go();
                 } else {
                     alert("제대로 입력해주세요.")
                 }
@@ -151,14 +186,34 @@ export default {
                 if ("" === this.putadd) {
                     alert("공백 입니다.");
                 } else {
+                    axios({
+                        method: 'put',
+                        url: '/api/member/address',
+                        params: {
+                            id: this.getLogin,
+                            zipcode: this.postcode,
+                            address: this.address,
+                            detailaddr: this.putadd,
+                        }
+                    })
                     alert("수정 되었습니다.");
+                    this.$router.go();
                 }
             } catch (err) {
                 this.msg = "error";
             }
         },
         quitBtn() {
-            alert("정말 탈퇴하시겠습니까?")
+            if (this.deleteCount == 0) {
+                alert("정말 탈퇴하시려면 회원 탈퇴 버튼을 한 번 더 눌러주세요")
+                this.deleteCount++;
+            } else {
+                let id = this.getLogin;
+                alert("탈퇴하셨습니다.")
+                axios.delete(`/api/member/delete/${id}`);
+                this.Logout();
+                this.$router.push("/");
+            }
         },
         execDaumPostcode() { // Daum 우편번호 조회 API 인용
             new window.daum.Postcode({
@@ -200,7 +255,14 @@ export default {
                 },
             }).open();
         },
-    }
+        // 로그아웃 상태로 전환
+        ...loginStore.mapMutations([
+            'Logout'
+        ]),
+    },
+    computed: {
+        ...loginStore.mapGetters(["getLogin"]),
+    },
 }
 </script>
 

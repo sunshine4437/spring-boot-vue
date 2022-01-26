@@ -20,7 +20,7 @@ public interface BasketMapper {
 	@Select("select s_basket.basketidx, s_basket.id, s_basket.productno, s_basket.option1, s_basket.option2, s_basket.amount, "
 			+ "s_product.productname, s_product.imagename, s_product.price*s_basket.amount price, s_member.nickname seller "			
 			+ "from s_basket left join s_product on s_basket.productno = s_product.productno "
-			+ "right join s_member on s_member.id = s_product.id "
+			+ "right join s_member on s_member.id = s_product.sellerid "
 			+ "where s_basket.id = #{id} order by s_basket.basketidx")
 	List<BasketVO> findAllBasket(@Param("id") String id);
 

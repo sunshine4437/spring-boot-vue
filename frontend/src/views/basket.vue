@@ -74,9 +74,12 @@
 
 <script>
 import axios from 'axios'
+// 새로고침과 페이지 이동시 로그인 상태 확인 및 유지 기능
 import {
     createNamespacedHelpers
-} from "vuex";
+} from 'vuex';
+// 로그인 상태 관련 모듈
+const loginStore = createNamespacedHelpers('loginStore');
 const basketList = createNamespacedHelpers("basketList");
 const orderList = createNamespacedHelpers("orderList");
 export default {
@@ -192,7 +195,7 @@ export default {
                 method: 'get',
                 url: `/api/basket/read`,
                 params: {
-                    id: "tester0001"
+                    id: this.getLogin,
                 }
             }).then(res => {
                 this.basket = res.data;
@@ -201,6 +204,11 @@ export default {
         ...basketList.mapMutations(["delList"]),
         ...orderList.mapMutations(["addOrderList"]),
         ...orderList.mapMutations(["clearOrderList"]),
+        ...basketList.mapGetters(["getBasketList"]),
+        // 로그아웃 상태로 전환
+        ...loginStore.mapMutations([
+            'Logout'
+        ]),
     },
     computed: {
         delivery_fee() {
@@ -209,8 +217,9 @@ export default {
             } else {
                 return 2500;
             }
-        },
-        ...basketList.mapGetters(["getBasketList"]),
+        },        
+        // 로그인한 유저정보를 반환
+        ...loginStore.mapGetters(['getLogin']),
     },
     mounted() {
         this.getBasket();

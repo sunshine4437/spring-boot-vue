@@ -5,7 +5,19 @@ public class ReviewVO {
 	private int productno;
 	private String image;
 	private String content;
-	private String nickname;
+	private String id;
+
+	public ReviewVO() {
+	}
+
+	public ReviewVO(int reviewno, int productno, String image, String content, String id) {
+		super();
+		this.reviewno = reviewno;
+		this.productno = productno;
+		this.image = image;
+		this.content = content;
+		this.id = id;
+	}
 
 	public int getReviewno() {
 		return reviewno;
@@ -39,12 +51,12 @@ public class ReviewVO {
 		this.content = content;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getId() {
+		return id;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

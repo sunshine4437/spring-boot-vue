@@ -7,15 +7,16 @@ CREATE TABLE s_order (
     id             VARCHAR2(20) NOT NULL,
     productno      NUMBER(9) NOT NULL,
     selectedoption VARCHAR2(100) NOT NULL,
-    delivery       NUMBER(5) NOT NULL,
     totalprice     NUMBER(10) NOT NULL,
     orderdate      DATE DEFAULT sysdate,
     state          VARCHAR2(20) DEFAULT '결제완료',
-    name           VARCHAR2(50) NOT NULL,
-    tel            VARCHAR2(11) NOT NULL,
-    zipcode        VARCHAR2(5) NOT NULL,
-    address        VARCHAR2(80) NOT NULL,
-    detailaddr     VARCHAR2(50) NOT NULL,
+    ordermethod    VARCHAR2(40) NOT NULL,
+    seller         VARCHAR2(40) NOT NULL,
+    dname          VARCHAR2(50) NOT NULL,
+    dtel           VARCHAR2(11) NOT NULL,
+    dzipcode       VARCHAR2(5) NOT NULL,
+    daddress       VARCHAR2(200) NOT NULL,
+    ddetailaddr    VARCHAR2(50) NOT NULL,
     CONSTRAINT fk_ordmem FOREIGN KEY ( id )
         REFERENCES s_member ( id )
             ON DELETE CASCADE,
@@ -31,10 +32,11 @@ INSERT INTO s_order VALUES (
     'tester0006',
     1,
     '05.NB_MR530KA',
-    0,
     73800,
     sysdate,
     '배송 완료',
+    '카드',
+    '신세계몰',
     '테스터6',
     '01000000000',
     '06220',
@@ -47,10 +49,11 @@ INSERT INTO s_order VALUES (
     'tester0001',
     1,
     'a',
-    0,
     73800,
     sysdate,
     '배송 완료',
+    '무통장 입금',
+    '신세계몰',
     '테스터1',
     '01000000000',
     '06220',
@@ -63,10 +66,11 @@ INSERT INTO s_order VALUES (
     'tester0001',
     1,
     'b',
-    0,
     73800,
     sysdate,
     '취소 요청',
+    '카드',
+    '신세계몰',
     '테스터1',
     '01000000000',
     '06220',
@@ -79,10 +83,11 @@ INSERT INTO s_order VALUES (
     'tester0001',
     2,
     'a',
-    0,
     73800,
     sysdate,
     '배송 완료',
+    '카드',
+    '신세계몰',
     '테스터1',
     '01000000000',
     '06220',
@@ -95,10 +100,11 @@ INSERT INTO s_order VALUES (
     'tester0001',
     2,
     'b',
-    0,
     73800,
     sysdate,
     '배송 완료',
+    '카드',
+    '신세계몰',
     '테스터1',
     '01000000000',
     '06220',
@@ -111,10 +117,11 @@ INSERT INTO s_order VALUES (
     'tester0001',
     3,
     'a',
-    0,
     73800,
     sysdate,
     '배송중',
+    '무통장 입금',
+    '신세계몰',
     '테스터1',
     '01000000000',
     '06220',
@@ -127,10 +134,11 @@ INSERT INTO s_order VALUES (
     'tester0001',
     3,
     'b',
-    0,
     73800,
     sysdate,
     '취소 완료',
+    '카드',
+    '신세계몰',
     '테스터1',
     '01000000000',
     '06220',
@@ -143,10 +151,11 @@ INSERT INTO s_order VALUES (
     'tester0001',
     1,
     'a',
-    0,
     73800,
     sysdate,
     '배송중',
+    '휴대폰 결제',
+    '신세계몰',
     '테스터1',
     '01000000000',
     '06220',
@@ -159,10 +168,11 @@ INSERT INTO s_order VALUES (
     'tester0001',
     14,
     'a',
-    0,
     73800,
     sysdate,
     '결제 완료',
+    '카드',
+    '롯데아이몰',
     '테스터1',
     '01000000000',
     '06220',
@@ -177,23 +187,9 @@ SELECT
 FROM
     s_order;
     
---  s_order, s_product, s_member에서 정보 가져오기  
-SELECT
-    *
-FROM
-    s_order
-    RIGHT OUTER JOIN s_member ON s_member.id = s_order.id
-    LEFT OUTER JOIN s_product ON s_product.productno = s_order.productno
-WHERE
-    s_product.id = 'seller0001';
 
-SELECT
-    *
-FROM
-    s_member,
-    s_order,
-    s_product
-WHERE
-    s_member.id = s_order.id
-    AND s_order.productno = s_product.productno
-    AND s_product.id = 'seller0001';
+--SELECT * FROM s_order RIGHT OUTER JOIN s_member ON s_member.id = s_order.id LEFT OUTER JOIN s_product ON s_product.productno = s_order.productno WHERE s_product.id = 'seller0001';
+--SELECT * FROM s_member, s_order, s_product WHERE s_member.id = s_order.id AND s_order.productno = s_product.productno AND s_product.sellerid = 'seller0001';
+--Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_product.productname, s_product.sellerid, s_product.imagename from s_order, s_product, s_member where s_order.id = 'tester0001' and s_order.state in ('결제 완료', '배송중', '배송 완료')
+--Select s_member.nickname from s_product left join s_member on s_product.sellerid = s_member.id where s_product.productno = 1;
+--Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_order.seller, s_product.productname, s_product.imagename from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = #{id} and s_order.state in ('취소 완료', '취소 요청', '환불 완료', '환불 요청')

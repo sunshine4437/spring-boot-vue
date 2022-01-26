@@ -17,7 +17,7 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 
-	@GetMapping("/review/{num}")
+	@GetMapping("/{num}")
 	public List<ReviewVO> getReviewList(@PathVariable("num") int num) throws Exception {
 		List<ReviewVO> list = reviewService.getReviewList(num);
 		return list;

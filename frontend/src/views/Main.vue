@@ -145,10 +145,8 @@ export default {
     methods: {
         // 검색 기능 신발만 가능
         search() {
-            const targetId = document.getElementById("search");
-            if (targetId.value === '신발') {
-                this.$router.push(`/shopping`);
-            }
+            const targetId = document.getElementById("search").value;
+            this.$router.push(`/shopping/${targetId}`);
         },
         // 로그아웃 상태로 전환
         ...loginStore.mapMutations([
@@ -156,6 +154,13 @@ export default {
         ]),
         getData() {
             axios.get("/api/main/test11").then(res => this.msg = res.data)
+        }
+    },
+    watch: {
+        $route(from){
+            if(from.path.indexOf('/shopping') != -1){
+                this.$router.go();
+            }
         }
     },
     mounted() {

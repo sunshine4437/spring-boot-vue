@@ -60,7 +60,7 @@ const routes = [
                 path: '/otoQ',
                 component: () => import ('../views/otoQ.vue')
             }, {
-                path: '/shopping',
+                path: '/shopping/:id',
                 component: () => import ('../views/shopping.vue')
             }, {
                 path: '/Mypage',

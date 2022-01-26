@@ -14,7 +14,7 @@
                 <td style="text-align: left">
                     <span v-html="review.content"></span>
                 </td>
-                <td style="width: 10%"><span v-html="review.nickname"></span></td>
+                <td style="width: 10%"><span v-html="review.id.slice(0,4) + '****'"></span></td>
             </tr>
         </table>
     </div>
@@ -32,7 +32,7 @@ export default {
     methods: {
         getReview() {
             const id = this.$route.params.id;
-            axios.get(`/api/review/review/${id}`).then(res => this.reviews = res.data);
+            axios.get(`/api/review/${id}`).then(res => this.reviews = res.data);
         }
     },
     mounted() {
