@@ -12,9 +12,11 @@ const loginStore = {
     mutations: {
         Login(state, payload) {
             state.username = payload;
+            localStorage.setItem("key", "value");
         },
         Logout(state) {
             state.username = '';
+            localStorage.clear();
         },
         setPath(state, payload){
             state.toPath = payload;

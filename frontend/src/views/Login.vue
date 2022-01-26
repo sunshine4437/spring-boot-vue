@@ -8,8 +8,8 @@
                 <router-link v-bind:to="'/'"> <img src="@/assets/logo.jpg" alt="logo" style="width:130px; height:130px;"></router-link>
             </div>
         </router-link>
-        <input class="inputID" type="text" v-model="username" placeholder="아이디 입력">
-        <input class="inputPWD" type="password" v-model="password" placeholder="비밀번호 입력">
+        <input class="inputID" type="text" v-model="username" placeholder="아이디 입력" @keyup.enter="signIn">
+        <input class="inputPWD" type="password" v-model="password" placeholder="비밀번호 입력" @keyup.enter="signIn">
         <button class="inputBtn" @click="signIn">로그인</button>
         <div class="etc">
             <div class="checkBoxDiv"><input type="checkbox" id="a"> <label for="a">자동로그인</label></div>
@@ -65,11 +65,22 @@ export default {
                 console.log(toPath)
                 axios.get('/api/member/' + this.username).then(res => {
                     if (res.data.id == this.username) {
-                        console.log(res.data.id)
-                        this.Login(res.data.id);
-                        this.$router.push(toPath)
-                    } else {
-                        alert("error")
+                        if (res.data.password == this.password) {
+                            alert(this.username + "님 환영합니다");
+                            this.Login(res.data.id);
+                            this.$router.push(toPath)
+                        } else if ("" === this.password) {
+                            alert("비밀번호를 입력하세요.");
+                            return;
+                        } else {
+                            alert("비밀번호가 맞지 않습니다.");
+                            this.password = "";
+                            return;
+                        }
+                    } else if ("" === this.username)
+                        alert("아이디를 입력하세요.")
+                    else {
+                        alert("아이디가 맞지 않습니다.")
                     }
                 })
 
