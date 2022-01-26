@@ -1,6 +1,5 @@
 <template>
 <!-- 판매자와의 QNA -->
-
 <div class="qna">
     <div class="qnaTitle">
         <h2 style="display: inline-block">상품 문의</h2>
@@ -10,7 +9,7 @@
         <table style="border-collapse: collapse;">
             <tr style="text-align: center">
                 <th style="width:81px">질문 내용</th>
-                <td style="width: 015px"><input type="text" style="width: 50px" id="questionInput"></td>
+                <td style="width: 1015px"><input type="text" style="width: 1000px" id="questionInput"></td>
                 <td style="width: 151px">
                     <button style="padding: 5px 10px" @click="addQuestion">문의하기</button></td>
             </tr>
@@ -42,7 +41,7 @@
                             <span v-html="qna.title"></span>
                         </td>
                         <td style="width: 170px">
-                            <span v-html="qna.nickname"></span>
+                            <span v-html="qna.id.slice(0,4) + '****'"></span>
                         </td>
                         <td style="width: 150px">
                             <span v-html="qna.regdate"></span>
@@ -60,6 +59,12 @@
 
 <script>
 import axios from 'axios'
+// 새로고침과 페이지 이동시 로그인 상태 확인 및 유지 기능
+import {
+    createNamespacedHelpers
+} from 'vuex';
+// 로그인 상태 관련 모듈
+const loginStore = createNamespacedHelpers('loginStore');
 import Collapse from "@/components/productDetail/Collapse.vue";
 export default {
     components: {
@@ -74,27 +79,40 @@ export default {
     methods: {
         getQna() {
             const id = this.$route.params.id;
-            axios.get(`/api/qna/qna/${id}`).then(res => {
+            axios.get(`/api/qna/${id}`).then(res => {
                 this.qnas = res.data;
             })
         },
-        addOpen() {
-            this.question = true;
+        addOpen() {            
+            if(this.getLogin.length == 0){
+                alert('로그인을 해주세요');
+            } else {
+                this.question = !this.question;
+            }
         },
-       addQuestion() {
+        addQuestion() {
             let que = document.getElementById('questionInput').value;
             const id = this.$route.params.id;
             axios({
                 method: 'post',
-                url: `/api/qna/qna/${id}`,
+                url: `/api/qna/${id}`,
                 params: {
                     title: que,
-                    nickname: "nickname"
+                    id: this.getLogin,
                 }
             })
+            alert('질문을 등록하셨습니다');
             this.question = false;
             this.$router.go();
-        }
+        },
+        // 로그아웃 상태로 전환
+        ...loginStore.mapMutations([
+            'Logout'
+        ]),
+    },
+    computed: {
+        // 로그인한 유저정보를 반환
+        ...loginStore.mapGetters(['getLogin'])
     },
     mounted() {
         this.getQna();

@@ -94,7 +94,7 @@ export default {
             console.log(`${this.getLogin}`)
             // let id = this.getLogin
             let data = {
-                id: this.getLogin,
+                sellerid: this.getLogin,
                 productname: this.productname,
                 price: this.price,
                 option1: this.option1,

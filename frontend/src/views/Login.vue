@@ -83,6 +83,22 @@ export default {
                         alert("아이디가 맞지 않습니다.")
                     }
                 })
+                // if (this.username.length == 0) {
+                //     alert('아이디를 입력해주세요')
+                // } else {
+                //     axios.get('/api/member/' + this.username).then(res => {
+                //         if (res.data.id == this.username) {
+                //             if (res.data.password == this.password) {
+                //                 this.Login(res.data.id);
+                //                 this.$router.push(toPath)
+                //             } else {
+                //                 alert("비밀번호가 틀렸습니다")
+                //             }
+                //         } else {
+                //             alert("아이디가 틀렸습니다")
+                //         }
+                //     })
+                // }
 
             } catch (err) {
                 alert(err);

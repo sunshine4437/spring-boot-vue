@@ -8,8 +8,22 @@ public class QnaVO {
 	private String state;
 	private String title;
 	private String answer;
-	private String nickname;
+	private String id;
 	private Date regdate;
+
+	public QnaVO() {
+	}
+
+	public QnaVO(int qnano, int productno, String state, String title, String answer, String id, Date regdate) {
+		super();
+		this.qnano = qnano;
+		this.productno = productno;
+		this.state = state;
+		this.title = title;
+		this.answer = answer;
+		this.id = id;
+		this.regdate = regdate;
+	}
 
 	public int getQnano() {
 		return qnano;
@@ -51,12 +65,12 @@ public class QnaVO {
 		this.answer = answer;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getId() {
+		return id;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public Date getRegdate() {

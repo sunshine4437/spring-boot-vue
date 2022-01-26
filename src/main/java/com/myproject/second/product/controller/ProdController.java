@@ -31,6 +31,11 @@ public class ProdController {
 		return prodService.getProductList(productno);
 	}
 
+	@GetMapping("/{productname}")
+	public List<ProdVO> searchProduct(@PathVariable("productname") String productname) throws Exception {
+		return prodService.searchProduct(productname);
+	}
+
 	@GetMapping("/productDetail/all")
 	public List<ProdVO> getAllProductList() throws Exception {
 		return prodService.getProductList();

@@ -14,6 +14,6 @@ public interface QnaMapper {
 	@Select("select * from s_qna where productno = #{productno} order by qnano desc")
 	List<QnaVO> findAllQna(@Param("productno") int productno);
 
-	@Insert("insert into s_qna (qnano, productno, title, nickname) values (qna_seq.NEXTVAL, #{productno}, #{title}, #{nickname})")
-	void addQna(@Param("productno") int productno, @Param("title") String title, @Param("nickname") String nickname);
+	@Insert("insert into s_qna (qnano, productno, title, id) values (qna_seq.NEXTVAL, #{productno}, #{title}, #{id})")
+	void addQna(@Param("productno") int productno, @Param("title") String title, @Param("id") String id);
 }

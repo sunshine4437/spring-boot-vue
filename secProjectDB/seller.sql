@@ -3,7 +3,7 @@ DROP TABLE s_seller CASCADE CONSTRAINTS;
 DROP SEQUENCE seller_seq;
 
 CREATE TABLE s_seller (
-    selleridx       NUMBER(20) PRIMARY KEY,
+    selleridx NUMBER(20) PRIMARY KEY,
     id        VARCHAR2(20),
     productno NUMBER(10),
     totalsell NUMBER(20),

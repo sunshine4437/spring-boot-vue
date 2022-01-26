@@ -19,14 +19,14 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 
-	@GetMapping("/qna/{productno}")
+	@GetMapping("/{productno}")
 	public List<QnaVO> getQnaList(@PathVariable("productno") int productno) throws Exception {
 		List<QnaVO> list = qnaService.getQnaList(productno);
 		return list;
 	}
 	
-	@PostMapping("/qna/{productno}")
-	public void inserQna(@PathVariable("productno") int productno, @RequestParam String title, @RequestParam String nickname) throws Exception {
-		qnaService.addQna(productno, title, nickname);
+	@PostMapping("/{productno}")
+	public void inserQna(@PathVariable("productno") int productno, @RequestParam String title, @RequestParam String id) throws Exception {
+		qnaService.addQna(productno, title, id);
 	}
 }
