@@ -61,7 +61,7 @@
         </div>
         <div>
             <div class="table1Header">
-                <table style="width:1000px">
+                <table style="width:1000px; text-align:center">
                     <tr style="height:50px;">
                         <td class="td1">주문일자</td>
                         <td class="td2">이미지</td>
@@ -74,17 +74,17 @@
                 </table>
             </div>
             <div class="table1Body">
-                <table style="width:1000px">
+                <table style="width:1000px; text-align:center">
                     <!-- 날짜, 검색 정보를 비교하여 화면 목록에 표시 -->
-                    <tr v-for="(order, idx) in orders" :key="idx" v-show="compareDate(order) && compareInform(order) " style="height:50px;">
+                    <tr v-for="(order, idx) in orders" :key="idx" style="height:50px;">
                         <td class="td1">{{order.orderdate}}</td>
                         <td class="td2">
                             <img :src="require(`../../../../src/main/resources/images/product/${order.productno}/product/${order.imagename}`)" alt="banner" style="width:50px; height:50px;">
                         </td>
                         <td class="td3">{{order.seller}}</td>
-                        <td class="td4">{{order.productname}}</td>
+                        <td class="td4" style="text-align:left">{{order.productname}}</td>
                         <td class="td5">{{order.selectedoption}}</td>
-                        <td class="td6">{{AddComma(order.totalprice)}}원</td>
+                        <td class="td6" style="text-align:right">{{AddComma(order.totalprice)}}원</td>
                         <td class="td7">{{order.state}}</td>
                     </tr>
                 </table>
@@ -96,7 +96,7 @@
         </div>
         <div>
             <div class="table2Header">
-                <table style="width:1000px">
+                <table style="width:1000px; text-align:center">
                     <thead>
                         <tr style="height:50px;">
                             <td class="td1">주문일자</td>
@@ -111,17 +111,17 @@
                 </table>
             </div>
             <div class="table2Body">
-                <table style="width:1000px">
+                <table style="width:1000px; text-align:center">
                     <tbody>
-                        <tr v-for="(cancel, idx) in cancels" :key="idx" v-show="compareDate(cancel) && compareInform(cancel) " class="tr1" style="height:50px;">
+                        <tr v-for="(cancel, idx) in cancels" :key="idx" class="tr1" style="height:50px;">
                             <td class="td1">{{cancel.orderdate}}</td>
                             <td class="td2">
                                 <img :src="require(`../../../../src/main/resources/images/product/${cancel.productno}/product/${cancel.imagename}`)" alt="banner" style="width:50px; height:50px;">
                             </td>
                             <td class="td3">{{cancel.seller}}</td>
-                            <td class="td4">{{cancel.productname}}</td>
+                            <td class="td4" style="text-align:left">{{cancel.productname}}</td>
                             <td class="td5">{{cancel.selectedoption}}</td>
-                            <td class="td6">{{AddComma(cancel.totalprice)}}원</td>
+                            <td class="td6" style="text-align:right">{{AddComma(cancel.totalprice)}}원</td>
                             <td class="td7">{{cancel.state}}</td>
                         </tr>
                     </tbody>
@@ -154,13 +154,11 @@ export default {
             years: [],
             months: [],
             dates: [],
-            target: "",
             orders: "",
             cancels: "",
         }
     },
     methods: {
-        // 기간별 주문/취소한 상품 내역 조회를 위한 함수
         getDate() {
             let today = new Date();
             let date = today.getDate();
@@ -206,40 +204,45 @@ export default {
         setEndYear(event) {
             this.endPoint.year = event.target.value;
         },
-        //시작날짜와 끝날짜 기간사이 상품을 조회하기 위한 함수
-        compareDate(target) {
-            if (`${this.startPoint.year}-${this.startPoint.month}-${this.startPoint.date}` <= target.orderdate)
-                if (target.orderdate <= `${this.endPoint.year}-${this.endPoint.month}-${this.endPoint.date}`)
-                    return true;
-        },
         search() {
-            this.target = document.getElementById("searchInput").value
+            let search = document.getElementById("searchInput").value
+            this.getOrder(search);
+            this.getCancel(search)
         },
-        //기간에 해당되는 상품 출력
-        compareInform(event) {
-            if (this.target == "")
-                return true;
-            else {
-                if (event.product.indexOf(this.target) !== -1)
-                    return true;
-                else
-                    return false;
-            }
-        },
+
         //가격부분 콤마 추가
         AddComma(num) {
             var regexp = /\B(?=(\d{3})+(?!\d))/g;
             return num.toString().replace(regexp, ",");
         },
-        getOrder() {
+
+        getOrder(search) {
             const id = this.getLogin;
-            axios.get(`/api/order/order/${id}`).then(res => {
+            axios({
+                method: 'get',
+                url: `/api/order/getOrders`,
+                params: {
+                    id: id,
+                    startdate: this.startdate,
+                    enddate: this.enddate,
+                    productname: search,
+                }
+            }).then(res => {
                 this.orders = res.data;
             })
         },
-        getCancel() {
+        getCancel(search) {
             const id = this.getLogin;
-            axios.get(`/api/order/cancel/${id}`).then(res => {
+            axios({
+                method: 'get',
+                url: `/api/order/getCancels`,
+                params: {
+                    id: id,
+                    startdate: this.startdate,
+                    enddate: this.enddate,
+                    productname: search,
+                }
+            }).then(res => {
                 this.cancels = res.data;
             })
         },
@@ -250,10 +253,37 @@ export default {
     },
     computed: {
         ...loginStore.mapGetters(["getLogin"]),
+        startdate() {
+            let temp = `${this.startPoint.year}`;
+            if (this.startPoint.month < 10) {
+                temp = temp + "0" + this.startPoint.month;
+            } else {
+                temp = temp + this.startPoint.month;
+            }
+            if (this.startPoint.date < 10) {
+                temp = temp + "0" + this.startPoint.date;
+            } else {
+                temp = temp + this.startPoint.date;
+            }
+            return temp;
+        },
+        enddate() {
+            let temp = `${this.endPoint.year}`;
+            if (this.endPoint.month < 10) {
+                temp = temp + "0" + this.endPoint.month;
+            } else {
+                temp = temp + this.endPoint.month;
+            }
+            if (this.endPoint.date < 10) {
+                temp = temp + "0" + this.endPoint.date;
+            } else {
+                temp = temp + this.endPoint.date;
+            }
+            return temp;
+        }
     },
     mounted() {
-        this.getOrder();
-        this.getCancel(); {
+        {
             for (let i = this.getYear() - 10; i <= this.getYear(); i++) {
                 this.years.push(i);
             }
@@ -261,6 +291,8 @@ export default {
             this.month = this.getMonth();
             this.date = this.getDate();
         }
+        this.getOrder("");
+        this.getCancel("");
     }
 }
 </script>

@@ -50,8 +50,8 @@ INSERT INTO s_order VALUES (
     1,
     'b',
     73800,
-    sysdate,
     '2022-01-25',
+    '취소중',
     '카드',
     '신세계몰',
     '테스터1',
@@ -533,4 +533,4 @@ FROM
 --SELECT * FROM s_member, s_order, s_product WHERE s_member.id = s_order.id AND s_order.productno = s_product.productno AND s_product.sellerid = 'seller0001';
 --Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_product.productname, s_product.sellerid, s_product.imagename from s_order, s_product, s_member where s_order.id = 'tester0001' and s_order.state in ('결제 완료', '배송중', '배송 완료')
 --Select s_member.nickname from s_product left join s_member on s_product.sellerid = s_member.id where s_product.productno = 1;
---Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_order.seller, s_product.productname, s_product.imagename from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = #{id} and s_order.state in ('취소 완료', '취소 요청', '환불 완료', '환불 요청')
+--Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_order.seller, s_product.productname, s_product.imagename from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = 'tester0001' and s_order.orderdate  >= TO_DATE('20210127', 'YYYYMMDD') and TO_CHAR(s_order.orderdate, 'YYYYMMDD') <= '20220127' and s_order.state in ('결제 완료', '배송중', '배송 완료') order by s_order.orderdate desc;

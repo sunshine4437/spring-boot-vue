@@ -48,7 +48,20 @@
                         </td>
                     </div>
                     <div slot="collapse-body" style="text-align: left">
-                        <div style="width: 1200px"><span v-html="qna.answer"></span></div>
+                        <td style="width: 210px; border: 0; text-align:right">
+                            <span class="ic_qs">Q</span>
+                        </td>
+                        <td style="width: 950px; border: 0;">
+                            <span v-html="qna.title"></span>
+                        </td>
+                    </div>
+                    <div slot="collapse-body" style="text-align: left">
+                        <td style="width: 210px; border: 0; text-align:right">
+                            <span class="ic_as">A</span>
+                        </td>
+                        <td style="width: 950px; border: 0;">
+                            <span v-html="qna.answer"></span>
+                        </td>
                     </div>
                 </collapse>
             </div>
@@ -83,8 +96,8 @@ export default {
                 this.qnas = res.data;
             })
         },
-        addOpen() {            
-            if(this.getLogin.length == 0){
+        addOpen() {
+            if (this.getLogin.length == 0) {
                 alert('로그인을 해주세요');
             } else {
                 this.question = !this.question;
@@ -145,5 +158,15 @@ body {
 .questionAdd {
     height: auto;
     margin-bottom: 20px;
+}
+
+.ic_qs,
+.ic_as {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.ic_as {
+    color: rgb(21, 170, 21);
 }
 </style>

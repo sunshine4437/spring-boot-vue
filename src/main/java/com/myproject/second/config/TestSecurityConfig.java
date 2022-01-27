@@ -1,3 +1,4 @@
+package com.myproject.second.config;
 //package com.myproject.second.config;
 //
 //import lombok.RequiredArgsConstructor;
