@@ -18,9 +18,16 @@ public interface ProdMapper {
 	@Select("select * from s_product where productno = #{productno}")
 	ProdVO findProduct(int productno);
 
-	@Select("select s_product.productno, s_product.productname, s_product.ptype, s_product.imagename, s_product.price, s_product.sellerid, s_member.nickname from s_product left join s_member on s_product.id = s_member.id where UPPER(productname) like UPPER(#{productname}) or UPPER(ptype) like UPPER(#{productname}) order by s_product.productno")
+	@Select("select s_product.productno, s_product.productname, s_product.ptype, s_product.imagename, s_product.price, s_product.sellerid, s_member.nickname from s_product left join s_member on s_product.sellerid = s_member.id where UPPER(productname) like UPPER(#{productname}) or UPPER(ptype) like UPPER(#{productname}) order by s_product.productno")
 	List<ProdVO> searchProduct(@Param("productname") String productname);
-	
+
+	@Select("select count(productno) from s_product where price >= #{min} and price <= #{max} and (UPPER(productname) like UPPER(#{productname}) or UPPER(ptype) like UPPER(#{productname}))")
+	int getCount(@Param("productname") String productname, @Param("min") int min, @Param("max") int max);
+
+	@Select("select s_product.productno, s_product.productname, s_product.ptype, s_product.imagename, s_product.price, s_product.sellerid, s_member.nickname from s_product left join s_member on s_product.sellerid = s_member.id where price >= #{min} and price <= #{max} and (UPPER(productname) like UPPER(#{productname}) or UPPER(ptype) like UPPER(#{productname})) order by s_product.productno")
+	List<ProdVO> searchMinMaxProduct(@Param("productname") String productname, @Param("min") int min,
+			@Param("max") int max);
+
 	@Select("select * from s_product where sellerid = #{sellerid} order by regdate")
 	List<ProdVO> findSalesList(String sellerid);
 

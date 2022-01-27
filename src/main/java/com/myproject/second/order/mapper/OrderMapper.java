@@ -15,10 +15,10 @@ public interface OrderMapper {
 	@Select("Select * from s_order where id = #{id}")
 	List<OrderVO> getAllOrderList(@Param("id") String id);
 
-	@Select("Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_order.seller, s_product.productname, s_product.imagename from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = #{id} and s_order.state in ('결제 완료', '배송중', '배송 완료')")
+	@Select("Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_order.seller, s_product.productname, s_product.imagename from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = #{id} and s_order.state in ('결제 완료', '배송중', '배송 완료') order by s_order.orderdate desc")
 	List<OrderVO> getOrderList(@Param("id") String id);
 
-	@Select("Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_order.seller, s_product.productname, s_product.imagename from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = #{id} and s_order.state in ('취소 완료', '취소 요청', '환불 완료', '환불 요청')")
+	@Select("Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_order.seller, s_product.productname, s_product.imagename from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = #{id} and s_order.state in ('취소 완료', '취소 요청', '환불 완료', '환불 요청') order by s_order.orderdate desc")
 	List<OrderVO> getCancelList(@Param("id") String id);
 
 	@Select("Select s_member.nickname from s_product left join s_member on s_product.sellerid = s_member.id where s_product.productno = #{productno}")

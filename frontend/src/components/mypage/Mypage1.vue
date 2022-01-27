@@ -22,7 +22,7 @@
                     <div class="row2">
                         <!--기간별 주문/취소한 상품 내역 조회-->
                         <select name="" id="" @change="setStartYear">
-                            <option v-for="n in years" :key="n" :value="n" :selected="n == getYear()">{{n}}</option>
+                            <option v-for="n in years" :key="n" :value="n" :selected="n == getYear()-1">{{n}}</option>
                         </select>
                         <label for="">년</label>
                         <select name="" id="" @change="setStartMonth">
@@ -142,9 +142,9 @@ export default {
     data() {
         return {
             startPoint: {
-                year: "1900",
-                month: "01",
-                date: "01",
+                year: this.getYear() - 1,
+                month: this.getMonth(),
+                date: this.getDate(),
             },
             endPoint: {
                 year: this.getYear(),
@@ -208,7 +208,7 @@ export default {
         },
         //시작날짜와 끝날짜 기간사이 상품을 조회하기 위한 함수
         compareDate(target) {
-            if (`${this.startPoint.year}-${this.startPoint.month}-${this.startPoint.orderDate}` <= target.orderdate)
+            if (`${this.startPoint.year}-${this.startPoint.month}-${this.startPoint.date}` <= target.orderdate)
                 if (target.orderdate <= `${this.endPoint.year}-${this.endPoint.month}-${this.endPoint.date}`)
                     return true;
         },
