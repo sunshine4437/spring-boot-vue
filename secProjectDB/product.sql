@@ -269,9 +269,10 @@ INSERT INTO s_product VALUES (
     10000,
     '可记1',
     '可记2',
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+--    to_char(
+--        sysdate, 'yyyy.mm.dd hh24:mi'
+--    ),
+    '2022.01.01 11:11',
     'seller0002',
     'productDetail01.jpg',
     1
@@ -411,7 +412,7 @@ SELECT
     *
 FROM
     s_product;
-
+select * from s_product where sellerid = 'seller0002' order by regdate;
 --SELECT imagename, productname, productno, price FROM s_product;    
 --select prod_seq.nextval from dual;
 --select s_product.productno, s_product.productname, s_product.ptype, s_product.imagename, s_product.price, s_product.id, s_member.nickname from s_product left join s_member on s_product.id = s_member.id where UPPER(productname) like UPPER('%咯己狼幅%') or UPPER(ptype) like UPPER('%咯己狼幅%') order by s_product.productno;

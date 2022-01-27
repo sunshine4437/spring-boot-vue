@@ -64,10 +64,12 @@ export default {
                 let toPath = this.getPath
                 console.log(toPath)
                 axios.get('/api/member/' + this.username).then(res => {
+                    console.log(res.data);
                     if (res.data.id == this.username) {
                         if (res.data.password == this.password) {
+                       
                             alert(this.username + "님 환영합니다");
-                            this.Login(res.data.id);
+                            this.Login(res.data);
                             this.$router.push(toPath)
                         } else if ("" === this.password) {
                             alert("비밀번호를 입력하세요.");

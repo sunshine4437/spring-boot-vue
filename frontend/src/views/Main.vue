@@ -58,8 +58,8 @@
         </ul>
         <!-- 회원의 접속 관련 메뉴 로그인 로그아웃 회원가입 버튼 -->
         <ul class="rightMenu">
-            <li>
-                <router-link :to="'/seller'" v-if="getLogin" class="pageLink">
+            <li v-if="getLogin" >
+                <router-link :to="'/seller'" class="pageLink" v-if="getLogin.user_seller == 1">
                     <item>셀러페이지</item>
                 </router-link>
             </li>
@@ -73,7 +73,7 @@
                 </router-link>
                 <!-- 로그인상태에서의 접속자의 아이디 표시와 누르면 마이페이지 이동 기능과 로그아웃 버튼 -->
                 <router-link v-else-if="i==2 && getLogin" v-bind:to="link.link" class="pageLink">
-                    <item>{{getLogin}}님</item>
+                    <item>{{getLogin.user_nickname}}님</item>
                 </router-link>
                 <router-link v-else-if="i==3 && getLogin" v-bind:to="link.link" class="pageLink">
                     <item @click="Logout">로그아웃</item>

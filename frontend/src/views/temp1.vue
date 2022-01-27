@@ -1,22 +1,32 @@
 <template>
 <div>
-    <!-- <img :src="require(`../../../src/main/resources/images/i11768929676.png`)" alt=""> -->
+    {{getLogin}}
 </div>
 </template>
 
 <script>
+import {
+    createNamespacedHelpers
+} from 'vuex';
+// 로그인 상태 관련 모듈
+const loginStore = createNamespacedHelpers('loginStore');
 export default {
     data() {
         return {
-       
+
         };
     },
     methods: {
-       
-       
+        test(){
+            console.log(this.getLogin);
+        }
     },
-    mounted(){
-     
+    computed: {
+        // 로그인한 유저정보를 반환
+        ...loginStore.mapGetters(['getLogin'])
+    },
+    mounted() {
+        this.test();
     }
 }
 </script>
