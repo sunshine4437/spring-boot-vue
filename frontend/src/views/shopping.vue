@@ -285,8 +285,8 @@ export default {
                     productname: productname,
                     page: this.page,
                     content: this.content,
-                        min: this.min,
-                        max: this.max,
+                    min: this.min,
+                    max: this.max,
                 }
             }).then(res => {
                 this.prod = res.data;
