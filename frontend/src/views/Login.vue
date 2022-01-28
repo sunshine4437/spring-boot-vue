@@ -1,14 +1,13 @@
 <template>
 <div class="login">
     <!-- 로그인 입력 양식 -->
-    {{getPath}}
     <div class="inputForm">
         <router-link class="logoLink" v-bind:to="'/'">
             <div class="logo">
                 <router-link v-bind:to="'/'"> <img src="@/assets/logo.jpg" alt="logo" style="width:130px; height:130px;"></router-link>
             </div>
         </router-link>
-        <input class="inputID" type="text" v-model="username" placeholder="아이디 입력" @keyup.enter="signIn">
+        <input class="inputID" type="text" v-model="id" placeholder="아이디 입력" @keyup.enter="signIn">
         <input class="inputPWD" type="password" v-model="password" placeholder="비밀번호 입력" @keyup.enter="signIn">
         <button class="inputBtn" @click="signIn">로그인</button>
         <div class="etc">
@@ -21,7 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import {
     createNamespacedHelpers
 } from 'vuex'
@@ -29,7 +28,7 @@ const loginStore = createNamespacedHelpers('loginStore')
 export default {
     data() {
         return {
-            username: '',
+            id: '',
             password: '',
             msg: '',
         }
@@ -37,86 +36,27 @@ export default {
     methods: {
         // 로그인 버튼을 눌렀을 때 아이디, 비밀번호 검사
         signIn() {
-            try {
-                // for (let i = 0; i < this.getUserInfo.length; i++) {
-                //     if (this.getUserInfo[i].username === this.username) {
-                //         if (this.getUserInfo[i].password === this.password) {
-                //             alert(this.username + "님 환영합니다");
-                //             // 로그인한 유저 정보를 저장
-                //             this.Login(i);
-                //             this.$router.push("/");
-                //             return;
-                //         }
-                //         if ("" === this.password) {
-                //             alert("비밀번호를 입력하세요.");
-                //             return;
-                //         } else {
-                //             alert("비밀번호가 맞지 않습니다.");
-                //             this.password = "";
-                //             return;
-                //         }
-                //     }
-                // }
-                // if ("" === this.username)
-                //     alert("아이디를 입력하세요.")
-                // else
-                //     alert("아이디가 맞지 않습니다.")
-                let toPath = this.getPath
-                console.log(toPath)
-                axios.get('/api/member/' + this.username).then(res => {
-                    console.log(res.data);
-                    if (res.data.id == this.username) {
-                        if (res.data.password == this.password) {
-                       
-                            alert(this.username + "님 환영합니다");
-                            this.Login(res.data);
-                            this.$router.push(toPath)
-                        } else if ("" === this.password) {
-                            alert("비밀번호를 입력하세요.");
-                            return;
-                        } else {
-                            alert("비밀번호가 맞지 않습니다.");
-                            this.password = "";
-                            return;
-                        }
-                    } else if ("" === this.username)
-                        alert("아이디를 입력하세요.")
-                    else {
-                        alert("아이디가 맞지 않습니다.")
-                    }
+            if (this.id == '') {
+                alert("아이디를 입력해주세요")
+            } else if (this.password == '') {
+                alert("비밀번호를 입력해주세요")
+            } else {
+                this.Login({
+                    id: this.id,
+                    password: this.password
                 })
-                // if (this.username.length == 0) {
-                //     alert('아이디를 입력해주세요')
-                // } else {
-                //     axios.get('/api/member/' + this.username).then(res => {
-                //         if (res.data.id == this.username) {
-                //             if (res.data.password == this.password) {
-                //                 this.Login(res.data.id);
-                //                 this.$router.push(toPath)
-                //             } else {
-                //                 alert("비밀번호가 틀렸습니다")
-                //             }
-                //         } else {
-                //             alert("아이디가 틀렸습니다")
-                //         }
-                //     })
-                // }
-
-            } catch (err) {
-                alert(err);
-                this.msg = "error";
             }
         },
-        ...loginStore.mapMutations([
-            'Login'
-        ]),
+        // ...loginStore.mapActions([
+        //     'Login'
+        // ]),
         ...loginStore.mapMutations([
             'setPath'
         ])
     },
     computed: {
         ...loginStore.mapGetters(['getLogin']),
-        ...loginStore.mapGetters(['getPath']),
+        // ...loginStore.mapGetters(['getPath']),
     },
     mounted() {
         if (this.$route.params.nextPage != null)

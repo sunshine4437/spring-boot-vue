@@ -59,7 +59,7 @@
         <!-- 회원의 접속 관련 메뉴 로그인 로그아웃 회원가입 버튼 -->
         <ul class="rightMenu">
             <li v-if="getLogin" >
-                <router-link :to="'/seller'" class="pageLink" v-if="getLogin.user_seller == 1">
+                <router-link :to="'/seller'" class="pageLink" v-if="getLogin.user_auth == 'ADMIN' || getLogin.user_auth == 'SELLER'">
                     <item>셀러페이지</item>
                 </router-link>
             </li>
