@@ -58,6 +58,11 @@
         </ul>
         <!-- 회원의 접속 관련 메뉴 로그인 로그아웃 회원가입 버튼 -->
         <ul class="rightMenu">
+            <li v-if="getLogin" >
+                <router-link :to="'/seller'" class="pageLink" v-if="getLogin.user_auth == 'ADMIN' || getLogin.user_auth == 'SELLER'">
+                    <item>셀러페이지</item>
+                </router-link>
+            </li>
             <li v-for="(link, i) in rightMenuName" :key="i">
                 <!-- 미로그인 상태에서의 로그인 버튼과 회원가입 버튼 -->
                 <router-link v-if="i==0 && !getLogin" v-bind:to="link.link" class="pageLink">
@@ -68,7 +73,7 @@
                 </router-link>
                 <!-- 로그인상태에서의 접속자의 아이디 표시와 누르면 마이페이지 이동 기능과 로그아웃 버튼 -->
                 <router-link v-else-if="i==2 && getLogin" v-bind:to="link.link" class="pageLink">
-                    <item>{{getLogin}}님</item>
+                    <item>{{getLogin.user_nickname}}님</item>
                 </router-link>
                 <router-link v-else-if="i==3 && getLogin" v-bind:to="link.link" class="pageLink">
                     <item @click="Logout">로그아웃</item>
@@ -77,7 +82,6 @@
         </ul>
     </div>
     <hr class="lineNav">
-    <!-- {{msg}} -->
     <!-- 메인 하위 컴포넌트 표시 구역 -->
     <router-view></router-view>
 </div>
@@ -164,7 +168,7 @@ export default {
         }
     },
     mounted() {
-        this.getData();
+        // this.getData();
     }
 }
 </script>
@@ -271,11 +275,12 @@ export default {
 item {
     display: inline-block;
     text-align: center;
+    font-weight: 600;
 }
 
 item:hover {
-    border-bottom: 2px solid rgb(0, 153, 255);
-    margin-bottom: -2px;
+    border-bottom: 3px solid rgb(0, 153, 255);
+    margin-bottom: -3px;
 }
 
 .member item {
@@ -350,11 +355,7 @@ item:hover {
 }
 
 .rightMenu item {
-    width: 100px;
-}
-
-.rightMenu item:first-child {
-    width: auto;
+     width: auto;
     margin-right: 10px;
 }
 

@@ -87,7 +87,7 @@ export default {
     },
     methods: {
         async getData() {
-            await axios.get("/api/product/productDetail/saleslist/" + this.getLogin).then(res => {
+            await axios.get("/api/product/productDetail/saleslist/" + this.getLogin.user_id).then(res => {
                 this.data = res.data;
                 this.data.forEach(element => {
                     this.products.push(element);
@@ -154,20 +154,18 @@ export default {
                 }
                 // console.log(new Date(a_time.year, a_time.month, a_time.date, a_time.hour, a_time.minute));
                 // console.log(new Date(b_time.year, b_time.month, b_time.date, b_time.hour, b_time.minute));
+                let a_Date = new Date(a_time.year, a_time.month, a_time.date, a_time.hour, a_time.minute);
+                let b_Date =  new Date(b_time.year, b_time.month, b_time.date, b_time.hour, b_time.minute);
                 if (this.regdateSortState < 0) {
-                    if (new Date(a_time.year, a_time.month, a_time.date, a_time.hour, a_time.minute) -
-                        new Date(b_time.year, b_time.month, b_time.date, b_time.hour, b_time.minute) == 0) {
+                    if (a_Date - b_Date == 0) {
                         return a.productno - b.productno;
                     }
-                    return new Date(a_time.year, a_time.month, a_time.date, a_time.hour, a_time.minute) -
-                        new Date(b_time.year, b_time.month, b_time.date, b_time.hour, b_time.minute);
+                    return a_Date - b_Date;
                 } else {
-                    if (new Date(a_time.year, a_time.month, a_time.date, a_time.hour, a_time.minute) -
-                        new Date(b_time.year, b_time.month, b_time.date, b_time.hour, b_time.minute) == 0) {
+                    if (a_Date - b_Date == 0) {
                         return a.productno - b.productno;
                     }
-                    return new Date(b_time.year, b_time.month, b_time.date, b_time.hour, b_time.minute) -
-                        new Date(a_time.year, a_time.month, a_time.date, a_time.hour, a_time.minute);
+                    return b_Date - a_Date;
                 }
 
             })

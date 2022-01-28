@@ -1,6 +1,8 @@
 package com.myproject.second.member.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,9 +30,28 @@ public class MemberController {
 		return memberService.getAllMembers();
 	}
 
-	@GetMapping("/{id}")
-	public MemberVO getMember(@PathVariable("id") String id) throws Exception {
-		return memberService.getMember(id);
+//	@GetMapping("/{id}")
+//	public MemberVO getMember(@PathVariable("id") String id) throws Exception {
+//	
+//		return memberService.getMember(id);
+//	}
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestParam("id") String id, @RequestParam("password") String pwd) {
+		MemberVO res = memberService.getMember(id);
+		Map<String, String> result = new HashMap<>();
+
+		if (res == null)
+			return new ResponseEntity<>("아이디가 존재하지 않습니다.", HttpStatus.UNAUTHORIZED);
+		else {
+			if (res.getPassword().equals(pwd)) {
+				result.put("auth", res.getAuthority());
+				result.put("nickname", res.getNickname());
+				result.put("id", res.getId());
+				return new ResponseEntity<>(result, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>("비밀번호가 틀립니다.", HttpStatus.UNAUTHORIZED);
+			}
+		}
 	}
 
 	@GetMapping("/productDetail/{productno}")
