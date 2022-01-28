@@ -42,7 +42,7 @@ export default {
     methods: {
         setImage(idx) {
             try {
-                return require(`../../../../src/main/resources/images/product/${this.reviews[idx].productno}/review/${idx+1}/${this.reviews[idx].image}`)
+                return require(`../../../../src/main/resources/images/product/${this.reviews[idx].productno}/review/${this.reviews[idx].reviewno}/${this.reviews[idx].image}`)
             } catch {
                 return require(`@/components/mainPage/productTableImage/error.png`)
             }
