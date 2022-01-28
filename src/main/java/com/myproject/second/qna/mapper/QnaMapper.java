@@ -11,6 +11,9 @@ import com.myproject.second.qna.vo.QnaVO;
 
 @Mapper
 public interface QnaMapper {
+	@Select("select count(qnano) from s_qna where productno = #{productno}")
+	int qnaCount(@Param("productno") int productno);
+
 	@Select("select * from s_qna where productno = #{productno} order by qnano desc")
 	List<QnaVO> findAllQna(@Param("productno") int productno);
 

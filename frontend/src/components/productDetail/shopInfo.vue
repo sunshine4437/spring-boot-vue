@@ -12,7 +12,9 @@
         </div>
         <div class="bestPicDiv">
             <div class="bestPic" v-for="(best, idx) in bests" :key="idx">
-                <img :src="setImage(best)" style="width: 140px; height: 140px" />
+                <!-- <router-link v-bind:to="`/productDetail/${best.productno}`" > -->
+                <img :src="setImage(best)" style="width: 140px; height: 140px" @click="moveto(best.productno)"/>
+                <!-- </router-link> -->
             </div>
         </div>
     </div>
@@ -47,6 +49,10 @@ export default {
             } catch {
                 return require(`@/components/mainPage/productTableImage/error.png`)
             }
+        },
+        moveto(productno){
+            this.$router.push(`/productDetail/${productno}`)
+            this.$router.go();
         }
     },
     mounted() {

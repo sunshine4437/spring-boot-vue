@@ -87,7 +87,7 @@ INSERT INTO s_qna (
 ) VALUES (
     qna_seq.NEXTVAL,
     1,
-    '물건 2개다갔는데 1개만 반품완료? 확인 부탁드립니다.',
+    '물건 2개 다 갔는데 1개만 반품완료? 확인 부탁드립니다.',
     'tester0008'
 );
 

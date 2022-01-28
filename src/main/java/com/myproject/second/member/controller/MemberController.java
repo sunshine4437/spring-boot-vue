@@ -90,7 +90,13 @@ public class MemberController {
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public void deleteMember(@PathVariable("id") String id) {
-		memberService.deleteMember(id);
+	public ResponseEntity<?> deleteMember(@PathVariable("id") String id) throws Exception {
+		try {
+			memberService.deleteMember(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 }

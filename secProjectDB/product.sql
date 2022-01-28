@@ -6,17 +6,16 @@ CREATE TABLE s_product (
     productno       NUMBER(9) PRIMARY KEY,
     productname     VARCHAR2(200) NOT NULL,
     ptype           VARCHAR2(50) NOT NULL,
-    imagename       VARCHAR2(50) NOT NULL,
+    imagename       VARCHAR2(100) NOT NULL,
     price           NUMBER(10) NOT NULL,
     option1         VARCHAR2(2000) NOT NULL,
     option2         VARCHAR2(2000),
     regdate         VARCHAR2(30),
     sellerid        VARCHAR2(20) NOT NULL,
-    detailimagename VARCHAR2(50),
+    detailimagename VARCHAR2(100),
     onsale          CHAR(1) DEFAULT 0,
     CONSTRAINT fk_prodmem FOREIGN KEY ( sellerid )
         REFERENCES s_member ( id )
-            ON DELETE CASCADE
 );
 
 CREATE SEQUENCE prod_seq START WITH 1 INCREMENT BY 1 MAXVALUE 9999999999 NOCYCLE NOCACHE;
@@ -49,7 +48,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
+    'intro.jpg',
     1
 );
 
@@ -59,13 +58,13 @@ INSERT INTO s_product VALUES (
     '酒快磐/咯己狼幅/巢己狼幅',
     '3.jpg',
     13000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
+    'intro.jpg',
     1
 );
 
@@ -75,13 +74,13 @@ INSERT INTO s_product VALUES (
     '惑狼/巢己狼幅',
     '4.jpg',
     16900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
+    'intro_0119.jpg',
     1
 );
 
@@ -91,13 +90,13 @@ INSERT INTO s_product VALUES (
     '惑狼/酒快磐/咯己狼幅/巢己狼幅',
     '5.jpg',
     11000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
+    '5f995d3e-e36c-4da0-9fe5-f44374c14da4_1640538764389.jpg',
     1
 );
 
@@ -107,13 +106,13 @@ INSERT INTO s_product VALUES (
     '脚惯',
     '6.jpg',
     155000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
+    '厚飘肺 决胶沛 拳捞飘,喉发 惑技汲疙.jpg',
     1
 );
 
@@ -129,7 +128,7 @@ INSERT INTO s_product VALUES (
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
+    'new.jpg',
     0
 );
 
@@ -139,13 +138,13 @@ INSERT INTO s_product VALUES (
     '脚惯',
     '8.jpg',
     19900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
+    '1835339176.jpg',
     1
 );
 
@@ -155,13 +154,13 @@ INSERT INTO s_product VALUES (
     '脚惯',
     '9.jpg',
     73960,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
+    '8db1f838-ee20-4b38-ba10-31346447bb73.jpg',
     1
 );
 
@@ -171,13 +170,13 @@ INSERT INTO s_product VALUES (
     '酒快磐/咯己狼幅',
     '10.jpg',
     72040,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0001',
-    'productDetail01.jpg',
+    'A.jpg',
     1
 );
 
@@ -187,13 +186,13 @@ INSERT INTO s_product VALUES (
     '惑狼/酒快磐/咯己狼幅',
     '11.jpg',
     59000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    'A_4.jpg',
     1
 );
 
@@ -203,13 +202,13 @@ INSERT INTO s_product VALUES (
     '庆绢',
     '12.jpg',
     19900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    '1368439939.jpg',
     1
 );
 
@@ -219,13 +218,13 @@ INSERT INTO s_product VALUES (
     '傈磊 力前',
     '13.jpg',
     63170,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    '1429899c-5104-4acc-8465-5b370022c4c8.jpg',
     1
 );
 
@@ -235,13 +234,13 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '14.jpg',
     7900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    'A_1.jpg',
     1
 );
 
@@ -251,13 +250,13 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '15.jpg',
     16900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    'jellpe-main.jpg',
     1
 );
 
@@ -267,14 +266,11 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '16.jpg',
     10000,
-    '可记1',
-    '可记2',
---    to_char(
---        sysdate, 'yyyy.mm.dd hh24:mi'
---    ),
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     '2022.01.01 11:11',
     'seller0002',
-    'productDetail01.jpg',
+    '3bd35944-0562-4c32-b4e6-17e87b4a81f0_1641960582596.jpg',
     1
 );
 
@@ -284,13 +280,13 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '17.jpg',
     18000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    '5cd_image_01.jpg',
     1
 );
 
@@ -300,13 +296,13 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '18.jpg',
     14900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    '0120.jpg',
     1
 );
 
@@ -316,13 +312,13 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '19.jpg',
     12900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    'intro.jpg',
     1
 );
 
@@ -332,13 +328,13 @@ INSERT INTO s_product VALUES (
     '傈磊 力前',
     '20.jpg',
     5000000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    'bt.jpg',
     1
 );
 
@@ -348,13 +344,13 @@ INSERT INTO s_product VALUES (
     '巢己狼幅/惑狼/酒快磐',
     '21.jpg',
     36900,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    'd1.jpg',
     1
 );
 
@@ -364,13 +360,13 @@ INSERT INTO s_product VALUES (
     '傈磊 力前',
     '22.jpg',
     49000,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    '01_2.jpg',
     1
 );
 
@@ -380,13 +376,13 @@ INSERT INTO s_product VALUES (
     '棱拳',
     '23.jpg',
     16980,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    '1622826005597_E.jpg',
     0
 );
 
@@ -396,13 +392,13 @@ INSERT INTO s_product VALUES (
     '咯己狼幅/惑狼/窍狼/盔乔胶',
     '24.jpg',
     9700,
-    '可记1',
-    '可记2',
+    '可记1;1;2;3;4',
+    '可记2;a;s;d;f',
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
     'seller0002',
-    'productDetail01.jpg',
+    '220122_A.jpg',
     0
 );
 
@@ -416,3 +412,5 @@ select * from s_product where sellerid = 'seller0002' order by regdate;
 --SELECT imagename, productname, productno, price FROM s_product;    
 --select prod_seq.nextval from dual;
 --select s_product.productno, s_product.productname, s_product.ptype, s_product.imagename, s_product.price, s_product.id, s_member.nickname from s_product left join s_member on s_product.id = s_member.id where UPPER(productname) like UPPER('%咯己狼幅%') or UPPER(ptype) like UPPER('%咯己狼幅%') order by s_product.productno;
+--select count(productno) from s_product where price > 20000 and price < 999999999999 and (UPPER(productname) like UPPER('%咯己狼幅%') or UPPER(ptype) like UPPER('%咯己狼幅%'));
+--select count(productno) from s_product where price >= 20000 and price <= 9999999 and (UPPER(productname) like UPPER('%咯己狼幅%') or UPPER(ptype) like UPPER('%咯己狼幅%'))

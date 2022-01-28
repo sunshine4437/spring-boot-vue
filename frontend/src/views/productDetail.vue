@@ -202,7 +202,7 @@ export default {
         // 숫자에 천자리마다 ,추가
         AddComma(num) {
             var regexp = /\B(?=(\d{3})+(?!\d))/g;
-            return num.toString().replace(regexp, ",");
+            return `${num}`.toString().replace(regexp, ",");
         },
         // 숫자에 천자리마다 ,추가
         amountDec(idx) {

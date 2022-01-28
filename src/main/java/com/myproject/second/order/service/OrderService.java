@@ -19,12 +19,14 @@ public class OrderService {
 		return orderMapper.getAllOrderList(id);
 	}
 
-	public List<OrderVO> getOrderList(String id) {
-		return orderMapper.getOrderList(id);
+	public List<OrderVO> getOrderList(String id, String startdate, String enddate, String productname) {
+		String temp = "%" + productname + "%";
+		return orderMapper.getOrderList(id, startdate, enddate, temp);
 	}
 
-	public List<OrderVO> getCancelList(String id) {
-		return orderMapper.getCancelList(id);
+	public List<OrderVO> getCancelList(String id, String startdate, String enddate, String productname) {
+		String temp = "%" + productname + "%";
+		return orderMapper.getCancelList(id, startdate, enddate, temp);
 	}
 
 	public void insertOrder(OrderVO orderVO) {
@@ -34,5 +36,9 @@ public class OrderService {
 
 	public void updateOrder(long orderidx, String state) {
 		orderMapper.updateOrder(orderidx, state);
+	}
+
+	public int haveOrder(String id) {
+		return orderMapper.haveOrder(id);
 	}
 }

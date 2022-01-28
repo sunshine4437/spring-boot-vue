@@ -25,13 +25,22 @@ public class OrderController {
 	public List<OrderVO> getAllOrderList(@PathVariable("id") String id) throws Exception {
 		return orderService.getAllOrderList(id);
 	}
-	@GetMapping("/order/{id}")
-	public List<OrderVO> getOrderList(@PathVariable("id") String id) throws Exception {
-		return orderService.getOrderList(id);
+
+	@GetMapping("/getOrders")
+	public List<OrderVO> getOrderList(@RequestParam("id") String id, @RequestParam("startdate") String startdate,
+			@RequestParam("enddate") String enddate, @RequestParam("productname") String productname) throws Exception {
+		return orderService.getOrderList(id, startdate, enddate, productname);
 	}
-	@GetMapping("/cancel/{id}")
-	public List<OrderVO> getCancelList(@PathVariable("id") String id) throws Exception {
-		return orderService.getCancelList(id);
+
+	@GetMapping("/getCancels")
+	public List<OrderVO> getCancelList(@RequestParam("id") String id, @RequestParam("startdate") String startdate,
+			@RequestParam("enddate") String enddate, @RequestParam("productname") String productname) throws Exception {
+		return orderService.getCancelList(id, startdate, enddate, productname);
+	}
+
+	@GetMapping("/canquit/{id}")
+	public int haveOrder(@PathVariable("id") String id) throws Exception {
+		return orderService.haveOrder(id);
 	}
 
 	@PostMapping("/create")

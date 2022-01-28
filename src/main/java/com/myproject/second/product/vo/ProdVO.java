@@ -13,12 +13,15 @@ public class ProdVO {
 	private String detailimagename;
 	private String onsale;
 	private String nickname;
+	private int min;
+	private int max;
 
 	public ProdVO() {
 	}
 
 	public ProdVO(int productno, String productname, String ptype, String imagename, int price, String option1,
-			String option2, String regdate, String sellerid, String detailimagename, String onsale, String nickname) {
+			String option2, String regdate, String sellerid, String detailimagename, String onsale, String nickname,
+			int min, int max) {
 		super();
 		this.productno = productno;
 		this.productname = productname;
@@ -32,6 +35,8 @@ public class ProdVO {
 		this.detailimagename = detailimagename;
 		this.onsale = onsale;
 		this.nickname = nickname;
+		this.min = min;
+		this.max = max;
 	}
 
 	public int getProductno() {
@@ -128,6 +133,22 @@ public class ProdVO {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+
+	public int getMin() {
+		return min;
+	}
+
+	public void setMin(int min) {
+		this.min = min;
+	}
+
+	public int getMax() {
+		return max;
+	}
+
+	public void setMax(int max) {
+		this.max = max;
 	}
 
 }

@@ -4,7 +4,6 @@
 
     <!--right-->
     <div class="right">
-        {{deleteCount}}
         <div class="pList1">
             <h2>회원 정보 열람</h2>
         </div>
@@ -49,9 +48,6 @@
             <input type="text" class="mdText" id="detailAddress" placeholder="상세주소" v-model="putadd">
             <button class="classBtn" @click="addMod"> 수정하기 </button>
         </div>
-        <div class="content1">
-            <button class="quit" @click="quitBtn">회원탈퇴</button>
-        </div>
     </div>
 </div>
 </template>
@@ -82,7 +78,6 @@ export default {
             putnick: '',
             putadd: '',
             msg: '',
-            deleteCount: 0,
         }
     },
     methods: {
@@ -201,18 +196,6 @@ export default {
                 }
             } catch (err) {
                 this.msg = "error";
-            }
-        },
-        quitBtn() {
-            if (this.deleteCount == 0) {
-                alert("정말 탈퇴하시려면 회원 탈퇴 버튼을 한 번 더 눌러주세요")
-                this.deleteCount++;
-            } else {
-                let id = this.getLogin;
-                alert("탈퇴하셨습니다.")
-                axios.delete(`/api/member/delete/${id}`);
-                this.Logout();
-                this.$router.push("/");
             }
         },
         execDaumPostcode() { // Daum 우편번호 조회 API 인용

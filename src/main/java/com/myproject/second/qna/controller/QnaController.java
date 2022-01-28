@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myproject.second.qna.service.QnaService;
 import com.myproject.second.qna.vo.QnaVO;
+import com.myproject.second.review.vo.ReviewVO;
 
 @RestController
 @RequestMapping(value = "api/qna/*")
@@ -19,14 +20,20 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 
-	@GetMapping("/{productno}")
-	public List<QnaVO> getQnaList(@PathVariable("productno") int productno) throws Exception {
-		List<QnaVO> list = qnaService.getQnaList(productno);
-		return list;
+	@GetMapping("/count/{productno}")
+	public int reviewCount(@PathVariable("productno") int productno) throws Exception {
+		return qnaService.qnaCount(productno);
 	}
-	
+
+	@GetMapping("/getQna")
+	public List<QnaVO> getQnaList(@RequestParam("productno") int productno, @RequestParam("page") int page,
+			@RequestParam("content") int content) throws Exception {
+		return qnaService.getQnaList(productno, page, content);
+	}
+
 	@PostMapping("/{productno}")
-	public void inserQna(@PathVariable("productno") int productno, @RequestParam String title, @RequestParam String id) throws Exception {
+	public void inserQna(@PathVariable("productno") int productno, @RequestParam String title, @RequestParam String id)
+			throws Exception {
 		qnaService.addQna(productno, title, id);
 	}
 }

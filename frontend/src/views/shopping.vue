@@ -80,21 +80,21 @@
             <div class="container">
                 <div class="products_fa">
                     <h2 class='span1'> 인기상품</h2>
-                    <div class="products" v-for="(prd, idx) in prod.slice(0,4)" :key="idx">
-                        <router-link v-bind:to="`/productDetail/${prd.productno}`" v-if="prd.price > min && prd.price < max">
-                            <img :src="setImage(idx)" alt="productImage">
-                            <p style="height:70px">{{prd.productname}}</p>
-                            <p class="price">{{AddComma(prd.price)}}원</p>
+                    <div class="products" v-for="(pop, idx) in popular" :key="idx">
+                        <router-link v-bind:to="`/productDetail/${pop.productno}`">
+                            <img :src="setPopularImage(idx)" alt="productImage">
+                            <p style="height:70px">{{pop.productname}}</p>
+                            <p class="price">{{AddComma(pop.price)}}원</p>
                         </router-link>
                     </div>
                 </div>
 
                 <h2 class="span1"> 관련상품</h2>
                 <div class="products1">
-                    <ul v-for="(prd, idx) in prod.slice((page-1)*content, page*content)" :key="idx">
-                        <li class="item" v-if="prd.price > min && prd.price < max">
+                    <ul v-for="(prd, idx) in prod" :key="idx">
+                        <li class="item">
                             <router-link v-bind:to="`/productDetail/${prd.productno}`">
-                                <img :src="setImage(idx+(page-1)*content)" alt="productImage">
+                                <img :src="setImage(idx)" alt="productImage">
                             </router-link>
                             <div class="desc">
                                 <router-link v-bind:to="`/productDetail/${prd.productno}`">
@@ -113,8 +113,8 @@
                 </div>
                 <div style="text-align: center">
                     <button @click="pageMinus" class="pageBtn">이전 페이지</button>
-                    <span v-for="idx in Math.ceil(prod.length / content)" :key="idx">
-                        <span v-if="idx != page" class="pageOther" @click="page = idx">{{idx}}</span>
+                    <span v-for="idx in maxPage" :key="idx">
+                        <span v-if="idx != page" class="pageOther" @click="setPage(idx)">{{idx}}</span>
                         <span v-if="idx == page" class="pageNow">{{idx}}</span>
                     </span>
                     <button @click="pagePlus" class="pageBtn">다음 페이지</button>
@@ -131,19 +131,51 @@ import axios from 'axios'
 export default {
     data() {
         return {
+            popular: "",
             prod: "",
             test: "",
             min: 0,
             max: 99999999,
             page: 1,
             content: 5,
+            maxPage: 0,
+            prodCount: 0,
         }
     },
     methods: {
         getProd() {
-            const id = this.$route.params.id;
-            axios.get(`/api/product/${id}`).then(res => {
-                this.prod = res.data;
+            const productname = this.$route.params.id;
+            axios({
+                method: 'get',
+                url: `/api/product/count`,
+                params: {
+                    productname: productname,
+                    min: this.min,
+                    max: this.max,
+                }
+            }).then(res => {
+                this.prodCount = res.data;
+                this.maxPage = Math.ceil(this.prodCount / this.content);
+                axios({
+                    method: 'get',
+                    url: `/api/product/search`,
+                    params: {
+                        productname: productname,
+                        page: 1,
+                        content: this.content,
+                        min: this.min,
+                        max: this.max,
+                    }
+                }).then(res => {
+                    this.prod = res.data;
+                })
+            })
+
+        },
+        getPopular() {
+            const productname = this.$route.params.id;
+            axios.get(`/api/product/popular/${productname}`).then(res => {
+                this.popular = res.data;
             })
         },
         searchProd() {
@@ -159,6 +191,40 @@ export default {
             } else {
                 this.max = max;
             }
+
+            const productname = this.$route.params.id;
+            axios({
+                method: 'get',
+                url: `/api/product/count`,
+                params: {
+                    productname: productname,
+                    min: this.min,
+                    max: this.max,
+                }
+            }).then(res => {
+                this.prodCount = res.data;
+                this.maxPage = Math.ceil(this.prodCount / this.content);
+                axios({
+                    method: 'get',
+                    url: `/api/product/search`,
+                    params: {
+                        productname: productname,
+                        page: 1,
+                        content: this.content,
+                        min: this.min,
+                        max: this.max,
+                    }
+                }).then(res => {
+                    this.prod = res.data;
+                })
+            })
+        },
+        setPopularImage(idx) {
+            try {
+                return require(`../../../src/main/resources/images/product/${this.popular[idx].productno}/product/${this.popular[idx].imagename}`)
+            } catch {
+                return require(`@/components/mainPage/productTableImage/error.png`)
+            }
         },
         setImage(idx) {
             try {
@@ -172,18 +238,64 @@ export default {
             return num.toString().replace(regexp, ",");
         },
         pageMinus() {
+            const productname = this.$route.params.id;
             if (this.page > 1) {
                 this.page--;
+                axios({
+                    method: 'get',
+                    url: `/api/product/search`,
+                    params: {
+                        productname: productname,
+                        page: this.page,
+                        content: this.content,
+                        min: this.min,
+                        max: this.max,
+                    }
+                }).then(res => {
+                    this.prod = res.data;
+                })
             }
         },
         pagePlus() {
-            if (this.prod.length / this.content > this.page) {
+            const productname = this.$route.params.id;
+            if (this.page < this.maxPage) {
                 this.page++;
+                axios({
+                    method: 'get',
+                    url: `/api/product/search`,
+                    params: {
+                        productname: productname,
+                        page: this.page,
+                        content: this.content,
+                        min: this.min,
+                        max: this.max,
+                    }
+                }).then(res => {
+                    this.prod = res.data;
+                })
             }
         },
+        setPage(idx) {
+            const productname = this.$route.params.id;
+            this.page = idx;
+            axios({
+                method: 'get',
+                url: `/api/product/search`,
+                params: {
+                    productname: productname,
+                    page: this.page,
+                    content: this.content,
+                    min: this.min,
+                    max: this.max,
+                }
+            }).then(res => {
+                this.prod = res.data;
+            })
+        }
     },
     mounted() {
         this.getProd();
+        this.getPopular();
     }
 }
 </script>

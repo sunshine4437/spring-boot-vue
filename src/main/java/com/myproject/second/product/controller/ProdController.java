@@ -31,9 +31,22 @@ public class ProdController {
 		return prodService.getProductList(productno);
 	}
 
-	@GetMapping("/{productname}")
+	@GetMapping("/count")
+	public int getCount(@RequestParam("productname") String productname, @RequestParam("min") int min,
+			@RequestParam("max") int max) throws Exception {
+		return prodService.getCount(productname, min, max);
+	}
+
+	@GetMapping("/search")
+	public List<ProdVO> searchMinMaxProduct(@RequestParam("productname") String productname,
+			@RequestParam("page") int page, @RequestParam("content") int content, @RequestParam("min") int min,
+			@RequestParam("max") int max) throws Exception {
+		return prodService.searchMinMaxProduct(productname, page, content, min, max);
+	}
+
+	@GetMapping("/popular/{productname}")
 	public List<ProdVO> searchProduct(@PathVariable("productname") String productname) throws Exception {
-		return prodService.searchProduct(productname);
+		return prodService.searchPopular(productname);
 	}
 
 	@GetMapping("/productDetail/all")
@@ -42,13 +55,18 @@ public class ProdController {
 	}
 
 	@GetMapping("/productDetail/saleslist/{sellerid}")
-	public List<ProdVO> getSalseList(@PathVariable("sellerid") String sellerid) throws Exception {
-		return prodService.getSalseList(sellerid);
+	public List<ProdVO> getSalesList(@PathVariable("sellerid") String sellerid) throws Exception {
+		return prodService.getSalesList(sellerid);
 	}
 
 	@GetMapping("/productDetail/bestImage/{productno}")
 	public List<ProdVO> getAllProductImageList(@PathVariable("productno") int productno) throws Exception {
 		return prodService.getProductImageList(productno);
+	}
+
+	@GetMapping("/canquit/{id}")
+	public int haveProduct(@PathVariable("id") String sellerid) throws Exception {
+		return prodService.haveProduct(sellerid);
 	}
 
 	@PostMapping("/upload/img/{productno}")

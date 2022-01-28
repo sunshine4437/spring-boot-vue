@@ -18,11 +18,18 @@ public interface ProdMapper {
 	@Select("select * from s_product where productno = #{productno}")
 	ProdVO findProduct(int productno);
 
-	@Select("select s_product.productno, s_product.productname, s_product.ptype, s_product.imagename, s_product.price, s_product.sellerid, s_member.nickname from s_product left join s_member on s_product.id = s_member.id where UPPER(productname) like UPPER(#{productname}) or UPPER(ptype) like UPPER(#{productname}) order by s_product.productno")
+	@Select("select s_product.productno, s_product.productname, s_product.ptype, s_product.imagename, s_product.price, s_product.sellerid, s_member.nickname from s_product left join s_member on s_product.sellerid = s_member.id where UPPER(productname) like UPPER(#{productname}) or UPPER(ptype) like UPPER(#{productname}) order by s_product.productno")
 	List<ProdVO> searchProduct(@Param("productname") String productname);
-	
+
+	@Select("select count(productno) from s_product where price >= #{min} and price <= #{max} and (UPPER(productname) like UPPER(#{productname}) or UPPER(ptype) like UPPER(#{productname}))")
+	int getCount(@Param("productname") String productname, @Param("min") int min, @Param("max") int max);
+
+	@Select("select s_product.productno, s_product.productname, s_product.ptype, s_product.imagename, s_product.price, s_product.sellerid, s_member.nickname from s_product left join s_member on s_product.sellerid = s_member.id where price >= #{min} and price <= #{max} and (UPPER(productname) like UPPER(#{productname}) or UPPER(ptype) like UPPER(#{productname})) order by s_product.productno")
+	List<ProdVO> searchMinMaxProduct(@Param("productname") String productname, @Param("min") int min,
+			@Param("max") int max);
+
 	@Select("select * from s_product where sellerid = #{sellerid} order by regdate")
-	List<ProdVO> findSalseList(String sellerid);
+	List<ProdVO> findSalesList(String sellerid);
 
 	@Select("select option1 from s_product where productno = #{productno}")
 	String findOption1(int productno);
@@ -30,7 +37,7 @@ public interface ProdMapper {
 	@Select("select option2 from s_product where productno = #{productno}")
 	String findOption2(int productno);
 
-	@Select("select * from s_product left join s_seller on (s_seller.productno = s_product.productno) where s_product.sellerid = (select id from s_seller where productno = #{productno}) and s_product.productno != #{productno} order by s_seller.totalsell desc")
+	@Select("select s_product.productno, s_product.imagename, sum(s_order.totalprice) tot from s_product left join s_order on s_product.productno = s_order.productno where sellerid = (select sellerid from s_product where productno = #{productno}) and s_product.productno != #{productno} group by s_product.productno,s_product.imagename order by tot desc")
 	List<ProdVO> findAllProductImage(int productno);
 
 	@Select("select prod_seq.currval from dual")
@@ -40,4 +47,6 @@ public interface ProdMapper {
 	@Options(useGeneratedKeys = true, keyProperty = "result.productno", keyColumn = "productno")
 	int insertProduct(@Param("in") ProdVO in, @Param("result") ProdVO result);
 
+	@Select("select count(productno) from s_product where sellerid = #{sellerid}")
+	int haveProduct(@Param("sellerid") String sellerid);
 }

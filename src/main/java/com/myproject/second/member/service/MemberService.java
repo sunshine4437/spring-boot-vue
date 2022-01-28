@@ -48,7 +48,7 @@ public class MemberService {
 	public void updateAddress(String id, String zipcode, String address, String detailaddr) {
 		memberMapper.updateAddress(id, zipcode, address, detailaddr);
 	}
-	
+
 	public void deleteMember(String id) {
 		memberMapper.deleteMember(id);
 	}

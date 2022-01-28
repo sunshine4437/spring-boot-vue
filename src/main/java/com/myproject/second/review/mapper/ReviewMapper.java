@@ -11,7 +11,10 @@ import com.myproject.second.review.vo.ReviewVO;
 @Mapper
 public interface ReviewMapper {
 
-	@Select("select * from s_review where productno = #{productno}")
+	@Select("select count(reviewno) from s_review where productno = #{productno}")
+	int reviewCount(@Param("productno") int productno);
+
+	@Select("select * from s_review where productno = #{productno} order by reviewno desc")
 	List<ReviewVO> findAllReview(@Param("productno") int productno);
 
 }

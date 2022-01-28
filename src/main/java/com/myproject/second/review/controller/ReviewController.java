@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myproject.second.review.service.ReviewService;
@@ -17,9 +18,14 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 
-	@GetMapping("/{num}")
-	public List<ReviewVO> getReviewList(@PathVariable("num") int num) throws Exception {
-		List<ReviewVO> list = reviewService.getReviewList(num);
-		return list;
+	@GetMapping("/count/{productno}")
+	public int reviewCount(@PathVariable("productno") int productno) throws Exception {
+		return reviewService.reviewCount(productno);
+	}
+
+	@GetMapping("/getReview")
+	public List<ReviewVO> getReviewList(@RequestParam("productno") int productno, @RequestParam("page") int page,
+			@RequestParam("content") int content) throws Exception {
+		return reviewService.getReviewList(productno, page, content);
 	}
 }

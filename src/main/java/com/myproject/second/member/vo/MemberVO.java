@@ -119,11 +119,11 @@ public class MemberVO {
 		this.birth = birth;
 	}
 
-	public String getgender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setgender(String gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -152,18 +152,3 @@ public class MemberVO {
 	}
 
 }
-//
-//id         VARCHAR2(20) PRIMARY KEY,
-//nickname   VARCHAR2(20) NOT NULL,
-//password   VARCHAR2(30) NOT NULL,
-//name       VARCHAR2(10) NOT NULL,
-//tel        VARCHAR2(11) NOT NULL,
-//zipcode    VARCHAR2(5) NOT NULL,
-//address    VARCHAR2(80) NOT NULL,
-//detailaddr VARCHAR2(50) NOT NULL,
-//email      VARCHAR2(30),
-//birth      VARCHAR2(10),
-//gender     CHAR(1),
-//point      NUMBER(10) DEFAULT 0,
-//seller     CHAR(1) DEFAULT 0,    
-//companyNO varchar2(20)

@@ -7,9 +7,7 @@
         <table class="reviewTable">
             <tr v-for="(review, idx) in reviews" :key="idx">
                 <td style="width: 10%">
-                    <img :src="
-                                require(`../../../../src/main/resources/images/product/${review.productno}/review/${idx+1}/${review.image}`)
-                            " style="width:100px; height: 100px" />
+                    <img :src="setImage(idx)" style="width:100px; height: 100px" />
                 </td>
                 <td style="text-align: left">
                     <span v-html="review.content"></span>
@@ -17,6 +15,14 @@
                 <td style="width: 10%"><span v-html="review.id.slice(0,4) + '****'"></span></td>
             </tr>
         </table>
+    </div>
+    <div style="text-align: center">
+        <button @click="pageMinus" class="pageBtn">이전 페이지</button>
+        <span v-for="idx in maxPage" :key="idx">
+            <span v-if="idx != page" class="pageOther" @click="setPage(idx)">{{idx}}</span>
+            <span v-if="idx == page" class="pageNow">{{idx}}</span>
+        </span>
+        <button @click="pagePlus" class="pageBtn">다음 페이지</button>
     </div>
 </div>
 </template>
@@ -27,12 +33,86 @@ export default {
     data() {
         return {
             reviews: "",
+            page: 1,
+            content: 5,
+            maxPage: 0,
+            prodCount: 0,
         };
     },
     methods: {
+        setImage(idx) {
+            try {
+                return require(`../../../../src/main/resources/images/product/${this.reviews[idx].productno}/review/${this.reviews[idx].reviewno}/${this.reviews[idx].image}`)
+            } catch {
+                return require(`@/components/mainPage/productTableImage/error.png`)
+            }
+        },
         getReview() {
-            const id = this.$route.params.id;
-            axios.get(`/api/review/${id}`).then(res => this.reviews = res.data);
+            const productno = this.$route.params.id;
+            axios.get(`/api/review/count/${productno}`).then(res => {
+                this.prodCount = res.data;
+                this.maxPage = Math.ceil(this.prodCount / this.content);
+                axios({
+                    method: 'get',
+                    url: `/api/review/getReview`,
+                    params: {
+                        productno: productno,
+                        page: 1,
+                        content: this.content,
+                    }
+                }).then(res => {
+                    this.reviews = res.data;
+                })
+            });
+        },
+        pageMinus() {
+            const productno = this.$route.params.id;
+            if (this.page > 1) {
+                this.page--;
+                axios({
+                    method: 'get',
+                    url: `/api/review/getReview`,
+                    params: {
+                        productno: productno,
+                        page: this.page,
+                        content: this.content,
+                    }
+                }).then(res => {
+                    this.reviews = res.data;
+                })
+            }
+        },
+        pagePlus() {
+            const productno = this.$route.params.id;
+            if (this.page < this.maxPage) {
+                this.page++;
+                axios({
+                    method: 'get',
+                    url: `/api/review/getReview`,
+                    params: {
+                        productno: productno,
+                        page: this.page,
+                        content: this.content,
+                    }
+                }).then(res => {
+                    this.reviews = res.data;
+                })
+            }
+        },
+        setPage(idx) {
+            const productno = this.$route.params.id;
+            this.page = idx;
+            axios({
+                method: 'get',
+                url: `/api/review/getReview`,
+                params: {
+                    productno: productno,
+                    page: this.page,
+                    content: this.content,
+                }
+            }).then(res => {
+                this.reviews = res.data;
+            })
         }
     },
     mounted() {
@@ -60,5 +140,19 @@ th {
 
 body {
     padding: 1rem;
+}
+
+.pageBtn {
+    padding: 5px 10px;
+    margin: 0 10px
+}
+
+.pageNow {
+    font-size: 22px;
+    margin: 0 5px;
+}
+
+.pageOther {
+    margin: 0 5px;
 }
 </style>
