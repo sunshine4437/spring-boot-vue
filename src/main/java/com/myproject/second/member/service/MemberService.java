@@ -29,6 +29,7 @@ public class MemberService {
 		Map<String, String> result = new HashMap<>();
 
 		if (res == null)
+			
 			return new ResponseEntity<>("아이디가 존재하지 않습니다.", HttpStatus.UNAUTHORIZED);
 		else {
 			if (res.getPassword().equals(pwd)) {
@@ -37,7 +38,7 @@ public class MemberService {
 				result.put("id", res.getId());
 				return new ResponseEntity<>(result, HttpStatus.OK);
 			} else {
-				return new ResponseEntity<>("비밀번호가 틀립니다.", HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>("비밀번호가 일치하지 않습니다.", HttpStatus.UNAUTHORIZED);
 			}
 		}
 	}

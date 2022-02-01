@@ -44,7 +44,7 @@ const loginStore = {
                 })
                 .then(() => router.push(context.getters.getPath))
                 .catch(err => {
-                    if (err.status == 401) {
+                    if (err.response.status == 401) {
                         alert(err.response.data)
                         console.log(err.response.data)
                     }

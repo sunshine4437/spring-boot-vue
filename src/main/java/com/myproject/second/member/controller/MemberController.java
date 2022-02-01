@@ -30,12 +30,13 @@ public class MemberController {
 		return memberService.getAllMembers();
 	}
 
-	@GetMapping("/{id}")
-	public MemberVO getMember(@PathVariable("id") String id) throws Exception {
-		return memberService.getMember(id);
-	}
-
-	@PostMapping("/login")
+//	@GetMapping("/{id}")
+//	public MemberVO getMember(@PathVariable("id") String id) throws Exception {
+//	
+//		return memberService.getMember(id);
+//	}
+	
+	@PostMapping(value = "/login",  produces ="text/plain; charset=utf-8")
 	public ResponseEntity<?> login(@RequestParam("id") String id, @RequestParam("password") String pwd) {
 		return memberService.getMember(id, pwd);
 	}
