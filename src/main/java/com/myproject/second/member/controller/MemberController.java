@@ -30,18 +30,18 @@ public class MemberController {
 		return memberService.getAllMembers();
 	}
 
-//	@GetMapping("/{id}")
-//	public MemberVO getMember(@PathVariable("id") String id) throws Exception {
-//	
-//		return memberService.getMember(id);
-//	}
+	@GetMapping("/{id}")
+	public MemberVO getMember(@PathVariable("id") String id) throws Exception {
+		return memberService.getMember(id);
+	}
+
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestParam("id") String id, @RequestParam("password") String pwd) {
 		MemberVO res = memberService.getMember(id);
 		Map<String, String> result = new HashMap<>();
 
 		if (res == null)
-			return new ResponseEntity<>("¾ÆÀÌµð°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.", HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>("ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.", HttpStatus.UNAUTHORIZED);
 		else {
 			if (res.getPassword().equals(pwd)) {
 				result.put("auth", res.getAuthority());
@@ -49,7 +49,7 @@ public class MemberController {
 				result.put("id", res.getId());
 				return new ResponseEntity<>(result, HttpStatus.OK);
 			} else {
-				return new ResponseEntity<>("ºñ¹Ð¹øÈ£°¡ Æ²¸³´Ï´Ù.", HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ Æ²ï¿½ï¿½ï¿½Ï´ï¿½.", HttpStatus.UNAUTHORIZED);
 			}
 		}
 	}
@@ -97,6 +97,6 @@ public class MemberController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 	}
 }

@@ -217,7 +217,7 @@ export default {
         },
 
         getOrder(search) {
-            const id = this.getLogin;
+            const id = this.getLogin.user_id;
             axios({
                 method: 'get',
                 url: `/api/order/getOrders`,
@@ -232,7 +232,7 @@ export default {
             })
         },
         getCancel(search) {
-            const id = this.getLogin;
+            const id = this.getLogin.user_id;
             axios({
                 method: 'get',
                 url: `/api/order/getCancels`,

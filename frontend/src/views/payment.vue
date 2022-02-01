@@ -323,7 +323,7 @@ export default {
                 }
                 for (let i = 0; i < this.getOrderList.length; i++) {
                     let data = {
-                        id: this.getLogin,
+                        id: this.getLogin.user_id,
                         productno: this.getOrderList[i].productno,
                         selectedoption: this.getOrderList[i].option1,
                         totalprice: this.getOrderList[i].price * sale,
@@ -340,7 +340,8 @@ export default {
             }
         },
         getMem() {
-            const id = this.getLogin;
+            const id = this.getLogin.user_id;
+            console.log(id);
             axios.get(`/api/member/${id}`).then(res => {
                 this.member = res.data;
                 this.usable = this.member.point;
@@ -351,7 +352,7 @@ export default {
                 method: 'put',
                 url: '/api/member/point',
                 params: {
-                    id: this.getLogin,
+                    id: this.getLogin.user_id,
                     point: this.point,
                 }
             })
@@ -367,7 +368,7 @@ export default {
         ...loginStore.mapGetters(['getLogin']),
     },
     mounted() {
-        this.getMem(); {
+        {
             for (let i = 0; i < this.getOrderList.length; i++) {
                 this.totalPrice += this.getOrderList[i].price;
                 this.sale += this.getOrderList[i].price * 0.1;
@@ -379,6 +380,7 @@ export default {
             }
             this.finalPrice = this.totalPrice - this.sale + this.delivery;
         }
+        this.getMem();
     },
 };
 </script>
