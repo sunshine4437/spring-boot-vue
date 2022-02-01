@@ -37,28 +37,12 @@ public class MemberController {
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestParam("id") String id, @RequestParam("password") String pwd) {
-		MemberVO res = memberService.getMember(id);
-		Map<String, String> result = new HashMap<>();
-
-		if (res == null)
-			return new ResponseEntity<>("���̵� �������� �ʽ��ϴ�.", HttpStatus.UNAUTHORIZED);
-		else {
-			if (res.getPassword().equals(pwd)) {
-				result.put("auth", res.getAuthority());
-				result.put("nickname", res.getNickname());
-				result.put("id", res.getId());
-				return new ResponseEntity<>(result, HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>("��й�ȣ�� Ʋ���ϴ�.", HttpStatus.UNAUTHORIZED);
-			}
-		}
+		return memberService.getMember(id, pwd);
 	}
 
 	@GetMapping("/productDetail/{productno}")
 	public String getMember(@PathVariable("productno") int productno) throws Exception {
-		String temp = memberService.getNickname(productno);
-		System.out.println(temp);
-		return temp;
+		return memberService.getNickname(productno);
 	}
 
 	@PutMapping("/point")

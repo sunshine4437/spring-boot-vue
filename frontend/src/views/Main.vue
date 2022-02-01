@@ -7,10 +7,14 @@
             <li>
                 <div class="dropDownMenu">
                     <button class="dropDownMenuBtn">
-                        ···
+                       <div class="wrapper">
+                           <div class="line"></div>
+                           <div class="line"></div>
+                           <div class="line"></div>
+                       </div>
                     </button>
                     <div class="dropDownMenuContent">
-                        <router-link class="pageLink" v-for="(link, index) in leftMenuName" :key="index" v-bind:to="link.link">
+                        <router-link class="pageLink" style="color:white" v-for="(link, index) in leftMenuName" :key="index" v-bind:to="link.link">
                             {{link.name}}
                         </router-link>
                     </div>
@@ -215,8 +219,8 @@ export default {
 }
 
 .dropDownMenuBtn {
-    padding: 12px;
-    width: 120px;
+    padding: 10px;
+    width: 100px;
     text-align: center;
     cursor: pointer;
     margin-left: 0;
@@ -225,7 +229,18 @@ export default {
 .dropDownMenuBtn:hover {
     border-radius: 4px 4px 0 0;
 }
-
+.line {
+  position:relative;
+  background:#ffffff;
+  margin-top:6px;
+  margin-bottom:6px;
+  margin-left:auto;
+  margin-right: auto;
+  width:48px;
+  height:3px; 
+  border-radius:2px;
+  /* box-shadow:0 1px 3px rgb(255, 255, 255); */
+}
 .dropDownMenuContent {
     display: none;
     position: absolute;
@@ -233,8 +248,8 @@ export default {
     /*다른 요소들보다 앞에 배치*/
     font-weight: 400;
     background-color: rgb(0, 153, 255);
-    width: 120px;
-    max-width: 120px;
+    width: 100px;
+    max-width: 100px;
     border-radius: 0 0 4px 4px;
 
 }
@@ -390,4 +405,6 @@ item:hover {
     font-size: 50px;
     font-weight: bold;
 }
+
+
 </style>

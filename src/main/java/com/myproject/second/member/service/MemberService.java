@@ -1,8 +1,12 @@
 package com.myproject.second.member.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.myproject.second.member.mapper.MemberMapper;
@@ -20,8 +24,22 @@ public class MemberService {
 		return memberMapper.findAll();
 	}
 
-	public MemberVO getMember(@Param("id") String id) {
-		return memberMapper.findMember(id);
+	public ResponseEntity<?> getMember(String id, String pwd) {
+		MemberVO res = memberMapper.findMember(id);
+		Map<String, String> result = new HashMap<>();
+
+		if (res == null)
+			return new ResponseEntity<>("아이디가 존재하지 않습니다.", HttpStatus.UNAUTHORIZED);
+		else {
+			if (res.getPassword().equals(pwd)) {
+				result.put("auth", res.getAuthority());
+				result.put("nickname", res.getNickname());
+				result.put("id", res.getId());
+				return new ResponseEntity<>(result, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>("비밀번호가 틀립니다.", HttpStatus.UNAUTHORIZED);
+			}
+		}
 	}
 
 	public String getNickname(int productno) {

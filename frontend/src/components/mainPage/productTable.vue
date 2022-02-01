@@ -4,13 +4,11 @@
     <div class="banner">
         <bannerImage />
     </div>
-    <div></div>
     <!-- 메인 화면에 이미지를 출력하는 기능 -->
     <div>
         <h1>추천상품</h1>
         <div class="imageArea">
             <div class="card_image" v-for='(idx) in limitLength' :key="idx">
-                <!-- <p>{{images[idx-1].link}}</p> -->
                 <div class="imageDiv">
                     <router-link v-bind:to="images[idx-1].link">
                         <img :src="setImage(idx)" alt="productImage">
@@ -24,24 +22,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="imageArea" v-for="n in length" v-bind:key="n">
-            <ul>
-                <li class="card_image" v-for='j in 4' :key="j">
-                    <div class="imageDiv">
-                        <router-link v-bind:to="images[(j-1)+(n-1)*4].link">
-                            <img :src="require(`@/components/mainPage/productTableImage/${images[(j-1)+(n-1)*4].image}`)" alt="productImage">
-                        </router-link>
-                    </div>
-                    <div class="imageTitle">
-                        <router-link v-bind:to="images[(j-1)+(n-1)*4].link">
-                            <div class="temp"><label for="">{{images[(j-1)+(n-1)*4].name}}</label></div>
-                            <h3 for="">{{AddComma(images[(j-1)+(n-1)*4].price) }}원</h3>
-                        </router-link>
-                    </div>
-                </li>
-            </ul>
-        </div> -->
         <div class="moreImageDiv">
             <button v-on:click="moreImage" class="moreImageBtn">더 보기</button>
         </div>
@@ -67,7 +47,7 @@ export default {
     methods: {
         setImage(idx) {
             try {
-                return require(`@/components/mainPage/productTableImage/${this.images[idx-1].image}`)
+                return require(`../../../../src/main/resources/images/product/${this.images[idx-1].prodno}/product/${this.images[idx-1].image}`)
             } catch {
                 return require(`@/components/mainPage/productTableImage/error.png`)
             }
@@ -95,7 +75,8 @@ export default {
                     let temp = {
                         image: element.imagename,
                         name: element.productname,
-                        link: '/productDetail/'+element.productno,
+                        prodno: element.productno,
+                        link: '/productDetail/' + element.productno,
                         price: element.price
                     }
                     this.images.push(temp);
