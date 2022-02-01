@@ -55,7 +55,7 @@
                         </router-link>
                     </td>
                     <td class="td6">재고</td>
-                    <td class="td7">삭제</td>
+                    <td class="td7" style=" cursor: pointer;" @click="deleteItem">삭제</td>
                     <td class="td8">판매중단</td>
                 </tr>
             </tbody>
@@ -106,6 +106,13 @@ export default {
             let regexp = /\B(?=(\d{3})+(?!\d))/g;
             return num.toString().replace(regexp, ",");
         },
+        deleteItem() {
+            if (confirm("해당 상품을 삭제 하시겠습니까?")) {
+                return;
+            } else {
+               return;
+            }
+        },
         productnoSort() {
             console.log(this.productnoSortState)
             this.productnoSortState = -this.productnoSortState;
@@ -155,7 +162,7 @@ export default {
                 // console.log(new Date(a_time.year, a_time.month, a_time.date, a_time.hour, a_time.minute));
                 // console.log(new Date(b_time.year, b_time.month, b_time.date, b_time.hour, b_time.minute));
                 let a_Date = new Date(a_time.year, a_time.month, a_time.date, a_time.hour, a_time.minute);
-                let b_Date =  new Date(b_time.year, b_time.month, b_time.date, b_time.hour, b_time.minute);
+                let b_Date = new Date(b_time.year, b_time.month, b_time.date, b_time.hour, b_time.minute);
                 if (this.regdateSortState < 0) {
                     if (a_Date - b_Date == 0) {
                         return a.productno - b.productno;
