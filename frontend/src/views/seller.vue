@@ -13,7 +13,7 @@
             <item v-on:click="selectedComponent = 'appTest1', changeSelected(0)" class="leftButton" :class=' { "selected": selected == 0 } '>상품관리</item>
             <item v-on:click="selectedComponent = 'appTest2', changeSelected(1)" class="leftButton" :class=' { "selected": selected == 1 } '>상품등록</item>
             <item v-on:click="selectedComponent = 'appTest3', changeSelected(2)" class="leftButton" :class=' { "selected": selected == 2 } '>주문관리</item>
-            <item v-on:click="selectedComponent = 'appTest3', changeSelected(3)" class="leftButton" :class=' { "selected": selected == 3 } '>판매정산</item>
+            <!-- <item v-on:click="selectedComponent = 'appTest4', changeSelected(4)" class="leftButton" :class=' { "selected": selected == 4 } '>판매정산</item> -->
         </div>
         <div class="body">
             <div class="col-xs-12">
@@ -32,6 +32,7 @@
 import test1 from "@/components/seller/SalesList.vue"
 import test2 from "@/components/seller/AddSales.vue"
 import test3 from "@/components/seller/OrderList.vue"
+// import test4 from "@/components/seller/calc.vue"
 import {
     createNamespacedHelpers
 } from 'vuex';
@@ -48,7 +49,8 @@ export default {
     components: {
         appTest1: test1,
         appTest2: test2,
-        appTest3: test3
+        appTest3: test3,
+        // appTest4: test4,
     },
     methods: {
         changeSelected(idx) {

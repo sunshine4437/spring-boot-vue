@@ -36,7 +36,7 @@ public class MemberController {
 //		return memberService.getMember(id);
 //	}
 	
-	@PostMapping(value = "/login",  produces ="text/plain; charset=utf-8")
+	@PostMapping(value = "/login")
 	public ResponseEntity<?> login(@RequestParam("id") String id, @RequestParam("password") String pwd) {
 		return memberService.getMember(id, pwd);
 	}

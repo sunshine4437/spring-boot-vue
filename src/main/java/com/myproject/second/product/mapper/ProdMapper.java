@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.myproject.second.product.vo.ProdVO;
 
@@ -43,10 +44,13 @@ public interface ProdMapper {
 	@Select("select prod_seq.currval from dual")
 	int getProductNo();
 
-	@Insert("insert into s_product(productno, productname, ptype, imagename, price, option1, option2, regdate, sellerid, detailimagename) values (prod_seq.nextval, #{in.productname}, '신발', #{in.imagename}, #{in.price}, #{in.option1}, #{in.option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{in.sellerid}, #{in.detailimagename})")
+	@Insert("insert into s_product(productno, productname, ptype, imagename, price, option1, option2, regdate, sellerid, detailimagename) values (prod_seq.nextval, #{in.productname}, '�떊諛�', #{in.imagename}, #{in.price}, #{in.option1}, #{in.option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{in.sellerid}, #{in.detailimagename})")
 	@Options(useGeneratedKeys = true, keyProperty = "result.productno", keyColumn = "productno")
 	int insertProduct(@Param("in") ProdVO in, @Param("result") ProdVO result);
 
 	@Select("select count(productno) from s_product where sellerid = #{sellerid}")
 	int haveProduct(@Param("sellerid") String sellerid);
+
+	@Update("update s_product set onsale = #{onsaleValue} where productno = #{productno}")
+	int onSaleProduct(@Param("onsaleValue") String onsale, @Param("productno") int productno);
 }

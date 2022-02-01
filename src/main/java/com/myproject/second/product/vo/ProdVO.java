@@ -8,6 +8,7 @@ public class ProdVO {
 	private int price;
 	private String option1;
 	private String option2;
+	private int amount;
 	private String regdate;
 	private String sellerid;
 	private String detailimagename;
@@ -20,8 +21,8 @@ public class ProdVO {
 	}
 
 	public ProdVO(int productno, String productname, String ptype, String imagename, int price, String option1,
-			String option2, String regdate, String sellerid, String detailimagename, String onsale, String nickname,
-			int min, int max) {
+			String option2, int amount, String regdate, String sellerid, String detailimagename, String onsale,
+			String nickname, int min, int max) {
 		super();
 		this.productno = productno;
 		this.productname = productname;
@@ -30,6 +31,7 @@ public class ProdVO {
 		this.price = price;
 		this.option1 = option1;
 		this.option2 = option2;
+		this.amount = amount;
 		this.regdate = regdate;
 		this.sellerid = sellerid;
 		this.detailimagename = detailimagename;
@@ -93,6 +95,14 @@ public class ProdVO {
 
 	public void setOption2(String option2) {
 		this.option2 = option2;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 	public String getRegdate() {

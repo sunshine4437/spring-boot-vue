@@ -1,12 +1,17 @@
 <template>
 <div class="container">
-    <!-- <h1>test1</h1> -->
 
-    <!-- <div>{{product}}</div> -->
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+    <div>
+        <select name="" id="">
+            <option value="">상품번호</option>
+            <option value="">상품명</option>
+            <option value="">가격</option>
+            <option value="">등록일</option>
+            <option value="">재고</option>
+            <option value="">판매여부</option>
+        </select>
+        <input type="text">
+    </div>
     <div>
         <table>
             <thead>
@@ -17,7 +22,7 @@
                     <td class="td4 header" style=" cursor: pointer;" @click="priceSort">가격</td>
                     <td class="td5 header" style=" cursor: pointer;" @click="regdateSort">등록일</td>
                     <td class="td6">재고</td>
-                    <td class="td7">삭제</td>
+                    <td class="td7">삭제(미구현)</td>
                     <td class="td8">판매중단</td>
                 </tr>
             </thead>
@@ -26,7 +31,7 @@
     <div class="tableBody">
         <table>
             <tbody>
-                <tr v-for="( product,idx) in products" :key="idx" class="tableRow">
+                <tr v-for="(product,idx) in products" :key="idx" class="tableRow">
 
                     <td class="td1">
                         <router-link v-bind:to="`/productDetail/${product.productno}`" tag="div" class="routerLink">
@@ -54,9 +59,12 @@
                             {{product.regdate}}
                         </router-link>
                     </td>
-                    <td class="td6">재고</td>
-                    <td class="td7" style=" cursor: pointer;" @click="deleteItem">삭제</td>
-                    <td class="td8">판매중단</td>
+                    <td class="td6">{{product.amount}}</td>
+                    <td class="td7">삭제</td>
+                    <td class="td8" style=" cursor: pointer;" @click="onSale(product)">
+                        <p v-if="product.onsale==0">미판매</p>
+                        <p v-if="product.onsale==1">판매중</p>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -106,13 +114,6 @@ export default {
             let regexp = /\B(?=(\d{3})+(?!\d))/g;
             return num.toString().replace(regexp, ",");
         },
-        deleteItem() {
-            if (confirm("해당 상품을 삭제 하시겠습니까?")) {
-                return;
-            } else {
-               return;
-            }
-        },
         productnoSort() {
             console.log(this.productnoSortState)
             this.productnoSortState = -this.productnoSortState;
@@ -141,6 +142,24 @@ export default {
                     return b.price - a.price;
                 }
             })
+        },
+        onSale(product) {
+            let onsale;
+            if (product.onsale == 0)
+                onsale = '1';
+            else
+                onsale = '0';
+            console.log(onsale)
+            let params = new URLSearchParams();
+            params.append("onsale", onsale)
+            axios.patch('/api/product/onsale/' + product.productno, params)
+                .then(res => {
+                    if (res.data == 'success') {
+                        alert("변경했습니다.")
+                        this.$router.go();
+                    }
+                })
+                .catch()
         },
         regdateSort() {
             this.regdateSortState = -this.regdateSortState;
@@ -253,6 +272,10 @@ td {
 .td7 {
     width: 50px;
     text-align: center;
+}
+
+.td8 {
+    width: 70px;
 }
 
 .header {

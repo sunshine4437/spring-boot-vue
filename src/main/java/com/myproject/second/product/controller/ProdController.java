@@ -1,16 +1,15 @@
 package com.myproject.second.product.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.List;
 
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -69,56 +68,36 @@ public class ProdController {
 		return prodService.haveProduct(sellerid);
 	}
 
-	@PostMapping("/upload/img/{productno}")
-	public void productImageUpload(@PathVariable("productno") int productno,
-			@RequestParam("fileList") List<MultipartFile> fileList) {
-		File file = new File("./src/main/resources/images/product/" + productno + "/");
+//	@PostMapping("/upload/img/{productno}")
+//	public void productImageUpload(@PathVariable("productno") int productno,
+//			@RequestParam("fileList") List<MultipartFile> fileList) {
+//		File file = new File("./src/main/resources/images/product/" + productno + "/");
+//
+//		boolean directoryCreated = file.mkdir();
+//		System.out.println(productno);
+//		try {
+//			for (MultipartFile multipartFile : fileList) {
+//				FileOutputStream writer = new FileOutputStream(
+//						"./src/main/resources/images/product/" + productno + "/" + multipartFile.getOriginalFilename());
+//				System.out.println(multipartFile.getOriginalFilename());
+//				writer.write(multipartFile.getBytes());
+//				writer.close();
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
-		boolean directoryCreated = file.mkdir();
-		System.out.println(productno);
-		try {
-			for (MultipartFile multipartFile : fileList) {
-				FileOutputStream writer = new FileOutputStream(
-						"./src/main/resources/images/product/" + productno + "/" + multipartFile.getOriginalFilename());
-				System.out.println(multipartFile.getOriginalFilename());
-				writer.write(multipartFile.getBytes());
-				writer.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	@PatchMapping("/onsale/{productno}")
+	public ResponseEntity<?> onSaleProduct(@PathVariable("productno") int productno, @RequestParam("onsale") String onsale){
+		return prodService.onSaleProduct(onsale, productno);
 	}
-
+	
 	@PostMapping("/insertProduct")
 	public ResponseEntity<?> insertProduct(@RequestPart(value = "data") ProdVO requestData,
 			@RequestParam("fileList") List<MultipartFile> fileList) throws NotFoundException {
-		ResponseEntity<?> entity = null;
-
-		try {
-			int productno = prodService.insertProduct(requestData);
-
-			File file = new File("./src/main/resources/images/product/" + productno + "/");
-			file.mkdir();
-			String[] path = { "/detail/", "/product/" };
-			file = new File("./src/main/resources/images/product/" + productno + path[0]);
-			file.mkdir();
-			file = new File("./src/main/resources/images/product/" + productno + path[1]);
-			file.mkdir();
-
-			for (int i = 0; i < fileList.size(); i++) {
-				MultipartFile multipartFile = fileList.get(i);
-				FileOutputStream writer = new FileOutputStream("./src/main/resources/images/product/" + productno
-						+ path[i] + multipartFile.getOriginalFilename());
-				System.out.println(multipartFile.getOriginalFilename());
-				writer.write(multipartFile.getBytes());
-				writer.close();
-			}
-			entity = new ResponseEntity<>(HttpStatus.OK);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return entity;
+		return prodService.insertProduct(requestData, fileList);
 	}
+	
+
 }
