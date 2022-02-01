@@ -47,9 +47,9 @@ export default {
                 })
             }
         },
-        // ...loginStore.mapActions([
-        //     'Login'
-        // ]),
+        ...loginStore.mapActions([
+            'Login'
+        ]),
         ...loginStore.mapMutations([
             'setPath'
         ])
