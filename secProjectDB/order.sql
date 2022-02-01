@@ -7,6 +7,7 @@ CREATE TABLE s_order (
     id             VARCHAR2(20) NOT NULL,
     productno      NUMBER(9) NOT NULL,
     selectedoption VARCHAR2(100) NOT NULL,
+--    amount number(6),
     totalprice     NUMBER(10) NOT NULL,
     orderdate      DATE DEFAULT sysdate,
     state          VARCHAR2(20) DEFAULT '결제완료',
@@ -526,11 +527,12 @@ SELECT
     *
 FROM
     s_order;
-    
+SELECT s_order.id , s_order.dzipcode, s_order.daddress, s_order.ddetailaddr, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.state  FROM s_order, s_product WHERE s_order.productno = s_product.productno AND s_product.sellerid = 'seller0001';    
+--SELECT s_member.id 구매자id, s_order.dzipcode, s_order.daddress, s_order.ddetailaddr  FROM s_member, s_order, s_product WHERE s_member.id = s_order.id AND s_order.productno = s_product.productno AND s_product.sellerid = 'seller0001';    
 --select count(orderidx) from s_order where id = 'tester0001' and state in ('결제완료', '배송중', '취소 요청');
 --select s_product.productno, s_product.imagename, sum(s_order.totalprice) tot from s_product left join s_order on s_product.productno = s_order.productno where sellerid = (select sellerid from s_product where productno = 1) and s_product.productno != 1 group by s_product.productno,s_product.imagename order by tot desc;
 --SELECT * FROM s_order RIGHT OUTER JOIN s_member ON s_member.id = s_order.id LEFT OUTER JOIN s_product ON s_product.productno = s_order.productno WHERE s_product.id = 'seller0001';
---SELECT * FROM s_member, s_order, s_product WHERE s_member.id = s_order.id AND s_order.productno = s_product.productno AND s_product.sellerid = 'seller0001';
+SELECT * FROM s_member, s_order, s_product WHERE s_member.id = s_order.id AND s_order.productno = s_product.productno AND s_product.sellerid = 'seller0001';
 --Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_product.productname, s_product.sellerid, s_product.imagename from s_order, s_product, s_member where s_order.id = 'tester0001' and s_order.state in ('결제 완료', '배송중', '배송 완료')
 --Select s_member.nickname from s_product left join s_member on s_product.sellerid = s_member.id where s_product.productno = 1;
 --Select s_order.orderidx, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.orderdate, s_order.state, s_order.seller, s_product.productname, s_product.imagename from s_order left join s_product on s_order.productno = s_product.productno where s_order.id = 'tester0001' and s_order.orderdate  >= TO_DATE('20210127', 'YYYYMMDD') and TO_CHAR(s_order.orderdate, 'YYYYMMDD') <= '20220127' and s_product.productname like '%%' and s_order.state in ('결제 완료', '배송중', '배송 완료') order by s_order.orderdate desc;

@@ -8,6 +8,7 @@ public class OrderVO {
 	private int productno;
 	private String selectedoption;
 	private int totalprice;
+	private int amount;
 	private Date orderdate;
 	private String state;
 	private String ordermethod;
@@ -25,8 +26,8 @@ public class OrderVO {
 	public OrderVO() {
 	}
 
-	public OrderVO(long orderidx, String id, int productno, String selectedoption, int totalprice, Date orderdate,
-			String state, String ordermethod, String seller, String dname, String dtel, String dzipcode,
+	public OrderVO(long orderidx, String id, int productno, String selectedoption, int totalprice, int amount,
+			Date orderdate, String state, String ordermethod, String seller, String dname, String dtel, String dzipcode,
 			String daddress, String ddetailaddr, String productname, String imagename, String startdate,
 			String enddate) {
 		super();
@@ -35,6 +36,7 @@ public class OrderVO {
 		this.productno = productno;
 		this.selectedoption = selectedoption;
 		this.totalprice = totalprice;
+		this.amount = amount;
 		this.orderdate = orderdate;
 		this.state = state;
 		this.ordermethod = ordermethod;
@@ -88,6 +90,14 @@ public class OrderVO {
 
 	public void setTotalprice(int totalprice) {
 		this.totalprice = totalprice;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 	public Date getOrderdate() {
