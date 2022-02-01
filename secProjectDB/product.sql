@@ -408,7 +408,8 @@ SELECT
     *
 FROM
     s_product;
-select * from s_product where sellerid = 'seller0002' order by regdate;
+
+--select * from s_product where sellerid = 'seller0002' order by regdate;
 --SELECT imagename, productname, productno, price FROM s_product;    
 --select prod_seq.nextval from dual;
 --select s_product.productno, s_product.productname, s_product.ptype, s_product.imagename, s_product.price, s_product.id, s_member.nickname from s_product left join s_member on s_product.id = s_member.id where UPPER(productname) like UPPER('%여성의류%') or UPPER(ptype) like UPPER('%여성의류%') order by s_product.productno;

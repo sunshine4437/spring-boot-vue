@@ -36,7 +36,7 @@ public class MemberController {
 //		return memberService.getMember(id);
 //	}
 	
-	@PostMapping(value = "/login",  produces ="text/plain; charset=utf-8")
+	@PostMapping(value = "/login")
 	public ResponseEntity<?> login(@RequestParam("id") String id, @RequestParam("password") String pwd) {
 		return memberService.getMember(id, pwd);
 	}
@@ -74,14 +74,8 @@ public class MemberController {
 		memberService.updateAddress(id, zipcode, address, detailaddr);
 	}
 
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> deleteMember(@PathVariable("id") String id) throws Exception {
-		try {
-			memberService.deleteMember(id);
-			return new ResponseEntity<>(HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-
+	@DeleteMapping("/delete")
+	public ResponseEntity<?> deleteMember(@RequestParam("id") String id, @RequestParam(value = "password", required=false) String password) throws Exception {
+		return memberService.deleteMember(id, password);
 	}
 }
