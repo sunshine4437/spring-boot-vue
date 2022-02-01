@@ -195,7 +195,7 @@ export default {
                 method: 'get',
                 url: `/api/basket/read`,
                 params: {
-                    id: this.getLogin,
+                    id: this.getLogin.user_id,
                 }
             }).then(res => {
                 this.basket = res.data;

@@ -7,11 +7,11 @@
 --@"°æ·Î\review.sql";
 --commit;
 
-@"D:\project\second\secProjectDB\member.sql";
-@"D:\project\second\secProjectDB\product.sql";
-@"D:\project\second\secProjectDB\seller.sql";
-@"D:\project\second\secProjectDB\order.sql";
-@"D:\project\second\secProjectDB\basket.sql";
-@"D:\project\second\secProjectDB\qna.sql";
-@"D:\project\second\secProjectDB\review.sql";
+@"C:\Users\portal\code\project\second\secProjectDB\member.sql";
+@"C:\Users\portal\code\project\second\secProjectDB\product.sql";
+@"C:\Users\portal\code\project\second\secProjectDB\seller.sql";
+@"C:\Users\portal\code\project\second\secProjectDB\order.sql";
+@"C:\Users\portal\code\project\second\secProjectDB\basket.sql";
+@"C:\Users\portal\code\project\second\secProjectDB\qna.sql";
+@"C:\Users\portal\code\project\second\secProjectDB\review.sql";
 commit;
