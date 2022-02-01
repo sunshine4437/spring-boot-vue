@@ -171,7 +171,7 @@ export default {
             })
         },
         addOpen() {
-            if (this.getLogin.length == 0) {
+            if (this.getLogin.user_id.length == 0) {
                 alert('로그인을 해주세요');
             } else {
                 this.question = !this.question;
@@ -185,7 +185,7 @@ export default {
                 url: `/api/qna/${id}`,
                 params: {
                     title: que,
-                    id: this.getLogin,
+                    id: this.getLogin.user_id,
                 }
             })
             alert('질문을 등록하셨습니다');

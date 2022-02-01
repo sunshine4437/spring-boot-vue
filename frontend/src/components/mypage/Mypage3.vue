@@ -30,7 +30,7 @@ export default {
     },
     methods: {
         quitSeller() {
-            let id = this.getLogin;
+            let id = this.getLogin.user_id;
             if (this.password == this.member.password) {
                 axios.get(`/api/product/canquit/${id}`).then(res => {
                     if (res.data > 0) {
@@ -48,7 +48,7 @@ export default {
             }
         },
         quitUser() {
-            let id = this.getLogin;
+            let id = this.getLogin.user_id;
             if (this.password == this.member.password) {
                 axios.get(`/api/order/canquit/${id}`).then(res => {
                     if (res.data > 0) {
@@ -71,7 +71,7 @@ export default {
             }
         },
         getMem() {
-            let id = this.getLogin;
+            let id = this.getLogin.user_id;
             axios.get(`/api/member/${id}`).then(res => {
                 this.member = res.data;
             })

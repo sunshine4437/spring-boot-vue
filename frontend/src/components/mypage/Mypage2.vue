@@ -92,7 +92,7 @@ export default {
                         method: 'put',
                         url: '/api/member/nickname',
                         params: {
-                            id: this.getLogin,
+                            id: this.getLogin.user_id,
                             nickname: this.putnick,
                         }
                     })
@@ -131,7 +131,7 @@ export default {
                                 method: 'put',
                                 url: '/api/member/password',
                                 params: {
-                                    id: this.getLogin,
+                                    id: this.getLogin.user_id,
                                     password: this.signup.password,
                                 }
                             })
@@ -163,7 +163,7 @@ export default {
                         method: 'put',
                         url: '/api/member/tel',
                         params: {
-                            id: this.getLogin,
+                            id: this.getLogin.user_id,
                             tel: this.putNum,
                         }
                     })
@@ -185,7 +185,7 @@ export default {
                         method: 'put',
                         url: '/api/member/address',
                         params: {
-                            id: this.getLogin,
+                            id: this.getLogin.user_id,
                             zipcode: this.postcode,
                             address: this.address,
                             detailaddr: this.putadd,

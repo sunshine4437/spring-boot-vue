@@ -248,7 +248,7 @@ export default {
                     method: 'post',
                     url: `/api/basket/create`,
                     params: {
-                        id: this.getLogin,
+                        id: this.getLogin.user_id,
                         productno : pNo,
                         option1: this.items[i].option1,
                         option2: this.items[i].option2,
