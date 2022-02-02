@@ -24,6 +24,11 @@ public class MemberService {
 		return memberMapper.findAll();
 	}
 
+	public MemberVO getMemberInfo(String id) {
+		// TODO Auto-generated method stub
+		return memberMapper.getMemberInfo(id);
+	}
+
 	public ResponseEntity<?> getMember(String id, String pwd) {
 		MemberVO res = memberMapper.findMember(id);
 		Map<String, String> result = new HashMap<>();
@@ -81,4 +86,5 @@ public class MemberService {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
+
 }
