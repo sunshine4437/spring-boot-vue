@@ -22,23 +22,22 @@
     </div>
     <div>
         <label for="" class="inputLabel">상품 이미지</label>
-        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image1})` }" @click="selectImage">
+        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image1})` }" @click="selectImage1">
         </div>
         <input ref="fileInput1" type="file" @change="pickFile1" accept="image/png, image/gif, image/jpeg">
     </div>
     <div>
         <label for="" class="inputLabel">상품 상세 이미지</label>
         <!-- <div v-for="(image,idx) in image2" :key="idx"> -->
-            <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image2})` }" @click="selectImage">
-               <!-- <button>select</button> -->
-            </div>
-            
+        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image2})` }" @click="selectImage2">
+            <!-- <button>select</button> -->
+        </div>
         <!-- </div> -->
-
         <input ref="fileInput2" type="file" @change="pickFile2" accept="image/png, image/gif, image/jpeg">
     </div>
-
-    <button @click="sendFile">send</button>
+    <div>
+        <button @click="sendFile">send</button>
+    </div>
 </div>
 </template>
 
@@ -53,7 +52,7 @@ export default {
     data() {
         return {
             productname: '',
-            ptype : '',
+            ptype: '',
             price: 0,
             option1: '',
             option2: '',
@@ -62,7 +61,10 @@ export default {
         };
     },
     methods: {
-        selectImage() {
+        selectImage1() {
+            this.$refs.fileInput1.click()
+        },
+        selectImage2() {
             this.$refs.fileInput2.click()
         },
         pickFile1() {
@@ -101,7 +103,7 @@ export default {
             let data = {
                 sellerid: this.getLogin.user_id,
                 productname: this.productname,
-                ptype : this.ptype,
+                ptype: this.ptype,
                 price: this.price,
                 option1: this.option1,
                 option2: this.option2,
@@ -146,5 +148,9 @@ export default {
 .inputLabel {
     display: inline-block;
     width: 120px;
+}
+
+div {
+    padding: 10px 5px;
 }
 </style>
