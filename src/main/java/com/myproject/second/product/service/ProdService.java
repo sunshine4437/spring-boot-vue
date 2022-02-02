@@ -106,7 +106,7 @@ public class ProdService {
 
 		try {
 			int productno = prodMapper.insertProduct(requestData, result);
-
+			
 			File file = new File("./src/main/resources/images/product/" + productno + "/");
 			file.mkdir();
 			String[] path = { "/detail/", "/product/" };

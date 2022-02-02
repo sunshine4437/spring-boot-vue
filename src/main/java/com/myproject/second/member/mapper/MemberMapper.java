@@ -18,7 +18,7 @@ public interface MemberMapper {
 	@Select("SELECT * from s_member where id = #{id}")
 	MemberVO findMember(@Param("id") String id);
 
-	@Select("SELECT nickname from s_member where id = (SELECT id from s_seller where productno = #{productno})")
+	@Select("SELECT nickname from s_member where id = (SELECT sellerid from s_product where productno = #{productno})")
 	String getNickname(int productno);
 
 	@Update("update s_member set point = point - #{point} where id = #{id}")

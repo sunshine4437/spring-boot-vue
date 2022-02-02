@@ -4,10 +4,10 @@ DROP SEQUENCE basket_seq;
 
 CREATE TABLE s_basket (
     basketidx NUMBER(20) PRIMARY KEY,
-    id        VARCHAR2(20),
-    productno NUMBER(9),
+    id        VARCHAR2(20) NOT NULL,
+    productno NUMBER(9) NOT NULL,
     option1   VARCHAR2(100) NOT NULL,
-    option2   VARCHAR2(100),
+    option2   VARCHAR2(100) NOT NULL,
     amount    NUMBER(3) NOT NULL,
     CONSTRAINT fk_basmem FOREIGN KEY ( id )
         REFERENCES s_member ( id )

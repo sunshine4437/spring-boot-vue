@@ -44,7 +44,7 @@ public interface ProdMapper {
 	@Select("select prod_seq.currval from dual")
 	int getProductNo();
 
-	@Insert("insert into s_product(productno, productname, ptype, imagename, price, option1, option2, regdate, sellerid, detailimagename) values (prod_seq.nextval, #{in.productname}, '�떊諛�', #{in.imagename}, #{in.price}, #{in.option1}, #{in.option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{in.sellerid}, #{in.detailimagename})")
+	@Insert("insert into s_product(productno, sellerid, productname, ptype, imagename, price, option1, option2, regdate, detailimagename) values (prod_seq.nextval, #{in.sellerid}, #{in.productname}, #{in.ptype}, #{in.imagename}, #{in.price}, #{in.option1}, #{in.option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{in.detailimagename})")
 	@Options(useGeneratedKeys = true, keyProperty = "result.productno", keyColumn = "productno")
 	int insertProduct(@Param("in") ProdVO in, @Param("result") ProdVO result);
 

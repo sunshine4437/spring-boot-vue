@@ -4,7 +4,7 @@ DROP SEQUENCE qna_seq;
 
 CREATE TABLE s_qna (
     qnano     NUMBER(10) PRIMARY KEY,
-    productno NUMBER(10),
+    productno NUMBER(10) NOT NULL,
     state     VARCHAR2(20) DEFAULT '검토중',
     title     VARCHAR2(200) NOT NULL,
     answer    VARCHAR2(2100) DEFAULT '아직 답변이 작성되지 않았습니다',

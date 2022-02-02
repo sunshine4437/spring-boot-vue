@@ -5,16 +5,20 @@
         <input type="text" class="inputData" v-model="productname">
     </div>
     <div>
+        <label for="" class="inputLabel">상품 타입</label>
+        <input type="text" class="inputData" v-model="ptype">
+    </div>
+    <div>
         <label for="" class="inputLabel">상품가격</label>
         <input type="text" class="inputData" v-model="price">
     </div>
     <div>
         <label for="" class="inputLabel">옵션1</label>
-        <input type="text" class="inputData" v-model="option1">
+        <input type="text" class="inputData" v-model="option1" placeholder="옵션1;a;b;c;d">
     </div>
     <div>
         <label for="" class="inputLabel">옵션2</label>
-        <input type="text" class="inputData" v-model="option2">
+        <input type="text" class="inputData" v-model="option2" placeholder="옵션2;a;b;c;d">
     </div>
     <div>
         <label for="" class="inputLabel">상품 이미지</label>
@@ -49,6 +53,7 @@ export default {
     data() {
         return {
             productname: '',
+            ptype : '',
             price: 0,
             option1: '',
             option2: '',
@@ -94,8 +99,9 @@ export default {
             console.log(`${this.getLogin}`)
             // let id = this.getLogin
             let data = {
-                sellerid: this.getLogin,
+                sellerid: this.getLogin.user_id,
                 productname: this.productname,
+                ptype : this.ptype,
                 price: this.price,
                 option1: this.option1,
                 option2: this.option2,

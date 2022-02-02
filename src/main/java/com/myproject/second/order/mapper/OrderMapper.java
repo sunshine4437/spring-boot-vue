@@ -26,7 +26,7 @@ public interface OrderMapper {
 	@Select("Select s_member.nickname from s_product left join s_member on s_product.sellerid = s_member.id where s_product.productno = #{productno}")
 	String getSeller(@Param("productno") int productno);
 
-	@Insert("insert into s_order values (order_seq.NEXTVAL, #{order.id}, #{order.productno}, #{order.selectedoption}, #{order.totalprice}, sysdate, '결제 완료', #{order.ordermethod}, #{seller}, #{order.dname}, #{order.dtel}, #{order.dzipcode}, #{order.daddress}, #{order.ddetailaddr})")
+	@Insert("insert into s_order values (order_seq.NEXTVAL, #{order.id}, #{order.productno}, #{order.selectedoption}, #{order.amount}, #{order.totalprice}, sysdate, '결제 완료', #{order.ordermethod}, #{seller}, #{order.dname}, #{order.dtel}, #{order.dzipcode}, #{order.daddress}, #{order.ddetailaddr})")
 	void insertOrder(@Param("order") OrderVO orderVO, @Param("seller") String seller);
 
 	@Update("update s_order set state = #{state} where orderidx = #{orderidx}")

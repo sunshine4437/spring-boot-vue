@@ -326,6 +326,7 @@ export default {
                         id: this.getLogin.user_id,
                         productno: this.getOrderList[i].productno,
                         selectedoption: this.getOrderList[i].option1,
+                        amount : this.getOrderList[i].amount,
                         totalprice: this.getOrderList[i].price * sale,
                         ordermethod: this.radioPay,
                         dname: document.getElementById("username").value,
