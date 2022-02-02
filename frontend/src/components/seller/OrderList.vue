@@ -30,34 +30,31 @@
     <div class="tableBody">
         <table>
             <tbody>
-                <tr>
-                    <td class="td1">1</td>
-                    <td class="td2">2</td>
-                    <td class="td3">3</td>
-                    <td class="td4">4</td>
-                    <td class="td5">5</td>
-                    <td class="td6">6</td>
-                    <td class="td7">7</td>
-                    <td class="td8">8</td>
-                </tr>
-                 <tr>
-                    <td class="td1">1</td>
-                    <td class="td2">2</td>
-                    <td class="td3">3</td>
-                    <td class="td4">4</td>
-                    <td class="td5">5</td>
-                    <td class="td6">6</td>
-                    <td class="td7">7</td>
-                    <td class="td8">8</td>
-                </tr> <tr>
-                    <td class="td1">1</td>
-                    <td class="td2">2</td>
-                    <td class="td3">3</td>
-                    <td class="td4">4</td>
-                    <td class="td5">5</td>
-                    <td class="td6">6</td>
-                    <td class="td7">7</td>
-                    <td class="td8">8</td>
+                <tr v-for="(order,idx) in orders" :key="idx" class="tableRow">
+                    <td class="td1">
+                        {{order.orderidx}}
+                    </td>
+                    <td class="td2">
+                        {{order.productno}}
+                    </td>
+                    <td class="td3">
+                        {{order.productname}}
+                    </td>
+                    <td class="td4">
+                        {{AddComma(order.totalprice)}}
+                    </td>
+                    <td class="td5">
+                        {{order.amount}}
+                    </td>
+                    <td class="td6">
+                        {{order.orderdate}}
+                    </td>
+                    <td class="td7">
+                        {{order.state}}
+                    </td>
+                    <td class="td8">
+                        상태변경
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -69,11 +66,38 @@
 </template>
 
 <script>
+import axios from 'axios'
+import {
+    createNamespacedHelpers
+} from 'vuex';
+// 로그인 상태 관련 모듈
+const loginStore = createNamespacedHelpers('loginStore');
 export default {
     data: function () {
         return {
+            orders: [],
             counter: 0
         };
+    },
+    methods: {
+        async getData() {
+            await axios.get("/api/order/getSell/" + this.getLogin.user_id).then(res => {
+                this.data = res.data;
+                this.data.forEach(element => {
+                    this.orders.push(element);
+                });
+            });
+        },
+        AddComma(num) {
+            let regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ",");
+        },
+    },
+    computed: {
+        ...loginStore.mapGetters(['getLogin'])
+    },
+    mounted() {
+        this.getData();
     },
     destroyed() {
         console.log('Destroyed')
@@ -157,5 +181,9 @@ td {
 
 .tableRow:nth-child(2n) {
     background-color: rgb(117, 200, 255);
+}
+
+table {
+    border-collapse: collapse;
 }
 </style>

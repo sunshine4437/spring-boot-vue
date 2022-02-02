@@ -33,6 +33,10 @@ public class OrderService {
 		orderMapper.insertOrder(orderVO);
 	}
 
+	public List<OrderVO> getSellList(String sellerid) {
+		return orderMapper.getSellList(sellerid);
+	}
+
 	public void updateOrder(long orderidx, String state) {
 		orderMapper.updateOrder(orderidx, state);
 	}

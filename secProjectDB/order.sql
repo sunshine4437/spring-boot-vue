@@ -54,7 +54,7 @@ INSERT INTO s_order VALUES (
     1,
     73800,
     '2022-01-25',
-    '취소중',
+    '취소 요청',
     '카드',
     '신세계몰',
     '테스터1',
@@ -558,7 +558,9 @@ FROM
     s_order
 ORDER BY
     orderidx;
-
+    
+--state 종류 : 결제 완료 -> 배송중 -> 배송완료 / 취소 요청 -> 취소 완료 / 환불 요청 -> 환불 완료    
+--select s_order.orderidx, s_order.productno, s_product.productname, s_order.totalprice, s_order.amount, s_order.orderdate, s_order.state from s_order left join s_product on s_order.productno = s_product.productno where s_product.sellerid = 'seller0001' order by s_order.orderdate desc;
 --SELECT s_order.id, s_order.dzipcode, s_order.daddress, s_order.ddetailaddr, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.state FROM s_order, s_product WHERE s_order.productno = s_product.productnoAND s_product.sellerid = 'seller0001';    
 --SELECT s_member.id 구매자id, s_order.dzipcode, s_order.daddress, s_order.ddetailaddr  FROM s_member, s_order, s_product WHERE s_member.id = s_order.id AND s_order.productno = s_product.productno AND s_product.sellerid = 'seller0001';    
 --select count(orderidx) from s_order where id = 'tester0001' and state in ('결제완료', '배송중', '취소 요청');

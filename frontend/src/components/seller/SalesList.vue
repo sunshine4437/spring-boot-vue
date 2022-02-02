@@ -22,8 +22,7 @@
                     <td class="td4 header" style=" cursor: pointer;" @click="priceSort">가격</td>
                     <td class="td5 header" style=" cursor: pointer;" @click="regdateSort">등록일</td>
                     <td class="td6">재고</td>
-                    <td class="td7">삭제(미구현)</td>
-                    <td class="td8">판매중단</td>
+                    <td class="td7">판매중단</td>
                 </tr>
             </thead>
         </table>
@@ -60,8 +59,7 @@
                         </router-link>
                     </td>
                     <td class="td6">{{product.amount}}</td>
-                    <td class="td7">삭제</td>
-                    <td class="td8" style=" cursor: pointer;" @click="onSale(product)">
+                    <td class="td7" style=" cursor: pointer;" @click="onSale(product)">
                         <p v-if="product.onsale==0">미판매</p>
                         <p v-if="product.onsale==1">판매중</p>
                     </td>
@@ -274,10 +272,6 @@ td {
     text-align: center;
 }
 
-.td8 {
-    width: 70px;
-}
-
 .header {
     height: 60px;
     text-align: center;
@@ -285,5 +279,9 @@ td {
 
 .tableRow:nth-child(2n) {
     background-color: rgb(117, 200, 255);
+}
+
+table {
+    border-collapse: collapse;
 }
 </style>
