@@ -35,11 +35,6 @@ public class BasketController {
 
 	@DeleteMapping("/delete")
 	public ResponseEntity<?> deleteBasket(@RequestBody List<Long> basketidx) {
-		try {
-			basketService.deleteBasket(basketidx);
-			return new ResponseEntity<>(HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		return basketService.deleteBasket(basketidx);
 	}
 }

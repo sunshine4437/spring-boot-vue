@@ -69,13 +69,13 @@
         <p>
             <span style="margin-right: 28px">이름</span>
             <span>
-                <input type="text" id="username" class="shortInput inputValues" name="이름" />
+                <input type="text" id="username" class="shortInput inputValues" name="이름" v-model="name" />
             </span>
         </p>
         <p>
             <span>전화번호</span>
             <span>
-                <input type="text" class="shortInput inputValues" placeholder="-없이 숫자만" id="mobile" name="전화번호" @keyup="phoneCheck()" />
+                <input type="text" class="shortInput inputValues" placeholder="-없이 숫자만" v-model="mobile" id="mobile" name="전화번호" @keyup="phoneCheck()" />
             </span>
             <span>
                 <span class="validate" v-if="!phoneValidate">- 없이 숫자만 입력해주세요</span>
@@ -101,7 +101,7 @@
         <p>
             <span>상세주소</span>
             <span colspan="2">
-                <input type="text" class="longInput inputValues" id="detailAddress" placeholder="상세주소" name="상세주소" />
+                <input type="text" class="longInput inputValues" id="detailAddress" v-model="extraAddress" placeholder="상세주소" name="상세주소" />
             </span>
         </p>
     </div>
@@ -196,10 +196,11 @@ export default {
             phoneValidate: true,
             usable: 0,
             open: false,
+            name: "",
+            mobile: "",
             postcode: "",
             address: "",
             extraAddress: "",
-            member: "",
         };
     },
     methods: {
@@ -287,7 +288,7 @@ export default {
         },
         AddComma(num) {
             var regexp = /\B(?=(\d{3})+(?!\d))/g;
-            return num.toString().replace(regexp, ",");
+            return `${num}`.toString().replace(regexp, ",");
         },
         // 유효성 검사
         payCheck() {
@@ -314,19 +315,19 @@ export default {
                 alert("전화번호를 확인하세요");
                 return;
             } else {
-                this.usePoint();
-                alert("결제를 완료했습니다");
-
                 let sale = 0.9;
                 if (this.coupon != 0) {
                     sale = 0.8;
                 }
+                let basketidx = [];
                 for (let i = 0; i < this.getOrderList.length; i++) {
                     let data = {
                         id: this.getLogin.user_id,
                         productno: this.getOrderList[i].productno,
                         selectedoption: this.getOrderList[i].option1,
+                        amount: this.getOrderList[i].amount,
                         totalprice: this.getOrderList[i].price * sale,
+                        seller: this.getOrderList[i].seller,
                         ordermethod: this.radioPay,
                         dname: document.getElementById("username").value,
                         dtel: document.getElementById("mobile").value,
@@ -334,17 +335,32 @@ export default {
                         daddress: document.getElementById("address").value,
                         ddetailaddr: document.getElementById("detailAddress").value,
                     }
+                    basketidx.push(this.getOrderList[i].basketidx);
                     axios.post('/api/order/create', data);
                 }
-                this.$router.push("/");
+                axios.delete(`/api/basket/delete`, {
+                        data: basketidx
+                    })
+                    .then(res => {
+                        if (res.status == 200) {
+                            this.usePoint();
+                            alert("결제를 완료했습니다");
+                            this.$router.push("/");
+                        }
+                    }).catch(err => {
+                        console.log(err.response)
+                    })
             }
         },
-        getMem() {
+        getMemInfo() {
             const id = this.getLogin.user_id;
-            console.log(id);
             axios.get(`/api/member/${id}`).then(res => {
-                this.member = res.data;
-                this.usable = this.member.point;
+                this.usable = res.data.point;
+                this.name = res.data.name;
+                this.mobile = res.data.tel;
+                this.postcode = res.data.zipcode;
+                this.address = res.data.address;
+                this.extraAddress = res.data.detailaddr;
             })
         },
         usePoint() {
@@ -380,7 +396,7 @@ export default {
             }
             this.finalPrice = this.totalPrice - this.sale + this.delivery;
         }
-        this.getMem();
+        this.getMemInfo();
     },
 };
 </script>

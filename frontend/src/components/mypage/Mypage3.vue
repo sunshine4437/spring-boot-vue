@@ -8,8 +8,7 @@
         <div class="tempDiv">
             <label class="labelClass" for="">비밀번호</label>
             <input v-model="password" type="password" class="mdText">
-            <button class="quit" @click="quitSeller" v-if="member.authority == 'SELLER'">회원탈퇴</button>
-            <button class="quit" @click="quitUser" v-if="member.authority == 'USER'">회원탈퇴</button>
+            <button class="quit" @click="quit">회원탈퇴</button>
         </div>
     </div>
 </div>
@@ -25,56 +24,43 @@ export default {
     data() {
         return {
             password: null,
-            member: "",
         }
     },
     methods: {
-        quitSeller() {
-            let id = this.getLogin.user_id;
-            if (this.password == this.member.password) {
-                axios.get(`/api/product/canquit/${id}`).then(res => {
-                    if (res.data > 0) {
-                        alert('판매중인 상품을 전부 삭제해주세요');
-                        return;
-                    } else {
-                        axios.delete(`/api/member/delete/${id}`);
-                        alert("탈퇴하셨습니다.")
-                        this.Logout();
-                        this.$router.push("/");
-                    }
-                })
-            } else {
-                alert('비밀번호가 틀립니다');
-            }
-        },
-        quitUser() {
-            let id = this.getLogin.user_id;
-            if (this.password == this.member.password) {
+        quit() {
+            if (this.getLogin.user_auth == "USER") {
+                let id = this.getLogin.user_id;
                 axios.get(`/api/order/canquit/${id}`).then(res => {
                     if (res.data > 0) {
                         alert('상품 구매가 완료되지 않은 주문이 있습니다');
                         return;
                     } else {
-                        axios.delete(`/api/member/delete/${id}`).then(res => {
+                        axios({
+                            method: "delete",
+                            url: `/api/member/delete`,
+                            params: {
+                                id: id,
+                                password: this.password,
+                            }
+                        }).then(res => {
+                            console.log(res.status);
                             if (res.status == 200) {
                                 alert("탈퇴하셨습니다.")
                                 this.Logout();
                                 this.$router.push("/");
                             }
                         }).catch(err => {
-                            console.log(err.response);
+                            if (err.response.status == 401) {
+                                alert("비밀번호가 틀렸습니다.")
+                            } else {
+                                console.log(err.response);
+                            }
                         });
                     }
                 })
             } else {
-                alert('비밀번호가 틀립니다');
+                alert('유저가 아닙니다');
             }
-        },
-        getMem() {
-            let id = this.getLogin.user_id;
-            axios.get(`/api/member/${id}`).then(res => {
-                this.member = res.data;
-            })
         },
         // 로그아웃 상태로 전환
         ...loginStore.mapMutations([
@@ -84,9 +70,6 @@ export default {
     computed: {
         ...loginStore.mapGetters(["getLogin"]),
     },
-    mounted() {
-        this.getMem();
-    }
 }
 </script>
 

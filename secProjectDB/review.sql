@@ -4,10 +4,10 @@ DROP SEQUENCE review_seq;
 
 CREATE TABLE s_review (
     reviewno  NUMBER(10) PRIMARY KEY,
-    productno NUMBER(10),
+    productno NUMBER(10) NOT NULL,
     image     VARCHAR(50),
-    content   VARCHAR(600),
-    id        VARCHAR(50),
+    content   VARCHAR(600) NOT NULL,
+    id        VARCHAR(50) NOT NULL,
     CONSTRAINT fk_qnareview FOREIGN KEY ( productno )
         REFERENCES s_product ( productno )
             ON DELETE CASCADE

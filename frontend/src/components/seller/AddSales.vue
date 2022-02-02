@@ -5,36 +5,39 @@
         <input type="text" class="inputData" v-model="productname">
     </div>
     <div>
-        <label for="" class="inputLabel">상품가격</label>
+        <label for="" class="inputLabel">상품 타입</label>
+        <input type="text" class="inputData" v-model="ptype" placeholder="예시) 상의/하의">
+    </div>
+    <div>
+        <label for="" class="inputLabel">상품 가격</label>
         <input type="text" class="inputData" v-model="price">
     </div>
     <div>
         <label for="" class="inputLabel">옵션1</label>
-        <input type="text" class="inputData" v-model="option1">
+        <input type="text" class="inputData" v-model="option1" placeholder="예시) 옵션1;a;b;c;d">
     </div>
     <div>
         <label for="" class="inputLabel">옵션2</label>
-        <input type="text" class="inputData" v-model="option2">
+        <input type="text" class="inputData" v-model="option2" placeholder="예시) 옵션2;a;b;c;d">
     </div>
     <div>
         <label for="" class="inputLabel">상품 이미지</label>
-        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image1})` }" @click="selectImage">
+        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image1})` }" @click="selectImage1">
         </div>
         <input ref="fileInput1" type="file" @change="pickFile1" accept="image/png, image/gif, image/jpeg">
     </div>
     <div>
         <label for="" class="inputLabel">상품 상세 이미지</label>
         <!-- <div v-for="(image,idx) in image2" :key="idx"> -->
-            <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image2})` }" @click="selectImage">
-               <!-- <button>select</button> -->
-            </div>
-            
+        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image2})` }" @click="selectImage2">
+            <!-- <button>select</button> -->
+        </div>
         <!-- </div> -->
-
         <input ref="fileInput2" type="file" @change="pickFile2" accept="image/png, image/gif, image/jpeg">
     </div>
-
-    <button @click="sendFile">send</button>
+    <div>
+        <button @click="sendFile">send</button>
+    </div>
 </div>
 </template>
 
@@ -49,6 +52,7 @@ export default {
     data() {
         return {
             productname: '',
+            ptype: '',
             price: 0,
             option1: '',
             option2: '',
@@ -57,7 +61,10 @@ export default {
         };
     },
     methods: {
-        selectImage() {
+        selectImage1() {
+            this.$refs.fileInput1.click()
+        },
+        selectImage2() {
             this.$refs.fileInput2.click()
         },
         pickFile1() {
@@ -94,8 +101,9 @@ export default {
             console.log(`${this.getLogin}`)
             // let id = this.getLogin
             let data = {
-                sellerid: this.getLogin,
+                sellerid: this.getLogin.user_id,
                 productname: this.productname,
+                ptype: this.ptype,
                 price: this.price,
                 option1: this.option1,
                 option2: this.option2,
@@ -140,5 +148,9 @@ export default {
 .inputLabel {
     display: inline-block;
     width: 120px;
+}
+
+div {
+    padding: 10px 5px;
 }
 </style>

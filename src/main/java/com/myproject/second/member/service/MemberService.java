@@ -24,13 +24,18 @@ public class MemberService {
 		return memberMapper.findAll();
 	}
 
+	public MemberVO getMemberInfo(String id) {
+		// TODO Auto-generated method stub
+		return memberMapper.getMemberInfo(id);
+	}
+
 	public ResponseEntity<?> getMember(String id, String pwd) {
 		MemberVO res = memberMapper.findMember(id);
 		Map<String, String> result = new HashMap<>();
 
 		if (res == null)
-			
-			return new ResponseEntity<>("¾ÆÀÌµğ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.", HttpStatus.UNAUTHORIZED);
+
+			return new ResponseEntity<>("ì•„ì´ë””ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.", HttpStatus.UNAUTHORIZED);
 		else {
 			if (res.getPassword().equals(pwd)) {
 				result.put("auth", res.getAuthority());
@@ -38,7 +43,7 @@ public class MemberService {
 				result.put("id", res.getId());
 				return new ResponseEntity<>(result, HttpStatus.OK);
 			} else {
-				return new ResponseEntity<>("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.", HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.", HttpStatus.UNAUTHORIZED);
 			}
 		}
 	}
@@ -68,7 +73,18 @@ public class MemberService {
 		memberMapper.updateAddress(id, zipcode, address, detailaddr);
 	}
 
-	public void deleteMember(String id) {
-		memberMapper.deleteMember(id);
+	public ResponseEntity<?> deleteMember(String id, String password) {
+		MemberVO res = memberMapper.findMember(id);
+		if (res.getPassword().equals(password)) {
+			try {
+				memberMapper.deleteMember(id);
+				return new ResponseEntity<>(HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		} else {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
 	}
+
 }

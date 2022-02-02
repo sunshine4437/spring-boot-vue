@@ -142,7 +142,7 @@ export default {
         },
         AddComma(num) {
             var regexp = /\B(?=(\d{3})+(?!\d))/g;
-            return num.toString().replace(regexp, ',');
+            return `${num}`.toString().replace(regexp, ',');
         },
         // 장바구니 목록 삭제
         deleteBasket() {
@@ -154,9 +154,9 @@ export default {
                     basketidx.push(this.basket[i].basketidx);
                 }
             }
-            console.log(2);
-            console.log(basketidx);
-            axios.delete(`/api/basket/delete`, { data: basketidx })
+            axios.delete(`/api/basket/delete`, {
+                    data: basketidx
+                })
                 .then(res => {
                     if (res.status == 200) {
                         for (let i = checkedList.length - 1; i >= 0; i--) {
@@ -217,7 +217,7 @@ export default {
             } else {
                 return 2500;
             }
-        },        
+        },
         // 로그인한 유저정보를 반환
         ...loginStore.mapGetters(['getLogin']),
     },

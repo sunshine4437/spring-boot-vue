@@ -48,6 +48,11 @@ public class OrderController {
 		orderService.insertOrder(orderVO);
 	}
 
+	@GetMapping("/getSell/{sellerid}")
+	public List<OrderVO> getSellList(@PathVariable("sellerid") String sellerid) {
+		return orderService.getSellList(sellerid);
+	}
+
 	@PutMapping("/update")
 	public void updateOrder(@RequestParam("orderidx") long orderidx, @RequestParam("state") String state)
 			throws Exception {

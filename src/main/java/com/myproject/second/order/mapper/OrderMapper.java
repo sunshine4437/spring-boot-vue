@@ -23,11 +23,11 @@ public interface OrderMapper {
 	List<OrderVO> getCancelList(@Param("id") String id, @Param("startdate") String startdate,
 			@Param("enddate") String enddate, @Param("productname") String productname);
 
-	@Select("Select s_member.nickname from s_product left join s_member on s_product.sellerid = s_member.id where s_product.productno = #{productno}")
-	String getSeller(@Param("productno") int productno);
+	@Insert("insert into s_order values (order_seq.NEXTVAL, #{order.id}, #{order.productno}, #{order.selectedoption}, #{order.amount}, #{order.totalprice}, sysdate, '결제 완료', #{order.ordermethod}, #{order.seller}, #{order.dname}, #{order.dtel}, #{order.dzipcode}, #{order.daddress}, #{order.ddetailaddr})")
+	void insertOrder(@Param("order") OrderVO orderVO);
 
-	@Insert("insert into s_order values (order_seq.NEXTVAL, #{order.id}, #{order.productno}, #{order.selectedoption}, #{order.totalprice}, sysdate, '결제 완료', #{order.ordermethod}, #{seller}, #{order.dname}, #{order.dtel}, #{order.dzipcode}, #{order.daddress}, #{order.ddetailaddr})")
-	void insertOrder(@Param("order") OrderVO orderVO, @Param("seller") String seller);
+	@Select("select s_order.orderidx, s_order.productno, s_product.productname, s_order.totalprice, s_order.amount, s_order.orderdate, s_order.state from s_order left join s_product on s_order.productno = s_product.productno where s_product.sellerid = #{sellerid} order by s_order.orderdate desc")
+	List<OrderVO> getSellList(@Param("sellerid") String sellerid);
 
 	@Update("update s_order set state = #{state} where orderidx = #{orderidx}")
 	void updateOrder(@Param("orderidx") long orderidx, @Param("state") String state);
