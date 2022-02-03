@@ -105,8 +105,8 @@ public class ProdService {
 		ResponseEntity<?> entity = null;
 
 		try {
-			int productno = prodMapper.insertProduct(requestData, result);
-			
+			prodMapper.insertProduct(requestData, result);
+			int productno = result.getProductno();
 			File file = new File("./src/main/resources/images/product/" + productno + "/");
 			file.mkdir();
 			String[] path = { "/detail/", "/product/" };

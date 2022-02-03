@@ -98,7 +98,7 @@ export default {
             // this.formData.append('fileList', input[0])
         },
         async sendFile() {
-            console.log(`${this.getLogin}`)
+            console.log(this.getLogin.user_id)
             // let id = this.getLogin
             let data = {
                 sellerid: this.getLogin.user_id,
