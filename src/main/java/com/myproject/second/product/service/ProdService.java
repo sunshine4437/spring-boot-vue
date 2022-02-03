@@ -105,6 +105,12 @@ public class ProdService {
 		ResponseEntity<?> entity = null;
 
 		try {
+			requestData.setOption1("옵션1;" + requestData.getOption1());
+			if(requestData.getOption2().equals("")) {
+				requestData.setOption2("옵션2;선택");
+			} else {
+				requestData.setOption2("옵션2;" + requestData.getOption2());
+			}
 			int productno = prodMapper.insertProduct(requestData, result);
 			
 			File file = new File("./src/main/resources/images/product/" + productno + "/");
