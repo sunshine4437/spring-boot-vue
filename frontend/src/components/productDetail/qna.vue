@@ -171,7 +171,7 @@ export default {
             })
         },
         addOpen() {
-            if (this.getLogin.user_id.length == 0) {
+            if (this.getLogin == null) {
                 alert('로그인을 해주세요');
             } else {
                 this.question = !this.question;

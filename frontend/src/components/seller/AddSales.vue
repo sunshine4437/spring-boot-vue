@@ -6,7 +6,7 @@
     </div>
     <div>
         <label for="" class="inputLabel">상품 타입</label>
-        <input type="text" class="inputData" v-model="ptype" placeholder="예시) 상의/하의">
+        <input type="text" class="inputData" v-model="ptype">
     </div>
     <div>
         <label for="" class="inputLabel">상품 가격</label>
@@ -14,11 +14,11 @@
     </div>
     <div>
         <label for="" class="inputLabel">옵션1</label>
-        <input type="text" class="inputData" v-model="option1" placeholder="예시) 옵션1;a;b;c;d">
+        <input type="text" class="inputData" v-model="option1" placeholder="각 옵션은 ;로 구분해주세요">
     </div>
     <div>
         <label for="" class="inputLabel">옵션2</label>
-        <input type="text" class="inputData" v-model="option2" placeholder="예시) 옵션2;a;b;c;d">
+        <input type="text" class="inputData" v-model="option2" placeholder="옵션2가 없다면 빈칸으로 놔두세요">
     </div>
     <div>
         <label for="" class="inputLabel">상품 이미지</label>
