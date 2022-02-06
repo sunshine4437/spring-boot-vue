@@ -1,43 +1,71 @@
 <template>
 <div>
-    <div>
-        <label for="" class="inputLabel">상품명</label>
-        <input type="text" class="inputData" v-model="productname">
-    </div>
-    <div>
-        <label for="" class="inputLabel">상품 타입</label>
-        <input type="text" class="inputData" v-model="ptype">
-    </div>
-    <div>
-        <label for="" class="inputLabel">상품 가격</label>
-        <input type="text" class="inputData" v-model="price">
-    </div>
-    <div>
-        <label for="" class="inputLabel">옵션1</label>
-        <input type="text" class="inputData" v-model="option1" placeholder="각 옵션은 ;로 구분해주세요">
-    </div>
-    <div>
-        <label for="" class="inputLabel">옵션2</label>
-        <input type="text" class="inputData" v-model="option2" placeholder="옵션2가 없다면 빈칸으로 놔두세요">
-    </div>
-    <div>
-        <label for="" class="inputLabel">상품 이미지</label>
-        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image1})` }" @click="selectImage1">
-        </div>
-        <input ref="fileInput1" type="file" @change="pickFile1" accept="image/png, image/gif, image/jpeg">
-    </div>
-    <div>
-        <label for="" class="inputLabel">상품 상세 이미지</label>
-        <!-- <div v-for="(image,idx) in image2" :key="idx"> -->
-        <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image2})` }" @click="selectImage2">
-            <!-- <button>select</button> -->
-        </div>
-        <!-- </div> -->
-        <input ref="fileInput2" type="file" @change="pickFile2" accept="image/png, image/gif, image/jpeg">
-    </div>
-    <div>
-        <button @click="sendFile">send</button>
-    </div>
+    <table>
+        <tr>
+            <td>상품명</td>
+            <td colspan="2">
+                <input type="text" class="inputData" v-model="productname">
+            </td>
+        </tr>
+        <tr>
+            <td>상품 타입</td>
+            <td colspan="2">
+                <input type="text" class="inputData" v-model="ptype">
+            </td>
+        </tr>
+        <tr>
+            <td>상품 가격</td>
+            <td colspan="2">
+                <input type="text" class="inputData" v-model="price">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>옵션명</td>
+            <td>옵션(;로 구분)</td>
+        </tr>
+        <tr>
+            <td>옵션1</td>
+            <td>
+                <input type="text" class="inputData" v-model="option1name" placeholder="옵션명">
+            </td>
+            <td>
+                <input type="text" class="inputData" v-model="option1">
+            </td>
+        </tr>
+        <tr>
+            <td>옵션2</td>
+            <td>
+                <input type="text" class="inputData" v-model="option2name" placeholder="옵션명">
+            </td>
+            <td>
+                <input type="text" class="inputData" v-model="option2" :disabled='option2name ==""'>
+            </td>
+        </tr>
+        <tr>
+            <td>이미지</td>
+            <td>
+                <label for="" class="inputLabel">상품 이미지</label>
+                <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image1})` }" @click="selectImage1">
+                </div>
+                <input ref="fileInput1" type="file" @change="pickFile1" accept="image/png, image/gif, image/jpeg">
+            </td>
+            <td>
+                <label for="" class="inputLabel">상품 상세 이미지</label>
+                <!-- <div v-for="(image,idx) in image2" :key="idx"> -->
+                <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image2})` }" @click="selectImage2">
+                    <!-- <button>select</button> -->
+                </div>
+                <!-- </div> -->
+                <input ref="fileInput2" type="file" @change="pickFile2" accept="image/png, image/gif, image/jpeg">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align : center">
+                <button @click="sendFile">send</button>
+            </td>
+        </tr>
+    </table>
 </div>
 </template>
 
@@ -54,7 +82,9 @@ export default {
             productname: '',
             ptype: '',
             price: 0,
+            option1name: '',
             option1: '',
+            option2name: '',
             option2: '',
             image1: null,
             image2: null,
@@ -105,8 +135,8 @@ export default {
                 productname: this.productname,
                 ptype: this.ptype,
                 price: this.price,
-                option1: this.option1,
-                option2: this.option2,
+                option1: this.option1name + ';' + this.option1,
+                option2: this.option2name + ';' + this.option2,
                 imagename: this.imagename,
                 detailimagename: this.detailimagename,
             }
@@ -149,7 +179,13 @@ export default {
     display: inline-block;
     width: 120px;
 }
-
+tr, td{
+    border: 1px black solid;
+    padding: 5px 5px;
+}
+table{
+    border-collapse: collapse;
+}
 div {
     padding: 10px 5px;
 }

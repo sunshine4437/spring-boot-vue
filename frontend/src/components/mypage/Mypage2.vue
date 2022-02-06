@@ -5,7 +5,7 @@
     <!--right-->
     <div class="right">
         <div class="pList1">
-            <h2>회원 정보 열람</h2>
+            <h2>회원 정보 변경</h2>
         </div>
         <div class="tempDiv">
             <label class="labelClass" for="">닉네임</label>
