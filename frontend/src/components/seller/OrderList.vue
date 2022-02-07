@@ -103,11 +103,11 @@ export default {
             let check = 0;
             let error = [];
             for (let i = 0; i < this.orders.length; i++) {
-                if (this.orders[i].state == '취소 완료' || this.orders[i].state == '환불 완료') {
-                    alert(`주문번호 : ${this.orders[i].orderidx}\n취소 완료 혹은 환불 완료된 주문은 변경이 불가능합니다.`);
-                    continue;
-                }
                 if (this.orders[i].state != this.selectedStates[i]) {
+                    if (this.orders[i].state == '취소 완료' || this.orders[i].state == '환불 완료') {
+                        alert(`주문번호 : ${this.orders[i].orderidx}\n취소 완료 혹은 환불 완료된 주문은 변경이 불가능합니다.`);
+                        continue;
+                    }
                     check++;
                     await axios({
                         method: 'put',
@@ -203,7 +203,7 @@ td {
 
 .td8 {
     width: 100px;
-    text-align:center;
+    text-align: center;
 }
 
 .header {

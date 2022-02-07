@@ -164,6 +164,9 @@ export default {
                 if (err.response.status === 404)
                     alert("error")
             })
+        },
+        updateFile() {
+
         }
     },
     mounted() {

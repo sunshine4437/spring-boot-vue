@@ -101,7 +101,8 @@ export default {
         },
         setImage(product) {
             try {
-                return require(`@/components/mainPage/productTableImage/${product.imagename}`)
+                 return require(`../../../../src/main/resources/images/product/${product.productno}/product/${product.imagename}`)
+                // return require(`@/components/mainPage/productTableImage/${product.imagename}`)
             } catch {
                 return require(`@/components/mainPage/productTableImage/error.png`)
             }
