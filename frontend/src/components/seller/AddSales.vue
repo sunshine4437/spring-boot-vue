@@ -1,5 +1,6 @@
 <template>
 <div>
+
     <table>
         <tr>
             <td>상품명</td>
@@ -62,7 +63,8 @@
         </tr>
         <tr>
             <td colspan="3" style="text-align : center">
-                <button @click="sendFile">send</button>
+                <button v-if="productno==''" @click="sendFile">입력</button>
+                <button v-else @click="updateFile">수정</button>
             </td>
         </tr>
     </table>
@@ -77,8 +79,10 @@ import {
 // 로그인 상태 관련 모듈
 const loginStore = createNamespacedHelpers('loginStore');
 export default {
+    props: ['sendProduct'],
     data() {
         return {
+            productno: '',
             productname: '',
             ptype: '',
             price: 0,
@@ -89,6 +93,12 @@ export default {
             image1: null,
             image2: null,
         };
+    },
+    watch: {
+
+    },
+    computed: {
+        ...loginStore.mapGetters(['getLogin']),
     },
     methods: {
         selectImage1() {
@@ -155,11 +165,31 @@ export default {
             })
         }
     },
-    computed: {
-        ...loginStore.mapGetters(['getLogin'])
-    },
     mounted() {
+        if (this.sendProduct != '')
+            axios.get(`/api/product/findByNo/${this.sendProduct}`)
+            .then(res => {
+                console.log(res.data[0])
+                this.productno = res.data[0].productno;
+                this.productname = res.data[0].productname;
+                this.ptype = res.data[0].ptype;
+                this.price = res.data[0].price;
 
+                let opt1 = res.data[0].option1.split(";");
+                let opt2 = res.data[0].option2.split(";");
+
+                this.option1name = opt1[0];
+                this.option2name = opt2[0];
+
+                opt1.splice(0, 1);
+                opt2.splice(0, 1);
+
+                this.option1 = opt1.join(";");
+                this.option2 = opt2.join(";");
+
+                this.image1 = require(`../../../../src/main/resources/images/product/${res.data[0].productno}/product/${res.data[0].imagename}`);
+                this.image2 = require(`../../../../src/main/resources/images/product/${res.data[0].productno}/detail/${res.data[0].detailimagename}`);
+            })
     }
 }
 </script>
@@ -179,14 +209,19 @@ export default {
     display: inline-block;
     width: 120px;
 }
-tr, td{
+
+tr,
+td {
     border: 1px black solid;
     padding: 5px 5px;
 }
-table{
+
+table {
     border-collapse: collapse;
 }
+
 div {
     padding: 10px 5px;
+
 }
 </style>

@@ -11,17 +11,15 @@
     <div class="container">
         <div class="leftSide">
             <item v-on:click="selectedComponent = 'appTest1', changeSelected(0)" class="leftButton" :class=' { "selected": selected == 0 } '>상품관리</item>
-            <item v-on:click="selectedComponent = 'appTest2', changeSelected(1)" class="leftButton" :class=' { "selected": selected == 1 } '>상품등록</item>
+            <item v-on:click="selectedComponent = 'appTest2', changeSelected(1), productno= ''" class="leftButton" :class=' { "selected": selected == 1 } '>상품등록</item>
             <item v-on:click="selectedComponent = 'appTest3', changeSelected(2)" class="leftButton" :class=' { "selected": selected == 2 } '>주문관리</item>
             <!-- <item v-on:click="selectedComponent = 'appTest4', changeSelected(4)" class="leftButton" :class=' { "selected": selected == 4 } '>판매정산</item> -->
         </div>
         <div class="body">
             <div class="col-xs-12">
-                <keep-alive>
-                    <component v-bind:is="selectedComponent">
-                        <p>Default content</p>
-                    </component>
-                </keep-alive>
+                <!-- <keep-alive> -->
+                <component v-bind:is="selectedComponent" v-on:set-productno="getProductNo" v-bind:sendProduct="productno" />
+                <!-- </keep-alive> -->
             </div>
         </div>
     </div>
@@ -41,6 +39,7 @@ const loginStore = createNamespacedHelpers('loginStore');
 export default {
     data() {
         return {
+            productno: '',
             selectedComponent: 'appTest1',
             // changeSelected,
             selected: 0,
@@ -55,6 +54,12 @@ export default {
     methods: {
         changeSelected(idx) {
             this.selected = idx;
+        },
+        getProductNo(productno) {
+            // console.log(productno);
+            this.productno = productno;
+            this.selectedComponent = 'appTest2',
+                this.changeSelected(1)
         }
     },
     computed: {

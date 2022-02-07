@@ -1,6 +1,5 @@
 <template>
 <div class="container">
-
     <div>
         <select name="" id="searchSelect" v-model="searchItemSelect">
             <option value="0">상품번호</option>
@@ -23,13 +22,13 @@
                     <td class="td4 header" style=" cursor: pointer;" @click="priceSort">가격</td>
                     <td class="td5 header" style=" cursor: pointer;" @click="regdateSort">등록일</td>
                     <td class="td6">재고</td>
-                    <td class="td7">판매중단</td>
-                    <td class="td8">이동</td>
+                    <td class="td7">판매여부</td>
+                    <td class="td8" colspan="2" style="width:67px;"></td>
+                    <!-- <td class="td9">수정</td> -->
                 </tr>
             </thead>
         </table>
     </div>
-
     <div class="tableBody">
         <table>
             <tbody>
@@ -61,6 +60,9 @@
                             이동
                         </router-link>
                     </td>
+                    <td class="td9">
+                        <item @click="$emit('set-productno',product.productno)">수정</item>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -87,9 +89,6 @@ export default {
             searchItemSelect: '0',
             findItem: '',
         };
-    },
-    destroyed() {
-        console.log('Destroyed')
     },
     methods: {
         async getData() {
@@ -296,7 +295,7 @@ td {
 }
 
 .td7 {
-    width: 50px;
+    width: 70px;
     text-align: center;
 }
 

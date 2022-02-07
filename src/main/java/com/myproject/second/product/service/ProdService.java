@@ -28,7 +28,7 @@ public class ProdService {
 		return prodMapper.findSalesList(sellerid);
 	}
 
-	public ProdVO getProductList(int productno) {
+	public ProdVO getfindProduct(int productno) {
 		return prodMapper.findProduct(productno);
 	}
 
@@ -134,6 +134,43 @@ public class ProdService {
 		}
 		return entity;
 	}
+	
+
+	public ResponseEntity<?> updateProduct(ProdVO requestData, List<MultipartFile> fileList) {
+		ProdVO result = new ProdVO();
+		ResponseEntity<?> entity = null;
+
+		try {
+			if(requestData.getOption2().equals(";")) {
+				requestData.setOption2("옵션2;선택");
+			}	
+			prodMapper.insertProduct(requestData, result);
+			int productno = result.getProductno();
+			File file = new File("./src/main/resources/images/product/" + productno + "/");
+			file.mkdir();
+			String[] path = { "/detail/", "/product/" };
+			file = new File("./src/main/resources/images/product/" + productno + path[0]);
+			file.mkdir();
+			file = new File("./src/main/resources/images/product/" + productno + path[1]);
+			file.mkdir();
+
+			for (int i = 0; i < fileList.size(); i++) {
+				MultipartFile multipartFile = fileList.get(i);
+				FileOutputStream writer = new FileOutputStream("./src/main/resources/images/product/" + productno
+						+ path[i] + multipartFile.getOriginalFilename());
+				System.out.println(multipartFile.getOriginalFilename());
+				writer.write(multipartFile.getBytes());
+				writer.close();
+			}
+			entity = new ResponseEntity<>(HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return entity;
+	}
+
 
 	public ResponseEntity<?> findByName(String name) {
 		List<ProdVO> res = prodMapper.findByName(name);
@@ -143,7 +180,7 @@ public class ProdService {
 			return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 	
-	public ResponseEntity<?> findByName(int productno) {
+	public ResponseEntity<?> findByNo(int productno) {
 		List<ProdVO> res = prodMapper.findByNo(productno);
 		if(res == null)
 			return new ResponseEntity<>("Product Not Found",HttpStatus.INTERNAL_SERVER_ERROR);

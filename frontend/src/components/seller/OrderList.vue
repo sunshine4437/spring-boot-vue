@@ -99,9 +99,9 @@ export default {
     mounted() {
         this.getData();
     },
-    destroyed() {
-        console.log('Destroyed')
-    }
+    // destroyed() {
+    //     console.log('Destroyed')
+    // }
 }
 </script>
 
