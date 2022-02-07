@@ -29,6 +29,32 @@ public class MemberService {
 		return memberMapper.getMemberInfo(id);
 	}
 
+	public int idCheck(String id) {
+		// TODO Auto-generated method stub
+		return memberMapper.idCheck(id);
+	}
+
+	public int nickCheck(String nickname) {
+		// TODO Auto-generated method stub
+		return memberMapper.nickCheck(nickname);
+	}
+
+	public ResponseEntity<?> insertMember(MemberVO in) {
+		// TODO Auto-generated method stub
+		try {
+			if (in.getCompanyno().equals("")) {
+				in.setAuthority("USER");
+				memberMapper.insertUser(in);
+			} else {
+				in.setAuthority("SELLER");
+				memberMapper.insertSeller(in);
+			}
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 	public ResponseEntity<?> getMember(String id, String pwd) {
 		MemberVO res = memberMapper.findMember(id);
 		Map<String, String> result = new HashMap<>();

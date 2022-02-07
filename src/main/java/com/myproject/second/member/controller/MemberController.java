@@ -1,17 +1,15 @@
 package com.myproject.second.member.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,10 +30,19 @@ public class MemberController {
 
 	@GetMapping("/{id}")
 	public MemberVO getMemberInfo(@PathVariable("id") String id) throws Exception {
-	
 		return memberService.getMemberInfo(id);
 	}
-	
+
+	@GetMapping("/idCheck/{id}")
+	public int idCheck(@PathVariable("id") String id) throws Exception {
+		return memberService.idCheck(id);
+	}
+
+	@GetMapping("/nickCheck/{nickname}")
+	public int nickCheck(@PathVariable("nickname") String nickname) throws Exception {
+		return memberService.nickCheck(nickname);
+	}
+
 	@PostMapping(value = "/login")
 	public ResponseEntity<?> login(@RequestParam("id") String id, @RequestParam("password") String pwd) {
 		return memberService.getMember(id, pwd);
@@ -44,6 +51,11 @@ public class MemberController {
 	@GetMapping("/productDetail/{productno}")
 	public String getMember(@PathVariable("productno") int productno) throws Exception {
 		return memberService.getNickname(productno);
+	}
+
+	@PostMapping("/insertMember")
+	public ResponseEntity<?> insertMember(@RequestBody MemberVO in) throws Exception {
+		return memberService.insertMember(in);
 	}
 
 	@PutMapping("/point")
@@ -75,7 +87,8 @@ public class MemberController {
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<?> deleteMember(@RequestParam("id") String id, @RequestParam(value = "password", required=false) String password) throws Exception {
+	public ResponseEntity<?> deleteMember(@RequestParam("id") String id,
+			@RequestParam(value = "password", required = false) String password) throws Exception {
 		return memberService.deleteMember(id, password);
 	}
 }
