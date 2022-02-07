@@ -2,15 +2,16 @@
 <div class="container">
 
     <div>
-        <select name="" id="">
-            <option value="">상품번호</option>
-            <option value="">상품명</option>
-            <option value="">가격</option>
-            <option value="">등록일</option>
-            <option value="">재고</option>
-            <option value="">판매여부</option>
+        <select name="" id="searchSelect" v-model="searchItemSelect">
+            <option value="0">상품번호</option>
+            <option value="1">상품명</option>
+            <!-- <option value="2">가격</option>
+            <option value="3">등록일</option>
+            <option value="4">재고</option>
+            <option value="5">판매여부</option> -->
         </select>
-        <input type="text">
+        <input type="text" v-model="findItem">
+        <item @click="itemSearch">검색</item>
     </div>
     <div>
         <table>
@@ -23,45 +24,42 @@
                     <td class="td5 header" style=" cursor: pointer;" @click="regdateSort">등록일</td>
                     <td class="td6">재고</td>
                     <td class="td7">판매중단</td>
+                    <td class="td8">이동</td>
                 </tr>
             </thead>
         </table>
     </div>
+
     <div class="tableBody">
         <table>
             <tbody>
                 <tr v-for="(product,idx) in products" :key="idx" class="tableRow">
 
                     <td class="td1">
-                        <router-link v-bind:to="`/productDetail/${product.productno}`" tag="div" class="routerLink">
-                            {{product.productno}}
-                        </router-link>
+                        {{product.productno}}
                     </td>
                     <td class="td2">
-                        <router-link v-bind:to="`/productDetail/${product.productno}`" tag="div" class="routerLink">
-                            <!-- {{setImage(product)}} -->
-                            <img :src="setImage(product)" alt="productImage">
-                        </router-link>
+                        <!-- {{setImage(product)}} -->
+                        <img :src="setImage(product)" alt="productImage">
                     </td>
                     <td class="td3">
-                        <router-link v-bind:to="`/productDetail/${product.productno}`" tag="div" class="routerLink">
-                            {{product.productname}}
-                        </router-link>
+                        {{product.productname}}
                     </td>
                     <td class="td4">
-                        <router-link v-bind:to="`/productDetail/${product.productno}`" tag="div" class="routerLink">
-                            {{AddComma(product.price)}}원
-                        </router-link>
+                        {{AddComma(product.price)}}원
                     </td>
                     <td class="td5">
-                        <router-link v-bind:to="`/productDetail/${product.productno}`" tag="div" class="routerLink">
-                            {{product.regdate}}
-                        </router-link>
+                        {{product.regdate}}
                     </td>
                     <td class="td6">{{product.amount}}</td>
                     <td class="td7" style=" cursor: pointer;" @click="onSale(product)">
                         <p v-if="product.onsale==0">미판매</p>
                         <p v-if="product.onsale==1">판매중</p>
+                    </td>
+                    <td class="td8">
+                        <router-link v-bind:to="`/productDetail/${product.productno}`" tag="div" class="routerLink">
+                            이동
+                        </router-link>
                     </td>
                 </tr>
             </tbody>
@@ -86,6 +84,8 @@ export default {
     data: function () {
         return {
             products: [],
+            searchItemSelect: '0',
+            findItem: '',
         };
     },
     destroyed() {
@@ -158,6 +158,34 @@ export default {
                     }
                 })
                 .catch()
+        },
+        itemSearch() {
+            if (this.findItem === '') {
+                this.getData();
+                return;
+            }
+            if (this.searchItemSelect == 0) {
+                this.products = [];
+                let lower = this.findItem.toLowerCase();
+
+                axios.get(`/api/product/findByName/${lower}`)
+                    .then(res => {
+                        this.data = res.data;
+                        this.data.forEach(element => {
+                            this.products.push(element);
+                        });
+                    })
+            } else if (this.searchItemSelect == 1) {
+                this.products = [];
+
+                axios.get(`/api/product/findByNo/${this.findItem}`)
+                    .then(res => {
+                        this.data = res.data;
+                        this.data.forEach(element => {
+                            this.products.push(element);
+                        });
+                    })
+            }
         },
         regdateSort() {
             this.regdateSortState = -this.regdateSortState;
@@ -243,7 +271,7 @@ td {
 
 }
 
-.td2>.routerLink>img {
+.td2>img {
     width: 60px;
     height: 60px;
     object-fit: scale-down;

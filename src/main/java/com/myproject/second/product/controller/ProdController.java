@@ -89,15 +89,24 @@ public class ProdController {
 //	}
 
 	@PatchMapping("/onsale/{productno}")
-	public ResponseEntity<?> onSaleProduct(@PathVariable("productno") int productno, @RequestParam("onsale") String onsale){
+	public ResponseEntity<?> onSaleProduct(@PathVariable("productno") int productno,
+			@RequestParam("onsale") String onsale) {
 		return prodService.onSaleProduct(onsale, productno);
 	}
-	
+
 	@PostMapping("/insertProduct")
 	public ResponseEntity<?> insertProduct(@RequestPart(value = "data") ProdVO requestData,
 			@RequestParam("fileList") List<MultipartFile> fileList) throws NotFoundException {
 		return prodService.insertProduct(requestData, fileList);
 	}
-	
 
+	@GetMapping("/findByName/{productname}")
+	public ResponseEntity<?> findByName(@PathVariable("productname") String name) {
+		return prodService.findByName(name);
+	}
+	
+	@GetMapping("/findByNo/{productno}")
+	public ResponseEntity<?> findByNo(@PathVariable("productno") int productno) {
+		return prodService.findByName(productno);
+	}
 }
