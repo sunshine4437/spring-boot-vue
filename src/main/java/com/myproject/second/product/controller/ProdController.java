@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -26,8 +26,8 @@ public class ProdController {
 	private ProdService prodService;
 
 	@GetMapping("/productDetail/{productno}")
-	public ProdVO getProductList(@PathVariable("productno") int productno) throws Exception {
-		return prodService.getProductList(productno);
+	public ProdVO getfindProduct(@PathVariable("productno") int productno) throws Exception {
+		return prodService.getfindProduct(productno);
 	}
 
 	@GetMapping("/count")
@@ -68,26 +68,6 @@ public class ProdController {
 		return prodService.haveProduct(sellerid);
 	}
 
-//	@PostMapping("/upload/img/{productno}")
-//	public void productImageUpload(@PathVariable("productno") int productno,
-//			@RequestParam("fileList") List<MultipartFile> fileList) {
-//		File file = new File("./src/main/resources/images/product/" + productno + "/");
-//
-//		boolean directoryCreated = file.mkdir();
-//		System.out.println(productno);
-//		try {
-//			for (MultipartFile multipartFile : fileList) {
-//				FileOutputStream writer = new FileOutputStream(
-//						"./src/main/resources/images/product/" + productno + "/" + multipartFile.getOriginalFilename());
-//				System.out.println(multipartFile.getOriginalFilename());
-//				writer.write(multipartFile.getBytes());
-//				writer.close();
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	@PatchMapping("/onsale/{productno}")
 	public ResponseEntity<?> onSaleProduct(@PathVariable("productno") int productno,
 			@RequestParam("onsale") String onsale) {
@@ -99,14 +79,20 @@ public class ProdController {
 			@RequestParam("fileList") List<MultipartFile> fileList) throws NotFoundException {
 		return prodService.insertProduct(requestData, fileList);
 	}
+	
+	@PutMapping("/uodateProduct")
+	public ResponseEntity<?> updateProduct(@RequestPart(value = "data") ProdVO requestData,
+			@RequestParam("fileList") List<MultipartFile> fileList) throws NotFoundException {
+		return prodService.updateProduct(requestData, fileList);
+	}
 
 	@GetMapping("/findByName/{productname}")
-	public ResponseEntity<?> findByName(@PathVariable("productname") String name) {
-		return prodService.findByName(name);
+	public ResponseEntity<?> findByName(@PathVariable("productname") String productname) {
+		return prodService.findByName(productname);
 	}
 	
 	@GetMapping("/findByNo/{productno}")
 	public ResponseEntity<?> findByNo(@PathVariable("productno") int productno) {
-		return prodService.findByName(productno);
+		return prodService.findByNo(productno);
 	}
 }
