@@ -66,8 +66,6 @@ export default {
             extraAddress: "",
             signup: {
                 password: null,
-                pwhint: '',
-                pwhintans: null,
                 putNum: null,
             },
             passwordValidFlag: true,
@@ -84,9 +82,7 @@ export default {
         nickMod() { // 닉네임 수정버튼 이벤트
             try {
                 if ("" === this.putnick) {
-                    alert("공백 입니다.");
-                } else if ("asd" === this.putnick) {
-                    alert("이미 가입된 닉네임 입니다.");
+                    alert("수정할 닉네임을 입력해주세요.");
                 } else {
                     axios({
                         method: 'put',
@@ -122,10 +118,11 @@ export default {
         },
         pwMod() { // 비밀번호 수정버튼 이벤트
             try {
-                if ("" === this.signup.password) {
-                    alert("공백 입니다.");
+                console.log(this.signup.password);
+                if (this.signup.password === null) {
+                    alert("수정할 비밀번호를 입력해주세요.");
                 } else if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,16}$/.test(this.signup.password)) {
-                    if (this.passwordValidFlag == true)
+                    if (this.passwordValidFlag == true){
                         if (this.signup.password === this.passwordCheck) {
                             axios({
                                 method: 'put',
@@ -137,7 +134,10 @@ export default {
                             })
                             alert("수정 되었습니다.");
                             this.$router.go();
+                        } else {
+                            alert("비밀번호와 비밀번호 확인이 다릅니다")
                         }
+                    }                        
                 } else {
                     if (!this.passwordValidFlag == true)
                         alert("비밀번호 형식은 대문자,소문자,숫자 포함 8~16글자 입니다.");
@@ -157,7 +157,7 @@ export default {
         numMod() { // 휴대전화 번호 수정버튼 이벤트
             try {
                 if ("" === this.putNum) {
-                    alert("공백 입니다.");
+                    alert("수정할 전화번호를 입력해주세요.");
                 } else if (/^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/.test(this.putNum)) {
                     axios({
                         method: 'put',
@@ -170,7 +170,7 @@ export default {
                     alert("수정 되었습니다.");
                     this.$router.go();
                 } else {
-                    alert("제대로 입력해주세요.")
+                    alert("전화번호를 확인해주세요.")
                 }
             } catch (err) {
                 this.msg = "error";
@@ -179,7 +179,7 @@ export default {
         addMod() { // 주소 수정버튼 이벤트
             try {
                 if ("" === this.putadd) {
-                    alert("공백 입니다.");
+                    alert("수정할 주소를 입력해주세요.");
                 } else {
                     axios({
                         method: 'put',

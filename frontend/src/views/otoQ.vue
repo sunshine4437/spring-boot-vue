@@ -92,20 +92,19 @@ export default {
         },
           // 유효성 검사
         QuestionRegister() {  
-            let success = false;
-                // 하나라도 실패하면 success=false가 되어 완료 안됨
             const checked = document.getElementsByClassName("inputValues");
             for (var i = 0; i < checked.length; i++) {
-                success = true;
                 if (checked[i].value.length == 0) {
                     alert(`${checked[i].name}을/를 입력하세요`);
                     checked[i].focus();
-                    success = false;
                     return;
                 }
             }
-            if (success) {
+            if(this.phoneValidate == false){
+                alert('전화번호를 확인해주세요')
+            } else {
                 alert("질문을 등록했습니다");
+                this.$router.push("/customerService")
             }
         },
     },

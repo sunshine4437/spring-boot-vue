@@ -3,6 +3,7 @@ package com.myproject.second.order.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,8 +55,8 @@ public class OrderController {
 	}
 
 	@PutMapping("/update")
-	public void updateOrder(@RequestParam("orderidx") long orderidx, @RequestParam("state") String state)
+	public ResponseEntity<?> updateOrder(@RequestParam("orderidx") long orderidx, @RequestParam("state") String state)
 			throws Exception {
-		orderService.updateOrder(orderidx, state);
+		return orderService.updateOrder(orderidx, state);
 	}
 }

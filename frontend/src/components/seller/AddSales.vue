@@ -159,6 +159,7 @@ export default {
             axios.post('/api/product/insertProduct', this.formData).then(res => {
                 console.log(res.status);
                 alert("입력 성공");
+                this.$router.go();
             }).catch(err => {
                 if (err.response.status === 404)
                     alert("error")

@@ -6,12 +6,10 @@ CREATE TABLE s_member (
     password   VARCHAR2(30) NOT NULL,
     name       VARCHAR2(50) NOT NULL,
     tel        VARCHAR2(11) NOT NULL,
+    email      VARCHAR2(30),
     zipcode    VARCHAR2(5) NOT NULL,
     address    VARCHAR2(80) NOT NULL,
     detailaddr VARCHAR2(50) NOT NULL,
-    email      VARCHAR2(30),
-    birth      VARCHAR2(10),
-    gender     CHAR(1),
     point      NUMBER(10) DEFAULT 0,
     authority  VARCHAR2(20) NOT NULL,
     companyno  VARCHAR2(20)
@@ -260,7 +258,7 @@ INSERT INTO s_member (
     '서울 강남구 테헤란로 212',
     '1층 1호',
     'SELLER',
-    '111-1111-1111-111'
+    '1111111111'
 );
 
 INSERT INTO s_member (
@@ -284,7 +282,7 @@ INSERT INTO s_member (
     '서울 강남구 테헤란로 212',
     '1층 2호',
     'SELLER',
-    '222-2222-2222-222'
+    '2222222222'
 );
 
 COMMIT;

@@ -2,6 +2,8 @@ package com.myproject.second.order.service;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.myproject.second.order.mapper.OrderMapper;
@@ -37,8 +39,13 @@ public class OrderService {
 		return orderMapper.getSellList(sellerid);
 	}
 
-	public void updateOrder(long orderidx, String state) {
-		orderMapper.updateOrder(orderidx, state);
+	public ResponseEntity<?> updateOrder(long orderidx, String state) {
+		try {
+			orderMapper.updateOrder(orderidx, state);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	public int haveOrder(String id) {

@@ -10,8 +10,6 @@ public class MemberVO {
 	private String address;
 	private String detailaddr;
 	private String email;
-	private String birth;
-	private String gender;
 	private int point;
 	private String authority;
 	private String companyno;
@@ -20,8 +18,7 @@ public class MemberVO {
 	}
 
 	public MemberVO(String id, String nickname, String password, String name, String tel, String zipcode,
-			String address, String detailaddr, String email, String birth, String gender, int point, String authority,
-			String companyno) {
+			String address, String detailaddr, String email, int point, String authority, String companyno) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -32,8 +29,6 @@ public class MemberVO {
 		this.address = address;
 		this.detailaddr = detailaddr;
 		this.email = email;
-		this.birth = birth;
-		this.gender = gender;
 		this.point = point;
 		this.authority = authority;
 		this.companyno = companyno;
@@ -109,22 +104,6 @@ public class MemberVO {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getBirth() {
-		return birth;
-	}
-
-	public void setBirth(String birth) {
-		this.birth = birth;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
 	}
 
 	public int getPoint() {

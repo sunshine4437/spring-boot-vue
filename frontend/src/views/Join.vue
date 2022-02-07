@@ -15,7 +15,6 @@
             <div class="tempDiv">
                 <label class="labelClass" for="">*닉네임</label>
                 <input type="text" name="닉네임" class="inputValues" id="nick" v-model="signup.putnick">
-                <button class="classBtn" @click.prevent="nickCheck"> 중복확인 </button>
             </div>
             <div class="tempDiv">
                 <label class="labelClass" for="">*비밀번호</label>
@@ -29,7 +28,7 @@
             </div>
             <div class="tempDiv">
                 <label class="labelClass" for="">*이름</label>
-                <input type="text" name="username" class="username">
+                <input type="text" name="username" class="username" id="username">
             </div>
             <div class="tempDiv">
                 <label class="labelClass" for="">*전화번호</label>
@@ -37,9 +36,13 @@
                 <div v-if="!mobileValidFlag" class="pwFlag"> 유효하지 않은 전화번호 입니다. </div>
             </div>
             <div class="tempDiv">
+                <label class="labelClass" for="">이메일</label>
+                <input type="text" name="useremail" class="useremail" id="useremail">
+            </div>
+            <div class="tempDiv">
                 <label class="labelClass" for="">*우편번호</label>
 
-                <input type="text" class="inputValues" v-model="postcode" placeholder="우편번호">
+                <input type="text" class="inputValues" v-model="postcode" placeholder="우편번호" id="zipCode">
                 <span>
                     <button type="button" class="classBtn" @click="execDaumPostcode()">주소검색</button>
                 </span>
@@ -56,7 +59,7 @@
             </div>
             <div class="tempDiv" v-show="checkPage">
                 <label class="labelClass" for="">*사업자등록 번호</label>
-                <input v-model="signup.busNum" type="text" name="사업자등록번호" class="inputValues" @blur="busNumValid" placeholder="-없이 숫자만" maxlength="10" id="busNum">
+                <input v-model="signup.busNum" type="text" name="사업자등록번호" class="inputValues" @keyup="busNumValid" placeholder="-없이 숫자만" maxlength="10" id="busNum">
                 <div v-if="!busNumValidFlag" class="pwFlag"> 숫자 10자리를 입력하세요. </div>
             </div>
         </div>
@@ -83,10 +86,7 @@
 </template>
 
 <script>
-import {
-    createNamespacedHelpers
-} from 'vuex'
-const loginStore = createNamespacedHelpers('loginStore')
+import axios from 'axios'
 export default {
     data() {
         return {
@@ -109,7 +109,6 @@ export default {
             busNumValidFlag: true,
             msg: '',
             checkIdFlag: false,
-            checkNickFlag: false,
             checkPwdFlag: false,
             checkRePwdFlag: false,
             checkTelFlag: false,
@@ -124,43 +123,34 @@ export default {
             let link = document.location.href;
             link = link.substring(link.length - 5, link.length)
             if (link == "join1") {
-                this.checkPage=false;
+                this.checkPage = false;
                 return false;
             } else {
-                this.checkPage=true;
+                this.checkPage = true;
                 return true;
             }
 
         },
         idCheck() {
             try {
-                for (let i = 0; i < this.getUserInfo.length; i++) {
-                    if (this.getUserInfo[i].username == this.signup.putid) {
-                        alert("이미 가입된 아이디 입니다.");
-                        this.checkIdFlag = false;
-                        return;
-                    }
-                }
-                if ("" === this.signup.putid) {
+                let id = this.signup.putid;
+                if (id === "") {
                     alert("공백 입니다.");
+                    return;
                 } else {
-                    alert("등록 가능한 아이디 입니다.");
-                    this.checkIdFlag = true;
-                }
-            } catch (err) {
-                this.msg = "error";
-            }
-        },
-        nickCheck() {
-            try {
-                if ("" === this.signup.putnick) {
-                    alert("공백 입니다.");
-                } else if ("asd" === this.signup.putnick) {
-                    alert("이미 가입된 닉네임 입니다.");
-                    this.checkNickFlag = false;
-                } else {
-                    alert("등록 가능한 닉네임 입니다.");
-                    this.checkNickFlag = true;
+                    axios.get(`/api/member/idCheck/${id}`)
+                        .then(res => {
+                            if (res.data > 0) {
+                                alert("중복된 아이디입니다");
+                                this.checkIdFlag = false;
+                                return;
+                            } else {
+                                alert("등록 가능한 아이디 입니다.");
+                                this.checkIdFlag = true;
+                            }
+                        }).catch(err => {
+                            console.log(err.response)
+                        })
                 }
             } catch (err) {
                 this.msg = "error";
@@ -219,10 +209,6 @@ export default {
                 alert("아이디 중복검사를 하세요")
                 return;
             }
-            if (!this.checkNickFlag) {
-                alert("닉네임 중복검사를 하세요")
-                return;
-            }
             if (!this.checkPwdFlag) {
                 alert("비밀 번호를 확인하세요")
                 return;
@@ -235,29 +221,41 @@ export default {
                 alert("전화번호를 확인하세요")
                 return;
             }
-            if(this.checkPage)
-            if (!this.checkBnFlag) {
-                alert("사업자 등록 번호를 확인하세요")
-                return;
-            }
+            if (this.checkPage)
+                if (!this.checkBnFlag) {
+                    alert("사업자 등록 번호를 확인하세요")
+                    return;
+                }
             let agreement1 = document.getElementById('agreement1');
             let agreement2 = document.getElementById('agreement2');
 
-            let username = document.getElementById('id').value;
-            let password = document.getElementById('pw').value;
             if (!agreement1.checked) {
                 alert("약관을 확인해 주세요");
             } else if (!agreement2.checked) {
                 alert("약관을 확인해 주세요");
-            } else {
-                alert("회원가입이 완료 되었습니다.");
-                this.$router.push("/");
-                this.addMember({
-                    username: username,
-                    password: password
-                })
+            } else {     
+                let data = {
+                    id: document.getElementById('id').value,
+                    nickname: document.getElementById('nick').value,
+                    password: document.getElementById('pw').value,
+                    name: document.getElementById('username').value,
+                    tel: document.getElementById('mobile').value,
+                    email: document.getElementById('useremail').value,
+                    zipcode: document.getElementById('zipCode').value,
+                    address: document.getElementById('address').value,
+                    detailaddr: document.getElementById('detailAddress').value,
+                    companyno: document.getElementById('busNum').value,
+                }
+                axios.post(`/api/member/insertMember`, data)
+                    .then(res => {
+                        if (res.status == 200) {
+                            alert("회원이 되신걸 환영합니다");
+                            this.$router.push("/");
+                        }
+                    }).catch(err => {
+                        console.log(err.response)
+                    })
             }
-
         },
         execDaumPostcode() {
             new window.daum.Postcode({
@@ -299,10 +297,6 @@ export default {
                 },
             }).open();
         },
-        ...loginStore.mapMutations(["addMember"]),
-    },
-    computed: {
-        ...loginStore.mapGetters(['getUserInfo']),
     },
     mounted() {
         this.currentURL();
@@ -376,6 +370,7 @@ export default {
 
 .inputValues,
 .username,
+.useremail,
 .mobile,
 .total_add,
 .detail_add {
