@@ -52,7 +52,7 @@ INSERT INTO s_member (
     authority
 ) VALUES (
     'tester0001',
-    'tester0001',
+    '테스터1',
     'Asdqwe123',
     '테스터1',
     '01000000000',

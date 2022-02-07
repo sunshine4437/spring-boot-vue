@@ -13,7 +13,7 @@ CREATE TABLE s_product (
     option2         VARCHAR2(2000) NOT NULL,
     amount          NUMBER(6) DEFAULT 0,
     regdate         VARCHAR2(30),
-    detailimagename VARCHAR2(100),
+    detailimagename VARCHAR2(100) NOT NULL,
     onsale          CHAR(1) DEFAULT 0,
     CONSTRAINT fk_prodmem FOREIGN KEY ( sellerid )
         REFERENCES s_member ( id )
@@ -29,7 +29,8 @@ INSERT INTO s_product VALUES (
     '1.jpg',
     23800,
     '惑前 锅龋;01.NB_CM997HCA;02.NB_CM997HCC;03.NB_ML574RC2;04.NB_MR530SG;05.NB_MR530KA;06.NB_MS327FE;07.NB_MS327LAB;08.NB_MS327CPG;09.NB_MS327LH1;10.NB_WS327KC;11.NB_MS327WE;12.NB_MS327BD;13.NB_MR530SH;14.NB_WS327LW;15.NB_MS327CLA;16.NB_ML574EVB;17.NB_ML574EVG;18.NB_ML574EVW;19.NB_ML574EVE',
-    '荤捞令;225;230;235;240;245;250;255;260;265;270;275;280;285;290',1,
+    '荤捞令;225;230;235;240;245;250;255;260;265;270;275;280;285;290',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -45,7 +46,8 @@ INSERT INTO s_product VALUES (
     '2.jpg',
     10500,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -61,7 +63,8 @@ INSERT INTO s_product VALUES (
     '3.jpg',
     13000,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -77,7 +80,8 @@ INSERT INTO s_product VALUES (
     '4.jpg',
     16900,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -93,7 +97,8 @@ INSERT INTO s_product VALUES (
     '5.jpg',
     11000,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -109,7 +114,8 @@ INSERT INTO s_product VALUES (
     '6.jpg',
     155000,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -125,7 +131,8 @@ INSERT INTO s_product VALUES (
     '7.jpg',
     9900,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -141,7 +148,8 @@ INSERT INTO s_product VALUES (
     '8.jpg',
     19900,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -157,7 +165,8 @@ INSERT INTO s_product VALUES (
     '9.jpg',
     73960,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -173,7 +182,8 @@ INSERT INTO s_product VALUES (
     '10.jpg',
     72040,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -189,7 +199,8 @@ INSERT INTO s_product VALUES (
     '11.jpg',
     59000,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -205,7 +216,8 @@ INSERT INTO s_product VALUES (
     '12.jpg',
     19900,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -221,7 +233,8 @@ INSERT INTO s_product VALUES (
     '13.jpg',
     63170,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -237,7 +250,8 @@ INSERT INTO s_product VALUES (
     '14.jpg',
     7900,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -253,7 +267,8 @@ INSERT INTO s_product VALUES (
     '15.jpg',
     16900,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -269,7 +284,8 @@ INSERT INTO s_product VALUES (
     '16.jpg',
     10000,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     '2022.01.01 11:11',
     '3bd35944-0562-4c32-b4e6-17e87b4a81f0_1641960582596.jpg',
     1
@@ -283,7 +299,8 @@ INSERT INTO s_product VALUES (
     '17.jpg',
     18000,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -299,7 +316,8 @@ INSERT INTO s_product VALUES (
     '18.jpg',
     14900,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -315,7 +333,8 @@ INSERT INTO s_product VALUES (
     '19.jpg',
     12900,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -331,7 +350,8 @@ INSERT INTO s_product VALUES (
     '20.jpg',
     5000000,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -347,7 +367,8 @@ INSERT INTO s_product VALUES (
     '21.jpg',
     36900,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -363,7 +384,8 @@ INSERT INTO s_product VALUES (
     '22.jpg',
     49000,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -379,7 +401,8 @@ INSERT INTO s_product VALUES (
     '23.jpg',
     16980,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -395,7 +418,8 @@ INSERT INTO s_product VALUES (
     '24.jpg',
     9700,
     '可记1;1;2;3;4',
-    '可记2;a;s;d;f',1,
+    '可记2;a;s;d;f',
+    1,
     to_char(
         sysdate, 'yyyy.mm.dd hh24:mi'
     ),
@@ -408,7 +432,9 @@ COMMIT;
 SELECT
     *
 FROM
-    s_product;
+    s_product
+ORDER BY
+    productno;
 
 --select * from s_product where sellerid = 'seller0002' order by regdate;
 --SELECT imagename, productname, productno, price FROM s_product;    

@@ -28,11 +28,10 @@
                 <hr>
             </div>
             <div class="Check">
-                <a href="">닉네임 수정</a><br>
-                <a href="">비밀번호 수정</a><br>
-                <a href="">전화번호 수정</a><br>
-                <a href="">주소 수정</a><br>
-                <a href="">회원정보 변경/ 탈퇴</a><br>
+                <router-link v-bind:to="'/Mypage2'">
+                    회원정보 변경
+                </router-link>
+                <br>
                 <a href="">로그인 관리</a><br>
                 <a href="">개인정보 이용내역</a><br>
                 <router-link v-bind:to="'/Mypage3'">

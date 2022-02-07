@@ -19,7 +19,7 @@
         <div class="Box">
             <div class="imgBox">
                 <img src="@/assets/signUp.jpg" class="banner">
-                <router-link v-bind:to="'/join1'"> <button class="simpleSignUpBtn">간편 회원가입 </button></router-link>
+                <router-link v-bind:to="'/join1'"> <button class="simpleSignUpBtn">회원가입 </button></router-link>
             </div>
             <div class="content">
                 <div class="seller">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="sellerSignUp">
                     <h3>셀러 회원</h3>
-                    <router-link v-bind:to="'/join2'"> <button class="sellerSignUpBtn">회원가입</button></router-link>
+                    <router-link v-bind:to="'/join2'"> <button class="sellerSignUpBtn">셀러 회원가입</button></router-link>
 
                 </div>
             </div>
