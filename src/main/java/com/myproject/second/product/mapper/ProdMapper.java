@@ -29,7 +29,7 @@ public interface ProdMapper {
 	List<ProdVO> searchMinMaxProduct(@Param("productname") String productname, @Param("min") int min,
 			@Param("max") int max);
 
-	@Select("select * from s_product where sellerid = #{sellerid} order by regdate")
+	@Select("select * from s_product where sellerid = #{sellerid} order by productno")
 	List<ProdVO> findSalesList(String sellerid);
 
 	@Select("select option1 from s_product where productno = #{productno}")
@@ -53,4 +53,10 @@ public interface ProdMapper {
 
 	@Update("update s_product set onsale = #{onsaleValue} where productno = #{productno}")
 	int onSaleProduct(@Param("onsaleValue") String onsale, @Param("productno") int productno);
+
+	@Select("Select * from s_product where LOWER(productname) like '%'||#{name}||'%' order by productno")
+	List<ProdVO> findByName(@Param("name") String name);
+	
+	@Select("Select * from s_product where productno = #{productno}")
+	List<ProdVO> findByNo(@Param("productno") int productno);
 }
