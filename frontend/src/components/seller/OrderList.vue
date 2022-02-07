@@ -17,8 +17,8 @@
                 <tr>
                     <td class="td1">주문번호</td>
                     <td class="td2">상품번호</td>
-                    <td class="td3">상품명</td>
-                    <td class="td4">가격</td>
+                    <td class="td3" style="text-align: center;">상품명</td>
+                    <td class="td4" style="text-align: center;">가격</td>
                     <td class="td5">개수</td>
                     <td class="td6">구매일</td>
                     <td class="td7">배송상태</td>
@@ -41,7 +41,7 @@
                         {{order.productname}}
                     </td>
                     <td class="td4">
-                        {{AddComma(order.totalprice)}}
+                        {{AddComma(order.totalprice)}}원
                     </td>
                     <td class="td5">
                         {{order.amount}}
@@ -53,14 +53,16 @@
                         {{order.state}}
                     </td>
                     <td class="td8">
-                        상태변경
+                        <select name="" id="" v-model="selectedStates[idx]">
+                            <option v-for="state in states" :key="state" :value="state">{{state}}</option>
+                        </select>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div>
-        <item>확인</item>
+    <div style="text-align : center">
+        <button @click="stateChange">변경하기</button>
     </div>
 </div>
 </template>
@@ -76,7 +78,9 @@ export default {
     data: function () {
         return {
             orders: [],
-            counter: 0
+            counter: 0,
+            states: ['결제 완료', '배송중', '배송 완료', '취소 요청', '취소 완료', '환불 요청', '환불 완료'],
+            selectedStates: [],
         };
     },
     methods: {
@@ -86,12 +90,49 @@ export default {
                 this.data.forEach(element => {
                     this.orders.push(element);
                 });
+                for (let i = 0; i < this.orders.length; i++) {
+                    this.selectedStates[i] = this.orders[i].state
+                }
             });
         },
         AddComma(num) {
             let regexp = /\B(?=(\d{3})+(?!\d))/g;
             return num.toString().replace(regexp, ",");
         },
+        async stateChange() {
+            let check = 0;
+            let error = [];
+            for (let i = 0; i < this.orders.length; i++) {
+                if (this.orders[i].state == '취소 완료' || this.orders[i].state == '환불 완료') {
+                    alert(`주문번호 : ${this.orders[i].orderidx}\n취소 완료 혹은 환불 완료된 주문은 변경이 불가능합니다.`);
+                    continue;
+                }
+                if (this.orders[i].state != this.selectedStates[i]) {
+                    check++;
+                    await axios({
+                        method: 'put',
+                        url: `api/order/update`,
+                        params: {
+                            orderidx: this.orders[i].orderidx,
+                            state: this.selectedStates[i],
+                        }
+                    }).then(res => {
+                        if (res.status == 200) {
+                            check--;
+                        }
+                    }).catch(err => {
+                        console.log(err.response)
+                        error.push(this.orders[i].orderidx);
+                    })
+                }
+            }
+            if (check == 0) {
+                alert('변경하셨습니다');
+                this.$router.go();
+            } else {
+                alert(`미완료된 변경(총 ${check}건) : ${error}`)
+            }
+        }
     },
     computed: {
         ...loginStore.mapGetters(['getLogin'])
@@ -122,29 +163,18 @@ export default {
 
 td {
     border: 1px solid #444444;
+    padding: 8px 0;
 }
 
 .td1 {
-    width: 79px;
+    width: 80px;
     text-align: center;
 }
 
 .td2 {
-    width: 62px;
-    height: 62px;
+    width: 80px;
     background-color: white;
     text-align: center;
-}
-
-.routerLink {
-    cursor: pointer;
-
-}
-
-.td2>.routerLink>img {
-    width: 60px;
-    height: 60px;
-    object-fit: scale-down;
 }
 
 .td3 {
@@ -152,26 +182,28 @@ td {
 }
 
 .td4 {
-    width: 130px;
+    width: 100px;
     text-align: right;
 }
 
 .td5 {
-    width: 90px;
+    width: 50px;
+    text-align: center;
 }
 
 .td6 {
-    width: 50px;
+    width: 100px;
     text-align: center;
 }
 
 .td7 {
-    width: 50px;
+    width: 100px;
     text-align: center;
 }
 
 .td8 {
-    width: 70px;
+    width: 100px;
+    text-align:center;
 }
 
 .header {
