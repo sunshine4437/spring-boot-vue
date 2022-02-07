@@ -15,7 +15,6 @@
             <div class="tempDiv">
                 <label class="labelClass" for="">*닉네임</label>
                 <input type="text" name="닉네임" class="inputValues" id="nick" v-model="signup.putnick">
-                <button class="classBtn" @click.prevent="nickCheck"> 중복확인 </button>
             </div>
             <div class="tempDiv">
                 <label class="labelClass" for="">*비밀번호</label>
@@ -110,7 +109,6 @@ export default {
             busNumValidFlag: true,
             msg: '',
             checkIdFlag: false,
-            checkNickFlag: false,
             checkPwdFlag: false,
             checkRePwdFlag: false,
             checkTelFlag: false,
@@ -149,30 +147,6 @@ export default {
                             } else {
                                 alert("등록 가능한 아이디 입니다.");
                                 this.checkIdFlag = true;
-                            }
-                        }).catch(err => {
-                            console.log(err.response)
-                        })
-                }
-            } catch (err) {
-                this.msg = "error";
-            }
-        },
-        nickCheck() {
-            try {
-                let nickname = this.signup.putnick;
-                if (nickname === "") {
-                    alert("공백 입니다.");
-                } else {
-                    axios.get(`/api/member/nickCheck/${nickname}`)
-                        .then(res => {
-                            if (res.data > 0) {
-                                alert("이미 가입된 닉네임 입니다.");
-                                this.checkNickFlag = false;
-                                return;
-                            } else {
-                                alert("등록 가능한 닉네임 입니다.");
-                                this.checkNickFlag = true;
                             }
                         }).catch(err => {
                             console.log(err.response)
@@ -233,10 +207,6 @@ export default {
 
             if (!this.checkIdFlag) {
                 alert("아이디 중복검사를 하세요")
-                return;
-            }
-            if (!this.checkNickFlag) {
-                alert("닉네임 중복검사를 하세요")
                 return;
             }
             if (!this.checkPwdFlag) {

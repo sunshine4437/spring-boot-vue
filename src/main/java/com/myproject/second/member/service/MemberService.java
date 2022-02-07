@@ -34,11 +34,6 @@ public class MemberService {
 		return memberMapper.idCheck(id);
 	}
 
-	public int nickCheck(String nickname) {
-		// TODO Auto-generated method stub
-		return memberMapper.nickCheck(nickname);
-	}
-
 	public ResponseEntity<?> insertMember(MemberVO in) {
 		// TODO Auto-generated method stub
 		try {

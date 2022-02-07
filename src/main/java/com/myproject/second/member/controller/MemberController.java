@@ -38,11 +38,6 @@ public class MemberController {
 		return memberService.idCheck(id);
 	}
 
-	@GetMapping("/nickCheck/{nickname}")
-	public int nickCheck(@PathVariable("nickname") String nickname) throws Exception {
-		return memberService.nickCheck(nickname);
-	}
-
 	@PostMapping(value = "/login")
 	public ResponseEntity<?> login(@RequestParam("id") String id, @RequestParam("password") String pwd) {
 		return memberService.getMember(id, pwd);

@@ -28,9 +28,6 @@ public interface MemberMapper {
 	@Select("SELECT count(id) from s_member where id = #{id}")
 	int idCheck(@Param("id") String id);
 
-	@Select("SELECT count(nickname) from s_member where nickname = #{nickname}")
-	int nickCheck(@Param("nickname") String nickname);
-
 	@Insert("insert into s_member ( id, nickname, password, name, tel, email, zipcode, address, detailaddr, authority) values ( #{in.id}, #{in.nickname}, #{in.password}, #{in.name}, #{in.tel}, #{in.email}, #{in.zipcode}, #{in.address}, #{in.detailaddr}, #{in.authority})")
 	void insertUser(@Param("in") MemberVO in);
 
