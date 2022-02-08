@@ -291,7 +291,7 @@ export default {
             return `${num}`.toString().replace(regexp, ",");
         },
         // 유효성 검사
-        payCheck() {
+        async payCheck() {
             // 배송부분
             const checked = document.getElementsByClassName("inputValues");
             for (var i = 0; i < checked.length; i++) {
@@ -335,10 +335,28 @@ export default {
                         daddress: document.getElementById("address").value,
                         ddetailaddr: document.getElementById("detailAddress").value,
                     }
-                    basketidx.push(this.getOrderList[i].basketidx);
-                    axios.post('/api/order/create', data);
+                    await axios({
+                        method: 'put',
+                        url: `/api/product/updateAmount`,
+                        params: {
+                            productno: this.getOrderList[i].productno,
+                            amount: this.getOrderList[i].amount,
+                        }
+                    }).then(res => {
+                        if (res.status == 200) {
+                            axios.post('/api/order/create', data).then(res => {
+                                if (res.status == 200) {
+                                    basketidx.push(this.getOrderList[i].basketidx);
+                                }
+                            }).catch(err => {
+                                console.log(err.response)
+                            })
+                        }
+                    }).catch(err => {
+                        console.log(err.response)
+                    })
                 }
-                axios.delete(`/api/basket/delete`, {
+                await axios.delete(`/api/basket/delete`, {
                         data: basketidx
                     })
                     .then(res => {

@@ -45,8 +45,8 @@ public class OrderController {
 	}
 
 	@PostMapping("/create")
-	public void insertOrder(@RequestBody OrderVO orderVO) throws Exception {
-		orderService.insertOrder(orderVO);
+	public ResponseEntity<?> insertOrder(@RequestBody OrderVO orderVO) throws Exception {
+		return orderService.insertOrder(orderVO);
 	}
 
 	@GetMapping("/getSell/{sellerid}")
