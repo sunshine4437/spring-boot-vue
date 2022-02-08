@@ -80,10 +80,11 @@ public class ProdController {
 		return prodService.insertProduct(requestData, fileList);
 	}
 
-	@PutMapping("/uodateProduct")
+	@PutMapping("/updateProduct")
 	public ResponseEntity<?> updateProduct(@RequestPart(value = "data") ProdVO requestData,
-			@RequestParam("fileList") List<MultipartFile> fileList) throws NotFoundException {
-		return prodService.updateProduct(requestData, fileList);
+			@RequestParam(value = "file1", required = false) List<MultipartFile> file1,
+			@RequestParam(value = "file2", required = false) List<MultipartFile> file2) throws NotFoundException {
+		return prodService.updateProduct(requestData, file1, file2);
 	}
 
 	@GetMapping("/findByName/{productname}")

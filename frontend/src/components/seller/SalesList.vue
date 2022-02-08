@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-    <div>
+    <div class="selectBox">
         <select name="" id="searchSelect" v-model="searchItemSelect">
             <option value="0">상품번호</option>
             <option value="1">상품명</option>
@@ -101,7 +101,9 @@ export default {
         },
         setImage(product) {
             try {
+                // console.log(product)
                  return require(`../../../../src/main/resources/images/product/${product.productno}/product/${product.imagename}`)
+                // return require(`../../../../src/main/resources/images/product/25/product/i10550872987.png`)
                 // return require(`@/components/mainPage/productTableImage/${product.imagename}`)
             } catch {
                 return require(`@/components/mainPage/productTableImage/error.png`)
@@ -237,12 +239,16 @@ export default {
 
 <style scoped>
 .container {
-    width: 1130px;
+    width: 1099px;
     overflow: hidden;
 }
 
 .container div {
     display: block;
+}
+
+.selectBox{
+    margin: 10px 0 10px 10px;
 }
 
 .tableBody {
