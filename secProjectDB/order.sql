@@ -558,7 +558,8 @@ FROM
     s_order
 ORDER BY
     orderidx;
-    
+--select * from s_order o left join s_product p on p.productno = o.productno where p.productno = 1 and o.id = 'seller0001';
+--select * from s_order o left join s_product on s_product.productno = o.productno where s_product.productname like '%뉴%' and o.id = 'seller0001';
 --state 종류 : 결제 완료 -> 배송중 -> 배송완료 / 취소 요청 -> 취소 완료 / 환불 요청 -> 환불 완료    
 --select s_order.orderidx, s_order.productno, s_product.productname, s_order.totalprice, s_order.amount, s_order.orderdate, s_order.state from s_order left join s_product on s_order.productno = s_product.productno where s_product.sellerid = 'seller0001' order by s_order.orderdate desc;
 --SELECT s_order.id, s_order.dzipcode, s_order.daddress, s_order.ddetailaddr, s_order.productno, s_order.selectedoption, s_order.totalprice, s_order.state FROM s_order, s_product WHERE s_order.productno = s_product.productnoAND s_product.sellerid = 'seller0001';    

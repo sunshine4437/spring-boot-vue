@@ -1,12 +1,12 @@
 <template>
 <div>
-    <div>
-        <select name="" id="">
-            <option value="">상품번호</option>
-            <option value="">상품명</option>
+    <div class="selectBox">
+        <select name="" id="searchSelect" v-model="searchItemSelect">
+            <option value="0">상품명</option>
+            <option value="1">상품번호</option>
         </select>
-        <input type="text">
-        <item @click="orderSearch">검색</item>
+        <input type="text" v-model="findItem">
+        <button @click="orderSearch" style="padding: 0px 10px">검색</button>
     </div>
     <div>
         <table>
@@ -78,10 +78,13 @@ export default {
             counter: 0,
             states: ['결제 완료', '배송중', '배송 완료', '취소 요청', '취소 완료', '환불 요청', '환불 완료'],
             selectedStates: [],
+            searchItemSelect: '0',
+            findItem: '',
         };
     },
     methods: {
         async getData() {
+            this.orders = [];
             await axios.get("/api/order/getSell/" + this.getLogin.user_id).then(res => {
                 this.data = res.data;
                 this.data.forEach(element => {
@@ -96,30 +99,42 @@ export default {
             let regexp = /\B(?=(\d{3})+(?!\d))/g;
             return num.toString().replace(regexp, ",");
         },
-         orderSearch() {
+        orderSearch() {
+
+            console.log(this.getLogin.user_id);
+
             if (this.findItem === '') {
                 this.getData();
                 return;
             }
             if (this.searchItemSelect == 0) {
-                this.products = [];
+                this.orders = [];
                 let lower = this.findItem.toLowerCase();
 
-                axios.get(`/api/product/findByName/${lower}`)
+                axios.get(`/api/order/findByName/${lower}`, {
+                        params: {
+                            'userid': this.getLogin.user_id
+                        }
+                    })
                     .then(res => {
+                        console.log(res.data)
                         this.data = res.data;
                         this.data.forEach(element => {
-                            this.products.push(element);
+                            this.orders.push(element);
                         });
                     })
             } else if (this.searchItemSelect == 1) {
-                this.products = [];
+                this.orders = [];
 
-                axios.get(`/api/product/findByNo/${this.findItem}`)
+                axios.get(`/api/order/findByNo/${this.findItem}`, {
+                        params: {
+                            'userid': this.getLogin.user_id
+                        }
+                    })
                     .then(res => {
                         this.data = res.data;
                         this.data.forEach(element => {
-                            this.products.push(element);
+                            this.orders.push(element);
                         });
                     })
             }
@@ -181,6 +196,10 @@ export default {
     display: block;
 }
 
+.selectBox{
+    margin: 10px 0 10px 10px;
+}
+
 .tableBody {
     height: 800px;
     overflow-y: scroll;
@@ -198,7 +217,7 @@ td {
 
 .td2 {
     width: 80px;
-    background-color: white;
+    /* background-color: white; */
     text-align: center;
 }
 
@@ -237,7 +256,7 @@ td {
 }
 
 .tableRow:nth-child(2n) {
-    background-color: rgb(117, 200, 255);
+    background-color: rgb(187, 228, 255);
 }
 
 table {

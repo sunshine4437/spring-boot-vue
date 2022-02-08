@@ -61,12 +61,12 @@ public class OrderController {
 	}
 	
 	@GetMapping("/findByName/{productname}")
-	public ResponseEntity<?> findByName(@PathVariable("productname") String productname) {
-		return orderService.findByName(productname);
+	public ResponseEntity<?> findByName(@PathVariable("productname") String productname, @RequestParam(value = "userid") String id) {
+		return orderService.findByName(productname, id);
 	}
 
 	@GetMapping("/findByNo/{productno}")
-	public ResponseEntity<?> findByNo(@PathVariable("productno") int productno) {
-		return orderService.findByNo(productno);
+	public ResponseEntity<?> findByNo(@PathVariable("productno") int productno, @RequestParam(value = "userid") String id) {
+		return orderService.findByNo(productno, id);
 	}
 }

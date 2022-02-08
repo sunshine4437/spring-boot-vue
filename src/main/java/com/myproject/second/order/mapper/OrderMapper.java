@@ -35,10 +35,11 @@ public interface OrderMapper {
 
 	@Select("select count(orderidx) from s_order where id = #{id} and state in ('결제완료', '배송중', '취소 요청')")
 	int haveOrder(@Param("id") String id);
-//	
+	@Select("select * from s_order left join s_product on s_product.productno = s_order.productno where s_product.productname like '%'||#{name}||'%' and s_order.id = #{id}")
 //	@Select("Select * from s_order where LOWER(productname) like '%'||#{name}||'%' order by productno")
-//	List<ProdVO> findByName(@Param("name") String name);
-//	
-//	@Select("Select * from s_order where productno = #{productno}")
-//	List<ProdVO> findByNo(@Param("productno") int productno);
+	List<OrderVO> findByName(@Param("name") String name, @Param("id") String id);
+	
+	
+	@Select("select * from s_order left join s_product on s_product.productno = s_order.productno where s_product.productno = #{productno} and s_order.id = #{id}")
+	List<OrderVO> findByNo(@Param("productno") int productno, @Param("id") String id);
 }

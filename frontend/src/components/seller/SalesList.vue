@@ -2,15 +2,15 @@
 <div class="container">
     <div class="selectBox">
         <select name="" id="searchSelect" v-model="searchItemSelect">
-            <option value="0">상품번호</option>
-            <option value="1">상품명</option>
+            <option value="0">상품명</option>
+            <option value="1">상품번호</option>
             <!-- <option value="2">가격</option>
             <option value="3">등록일</option>
             <option value="4">재고</option>
             <option value="5">판매여부</option> -->
         </select>
         <input type="text" v-model="findItem">
-        <item @click="itemSearch">검색</item>
+           <button @click="itemSearch" style="padding: 0px 10px">검색</button>
     </div>
     <div>
         <table>
@@ -23,7 +23,7 @@
                     <td class="td5 header" style=" cursor: pointer;" @click="regdateSort">등록일</td>
                     <td class="td6">재고</td>
                     <td class="td7">판매여부</td>
-                    <td class="td8" colspan="2" style="width:67px;"></td>
+                    <td class="td8" colspan="2" style="width:111px;"></td>
                     <!-- <td class="td9">수정</td> -->
                 </tr>
             </thead>
@@ -92,6 +92,7 @@ export default {
     },
     methods: {
         async getData() {
+            this.products=[];
             await axios.get("/api/product/productDetail/saleslist/" + this.getLogin.user_id).then(res => {
                 this.data = res.data;
                 this.data.forEach(element => {
@@ -297,14 +298,22 @@ td {
 }
 
 .td6 {
-    width: 50px;
+    width: 52px;
     text-align: center;
 }
 
 .td7 {
-    width: 70px;
+    width: 82px;
     text-align: center;
 }
+.td8, .td9 {
+    width: 54px;
+    text-align: center;
+}
+/* .td9 {
+    width: 30px;
+    text-align: center;
+} */
 
 .header {
     height: 60px;
@@ -312,7 +321,7 @@ td {
 }
 
 .tableRow:nth-child(2n) {
-    background-color: rgb(117, 200, 255);
+     background-color: rgb(187, 228, 255);
 }
 
 table {

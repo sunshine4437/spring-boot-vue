@@ -1,7 +1,7 @@
 <template>
 <div>
 
-    <table>
+    <table style="width: 1000px">
         <tr>
             <td>상품명</td>
             <td colspan="2">
@@ -241,8 +241,8 @@ export default {
 
 <style scoped>
 .imagePreviewWrapper {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     display: block;
     cursor: pointer;
     margin: 0;
@@ -254,11 +254,16 @@ export default {
     display: inline-block;
     width: 120px;
 }
+.inputData{
+    /* height: 20px; */
+    font-size: 20px;
+    width :300px;
+}
 
 tr,
 td {
     border: 1px black solid;
-    padding: 5px 5px;
+    padding: 10px 10px;
 }
 
 table {

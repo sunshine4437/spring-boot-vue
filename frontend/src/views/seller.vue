@@ -6,7 +6,7 @@
                 <router-link v-bind:to="'/'"> <img src="@/assets/logo.jpg" alt="logo" style="width:65px; height:65px; "></router-link>
             </div>
         </router-link>
-        {{getLogin}}
+        <!-- {{getLogin}} -->
     </div>
     <div class="container">
         <div class="leftSide">
@@ -87,7 +87,10 @@ export default {
 
 .leftButton {
     display: block;
-    background-color: gray;
+    background-color: white;
+    text-align: center;
+    font-size: 20px;
+    padding : 10px 0 10px 0;
 }
 
 .body {
@@ -109,6 +112,7 @@ export default {
 }
 
 .selected {
-    background-color: white;
+    background-color:  rgb(0, 153, 255);
+    color: white;
 }
 </style>

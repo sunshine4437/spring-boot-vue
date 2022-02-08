@@ -58,17 +58,18 @@ public class OrderService {
 		return orderMapper.haveOrder(id);
 	}
 	
-	public ResponseEntity<?> findByName(String name) {
-		List<ProdVO> res = orderMapper.findByName(name);
+	public ResponseEntity<?> findByName(String name, String id) {
+		List<OrderVO> res = orderMapper.findByName(name, id);
 		if (res == null)
 			return new ResponseEntity<>("Product Not Found", HttpStatus.INTERNAL_SERVER_ERROR);
 		else
 			return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
-	public ResponseEntity<?> findByNo(int productno) {
-		List<ProdVO> res = orderMapper.findByNo(productno);
+	public ResponseEntity<?> findByNo(int productno, String id) {
+		List<OrderVO> res = orderMapper.findByNo(productno, id);
 		if (res == null)
+	
 			return new ResponseEntity<>("Product Not Found", HttpStatus.INTERNAL_SERVER_ERROR);
 		else
 			return new ResponseEntity<>(res, HttpStatus.OK);
