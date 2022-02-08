@@ -249,7 +249,7 @@ export default {
                 axios.post(`/api/member/insertMember`, data)
                     .then(res => {
                         if (res.status == 200) {
-                            alert("회원이 되신걸 환영합니다");
+                            alert("회원이 되신 것을 환영합니다");
                             this.$router.push("/");
                         }
                     }).catch(err => {

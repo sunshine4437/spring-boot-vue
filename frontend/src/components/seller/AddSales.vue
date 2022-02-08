@@ -1,29 +1,28 @@
 <template>
 <div>
-
     <table style="width: 1000px">
         <tr>
             <td>상품명</td>
             <td colspan="2">
-                <input type="text" class="inputData" v-model="productname">
+                <input type="text" class="inputData" v-model="productname" name="상품명">
             </td>
         </tr>
         <tr>
             <td>상품 타입</td>
             <td colspan="2">
-                <input type="text" class="inputData" v-model="ptype">
+                <input type="text" class="inputData" v-model="ptype" name="상품타입">
             </td>
         </tr>
         <tr>
             <td>상품 가격</td>
             <td colspan="2">
-                <input type="text" class="inputData" v-model="price">
+                <input type="text" class="inputData" v-model="price" name="상품 가격">
             </td>
         </tr>
         <tr>
             <td>수량</td>
             <td colspan="2">
-                <input type="text" class="inputData" v-model="amount">
+                <input type="text" class="inputData" v-model="amount" name="수량">
             </td>
         </tr>
         <tr>
@@ -34,19 +33,19 @@
         <tr>
             <td>옵션1</td>
             <td>
-                <input type="text" class="inputData" v-model="option1name" placeholder="옵션명">
+                <input type="text" class="inputData" v-model="option1name" name="옵션1의 옵션명" placeholder="옵션명">
             </td>
             <td>
-                <input type="text" class="inputData" v-model="option1">
+                <input type="text" class="inputData" v-model="option1" name="옵션1의 옵션">
             </td>
         </tr>
         <tr>
             <td>옵션2</td>
             <td>
-                <input type="text" class="inputData" v-model="option2name" placeholder="옵션명">
+                <input type="text" class="inputData2" v-model="option2name" placeholder="옵션명">
             </td>
             <td>
-                <input type="text" class="inputData" v-model="option2" :disabled='option2name ==""'>
+                <input type="text" class="inputData2" v-model="option2" :disabled='option2name ==""'>
             </td>
         </tr>
         <tr>
@@ -59,11 +58,8 @@
             </td>
             <td>
                 <label for="" class="inputLabel">상품 상세 이미지</label>
-                <!-- <div v-for="(image,idx) in image2" :key="idx"> -->
                 <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${image2})` }" @click="selectImage2">
-                    <!-- <button>select</button> -->
                 </div>
-                <!-- </div> -->
                 <input ref="fileInput2" type="file" @change="pickFile2" accept="image/png, image/gif, image/jpeg">
             </td>
         </tr>
@@ -133,6 +129,7 @@ export default {
         },
         pickFile2() {
             let input = this.$refs.fileInput2.files[0];
+            console.log(input);
             if (input) {
                 let reader = new FileReader
                 reader.onload = e => {
@@ -147,8 +144,27 @@ export default {
             // this.formData.append('fileList', input[0])
         },
         async sendFile() {
-            console.log(this.getLogin.user_id)
-            // let id = this.getLogin
+            const checked = document.getElementsByClassName('inputData')
+            let checkLength = checked.length
+            for (let i = 0; i < checkLength; i++) {
+                if (checked[i].value.length == 0) {
+                    alert(`${checked[i].name} 을/를 입력하세요`)
+                    checked[i].focus();
+                    return;
+                }
+            }
+            if(this.image1 == null){
+                alert('이미지를 입력하세요')
+                return;
+            }
+            if(this.image2 == null){
+                alert('상세 이미지를 입력하세요')
+                return;
+            }
+            if(this.option2name == ''){
+                this.option2 = '';
+            }
+
             let data = {
                 sellerid: this.getLogin.user_id,
                 productname: this.productname,
@@ -169,7 +185,7 @@ export default {
             axios.post('/api/product/insertProduct', this.formData)
                 .then(res => {
                     console.log(res.status);
-                    alert("입력 성공");
+                    alert("상품을 추가하셨습니다");
                     this.$router.go();
                 }).catch(err => {
                     if (err.response.status === 404)
@@ -177,6 +193,27 @@ export default {
                 })
         },
         updateFile() {
+            const checked = document.getElementsByClassName('inputData')
+            let checkLength = checked.length
+            for (let i = 0; i < checkLength; i++) {
+                if (checked[i].value.length == 0) {
+                    alert(`${checked[i].name} 을/를 입력하세요`)
+                    checked[i].focus();
+                    return;
+                }
+            }
+            if(this.image1 == null){
+                alert('이미지를 입력하세요')
+                return;
+            }
+            if(this.image2 == null){
+                alert('상세 이미지를 입력하세요')
+                return;
+            }
+            if(this.option2name == ''){
+                this.option2 = '';
+            }
+
             let data = {
                 productno: this.productno,
                 sellerid: this.getLogin.user_id,
@@ -198,7 +235,7 @@ export default {
             axios.put('/api/product/updateProduct', this.formData)
                 .then(res => {
                     console.log(res.status);
-                    alert("수정 성공");
+                    alert("상품을 수정하셨습니다");
                     this.$router.go();
                 }).catch(err => {
                     if (err.response.status === 404)
@@ -259,6 +296,12 @@ export default {
     font-size: 20px;
     width :300px;
 }
+.inputData2{
+    /* height: 20px; */
+    font-size: 20px;
+    width :300px;
+}
+
 
 tr,
 td {
