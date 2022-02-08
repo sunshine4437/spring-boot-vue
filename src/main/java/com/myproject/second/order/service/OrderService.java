@@ -31,8 +31,13 @@ public class OrderService {
 		return orderMapper.getCancelList(id, startdate, enddate, temp);
 	}
 
-	public void insertOrder(OrderVO orderVO) {
-		orderMapper.insertOrder(orderVO);
+	public ResponseEntity<?> insertOrder(OrderVO orderVO) {
+		try {
+			orderMapper.insertOrder(orderVO);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	public List<OrderVO> getSellList(String sellerid) {

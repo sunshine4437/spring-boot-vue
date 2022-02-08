@@ -56,7 +56,10 @@ public interface ProdMapper {
 
 	@Select("Select * from s_product where LOWER(productname) like '%'||#{name}||'%' order by productno")
 	List<ProdVO> findByName(@Param("name") String name);
-	
+
 	@Select("Select * from s_product where productno = #{productno}")
 	List<ProdVO> findByNo(@Param("productno") int productno);
+
+	@Update("Update s_product set amount = amount - #{amount} where productno = #{productno}")
+	void updateAmount(@Param("productno") int produtno, @Param("amount") int amount);
 }

@@ -79,7 +79,7 @@ public class ProdController {
 			@RequestParam("fileList") List<MultipartFile> fileList) throws NotFoundException {
 		return prodService.insertProduct(requestData, fileList);
 	}
-	
+
 	@PutMapping("/uodateProduct")
 	public ResponseEntity<?> updateProduct(@RequestPart(value = "data") ProdVO requestData,
 			@RequestParam("fileList") List<MultipartFile> fileList) throws NotFoundException {
@@ -90,9 +90,15 @@ public class ProdController {
 	public ResponseEntity<?> findByName(@PathVariable("productname") String productname) {
 		return prodService.findByName(productname);
 	}
-	
+
 	@GetMapping("/findByNo/{productno}")
 	public ResponseEntity<?> findByNo(@PathVariable("productno") int productno) {
 		return prodService.findByNo(productno);
+	}
+
+	@PutMapping("/updateAmount")
+	public ResponseEntity<?> updateAmount(@RequestParam("productno") int productno,
+			@RequestParam("amount") int amount) {
+		return prodService.updateAmount(productno, amount);
 	}
 }

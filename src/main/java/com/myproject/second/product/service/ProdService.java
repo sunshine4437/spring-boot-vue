@@ -105,9 +105,9 @@ public class ProdService {
 		ResponseEntity<?> entity = null;
 
 		try {
-			if(requestData.getOption2().equals(";")) {
+			if (requestData.getOption2().equals(";")) {
 				requestData.setOption2("옵션2;선택");
-			}	
+			}
 			prodMapper.insertProduct(requestData, result);
 			int productno = result.getProductno();
 			File file = new File("./src/main/resources/images/product/" + productno + "/");
@@ -134,16 +134,15 @@ public class ProdService {
 		}
 		return entity;
 	}
-	
 
 	public ResponseEntity<?> updateProduct(ProdVO requestData, List<MultipartFile> fileList) {
 		ProdVO result = new ProdVO();
 		ResponseEntity<?> entity = null;
 
 		try {
-			if(requestData.getOption2().equals(";")) {
+			if (requestData.getOption2().equals(";")) {
 				requestData.setOption2("옵션2;선택");
-			}	
+			}
 			prodMapper.insertProduct(requestData, result);
 			int productno = result.getProductno();
 			File file = new File("./src/main/resources/images/product/" + productno + "/");
@@ -172,20 +171,29 @@ public class ProdService {
 		return entity;
 	}
 
-
 	public ResponseEntity<?> findByName(String name) {
 		List<ProdVO> res = prodMapper.findByName(name);
-		if(res == null)
-			return new ResponseEntity<>("Product Not Found",HttpStatus.INTERNAL_SERVER_ERROR);
+		if (res == null)
+			return new ResponseEntity<>("Product Not Found", HttpStatus.INTERNAL_SERVER_ERROR);
 		else
 			return new ResponseEntity<>(res, HttpStatus.OK);
 	}
-	
+
 	public ResponseEntity<?> findByNo(int productno) {
 		List<ProdVO> res = prodMapper.findByNo(productno);
-		if(res == null)
-			return new ResponseEntity<>("Product Not Found",HttpStatus.INTERNAL_SERVER_ERROR);
+		if (res == null)
+			return new ResponseEntity<>("Product Not Found", HttpStatus.INTERNAL_SERVER_ERROR);
 		else
 			return new ResponseEntity<>(res, HttpStatus.OK);
+	}
+
+	public ResponseEntity<?> updateAmount(int productno, int amount) {
+		try {
+			prodMapper.updateAmount(productno, amount);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 }
