@@ -25,7 +25,7 @@ public interface MemberMapper {
 	@Select("SELECT nickname from s_member where id = (SELECT sellerid from s_product where productno = #{productno})")
 	String getNickname(@Param("productno") int productno);
 
-	@Select("SELECT count(id) from s_member where id = #{id}")
+	@Select("SELECT count(id) from s_member where UPPER(id) = UPPER(#{id})")
 	int idCheck(@Param("id") String id);
 
 	@Insert("insert into s_member ( id, nickname, password, name, tel, email, zipcode, address, detailaddr, authority) values ( #{in.id}, #{in.nickname}, #{in.password}, #{in.name}, #{in.tel}, #{in.email}, #{in.zipcode}, #{in.address}, #{in.detailaddr}, #{in.authority})")
