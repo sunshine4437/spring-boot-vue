@@ -16,7 +16,7 @@
             <!-- <item v-on:click="selectedComponent = 'appTest4', changeSelected(4)" class="leftButton" :class=' { "selected": selected == 4 } '>판매정산</item> -->
         </div>
         <div class="body">
-            <div class="col-xs-12">
+            <div class="">
                 <!-- <keep-alive> -->
                 <component v-bind:is="selectedComponent" v-on:set-productno="getProductNo" v-bind:sendProduct="productno" />
                 <!-- </keep-alive> -->
@@ -79,7 +79,8 @@ export default {
 }
 
 .leftSide {
-    border: 1px solid black;
+    border: 1px solid rgb(197, 195, 195);
+    border-radius: 4px;
     width: 200px;
     height: 1000px;
 }
@@ -90,9 +91,11 @@ export default {
 }
 
 .body {
-    border: 1px solid black;
-    width: 1130px;
+    border: 1px solid rgb(197, 195, 195);
+    border-radius: 4px;
+    width: 1100px;
     height: 1000px;
+    margin-left: 30px;
 }
 
 .item {

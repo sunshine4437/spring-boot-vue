@@ -44,10 +44,13 @@ public interface ProdMapper {
 	@Select("select prod_seq.currval from dual")
 	int getProductNo();
 
-	@Insert("insert into s_product(productno, sellerid, productname, ptype, imagename, price, option1, option2, regdate, detailimagename) values (prod_seq.nextval, #{in.sellerid}, #{in.productname}, #{in.ptype}, #{in.imagename}, #{in.price}, #{in.option1}, #{in.option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{in.detailimagename})")
+	@Insert("insert into s_product(productno, sellerid, productname, ptype, imagename, price, option1, option2, regdate, detailimagename, amount) values (prod_seq.nextval, #{in.sellerid}, #{in.productname}, #{in.ptype}, #{in.imagename}, #{in.price}, #{in.option1}, #{in.option2}, to_char(sysdate, 'yyyy.mm.dd hh24:mi'), #{in.detailimagename}, #{in.amount})")
 	@Options(useGeneratedKeys = true, keyProperty = "result.productno", keyColumn = "productno")
 	int insertProduct(@Param("in") ProdVO in, @Param("result") ProdVO result);
 
+	@Update("update s_product set productname = #{in.productname}, ptype = #{in.ptype}, price = #{in.price}, option1 = #{in.option1}, option2 = #{in.option2}, imagename = #{in.imagename}, detailimagename = #{in.detailimagename}, amount= #{in.amount} where productno = #{in.productno}")
+	int updateProduct(@Param("in") ProdVO in, @Param("result") ProdVO result);
+	
 	@Select("select count(productno) from s_product where sellerid = #{sellerid}")
 	int haveProduct(@Param("sellerid") String sellerid);
 

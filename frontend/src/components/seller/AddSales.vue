@@ -21,6 +21,12 @@
             </td>
         </tr>
         <tr>
+            <td>수량</td>
+            <td colspan="2">
+                <input type="text" class="inputData" v-model="amount">
+            </td>
+        </tr>
+        <tr>
             <td></td>
             <td>옵션명</td>
             <td>옵션(;로 구분)</td>
@@ -86,12 +92,15 @@ export default {
             productname: '',
             ptype: '',
             price: 0,
+            amount:0,
             option1name: '',
             option1: '',
             option2name: '',
             option2: '',
             image1: null,
             image2: null,
+            iamgefile1: null,
+            imagefile2: null,
         };
     },
     watch: {
@@ -145,6 +154,7 @@ export default {
                 productname: this.productname,
                 ptype: this.ptype,
                 price: this.price,
+                amount : this.amount,
                 option1: this.option1name + ';' + this.option1,
                 option2: this.option2name + ';' + this.option2,
                 imagename: this.imagename,
@@ -156,17 +166,44 @@ export default {
             }))
             this.formData.append('fileList', this.imageFile1)
             this.formData.append('fileList', this.imageFile2)
-            axios.post('/api/product/insertProduct', this.formData).then(res => {
-                console.log(res.status);
-                alert("입력 성공");
-                this.$router.go();
-            }).catch(err => {
-                if (err.response.status === 404)
-                    alert("error")
-            })
+            axios.post('/api/product/insertProduct', this.formData)
+                .then(res => {
+                    console.log(res.status);
+                    alert("입력 성공");
+                    this.$router.go();
+                }).catch(err => {
+                    if (err.response.status === 404)
+                        alert("error")
+                })
         },
         updateFile() {
-
+            let data = {
+                productno: this.productno,
+                sellerid: this.getLogin.user_id,
+                productname: this.productname,
+                ptype: this.ptype,
+                price: this.price,
+                amount: this.amount,
+                option1: this.option1name + ';' + this.option1,
+                option2: this.option2name + ';' + this.option2,
+                imagename: this.imagename,
+                detailimagename: this.detailimagename,
+            }
+            this.formData = new FormData();
+            this.formData.append('data', new Blob([JSON.stringify(data)], {
+                type: "application/json"
+            }))
+            this.formData.append('file1', this.imageFile1)
+            this.formData.append('file2', this.imageFile2)
+            axios.put('/api/product/updateProduct', this.formData)
+                .then(res => {
+                    console.log(res.status);
+                    alert("수정 성공");
+                    this.$router.go();
+                }).catch(err => {
+                    if (err.response.status === 404)
+                        alert("error")
+                })
         }
     },
     mounted() {
@@ -178,7 +215,8 @@ export default {
                 this.productname = res.data[0].productname;
                 this.ptype = res.data[0].ptype;
                 this.price = res.data[0].price;
-
+                this.amount = res.data[0].amount;
+                
                 let opt1 = res.data[0].option1.split(";");
                 let opt2 = res.data[0].option2.split(";");
 
@@ -190,6 +228,9 @@ export default {
 
                 this.option1 = opt1.join(";");
                 this.option2 = opt2.join(";");
+
+                this.imagename = res.data[0].imagename;
+                this.detailimagename = res.data[0].detailimagename;
 
                 this.image1 = require(`../../../../src/main/resources/images/product/${res.data[0].productno}/product/${res.data[0].imagename}`);
                 this.image2 = require(`../../../../src/main/resources/images/product/${res.data[0].productno}/detail/${res.data[0].detailimagename}`);

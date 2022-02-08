@@ -105,14 +105,14 @@ public class ProdService {
 		ResponseEntity<?> entity = null;
 
 		try {
-			if(requestData.getOption2().equals(";")) {
+			if (requestData.getOption2().equals(";")) {
 				requestData.setOption2("옵션2;선택");
-			}	
+			}
 			prodMapper.insertProduct(requestData, result);
 			int productno = result.getProductno();
 			File file = new File("./src/main/resources/images/product/" + productno + "/");
 			file.mkdir();
-			String[] path = { "/detail/", "/product/" };
+			String[] path = { "/product/", "/detail/" };
 			file = new File("./src/main/resources/images/product/" + productno + path[0]);
 			file.mkdir();
 			file = new File("./src/main/resources/images/product/" + productno + path[1]);
@@ -134,35 +134,46 @@ public class ProdService {
 		}
 		return entity;
 	}
-	
 
-	public ResponseEntity<?> updateProduct(ProdVO requestData, List<MultipartFile> fileList) {
+	public ResponseEntity<?> updateProduct(ProdVO requestData, List<MultipartFile> file1, List<MultipartFile> file2) {
 		ProdVO result = new ProdVO();
 		ResponseEntity<?> entity = null;
 
 		try {
-			if(requestData.getOption2().equals(";")) {
+			if (requestData.getOption2().equals(";")) {
 				requestData.setOption2("옵션2;선택");
-			}	
-			prodMapper.insertProduct(requestData, result);
-			int productno = result.getProductno();
-			File file = new File("./src/main/resources/images/product/" + productno + "/");
-			file.delete();
-			file.mkdir();
-			String[] path = { "/detail/", "/product/" };
-			file = new File("./src/main/resources/images/product/" + productno + path[0]);
-			file.mkdir();
-			file = new File("./src/main/resources/images/product/" + productno + path[1]);
-			file.mkdir();
+			}
+			
+			prodMapper.updateProduct(requestData, result);
+//			int productno = result.getProductno();
+			File file;
+			File[] underDir;
+			FileOutputStream writer;
+			String[] path = { "/product/", "/detail/" };
 
-			for (int i = 0; i < fileList.size(); i++) {
-				MultipartFile multipartFile = fileList.get(i);
-				FileOutputStream writer = new FileOutputStream("./src/main/resources/images/product/" + productno
-						+ path[i] + multipartFile.getOriginalFilename());
-				System.out.println(multipartFile.getOriginalFilename());
-				writer.write(multipartFile.getBytes());
+			if (file1 != null) {
+				file = new File("./src/main/resources/images/product/" + requestData.getProductno() + path[0]);
+				underDir = file.listFiles();
+				for (int i = 0; i < underDir.length; i++) {
+					underDir[i].delete();
+				}
+				writer = new FileOutputStream("./src/main/resources/images/product/" + requestData.getProductno()
+						+ path[0] + file1.get(0).getOriginalFilename());
+				writer.write(file1.get(0).getBytes());
 				writer.close();
 			}
+			if (file2 != null) {
+				file = new File("./src/main/resources/images/product/" + requestData.getProductno() + path[1]);
+				underDir = file.listFiles();
+				for (int i = 0; i < underDir.length; i++) {
+					underDir[i].delete();
+				}
+				writer = new FileOutputStream("./src/main/resources/images/product/" + requestData.getProductno()
+						+ path[1] + file2.get(0).getOriginalFilename());
+				writer.write(file2.get(0).getBytes());
+				writer.close();
+			}
+
 			entity = new ResponseEntity<>(HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -172,19 +183,18 @@ public class ProdService {
 		return entity;
 	}
 
-
 	public ResponseEntity<?> findByName(String name) {
 		List<ProdVO> res = prodMapper.findByName(name);
-		if(res == null)
-			return new ResponseEntity<>("Product Not Found",HttpStatus.INTERNAL_SERVER_ERROR);
+		if (res == null)
+			return new ResponseEntity<>("Product Not Found", HttpStatus.INTERNAL_SERVER_ERROR);
 		else
 			return new ResponseEntity<>(res, HttpStatus.OK);
 	}
-	
+
 	public ResponseEntity<?> findByNo(int productno) {
 		List<ProdVO> res = prodMapper.findByNo(productno);
-		if(res == null)
-			return new ResponseEntity<>("Product Not Found",HttpStatus.INTERNAL_SERVER_ERROR);
+		if (res == null)
+			return new ResponseEntity<>("Product Not Found", HttpStatus.INTERNAL_SERVER_ERROR);
 		else
 			return new ResponseEntity<>(res, HttpStatus.OK);
 	}

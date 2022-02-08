@@ -135,25 +135,25 @@ ul {
 }
 
 .card_image:nth-child(4n-3) {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin-left: 2px;
     margin-right: 20px;
 }
 
 .card_image:nth-child(4n-2) {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin-left: 20px;
     margin-right: 20px;
 }
 
 .card_image:nth-child(4n-1) {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     margin-left: 20px;
     margin-right: 20px;
 }
 
 .card_image:nth-child(4n) {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     margin-left: 20px;
     margin-right: 0;
 }
