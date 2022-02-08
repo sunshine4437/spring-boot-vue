@@ -198,4 +198,14 @@ public class ProdService {
 		else
 			return new ResponseEntity<>(res, HttpStatus.OK);
 	}
+
+	public ResponseEntity<?> updateAmount(int productno, int amount) {
+		try {
+			prodMapper.updateAmount(productno, amount);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

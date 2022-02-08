@@ -96,4 +96,10 @@ public class ProdController {
 	public ResponseEntity<?> findByNo(@PathVariable("productno") int productno) {
 		return prodService.findByNo(productno);
 	}
+
+	@PutMapping("/updateAmount")
+	public ResponseEntity<?> updateAmount(@RequestParam("productno") int productno,
+			@RequestParam("amount") int amount) {
+		return prodService.updateAmount(productno, amount);
+	}
 }
