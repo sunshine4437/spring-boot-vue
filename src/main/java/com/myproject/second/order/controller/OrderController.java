@@ -59,4 +59,14 @@ public class OrderController {
 			throws Exception {
 		return orderService.updateOrder(orderidx, state);
 	}
+	
+	@GetMapping("/findByName/{productname}")
+	public ResponseEntity<?> findByName(@PathVariable("productname") String productname) {
+		return orderService.findByName(productname);
+	}
+
+	@GetMapping("/findByNo/{productno}")
+	public ResponseEntity<?> findByNo(@PathVariable("productno") int productno) {
+		return orderService.findByNo(productno);
+	}
 }

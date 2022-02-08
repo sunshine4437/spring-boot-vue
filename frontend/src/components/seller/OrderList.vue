@@ -4,12 +4,9 @@
         <select name="" id="">
             <option value="">상품번호</option>
             <option value="">상품명</option>
-            <option value="">가격</option>
-            <option value="">등록일</option>
-            <option value="">재고</option>
-            <option value="">판매여부</option>
         </select>
         <input type="text">
+        <item @click="orderSearch">검색</item>
     </div>
     <div>
         <table>
@@ -99,6 +96,34 @@ export default {
             let regexp = /\B(?=(\d{3})+(?!\d))/g;
             return num.toString().replace(regexp, ",");
         },
+         orderSearch() {
+            if (this.findItem === '') {
+                this.getData();
+                return;
+            }
+            if (this.searchItemSelect == 0) {
+                this.products = [];
+                let lower = this.findItem.toLowerCase();
+
+                axios.get(`/api/product/findByName/${lower}`)
+                    .then(res => {
+                        this.data = res.data;
+                        this.data.forEach(element => {
+                            this.products.push(element);
+                        });
+                    })
+            } else if (this.searchItemSelect == 1) {
+                this.products = [];
+
+                axios.get(`/api/product/findByNo/${this.findItem}`)
+                    .then(res => {
+                        this.data = res.data;
+                        this.data.forEach(element => {
+                            this.products.push(element);
+                        });
+                    })
+            }
+        },
         async stateChange() {
             let check = 0;
             let error = [];
@@ -132,7 +157,7 @@ export default {
             } else {
                 alert(`미완료된 변경(총 ${check}건) : ${error}`)
             }
-        }
+        },
     },
     computed: {
         ...loginStore.mapGetters(['getLogin'])

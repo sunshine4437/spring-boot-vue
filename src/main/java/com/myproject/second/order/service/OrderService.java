@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.myproject.second.order.mapper.OrderMapper;
 import com.myproject.second.order.vo.OrderVO;
+import com.myproject.second.product.vo.ProdVO;
 
 @Service
 public class OrderService {
@@ -50,5 +51,21 @@ public class OrderService {
 
 	public int haveOrder(String id) {
 		return orderMapper.haveOrder(id);
+	}
+	
+	public ResponseEntity<?> findByName(String name) {
+		List<ProdVO> res = orderMapper.findByName(name);
+		if (res == null)
+			return new ResponseEntity<>("Product Not Found", HttpStatus.INTERNAL_SERVER_ERROR);
+		else
+			return new ResponseEntity<>(res, HttpStatus.OK);
+	}
+
+	public ResponseEntity<?> findByNo(int productno) {
+		List<ProdVO> res = orderMapper.findByNo(productno);
+		if (res == null)
+			return new ResponseEntity<>("Product Not Found", HttpStatus.INTERNAL_SERVER_ERROR);
+		else
+			return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 }
