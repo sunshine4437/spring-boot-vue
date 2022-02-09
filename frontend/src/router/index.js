@@ -108,10 +108,7 @@ const routes = [
     }, {
         path: '/join2',
         component: () => import ('../views/Join.vue')
-    }, {
-        path: '/productReg',
-        component: () => import ('../views/productReg.vue')
-    }, {
+    },  {
         path: '/seller',
         component: () => import ('../views/seller.vue'),
         beforeEnter: (to, from, next) => {
@@ -125,23 +122,6 @@ const routes = [
                 next({name:'Login', params:{nextPage: to.fullPath}})
             }
         },
-    }, {
-        path: '/temp',
-        component: () => import ('../views/temp.vue'),
-        beforeEnter: (to, from, next) => {
-            console.log(`${from.path} ---> ${to.path}`)
-            const isLogin = store.getters['loginStore/getLogin']
-            console.log(isLogin)
-            if(isLogin){
-                next();
-            }
-            else{
-                next({name:'Login', params:{nextPage: to.fullPath}})
-            }
-        },
-    }, {
-        path: '/temp1',
-        component: () => import ('../views/temp1.vue')
     }, {
         path: '*',
         component: () => import ('../views/blank.vue')

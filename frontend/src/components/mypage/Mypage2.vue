@@ -33,7 +33,7 @@
         <div class="tempDiv">
             <label class="labelClass" for="">*우편번호</label>
 
-            <input type="text" class="mdText" v-model="postcode" placeholder="우편번호">
+            <input type="text" class="mdText" v-model="postcode" placeholder="우편번호" @click="execDaumPostcode()">
             <span>
                 <button type="button" class="classBtn" @click="execDaumPostcode()">주소검색</button>
             </span>

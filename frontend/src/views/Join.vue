@@ -42,7 +42,7 @@
             <div class="tempDiv">
                 <label class="labelClass" for="">*우편번호</label>
 
-                <input type="text" class="inputValues" v-model="postcode" placeholder="우편번호" id="zipCode" name="주소">
+                <input type="text" class="inputValues" v-model="postcode" placeholder="우편번호" id="zipCode" name="주소" @click="execDaumPostcode()">
                 <span>
                     <button type="button" class="classBtn" @click="execDaumPostcode()">주소검색</button>
                 </span>
