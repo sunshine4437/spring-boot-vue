@@ -31,9 +31,7 @@ INSERT INTO s_product VALUES (
     '惑前 锅龋;01.NB_CM997HCA;02.NB_CM997HCC;03.NB_ML574RC2;04.NB_MR530SG;05.NB_MR530KA;06.NB_MS327FE;07.NB_MS327LAB;08.NB_MS327CPG;09.NB_MS327LH1;10.NB_WS327KC;11.NB_MS327WE;12.NB_MS327BD;13.NB_MR530SH;14.NB_WS327LW;15.NB_MS327CLA;16.NB_ML574EVB;17.NB_ML574EVG;18.NB_ML574EVW;19.NB_ML574EVE',
     '荤捞令;225;230;235;240;245;250;255;260;265;270;275;280;285;290',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+  '2022.01.01 12:00',
     'productDetail01.jpg',
     1
 );
@@ -48,9 +46,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+  '2022.01.02 12:00',
     'intro.jpg',
     1
 );
@@ -65,9 +61,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.03 12:00',
     'intro.jpg',
     1
 );
@@ -82,9 +76,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.04 12:00',
     'intro_0119.jpg',
     1
 );
@@ -99,9 +91,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.05 12:00',
     '5f995d3e-e36c-4da0-9fe5-f44374c14da4_1640538764389.jpg',
     1
 );
@@ -116,9 +106,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.06 12:00',
     '厚飘肺 决胶沛 拳捞飘,喉发 惑技汲疙.jpg',
     1
 );
@@ -133,9 +121,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+  '2022.01.07 12:00',
     'new.jpg',
     0
 );
@@ -150,9 +136,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.08 12:00',
     '1835339176.jpg',
     1
 );
@@ -167,9 +151,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.09 12:00',
     '8db1f838-ee20-4b38-ba10-31346447bb73.jpg',
     1
 );
@@ -184,9 +166,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.10 12:00',
     'A.jpg',
     1
 );
@@ -201,9 +181,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+  '2022.01.11 12:00',
     'A_4.jpg',
     1
 );
@@ -218,9 +196,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.12 12:00',
     '1368439939.jpg',
     1
 );
@@ -235,9 +211,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+  '2022.01.13 12:00',
     '1429899c-5104-4acc-8465-5b370022c4c8.jpg',
     1
 );
@@ -252,9 +226,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+  '2022.01.14 12:00',
     'A_1.jpg',
     1
 );
@@ -269,9 +241,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+  '2022.01.15 12:00',
     'jellpe-main.jpg',
     1
 );
@@ -286,7 +256,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    '2022.01.01 11:11',
+ '2022.01.16 12:00',
     '3bd35944-0562-4c32-b4e6-17e87b4a81f0_1641960582596.jpg',
     1
 );
@@ -301,9 +271,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+    '2022.01.17 12:00',
     '5cd_image_01.jpg',
     1
 );
@@ -318,9 +286,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.18 12:00',
     '0120.jpg',
     1
 );
@@ -335,9 +301,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+  '2022.01.19 12:00',
     'intro.jpg',
     1
 );
@@ -352,9 +316,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.20 12:00',
     'bt.jpg',
     1
 );
@@ -369,9 +331,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.21 12:00',
     'd1.jpg',
     1
 );
@@ -386,9 +346,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+    '2022.01.22 12:00',
     '01_2.jpg',
     1
 );
@@ -403,9 +361,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+   '2022.01.23 12:00',
     '1622826005597_E.jpg',
     0
 );
@@ -420,9 +376,7 @@ INSERT INTO s_product VALUES (
     '可记1;1;2;3;4',
     '可记2;a;s;d;f',
     1,
-    to_char(
-        sysdate, 'yyyy.mm.dd hh24:mi'
-    ),
+    '2022.01.24 12:00',
     '220122_A.jpg',
     0
 );
