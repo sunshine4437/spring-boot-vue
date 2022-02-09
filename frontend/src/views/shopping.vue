@@ -75,8 +75,10 @@
                 </ul>
             </div>
         </div>
-
-        <div class="container0">
+        <div class="container0" v-if="prod.length == 0">
+            <h1>검색된 상품이 없습니다. 다른 검색어를 입력해주세요</h1>
+        </div>
+        <div class="container0" v-if="prod.length > 0">
             <div class="container">
                 <div class="products_fa">
                     <h2 class='span1'> 인기상품</h2>
@@ -309,6 +311,7 @@ export default {
 }
 
 .container0 {
+    width: 905px;
     margin: 0;
     padding: 0;
     display: flex;

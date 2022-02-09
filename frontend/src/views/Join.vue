@@ -28,7 +28,7 @@
             </div>
             <div class="tempDiv">
                 <label class="labelClass" for="">*이름</label>
-                <input type="text" name="username" class="username" id="username">
+                <input type="text" name="이름" class="username inputValues" id="username">
             </div>
             <div class="tempDiv">
                 <label class="labelClass" for="">*전화번호</label>
@@ -50,12 +50,12 @@
             </div>
             <div class="tempDiv">
                 <label class="labelClass" for="">*주소</label>
-                <input type="text" class="inputValues" id="address" v-model="address" placeholder="주소">
+                <input type="text" class="inputValues" id="address" v-model="address" placeholder="주소" name="주소">
 
             </div>
             <div class="tempDiv">
                 <label class="labelClass" for="">*상세주소</label>
-                <input type="text" class="inputValues" id="detailAddress" placeholder="상세주소">
+                <input type="text" class="inputValues" id="detailAddress" placeholder="상세주소" name="상세주소">
             </div>
             <div class="tempDiv" v-show="checkPage">
                 <label class="labelClass" for="">*사업자등록 번호</label>
@@ -157,6 +157,7 @@ export default {
             }
         },
         passwordValid() {
+            this.passwordCheckValid()
             if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,16}$/.test(this.signup.password)) {
                 this.passwordValidFlag = true;
                 this.checkPwdFlag = true;
@@ -193,7 +194,7 @@ export default {
             }
         },
         submit() {
-            const checked = document.getElementsByClassName('inputValues')
+            const checked = document.getElementsByClassName('inputValues');
             let checkLength = checked.length
             if (!this.checkPage)
                 checkLength = checkLength - 1;
@@ -369,9 +370,7 @@ export default {
 }
 
 .inputValues,
-.username,
 .useremail,
-.mobile,
 .total_add,
 .detail_add {
     text-align: center;

@@ -100,6 +100,7 @@ export default {
             }
         },
         passwordValid() { // 비밀번호 유효성 검사 및 플래그
+            this.passwordCheckValid();
             if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,16}$/.test(this.signup.password)) {
                 this.passwordValidFlag = true
             } else {
@@ -122,7 +123,7 @@ export default {
                 if (this.signup.password === null) {
                     alert("수정할 비밀번호를 입력해주세요.");
                 } else if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,16}$/.test(this.signup.password)) {
-                    if (this.passwordValidFlag == true){
+                    if (this.passwordValidFlag == true) {
                         if (this.signup.password === this.passwordCheck) {
                             axios({
                                 method: 'put',
@@ -137,7 +138,7 @@ export default {
                         } else {
                             alert("비밀번호와 비밀번호 확인이 다릅니다")
                         }
-                    }                        
+                    }
                 } else {
                     if (!this.passwordValidFlag == true)
                         alert("비밀번호 형식은 대문자,소문자,숫자 포함 8~16글자 입니다.");
