@@ -221,10 +221,15 @@ export default {
         },
         // 쿠폰 입력
         applyCoupon() {
-            this.sale -= parseInt(this.coupon);
-            this.coupon = this.totalPrice * 0.1;
-            this.sale += parseInt(this.coupon);
-            this.finalPrice = this.totalPrice - this.sale + this.delivery;
+            if (this.coupon == 0) {
+                this.coupon = this.totalPrice * 0.1;
+                this.sale += parseInt(this.coupon);
+                this.finalPrice = this.totalPrice - this.sale + this.delivery;
+            } else {
+                this.sale -= parseInt(this.coupon);
+                this.coupon = 0;
+                this.finalPrice = this.totalPrice - this.sale + this.delivery;
+            }
         },
         // 전화번호 체크(정규식)
         phoneCheck() {
@@ -307,7 +312,6 @@ export default {
             );
             if (radioCheck == null) {
                 alert("결제수단을 선택해주세요");
-                radioCheck.focus();
                 return;
             }
             // 전화번호 정규식 검사
@@ -346,7 +350,29 @@ export default {
                         if (res.status == 200) {
                             axios.post('/api/order/create', data).then(res => {
                                 if (res.status == 200) {
-                                    basketidx.push(this.getOrderList[i].basketidx);
+                                    if (this.getOrderList[i].basketidx != undefined) {
+                                        basketidx.push(this.getOrderList[i].basketidx);
+                                    }
+                                    if (i == this.getOrderList.length - 1) {
+                                        if (basketidx.length > 0) {
+                                            axios.delete(`/api/basket/delete`, {
+                                                    data: basketidx
+                                                })
+                                                .then(res => {
+                                                    if (res.status == 200) {
+                                                        this.usePoint();
+                                                        alert("결제를 완료했습니다");
+                                                        this.$router.push("/");
+                                                    }
+                                                }).catch(err => {
+                                                    console.log(err.response)
+                                                })
+                                        } else {
+                                            this.usePoint();
+                                            alert("결제를 완료했습니다");
+                                            this.$router.push("/");
+                                        }
+                                    }
                                 }
                             }).catch(err => {
                                 console.log(err.response)
@@ -356,18 +382,7 @@ export default {
                         console.log(err.response)
                     })
                 }
-                await axios.delete(`/api/basket/delete`, {
-                        data: basketidx
-                    })
-                    .then(res => {
-                        if (res.status == 200) {
-                            this.usePoint();
-                            alert("결제를 완료했습니다");
-                            this.$router.push("/");
-                        }
-                    }).catch(err => {
-                        console.log(err.response)
-                    })
+
             }
         },
         getMemInfo() {

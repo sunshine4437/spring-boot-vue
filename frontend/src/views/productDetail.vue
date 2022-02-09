@@ -15,8 +15,11 @@
                 <h2>
                     {{prod.productname}}
                 </h2>
-                <h1>
+                <h1 v-if="this.prod.onsale == 1">
                     {{AddComma(prod.price)}}원
+                </h1>
+                <h1 v-if="this.prod.onsale == 0" style="color : red">
+                    품절 상품입니다
                 </h1>
             </div>
             <!-- 상품명, 가격 -->

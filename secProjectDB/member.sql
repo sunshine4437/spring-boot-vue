@@ -10,7 +10,7 @@ CREATE TABLE s_member (
     zipcode    VARCHAR2(5) NOT NULL,
     address    VARCHAR2(80) NOT NULL,
     detailaddr VARCHAR2(50) NOT NULL,
-    point      NUMBER(10) DEFAULT 0,
+    point      NUMBER(10) DEFAULT 2000,
     authority  VARCHAR2(20) NOT NULL,
     companyno  VARCHAR2(20)
 );
