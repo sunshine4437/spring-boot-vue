@@ -27,7 +27,7 @@ public interface OrderMapper {
 	@Insert("insert into s_order values (order_seq.NEXTVAL, #{order.id}, #{order.productno}, #{order.selectedoption}, #{order.amount}, #{order.totalprice}, sysdate, '결제 완료', #{order.ordermethod}, #{order.seller}, #{order.dname}, #{order.dtel}, #{order.dzipcode}, #{order.daddress}, #{order.ddetailaddr})")
 	void insertOrder(@Param("order") OrderVO orderVO);
 
-	@Select("select s_order.orderidx, s_order.productno, s_product.productname, s_order.totalprice, s_order.amount, s_order.orderdate, s_order.state from s_order left join s_product on s_order.productno = s_product.productno where s_product.sellerid = #{sellerid} order by s_order.orderdate desc")
+	@Select("select s_order.orderidx, s_order.productno, s_product.productname, s_order.totalprice, s_order.amount, s_order.orderdate, s_order.state from s_order left join s_product on s_order.productno = s_product.productno where s_product.sellerid = #{sellerid} order by s_order.orderidx desc")
 	List<OrderVO> getSellList(@Param("sellerid") String sellerid);
 
 	@Update("update s_order set state = #{state} where orderidx = #{orderidx}")
@@ -35,11 +35,12 @@ public interface OrderMapper {
 
 	@Select("select count(orderidx) from s_order where id = #{id} and state in ('결제완료', '배송중', '취소 요청')")
 	int haveOrder(@Param("id") String id);
-	@Select("select * from s_order left join s_product on s_product.productno = s_order.productno where s_product.productname like '%'||#{name}||'%' and s_order.id = #{id}")
+	
+	@Select("select * from s_order left join s_product on s_product.productno = s_order.productno where s_product.productname like '%'||#{name}||'%' and s_product.sellerid = #{id} order by s_order.orderidx desc")
 //	@Select("Select * from s_order where LOWER(productname) like '%'||#{name}||'%' order by productno")
 	List<OrderVO> findByName(@Param("name") String name, @Param("id") String id);
 	
 	
-	@Select("select * from s_order left join s_product on s_product.productno = s_order.productno where s_product.productno = #{productno} and s_order.id = #{id}")
+	@Select("select * from s_order left join s_product on s_product.productno = s_order.productno where s_product.productno = #{productno} and s_product.sellerid = #{id} order by s_order.orderidx desc")
 	List<OrderVO> findByNo(@Param("productno") int productno, @Param("id") String id);
 }
