@@ -158,10 +158,10 @@ ul {
     margin-right: 0;
 }
 
-.card_image:last-child {
+/* .card_image:last-child {
     margin-left: 20px;
     margin-right: auto;
-}
+} */
 
 .card_image>.imageDiv {
     width: 300px;

@@ -9,7 +9,7 @@
         <div>
             <div class="tempDiv">
                 <label class="labelClass" for="">*아이디</label>
-                <input type="text" name="아이디" class="inputValues" id="id" v-model="signup.putid">
+                <input type="text" name="아이디" class="inputValues" id="id" v-model="signup.putid" @keyup="resetIdFlag">
                 <button class="classBtn" @click.prevent="idCheck"> 중복확인 </button>
             </div>
             <div class="tempDiv">
@@ -131,6 +131,9 @@ export default {
             }
 
         },
+        resetIdFlag() {
+            this.checkIdFlag = false;
+        },
         idCheck() {
             try {
                 let id = this.signup.putid;
@@ -234,7 +237,7 @@ export default {
                 alert("약관을 확인해 주세요");
             } else if (!agreement2.checked) {
                 alert("약관을 확인해 주세요");
-            } else {     
+            } else {
                 let data = {
                     id: document.getElementById('id').value,
                     nickname: document.getElementById('nick').value,
