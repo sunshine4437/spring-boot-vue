@@ -84,7 +84,7 @@
                     <h2 class='span1'> 인기상품</h2>
                     <div class="products" v-for="(pop, idx) in popular" :key="idx">
                         <router-link v-bind:to="`/productDetail/${pop.productno}`">
-                            <img :src="setPopularImage(idx)" alt="productImage">
+                            <img :src="`/api/product/productimage/${popular[idx].productno}/${popular[idx].imagename}`" alt="productImage">
                             <p style="height:70px">{{pop.productname}}</p>
                             <p class="price">{{AddComma(pop.price)}}원</p>
                         </router-link>
@@ -96,7 +96,7 @@
                     <ul v-for="(prd, idx) in prod" :key="idx">
                         <li class="item">
                             <router-link v-bind:to="`/productDetail/${prd.productno}`">
-                                <img :src="setImage(idx)" alt="productImage">
+                                <img :src="`/api/product/productimage/${prod[idx].productno}/${prod[idx].imagename}`" alt="productImage">
                             </router-link>
                             <div class="desc">
                                 <router-link v-bind:to="`/productDetail/${prd.productno}`">
@@ -220,20 +220,6 @@ export default {
                     this.prod = res.data;
                 })
             })
-        },
-        setPopularImage(idx) {
-            try {
-                return require(`../../../src/main/resources/images/product/${this.popular[idx].productno}/product/${this.popular[idx].imagename}`)
-            } catch {
-                return require(`@/components/mainPage/productTableImage/error.png`)
-            }
-        },
-        setImage(idx) {
-            try {
-                return require(`../../../src/main/resources/images/product/${this.prod[idx].productno}/product/${this.prod[idx].imagename}`)
-            } catch {
-                return require(`@/components/mainPage/productTableImage/error.png`)
-            }
         },
         AddComma(num) {
             let regexp = /\B(?=(\d{3})+(?!\d))/g;

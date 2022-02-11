@@ -39,7 +39,7 @@
                     </td>
                     <td class="td2">
                         <!-- {{setImage(product)}} -->
-                        <img :src="setImage(product)" alt="productImage">
+                        <img :src="`/api/product/productimage/${product.productno}/${product.imagename}`" alt="productImage">
                     </td>
                     <td class="td3">
                         {{product.productname}}
@@ -99,17 +99,6 @@ export default {
                     this.products.push(element);
                 });
             });
-        },
-        setImage(product) {
-            try {
-                // console.log(product)
-                 return require(`../../../../src/main/resources/images/product/${product.productno}/product/${product.imagename}`)
-                // return require(`../../../../src/main/resources/images/product/25/product/i10550872987.png`)
-                // return require(`@/components/mainPage/productTableImage/${product.imagename}`)
-            } catch {
-                return require(`@/components/mainPage/productTableImage/error.png`)
-            }
-
         },
         AddComma(num) {
             let regexp = /\B(?=(\d{3})+(?!\d))/g;

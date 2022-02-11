@@ -10,7 +10,7 @@
                 </td>
                 <td class="orderProductTd" style="width: 10%">
                     <img class="orderProductImg" :src="
-                                require(`../../../src/main/resources/images/product/${op.productno}/product/${op.imagename}`)
+                                `/api/product/productimage/${op.productno}/${op.imagename}`
                             " alt="productImage" />
                 </td>
                 <td class="orderProductTd" style="width: 50%; text-align: left">

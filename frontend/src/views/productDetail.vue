@@ -5,7 +5,7 @@
     <div class="detailTop">
         <!-- 사진 -->
         <div class="leftBox scale-down" style="margin: auto; text-align: center">
-            <img style="width: 500px; height: 500px; border-radius: 10px" :src="setImage()" alt="productImage">
+            <img style="width: 500px; height: 500px; border-radius: 10px" :src="`/api/product/productimage/${prod.productno}/${prod.imagename}`" alt="productImage">
         </div>
         <!-- 사진의 오른쪽 부분 -->
         <div class="rightBox">
@@ -236,13 +236,6 @@ export default {
             axios.get(`/api/member/productDetail/${id}`).then(res => {
                 this.shop = res.data;
             })
-        },
-        setImage() {
-            try {
-                return require(`../../../src/main/resources/images/product/${this.prod.productno}/product/${this.prod.imagename}`)
-            } catch {
-                return require(`@/components/mainPage/productTableImage/error.png`)
-            }
         },
         addBasket() {
             const pNo = this.$route.params.id;

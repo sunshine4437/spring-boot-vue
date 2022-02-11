@@ -79,7 +79,7 @@
                     <tr v-for="(order, idx) in orders" :key="idx" style="height:50px;">
                         <td class="td1">{{order.orderdate}}</td>
                         <td class="td2">
-                            <img :src="require(`../../../../src/main/resources/images/product/${order.productno}/product/${order.imagename}`)" alt="banner" style="width:50px; height:50px;">
+                            <img :src="`/api/product/productimage/${order.productno}/${order.imagename}`" alt="banner" style="width:50px; height:50px;">
                         </td>
                         <td class="td3">{{order.seller}}</td>
                         <td class="td4" style="text-align:left">{{order.productname}}</td>
@@ -116,7 +116,7 @@
                         <tr v-for="(cancel, idx) in cancels" :key="idx" class="tr1" style="height:50px;">
                             <td class="td1">{{cancel.orderdate}}</td>
                             <td class="td2">
-                                <img :src="require(`../../../../src/main/resources/images/product/${cancel.productno}/product/${cancel.imagename}`)" alt="banner" style="width:50px; height:50px;">
+                                <img :src="`/api/product/productimage/${cancel.productno}/${cancel.imagename}`" alt="banner" style="width:50px; height:50px;">
                             </td>
                             <td class="td3">{{cancel.seller}}</td>
                             <td class="td4" style="text-align:left">{{cancel.productname}}</td>

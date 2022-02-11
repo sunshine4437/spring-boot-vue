@@ -7,7 +7,7 @@
         <table class="reviewTable">
             <tr v-for="(review, idx) in reviews" :key="idx">
                 <td style="width: 10%">
-                    <img :src="setImage(idx)" style="width:100px; height: 100px" />
+                    <img :src="`/api/review/reviewImage/${review.productno}/${review.reviewno}/${review.image}`" style="width:100px; height: 100px" />
                 </td>
                 <td style="text-align: left">
                     <span v-html="review.content"></span>
@@ -40,13 +40,6 @@ export default {
         };
     },
     methods: {
-        setImage(idx) {
-            try {
-                return require(`../../../../src/main/resources/images/product/${this.reviews[idx].productno}/review/${this.reviews[idx].reviewno}/${this.reviews[idx].image}`)
-            } catch {
-                return require(`@/components/mainPage/productTableImage/error.png`)
-            }
-        },
         getReview() {
             const productno = this.$route.params.id;
             axios.get(`/api/review/count/${productno}`).then(res => {

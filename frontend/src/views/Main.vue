@@ -94,7 +94,6 @@
 <script>
 // @ is an alias to /src
 import "@/css/common.css"
-import axios from 'axios'
 // 새로고침과 페이지 이동시 로그인 상태 확인 및 유지 기능
 import {
     createNamespacedHelpers
@@ -160,9 +159,7 @@ export default {
         ...loginStore.mapMutations([
             'Logout'
         ]),
-        getData() {
-            axios.get("/api/main/test11").then(res => this.msg = res.data)
-        }
+      
     },
     watch: {
         $route(from){
@@ -172,7 +169,7 @@ export default {
         }
     },
     mounted() {
-        // this.getData();
+      
     }
 }
 </script>

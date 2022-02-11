@@ -1,9 +1,15 @@
 package com.myproject.second.product.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -101,5 +107,31 @@ public class ProdController {
 	public ResponseEntity<?> updateAmount(@RequestParam("productno") int productno,
 			@RequestParam("amount") int amount) {
 		return prodService.updateAmount(productno, amount);
+	}
+	
+	@GetMapping("/productimage/{productno}/{imagename}")
+	public ResponseEntity<?> productimage(@PathVariable("productno") int productno, @PathVariable("imagename") String imagename) throws IOException {
+		InputStream imageStream;
+		try {
+			imageStream = new FileInputStream("./src/main/resources/images/product/"+productno+"/product/"+imagename);
+		} catch (FileNotFoundException e) {
+			imageStream = new FileInputStream("./src/main/resources/images/error.png");
+		}
+		byte[] imageByteArray = IOUtils.toByteArray(imageStream);
+		imageStream.close();
+		return new ResponseEntity<byte[]>(imageByteArray, HttpStatus.OK);
+	}
+	
+	@GetMapping("/detailimage/{productno}/{imagename}")
+	public ResponseEntity<?> detailimage(@PathVariable("productno") int productno, @PathVariable("imagename") String imagename) throws IOException {
+		InputStream imageStream;
+		try {
+			imageStream = new FileInputStream("./src/main/resources/images/product/"+productno+"/detail/"+imagename);
+		} catch (FileNotFoundException e) {
+			imageStream = new FileInputStream("./src/main/resources/images/error.png");
+		}
+		byte[] imageByteArray = IOUtils.toByteArray(imageStream);
+		imageStream.close();
+		return new ResponseEntity<byte[]>(imageByteArray, HttpStatus.OK);
 	}
 }

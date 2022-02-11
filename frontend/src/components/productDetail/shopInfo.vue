@@ -13,7 +13,7 @@
         <div class="bestPicDiv">
             <div class="bestPic" v-for="(best, idx) in bests" :key="idx">
                 <!-- <router-link v-bind:to="`/productDetail/${best.productno}`" > -->
-                <img :src="setImage(best)" style="width: 140px; height: 140px" @click="moveto(best.productno)"/>
+                <img :src="`/api/product/productimage/${best.productno}/${best.imagename}`" style="width: 140px; height: 140px" @click="moveto(best.productno)"/>
                 <!-- </router-link> -->
             </div>
         </div>
@@ -42,13 +42,6 @@ export default {
             axios.get(`/api/member/productDetail/${id}`).then(res => {
                 this.shop = res.data;
             })
-        },
-        setImage(best) {
-            try {
-                return require(`../../../../src/main/resources/images/product/${best.productno}/product/${best.imagename}`)
-            } catch {
-                return require(`@/components/mainPage/productTableImage/error.png`)
-            }
         },
         moveto(productno){
             this.$router.push(`/productDetail/${productno}`)

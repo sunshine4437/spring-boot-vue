@@ -21,7 +21,7 @@
                     </li>
                     <li class="list2">
                         <div class="listImage">
-                            <img class="productImage" :src="require(`../../../src/main/resources/images/product/${item.productno}/product/${item.imagename}`)" alt="">
+                            <img class="productImage" :src="`/api/product/productimage/${item.productno}/${item.imagename}`" alt="">
                         </div>
                     </li>
                     <li class="list3">

@@ -11,7 +11,7 @@
             <div class="card_image" v-for='(idx) in limitLength' :key="idx">
                 <div class="imageDiv">
                     <router-link v-bind:to="images[idx-1].link">
-                        <img :src="setImage(idx)" alt="productImage">
+                        <img :src="`/api/product/productimage/${images[idx-1].prodno}/${images[idx-1].image}`" alt="productImage">
                     </router-link>
                 </div>
                 <div class="imageTitle">
@@ -45,13 +45,6 @@ export default {
         bannerImage
     },
     methods: {
-        setImage(idx) {
-            try {
-                return require(`../../../../src/main/resources/images/product/${this.images[idx-1].prodno}/product/${this.images[idx-1].image}`)
-            } catch {
-                return require(`@/components/mainPage/productTableImage/error.png`)
-            }
-        },
         // 화면에 보이는 이미지 출력 길이를 늘리는 기능
         moreImage() {
             if (this.limitLength < this.imageLength) {
