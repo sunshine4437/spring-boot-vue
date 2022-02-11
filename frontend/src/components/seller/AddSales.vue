@@ -269,7 +269,6 @@ export default {
                 this.imagename = res.data[0].imagename;
                 this.detailimagename = res.data[0].detailimagename;
 
-                // this.image1 = require(`../../../../src/main/resources/images/product/${res.data[0].productno}/product/${res.data[0].imagename}`);
                 this.image1 = `/api/product/productimage/${res.data[0].productno}/${res.data[0].imagename}`;
                 this.image2 = `/api/product/detailimage/${res.data[0].productno}/${res.data[0].detailimagename}`;
             })

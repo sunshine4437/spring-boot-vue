@@ -1,11 +1,8 @@
 show autocommit;
 @".\member.sql";
-@".\member.sql";
 @".\product.sql";
-@".\seller.sql";
 @".\order.sql";
 @".\basket.sql";
 @".\qna.sql";
 @".\review.sql";
-@".\seller.sql";
 commit;

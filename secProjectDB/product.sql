@@ -7,13 +7,13 @@ CREATE TABLE s_product (
     sellerid        VARCHAR2(20) NOT NULL,
     productname     VARCHAR2(200) NOT NULL,
     ptype           VARCHAR2(50) NOT NULL,
-    imagename       VARCHAR2(100) NOT NULL,
+    imagename       VARCHAR2(500) NOT NULL,
     price           NUMBER(10) NOT NULL,
     option1         VARCHAR2(2000) NOT NULL,
     option2         VARCHAR2(2000) NOT NULL,
     amount          NUMBER(6) DEFAULT 0,
     regdate         VARCHAR2(30),
-    detailimagename VARCHAR2(100) NOT NULL,
+    detailimagename VARCHAR2(500) NOT NULL,
     onsale          CHAR(1) DEFAULT 0,
     CONSTRAINT fk_prodmem FOREIGN KEY ( sellerid )
         REFERENCES s_member ( id )
