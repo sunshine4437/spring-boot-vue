@@ -121,6 +121,10 @@ const routes = [
     }, {
         path: '*',
         component: () => import ('../views/blank.vue')
+    },
+    {
+        path: '/test',
+        component: () => import( '../views/test.vue')
     }
 ]
 
